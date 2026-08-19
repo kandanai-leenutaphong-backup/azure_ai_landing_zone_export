@@ -1,0 +1,47 @@
+<!--
+  REFERENCE ONLY — not deployed as a policyFragment resource (APIM rejects
+  log-to-eventhub inside a <fragment> with "Policy is not allowed in this section"
+  when combined with llm-emit-token-metric, since fragments must be section-agnostic
+  but these two policies require different sections: per Microsoft's official
+  llm-emit-token-metric-policy reference, that policy's only supported section is
+  inbound, while log-to-eventhub needs outbound to read the response body). The
+  actual, deployed version is split across modules/policies/api-policy.xml's
+  <inbound> (llm-emit-token-metric) and <outbound> (log-to-eventhub) sections.
+  This file documents the pattern for readability.
+
+  Emits per-call token usage as a custom metric (namespace llm-usage) dimensioned
+  by department (APIM Subscription/Product), user (Entra ID oid claim, set by
+  frag-validate-jwt.xml), and model/deployment (path segment). Requires
+  frag-validate-jwt.xml to run first in the same pipeline so aiGatewayUserId /
+  aiGatewayDepartment are populated.
+
+  Also writes a compact JSON usage event to Event Hub (evhns-hub-sea) via
+  log-to-eventhub, using the "eventhub-usage-logger" logger (system-assigned
+  managed identity, Azure Event Hubs Data Sender on the namespace). This is the
+  durable audit trail the usage-rollup Logic App workflow drains and upserts
+  into Cosmos DB per docs/ai-gateway-landing-zone.md.
+-->
+<fragment>
+    <llm-emit-token-metric namespace="llm-usage">
+        <dimension name="department" value="@(context.Variables.GetValueOrDefault&lt;string&gt;(&quot;aiGatewayDepartment&quot;,&quot;unattributed&quot;))" />
+        <dimension name="user" value="@(context.Variables.GetValueOrDefault&lt;string&gt;(&quot;aiGatewayUserId&quot;,&quot;unknown-user&quot;))" />
+        <dimension name="userName" value="@(context.Variables.GetValueOrDefault&lt;string&gt;(&quot;aiGatewayUserName&quot;,&quot;unknown-user&quot;))" />
+        <dimension name="deployment" value="@(context.Request.MatchedParameters.GetValueOrDefault(&quot;deployment-id&quot;,&quot;unknown-deployment&quot;))" />
+        <dimension name="apiId" value="@(context.Api.Id)" />
+    </llm-emit-token-metric>
+    <log-to-eventhub logger-id="eventhub-usage-logger"><![CDATA[@{
+        var body = context.Response.Body?.As<JObject>(preserveContent: true);
+        var usage = body?["usage"];
+        return new JObject(
+            new JProperty("timestamp", DateTime.UtcNow.ToString("o")),
+            new JProperty("department", context.Variables.GetValueOrDefault<string>("aiGatewayDepartment","unattributed")),
+            new JProperty("user", context.Variables.GetValueOrDefault<string>("aiGatewayUserId","unknown-user")),
+        new JProperty("userName", context.Variables.GetValueOrDefault<string>("aiGatewayUserName","unknown-user")),
+            new JProperty("deployment", context.Request.MatchedParameters.GetValueOrDefault("deployment-id","unknown-deployment")),
+            new JProperty("backendId", context.Variables.GetValueOrDefault<string>("aiGatewayBackendId","unknown-backend")),
+            new JProperty("promptTokens", (int?)usage?["prompt_tokens"] ?? 0),
+            new JProperty("completionTokens", (int?)usage?["completion_tokens"] ?? 0),
+            new JProperty("totalTokens", (int?)usage?["total_tokens"] ?? 0)
+        ).ToString();
+    }]]></log-to-eventhub>
+</fragment>

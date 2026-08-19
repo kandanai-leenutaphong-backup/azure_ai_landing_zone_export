@@ -1,0 +1,14 @@
+# Generated Point-to-Site VPN client package
+/bicep/vpn-client-profile.zip
+/bicep/vpn-client-profile/
+
+# Local secrets
+.env
+.env.*
+!.env.example
+
+# Local and generated artifacts
+*.bak
+*.pyc
+__pycache__/
+.DS_Store

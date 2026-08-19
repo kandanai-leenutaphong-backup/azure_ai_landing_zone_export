@@ -1,0 +1,48 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "value": "southeastasia"
+    },
+    "hubSubscriptionId": {
+      "value": "1b00124c-ed9b-4d33-9bd6-4d14c09c9857"
+    },
+    "spokeSubscriptionId": {
+      "value": "d88c020a-2180-43da-91a2-f6cc01f25946"
+    },
+    "hubResourceGroupName": {
+      "value": "rg-hub-sea"
+    },
+    "spokeResourceGroupName": {
+      "value": "rg-ai-dev-sea"
+    },
+    "enableBastion": {
+      "value": false
+    },
+    "vpnGatewayName": {
+      "value": "hub-VNetGw-sea-dev"
+    },
+    "p2sClientAddressPool": {
+      "value": "172.16.0.0/24"
+    },
+    "enableMdeExtension": {
+      "value": false
+    },
+    "enableComputerVision": {
+      "value": false
+    },
+    "sshPublicKeyVm1": {
+      "value": "ssh-rsa AAAA... REPLACE_ME vm-1-key"
+    },
+    "sshPublicKeyVm2": {
+      "value": "ssh-rsa AAAA... REPLACE_ME vm-2-key"
+    },
+    "tags": {
+      "value": {
+        "environment": "exported",
+        "source": "rg-vnet-hub-2 + rg-vm-vnet-test + rg-foundry-standard-private-westus3"
+      }
+    }
+  }
+}

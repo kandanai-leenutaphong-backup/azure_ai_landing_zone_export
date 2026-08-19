@@ -1,0 +1,106 @@
+<!--
+  Root API policy for the AI Gateway OpenAI-compatible surface. Wires the policy
+  fragments together in the order the Ascentium/Citadel reference and this design
+  use: JWT validation, semantic cache lookup, MSI auth, and token-metric emission
+  (inbound — per Microsoft's llm-emit-token-metric-policy reference, this policy's
+  only supported section is inbound, even though it reports on response token
+  usage; the runtime defers actual emission until the response is available),
+  hub-first backend routing with spoke overflow (backend), semantic cache store
+  and the Event Hub usage-audit write (outbound). Backend-failover logic is
+  inlined directly (not via include-fragment): APIM rejects forward-request/retry
+  inside a <fragment> since fragments must be usable in any section, and
+  forward-request/retry are backend-only.
+
+  MODEL ATTRIBUTION: llm-emit-token-metric's dimension expressions run in the INBOUND
+  section (before the backend call), so they can't read the actual served model back from
+  the response. To let the cost workbook show which underlying model (e.g. gpt-4o vs
+  gpt-4o-mini) served a given deployment/department/user, this policy separately captures
+  the served model from the RESPONSE (`x-ms-served-model` header, falling back to the
+  body's `model` field) in outbound, then emits a second, independent custom metric
+  ("Tokens By Model", namespace `llm-usage-model`). This is ADDITIVE — it does not touch or
+  duplicate the existing `llm-usage` namespace metrics the Department/User tables already
+  rely on (different namespace + metric name, so summarize queries filtered by name/
+  namespace never double-count).
+-->
+<policies>
+    <inbound>
+        <base />
+        <include-fragment fragment-id="frag-validate-jwt" />
+        <include-fragment fragment-id="frag-semantic-cache-lookup" />
+        <authentication-managed-identity resource="https://cognitiveservices.azure.com" output-token-variable-name="aiGatewayMsiToken" ignore-error="false" />
+        <set-header name="Authorization" exists-action="override">
+            <value>@("Bearer " + (string)context.Variables["aiGatewayMsiToken"])</value>
+        </set-header>
+        <llm-emit-token-metric namespace="llm-usage">
+            <dimension name="department" value="@(context.Variables.GetValueOrDefault&lt;string&gt;(&quot;aiGatewayDepartment&quot;,&quot;unattributed&quot;))" />
+            <dimension name="user" value="@(context.Variables.GetValueOrDefault&lt;string&gt;(&quot;aiGatewayUserId&quot;,&quot;unknown-user&quot;))" />
+            <dimension name="userName" value="@(context.Variables.GetValueOrDefault&lt;string&gt;(&quot;aiGatewayUserName&quot;,&quot;unknown-user&quot;))" />
+            <dimension name="deployment" value="@(context.Request.MatchedParameters.GetValueOrDefault(&quot;deployment-id&quot;,&quot;unknown-deployment&quot;))" />
+            <dimension name="apiId" value="@(context.Api.Id)" />
+        </llm-emit-token-metric>
+    </inbound>
+    <backend>
+        <retry condition="@(context.Response == null || context.Response.StatusCode == 429 || context.Response.StatusCode == 503)"
+               count="1"
+               interval="0">
+            <choose>
+                <when condition="@(context.Variables.GetValueOrDefault&lt;int&gt;(&quot;aiGatewayAttempt&quot;,0) == 0)">
+                    <set-variable name="aiGatewayBackendId" value="hub-foundry-backend" />
+                    <set-backend-service backend-id="hub-foundry-backend" />
+                </when>
+                <otherwise>
+                    <set-variable name="aiGatewayBackendId" value="spoke-foundry-backend" />
+                    <set-backend-service backend-id="spoke-foundry-backend" />
+                </otherwise>
+            </choose>
+            <set-variable name="aiGatewayAttempt" value="@(context.Variables.GetValueOrDefault&lt;int&gt;(&quot;aiGatewayAttempt&quot;,0) + 1)" />
+            <forward-request buffer-request-body="true" />
+        </retry>
+    </backend>
+    <outbound>
+        <base />
+        <include-fragment fragment-id="frag-semantic-cache-store" />
+        <set-variable name="aiGatewayResponseBody" value="@(context.Response.Body?.As&lt;JObject&gt;(preserveContent: true))" />
+        <!-- Prefer the actual served base model (x-ms-served-model response header, e.g.
+             "gpt-4o-2024-08-06") over the response body's "model" field, which reflects the
+             DEPLOYMENT name (e.g. "gpt-4o-hub-prod"), not necessarily the underlying base
+             model/version. -->
+        <set-variable name="aiGatewayModel" value="@{
+            var served = context.Response.Headers.GetValueOrDefault(&quot;x-ms-served-model&quot;,&quot;&quot;);
+            if (!string.IsNullOrEmpty(served)) { return served; }
+            var body = context.Variables.GetValueOrDefault&lt;JObject&gt;(&quot;aiGatewayResponseBody&quot;);
+            var m = body?[&quot;model&quot;]?.ToString();
+            return !string.IsNullOrEmpty(m) ? m : &quot;unknown-model&quot;;
+        }" />
+        <emit-metric name="Tokens By Model" value="@{
+            var body = context.Variables.GetValueOrDefault&lt;JObject&gt;(&quot;aiGatewayResponseBody&quot;);
+            var usage = body?[&quot;usage&quot;];
+            return (double)((int?)usage?[&quot;total_tokens&quot;] ?? 0);
+        }" namespace="llm-usage-model">
+            <dimension name="department" value="@(context.Variables.GetValueOrDefault&lt;string&gt;(&quot;aiGatewayDepartment&quot;,&quot;unattributed&quot;))" />
+            <dimension name="user" value="@(context.Variables.GetValueOrDefault&lt;string&gt;(&quot;aiGatewayUserId&quot;,&quot;unknown-user&quot;))" />
+            <dimension name="userName" value="@(context.Variables.GetValueOrDefault&lt;string&gt;(&quot;aiGatewayUserName&quot;,&quot;unknown-user&quot;))" />
+            <dimension name="deployment" value="@(context.Request.MatchedParameters.GetValueOrDefault(&quot;deployment-id&quot;,&quot;unknown-deployment&quot;))" />
+            <dimension name="model" value="@(context.Variables.GetValueOrDefault&lt;string&gt;(&quot;aiGatewayModel&quot;,&quot;unknown-model&quot;))" />
+        </emit-metric>
+        <log-to-eventhub logger-id="eventhub-usage-logger"><![CDATA[@{
+            var body = context.Variables.GetValueOrDefault<JObject>("aiGatewayResponseBody");
+            var usage = body?["usage"];
+            return new JObject(
+                new JProperty("timestamp", DateTime.UtcNow.ToString("o")),
+                new JProperty("department", context.Variables.GetValueOrDefault<string>("aiGatewayDepartment","unattributed")),
+                new JProperty("user", context.Variables.GetValueOrDefault<string>("aiGatewayUserId","unknown-user")),
+                new JProperty("userName", context.Variables.GetValueOrDefault<string>("aiGatewayUserName","unknown-user")),
+                new JProperty("deployment", context.Request.MatchedParameters.GetValueOrDefault("deployment-id","unknown-deployment")),
+                new JProperty("model", context.Variables.GetValueOrDefault<string>("aiGatewayModel","unknown-model")),
+                new JProperty("backendId", context.Variables.GetValueOrDefault<string>("aiGatewayBackendId","unknown-backend")),
+                new JProperty("promptTokens", (int?)usage?["prompt_tokens"] ?? 0),
+                new JProperty("completionTokens", (int?)usage?["completion_tokens"] ?? 0),
+                new JProperty("totalTokens", (int?)usage?["total_tokens"] ?? 0)
+            ).ToString();
+        }]]></log-to-eventhub>
+    </outbound>
+    <on-error>
+        <base />
+    </on-error>
+</policies>

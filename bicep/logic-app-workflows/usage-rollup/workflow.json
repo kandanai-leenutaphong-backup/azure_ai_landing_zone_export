@@ -1,0 +1,74 @@
+{
+  "definition": {
+    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {},
+    "triggers": {
+      "Daily_recurrence": {
+        "type": "Recurrence",
+        "recurrence": {
+          "frequency": "Day",
+          "interval": 1
+        }
+      }
+    },
+    "actions": {
+      "Query_llm_usage_from_Application_Insights": {
+        "type": "Http",
+        "inputs": {
+          "method": "POST",
+          "uri": "https://api.loganalytics.io/v1/workspaces/@{appsetting('USAGE_LOG_ANALYTICS_WORKSPACE_ID')}/query",
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "body": {
+            "query": "customMetrics | where name == 'llm-usage' and timestamp > ago(1d) | extend department = tostring(customDimensions['department']), userId = tostring(customDimensions['user']), deployment = tostring(customDimensions['deployment']) | summarize totalTokens = sum(value) by department, userId, deployment, day = bin(timestamp, 1d)"
+          },
+          "authentication": {
+            "type": "ManagedServiceIdentity",
+            "audience": "https://api.loganalytics.io/"
+          }
+        },
+        "runAfter": {}
+      },
+      "For_each_usage_row": {
+        "type": "Foreach",
+        "foreach": "@body('Query_llm_usage_from_Application_Insights')?['tables']?[0]?['rows']",
+        "actions": {
+          "Upsert_daily_rollup_into_Cosmos_DB": {
+            "type": "Http",
+            "inputs": {
+              "method": "POST",
+              "uri": "@{appsetting('USAGE_COSMOS_ACCOUNT_ENDPOINT')}dbs/@{appsetting('USAGE_COSMOS_DATABASE_NAME')}/colls/@{appsetting('USAGE_COSMOS_CONTAINER_NAME')}/docs",
+              "headers": {
+                "Content-Type": "application/json",
+                "x-ms-version": "2020-07-15",
+                "x-ms-documentdb-is-upsert": "True",
+                "x-ms-documentdb-partitionkey": "[\"@{items('For_each_usage_row')[0]}\"]"
+              },
+              "body": {
+                "id": "@{concat(items('For_each_usage_row')[0], '-', items('For_each_usage_row')[1], '-', items('For_each_usage_row')[2], '-', formatDateTime(items('For_each_usage_row')[3], 'yyyy-MM-dd'))}",
+                "department": "@{items('For_each_usage_row')[0]}",
+                "user": "@{items('For_each_usage_row')[1]}",
+                "deployment": "@{items('For_each_usage_row')[2]}",
+                "date": "@{formatDateTime(items('For_each_usage_row')[3], 'yyyy-MM-dd')}",
+                "totalTokens": "@{items('For_each_usage_row')[4]}"
+              },
+              "authentication": {
+                "type": "ManagedServiceIdentity",
+                "audience": "@{appsetting('USAGE_COSMOS_ACCOUNT_ENDPOINT')}"
+              }
+            }
+          }
+        },
+        "runAfter": {
+          "Query_llm_usage_from_Application_Insights": [
+            "Succeeded"
+          ]
+        }
+      }
+    },
+    "outputs": {}
+  },
+  "kind": "Stateful"
+}

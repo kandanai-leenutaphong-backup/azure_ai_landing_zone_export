@@ -1,0 +1,52 @@
+<!--
+  Validates the caller's Entra ID access token and extracts identity for cost
+  attribution:
+    - aiGatewayUserId  <- the token's `oid` claim (always, per-user identity).
+    - aiGatewayUserName <- a human-readable label for the caller: the token's
+      `name` claim (delegated user tokens), falling back to
+      `preferred_username` (UPN), then `service-principal:<azp>` for app-only
+      (client-credentials) callers that have no name/UPN, then "unknown-user".
+    - aiGatewayDepartment <- PREFERS the token's `roles` claim (an Entra ID
+      App Role assigned to the caller/service principal, e.g. "Finance-Analytics",
+      "ODI"), falling back to the APIM Subscription/Product boundary
+      (context.Subscription / context.Product) if no role claim is present, and
+      finally "unattributed". This lets department attribution come purely from
+      Entra ID (single shared APIM product/subscription, no per-department keys)
+      OR from APIM Products/Subscriptions (today's tested model), or
+      both can be used side by side without code changes.
+
+  To use the Entra-only (no distinct subscription keys) model: in the App
+  Registration behind `entra-audience`, add an App Role per department (e.g.
+  "Finance-Analytics", "ODI") under "App roles", then assign users/groups or
+  service principals to the role that matches their department. The role name
+  becomes the department dimension value directly.
+
+  Set the named values `entra-tenant-id` and `entra-audience` before including
+  this fragment (see apim.bicep namedValues).
+-->
+<fragment>
+    <validate-jwt header-name="Authorization"
+                   require-scheme="Bearer"
+                   failed-validation-httpcode="401"
+                   failed-validation-error-message="Missing or invalid Entra ID access token.">
+        <openid-config url="https://login.microsoftonline.com/{{entra-tenant-id}}/v2.0/.well-known/openid-configuration" />
+        <audiences>
+            <audience>{{entra-audience}}</audience>
+        </audiences>
+        <required-claims>
+            <claim name="oid" match="any" />
+        </required-claims>
+    </validate-jwt>
+    <set-variable name="aiGatewayUserId" value="@(context.Request.Headers.GetValueOrDefault(&quot;Authorization&quot;,&quot;&quot;).AsJwt()?.Claims.GetValueOrDefault(&quot;oid&quot;, new string[0]).FirstOrDefault() ?? &quot;unknown-user&quot;)" />
+    <set-variable name="aiGatewayUserName" value="@{
+        var jwt = context.Request.Headers.GetValueOrDefault(&quot;Authorization&quot;,&quot;&quot;).AsJwt();
+        var name = jwt?.Claims.GetValueOrDefault(&quot;name&quot;, new string[0]).FirstOrDefault();
+        if (!string.IsNullOrEmpty(name)) { return name; }
+        var upn = jwt?.Claims.GetValueOrDefault(&quot;preferred_username&quot;, new string[0]).FirstOrDefault();
+        if (!string.IsNullOrEmpty(upn)) { return upn; }
+        var azp = jwt?.Claims.GetValueOrDefault(&quot;azp&quot;, new string[0]).FirstOrDefault();
+        if (!string.IsNullOrEmpty(azp)) { return &quot;service-principal:&quot; + azp; }
+        return &quot;unknown-user&quot;;
+    }" />
+    <set-variable name="aiGatewayDepartment" value="@(context.Request.Headers.GetValueOrDefault(&quot;Authorization&quot;,&quot;&quot;).AsJwt()?.Claims.GetValueOrDefault(&quot;roles&quot;, new string[0]).FirstOrDefault() ?? context.Subscription?.Name ?? context.Product?.Name ?? &quot;unattributed&quot;)" />
+</fragment>

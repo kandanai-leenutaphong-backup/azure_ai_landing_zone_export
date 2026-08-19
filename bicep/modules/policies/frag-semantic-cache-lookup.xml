@@ -1,0 +1,15 @@
+<!--
+  Semantic-cache lookup, backed by the Managed Redis (RediSearch) external cache
+  registered on the APIM instance (see apim.bicep `Microsoft.ApiManagement/service/caches`)
+  and the dedicated embeddings backend used to vectorize the prompt before the
+  similarity search. Include in the inbound section, after frag-validate-jwt.xml.
+-->
+<fragment>
+    <llm-semantic-cache-lookup score-threshold="0.05"
+                               embeddings-backend-id="foundry-embeddings"
+                               embeddings-backend-auth="system-assigned"
+                               ignore-system-messages="true"
+                               max-message-count="10">
+        <vary-by>@(context.Subscription?.Id ?? "anonymous")</vary-by>
+    </llm-semantic-cache-lookup>
+</fragment>

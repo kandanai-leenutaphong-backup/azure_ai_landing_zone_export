@@ -1,0 +1,10 @@
+azure-search-documents>=11.5,<12
+azure-identity>=1.17,<2
+certifi>=2024.7
+pyOpenSSL>=24.2,<26
+pandas>=2.0,<3
+python-tds>=1.16,<2
+python-dotenv>=1.0,<2
+pythainlp>=5.0,<6
+rapidfuzz>=3.0,<4
+streamlit>=1.35,<2

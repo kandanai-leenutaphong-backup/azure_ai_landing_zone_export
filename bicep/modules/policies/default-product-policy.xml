@@ -1,0 +1,19 @@
+<!--
+  Default per-department product policy. Departments can override rate limits or
+  add llm-content-safety / PII fragments here later without touching the shared
+  API policy. Kept minimal (pure passthrough) for the initial design.
+-->
+<policies>
+    <inbound>
+        <base />
+    </inbound>
+    <backend>
+        <base />
+    </backend>
+    <outbound>
+        <base />
+    </outbound>
+    <on-error>
+        <base />
+    </on-error>
+</policies>

@@ -1,0 +1,8 @@
+<!--
+  Stores the response in the semantic cache after a successful backend call.
+  Include in the outbound section, mirroring frag-semantic-cache-lookup.xml's
+  inbound placement.
+-->
+<fragment>
+    <llm-semantic-cache-store duration="3600" />
+</fragment>

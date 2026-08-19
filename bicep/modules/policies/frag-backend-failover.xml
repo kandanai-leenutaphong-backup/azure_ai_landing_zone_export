@@ -1,0 +1,37 @@
+<!--
+  REFERENCE ONLY — not deployed as a policyFragment resource (APIM rejects
+  forward-request/retry inside a <fragment>: "the allowed sections for policies in
+  the fragment don't have any overlap", since fragments must be section-agnostic).
+  The actual, deployed version of this logic is inlined directly into
+  modules/policies/api-policy.xml's <backend> section instead (backend sections
+  also allow only a single top-level policy, hence everything nested under one
+  <retry>). This file documents the pattern for readability.
+
+  Hub-first backend routing with example overflow to the spoke's Foundry account.
+  Backend 1 (priority, all quota consumed first): "hub-foundry-backend", pointing at
+  aif-hub-sea in the AI Gateway subscription.
+  Backend 2 (fallback example only, requires no spoke changes): "spoke-foundry-backend",
+  pointing at the existing spoke's foundryAccountApp deployment in rg-ai-dev-sea.
+
+  On a 429 (RateLimitExceeded) or 503 from backend 1, retries once against backend 2.
+  Both backends are registered with the same {deployment} name so downstream cost/usage
+  dimensions stay correct regardless of which subscription actually served the request.
+-->
+<fragment>
+    <retry condition="@(context.Response == null || context.Response.StatusCode == 429 || context.Response.StatusCode == 503)"
+           count="1"
+           interval="0">
+        <choose>
+            <when condition="@(context.Variables.GetValueOrDefault&lt;int&gt;(&quot;aiGatewayAttempt&quot;,0) == 0)">
+                <set-variable name="aiGatewayBackendId" value="hub-foundry-backend" />
+                <set-backend-service backend-id="hub-foundry-backend" />
+            </when>
+            <otherwise>
+                <set-variable name="aiGatewayBackendId" value="spoke-foundry-backend" />
+                <set-backend-service backend-id="spoke-foundry-backend" />
+            </otherwise>
+        </choose>
+        <set-variable name="aiGatewayAttempt" value="@(context.Variables.GetValueOrDefault&lt;int&gt;(&quot;aiGatewayAttempt&quot;,0) + 1)" />
+        <forward-request buffer-request-body="true" />
+    </retry>
+</fragment>

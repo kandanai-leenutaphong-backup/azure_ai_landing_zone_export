@@ -1,0 +1,109 @@
+<!--
+  API policy for invoking a SPECIFIC published Foundry agent (a persistent Prompt Agent
+  created in the Foundry Portal, or via AIProjectClient.agents.create_version) through the
+  AI Gateway, so that "agents you can manage in Foundry Portal" AND "cost-attributed calls"
+  are no longer mutually exclusive.
+
+  This targets Foundry's project-scoped Responses API (`{project}/openai/v1/responses`
+  + `agent_reference` in the request body identifying which named/versioned agent to run) —
+  a fundamentally different host+path+auth-scope shape than the account-scoped Chat
+  Completions surface in api-policy.xml, so it gets its own backend/operation/policy rather
+  than reusing frag-backend-failover's hub/spoke pair:
+    - Backend token audience is https://ai.azure.com (not https://cognitiveservices.azure.com).
+    - No spoke failover: agents are only ever defined against the hub project, so there is
+      nothing to overflow to if the hub's quota is exhausted for this path. Raw completions
+      (api-policy.xml) still get hub-first/spoke-overflow quota sharing as designed.
+    - Usage/token fields use the Responses API shape (`input_tokens`/`output_tokens`/
+      `total_tokens`), not Chat Completions' (`prompt_tokens`/`completion_tokens`/`total_tokens`)
+      — llm-emit-token-metric (feeding the cost workbook) natively supports both, but the
+      manual log-to-eventhub JSON extraction below explicitly falls back across both shapes
+      for the Event Hub audit trail.
+
+  MODEL/AGENT ATTRIBUTION: llm-emit-token-metric's dimension expressions are evaluated in
+  the INBOUND section (before the backend call), so they cannot read the actual served model
+  from the response. To let the cost workbook show "which model backed this agent" (e.g.
+  gpt-4o vs gpt-4o-mini), this policy separately captures the AGENT NAME from the REQUEST
+  body (`agent_reference.name`, available at inbound) and the actual served MODEL from the
+  RESPONSE (`x-ms-served-model` header, falling back to the body's `model` field — available
+  only in outbound), then emits a second, independent custom metric ("Tokens By Model",
+  namespace `llm-usage-model`) carrying both as dimensions. This is ADDITIVE — it does not
+  change or duplicate the existing `llm-usage` namespace metrics that the Department/User
+  tables already rely on (different namespace + metric name, so summarize queries filtered
+  by name/namespace never double-count).
+-->
+<policies>
+    <inbound>
+        <base />
+        <include-fragment fragment-id="frag-validate-jwt" />
+        <authentication-managed-identity resource="https://ai.azure.com" output-token-variable-name="aiGatewayAgentsMsiToken" ignore-error="false" />
+        <set-header name="Authorization" exists-action="override">
+            <value>@("Bearer " + (string)context.Variables["aiGatewayAgentsMsiToken"])</value>
+        </set-header>
+        <!-- Captured here (inbound) because the request body is only reliably available before
+             it is forwarded to the backend; this is the agent the caller asked to invoke,
+             via agent_reference.name in the JSON body. -->
+        <set-variable name="aiGatewayAgentName" value="@{
+            var reqBody = context.Request.Body?.As&lt;JObject&gt;(preserveContent: true);
+            var name = reqBody?[&quot;agent_reference&quot;]?[&quot;name&quot;]?.ToString();
+            return !string.IsNullOrEmpty(name) ? name : &quot;unknown-agent&quot;;
+        }" />
+        <llm-emit-token-metric namespace="llm-usage">
+            <dimension name="department" value="@(context.Variables.GetValueOrDefault&lt;string&gt;(&quot;aiGatewayDepartment&quot;,&quot;unattributed&quot;))" />
+            <dimension name="user" value="@(context.Variables.GetValueOrDefault&lt;string&gt;(&quot;aiGatewayUserId&quot;,&quot;unknown-user&quot;))" />
+            <dimension name="userName" value="@(context.Variables.GetValueOrDefault&lt;string&gt;(&quot;aiGatewayUserName&quot;,&quot;unknown-user&quot;))" />
+            <dimension name="deployment" value="foundry-agent" />
+            <dimension name="apiId" value="@(context.Api.Id)" />
+        </llm-emit-token-metric>
+        <set-backend-service backend-id="hub-foundry-agents-backend" />
+    </inbound>
+    <backend>
+        <base />
+    </backend>
+    <outbound>
+        <base />
+        <set-variable name="aiGatewayResponseBody" value="@(context.Response.Body?.As&lt;JObject&gt;(preserveContent: true))" />
+        <!-- Prefer the actual served base model (x-ms-served-model response header, e.g.
+             "gpt-4.1-mini-2025-04-14") over the response body's "model" field, which for the
+             Responses API reflects the DEPLOYMENT name (e.g. "gpt-4o-hub-prod"), not the
+             underlying base model. -->
+        <set-variable name="aiGatewayModel" value="@{
+            var served = context.Response.Headers.GetValueOrDefault(&quot;x-ms-served-model&quot;,&quot;&quot;);
+            if (!string.IsNullOrEmpty(served)) { return served; }
+            var body = context.Variables.GetValueOrDefault&lt;JObject&gt;(&quot;aiGatewayResponseBody&quot;);
+            var m = body?[&quot;model&quot;]?.ToString();
+            return !string.IsNullOrEmpty(m) ? m : &quot;unknown-model&quot;;
+        }" />
+        <emit-metric name="Tokens By Model" value="@{
+            var body = context.Variables.GetValueOrDefault&lt;JObject&gt;(&quot;aiGatewayResponseBody&quot;);
+            var usage = body?[&quot;usage&quot;];
+            return (double)((int?)usage?[&quot;total_tokens&quot;] ?? 0);
+        }" namespace="llm-usage-model">
+            <dimension name="department" value="@(context.Variables.GetValueOrDefault&lt;string&gt;(&quot;aiGatewayDepartment&quot;,&quot;unattributed&quot;))" />
+            <dimension name="user" value="@(context.Variables.GetValueOrDefault&lt;string&gt;(&quot;aiGatewayUserId&quot;,&quot;unknown-user&quot;))" />
+            <dimension name="userName" value="@(context.Variables.GetValueOrDefault&lt;string&gt;(&quot;aiGatewayUserName&quot;,&quot;unknown-user&quot;))" />
+            <dimension name="agent" value="@(context.Variables.GetValueOrDefault&lt;string&gt;(&quot;aiGatewayAgentName&quot;,&quot;unknown-agent&quot;))" />
+            <dimension name="model" value="@(context.Variables.GetValueOrDefault&lt;string&gt;(&quot;aiGatewayModel&quot;,&quot;unknown-model&quot;))" />
+        </emit-metric>
+        <log-to-eventhub logger-id="eventhub-usage-logger"><![CDATA[@{
+            var body = context.Variables.GetValueOrDefault<JObject>("aiGatewayResponseBody");
+            var usage = body?["usage"];
+            return new JObject(
+                new JProperty("timestamp", DateTime.UtcNow.ToString("o")),
+                new JProperty("department", context.Variables.GetValueOrDefault<string>("aiGatewayDepartment","unattributed")),
+                new JProperty("user", context.Variables.GetValueOrDefault<string>("aiGatewayUserId","unknown-user")),
+                new JProperty("userName", context.Variables.GetValueOrDefault<string>("aiGatewayUserName","unknown-user")),
+                new JProperty("deployment", "foundry-agent"),
+                new JProperty("agent", context.Variables.GetValueOrDefault<string>("aiGatewayAgentName","unknown-agent")),
+                new JProperty("model", context.Variables.GetValueOrDefault<string>("aiGatewayModel","unknown-model")),
+                new JProperty("backendId", "hub-foundry-agents-backend"),
+                new JProperty("promptTokens", (int?)usage?["prompt_tokens"] ?? (int?)usage?["input_tokens"] ?? 0),
+                new JProperty("completionTokens", (int?)usage?["completion_tokens"] ?? (int?)usage?["output_tokens"] ?? 0),
+                new JProperty("totalTokens", (int?)usage?["total_tokens"] ?? 0)
+            ).ToString();
+        }]]></log-to-eventhub>
+    </outbound>
+    <on-error>
+        <base />
+    </on-error>
+</policies>
+
