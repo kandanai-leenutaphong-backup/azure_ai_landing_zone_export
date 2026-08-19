@@ -1,0 +1,38 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Entra User Data API",
+    "description": "Demo API whose responses are scoped to the authenticated Microsoft Entra user.",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/me": {
+      "get": {
+        "operationId": "getMyProfile",
+        "summary": "Get data for the authenticated user",
+        "responses": {
+          "200": {
+            "description": "The authenticated user's profile"
+          },
+          "401": {
+            "description": "A valid Microsoft Entra access token is required"
+          }
+        }
+      }
+    },
+    "/me/orders": {
+      "get": {
+        "operationId": "listMyOrders",
+        "summary": "List orders belonging to the authenticated user",
+        "responses": {
+          "200": {
+            "description": "Orders scoped to the authenticated user"
+          },
+          "401": {
+            "description": "A valid Microsoft Entra access token is required"
+          }
+        }
+      }
+    }
+  }
+}

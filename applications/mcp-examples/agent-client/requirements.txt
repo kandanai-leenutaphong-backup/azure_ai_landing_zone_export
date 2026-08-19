@@ -1,0 +1,5 @@
+agent-framework==1.13.0
+agent-framework-azure-ai==1.0.0rc6
+azure-ai-projects>=2.3.0,<3.0.0
+azure-identity>=1.19.0,<2.0.0
+python-dotenv>=1.0.0,<2.0.0
