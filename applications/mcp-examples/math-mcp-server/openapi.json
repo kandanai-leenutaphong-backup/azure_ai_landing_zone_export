@@ -1,0 +1,113 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Math and Text Tools API",
+    "description": "REST facade for the native Math and Text MCP server.",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/tools/calculate": {
+      "post": {
+        "operationId": "calculate",
+        "summary": "Calculate an arithmetic expression",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["expression"],
+                "properties": {
+                  "expression": {
+                    "type": "string",
+                    "example": "(12 + 8) / 4"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Calculation result"
+          }
+        }
+      }
+    },
+    "/tools/fibonacci/{count}": {
+      "get": {
+        "operationId": "fibonacci",
+        "summary": "Generate Fibonacci numbers",
+        "parameters": [
+          {
+            "name": "count",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 50
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Fibonacci sequence"
+          }
+        }
+      }
+    },
+    "/tools/is-prime/{number}": {
+      "get": {
+        "operationId": "isPrime",
+        "summary": "Check whether a number is prime",
+        "parameters": [
+          {
+            "name": "number",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Prime check result"
+          }
+        }
+      }
+    },
+    "/tools/text-transform": {
+      "post": {
+        "operationId": "textTransform",
+        "summary": "Transform text",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["text", "operation"],
+                "properties": {
+                  "text": {
+                    "type": "string"
+                  },
+                  "operation": {
+                    "type": "string",
+                    "enum": ["uppercase", "lowercase", "title", "reverse", "length"]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Transformed text"
+          }
+        }
+      }
+    }
+  }
+}

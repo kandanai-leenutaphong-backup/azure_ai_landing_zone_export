@@ -1,0 +1,201 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+APP_SUBSCRIPTION_ID="${APP_SUBSCRIPTION_ID:-d88c020a-2180-43da-91a2-f6cc01f25946}"
+APP_RESOURCE_GROUP="${APP_RESOURCE_GROUP:-rg-ai-dev-sea}"
+CONTAINER_APPS_ENVIRONMENT="${CONTAINER_APPS_ENVIRONMENT:-capps-env-sea}"
+ACR_NAME="${ACR_NAME:-acrappseaozewfizfnaft4}"
+ACR_PULL_IDENTITY_NAME="${ACR_PULL_IDENTITY_NAME:-uami-container-apps}"
+
+GATEWAY_SUBSCRIPTION_ID="${GATEWAY_SUBSCRIPTION_ID:-0d04b43f-7d15-40fd-8aa5-830f71ab0d80}"
+GATEWAY_RESOURCE_GROUP="${GATEWAY_RESOURCE_GROUP:-rg-ai-gateway-sea}"
+APIM_NAME="${APIM_NAME:-apim-hub-sea2uy4dibzgdn34}"
+APIM_API_VERSION="${APIM_API_VERSION:-2025-09-01-preview}"
+API_CENTER_NAME="${API_CENTER_NAME:-apic-hub-sea2uy4dibzgdn34}"
+
+PET_APP_NAME="${PET_APP_NAME:-petstore-mcp-api}"
+MATH_APP_NAME="${MATH_APP_NAME:-math-mcp-server}"
+IMAGE_TAG="${IMAGE_TAG:-$(git rev-parse --short HEAD 2>/dev/null || echo local)-$(date +%Y%m%d%H%M%S)}"
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
+if ! az apic integration create apim --help >/dev/null 2>&1; then
+  az extension add --name apic-extension --upgrade --allow-preview true --yes >/dev/null
+fi
+
+ACR_LOGIN_SERVER="$(az acr show --subscription "$APP_SUBSCRIPTION_ID" --resource-group "$APP_RESOURCE_GROUP" --name "$ACR_NAME" --query loginServer -o tsv)"
+IDENTITY_ID="$(az identity show --subscription "$APP_SUBSCRIPTION_ID" --resource-group "$APP_RESOURCE_GROUP" --name "$ACR_PULL_IDENTITY_NAME" --query id -o tsv)"
+
+az acr build \
+  --subscription "$APP_SUBSCRIPTION_ID" \
+  --registry "$ACR_NAME" \
+  --image "mcp-examples/petstore-api:${IMAGE_TAG}" \
+  "$ROOT_DIR/applications/mcp-examples/petstore-api"
+
+az acr build \
+  --subscription "$APP_SUBSCRIPTION_ID" \
+  --registry "$ACR_NAME" \
+  --image "mcp-examples/math-mcp-server:${IMAGE_TAG}" \
+  "$ROOT_DIR/applications/mcp-examples/math-mcp-server"
+
+deploy_container_app() {
+  local name="$1"
+  local image="$2"
+  local port="$3"
+
+  if az containerapp show --subscription "$APP_SUBSCRIPTION_ID" --resource-group "$APP_RESOURCE_GROUP" --name "$name" >/dev/null 2>&1; then
+    az containerapp update \
+      --subscription "$APP_SUBSCRIPTION_ID" \
+      --resource-group "$APP_RESOURCE_GROUP" \
+      --name "$name" \
+      --image "$image" \
+      --min-replicas 1 \
+      --max-replicas 3
+  else
+    az containerapp create \
+      --subscription "$APP_SUBSCRIPTION_ID" \
+      --resource-group "$APP_RESOURCE_GROUP" \
+      --name "$name" \
+      --environment "$CONTAINER_APPS_ENVIRONMENT" \
+      --image "$image" \
+      --user-assigned "$IDENTITY_ID" \
+      --registry-server "$ACR_LOGIN_SERVER" \
+      --registry-identity "$IDENTITY_ID" \
+      --ingress external \
+      --target-port "$port" \
+      --transport auto \
+      --cpu 0.5 \
+      --memory 1Gi \
+      --min-replicas 1 \
+      --max-replicas 3
+  fi
+}
+
+deploy_container_app "$PET_APP_NAME" "$ACR_LOGIN_SERVER/mcp-examples/petstore-api:${IMAGE_TAG}" 8000
+deploy_container_app "$MATH_APP_NAME" "$ACR_LOGIN_SERVER/mcp-examples/math-mcp-server:${IMAGE_TAG}" 8001
+
+PET_FQDN="$(az containerapp show --subscription "$APP_SUBSCRIPTION_ID" --resource-group "$APP_RESOURCE_GROUP" --name "$PET_APP_NAME" --query properties.configuration.ingress.fqdn -o tsv)"
+MATH_FQDN="$(az containerapp show --subscription "$APP_SUBSCRIPTION_ID" --resource-group "$APP_RESOURCE_GROUP" --name "$MATH_APP_NAME" --query properties.configuration.ingress.fqdn -o tsv)"
+
+OPENAPI_FILE="$ROOT_DIR/applications/mcp-examples/petstore-api/openapi.json"
+MATH_OPENAPI_FILE="$ROOT_DIR/applications/mcp-examples/math-mcp-server/openapi.json"
+
+az apim api import \
+  --subscription "$GATEWAY_SUBSCRIPTION_ID" \
+  --resource-group "$GATEWAY_RESOURCE_GROUP" \
+  --service-name "$APIM_NAME" \
+  --api-id petstore-api \
+  --path pets \
+  --display-name "Pet Store API" \
+  --protocols https \
+  --service-url "https://${PET_FQDN}" \
+  --specification-format OpenApiJson \
+  --specification-path "$OPENAPI_FILE"
+
+az apim api import \
+  --subscription "$GATEWAY_SUBSCRIPTION_ID" \
+  --resource-group "$GATEWAY_RESOURCE_GROUP" \
+  --service-name "$APIM_NAME" \
+  --api-id math-tools-api \
+  --path math-tools \
+  --display-name "Math and Text Tools API" \
+  --protocols https \
+  --service-url "https://${MATH_FQDN}" \
+  --specification-format OpenApiJson \
+  --specification-path "$MATH_OPENAPI_FILE"
+
+TOKEN="$(az account get-access-token --resource https://management.azure.com --query accessToken -o tsv)"
+APIM_BASE_URL="https://management.azure.com/subscriptions/${GATEWAY_SUBSCRIPTION_ID}/resourceGroups/${GATEWAY_RESOURCE_GROUP}/providers/Microsoft.ApiManagement/service/${APIM_NAME}"
+
+put_apim_resource() {
+  local url="$1"
+  local body="$2"
+  curl --fail --silent --show-error --request PUT "$url" \
+    --header "Authorization: Bearer ${TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "If-Match: *" \
+    --data "$body" >/dev/null
+}
+
+wait_for_apim_api() {
+  local api_id="$1"
+  local state
+
+  for _ in $(seq 1 30); do
+    state="$(curl --fail --silent --show-error \
+      "${APIM_BASE_URL}/apis/${api_id}?api-version=${APIM_API_VERSION}" \
+      --header "Authorization: Bearer ${TOKEN}" | jq -r '.properties.provisioningState // "Succeeded"')"
+    if [[ "$state" == "Succeeded" ]]; then
+      return
+    fi
+    if [[ "$state" == "Failed" ]]; then
+      echo "APIM API ${api_id} provisioning failed" >&2
+      exit 1
+    fi
+    sleep 10
+  done
+
+  echo "Timed out waiting for APIM API ${api_id}" >&2
+  exit 1
+}
+
+put_apim_resource \
+  "${APIM_BASE_URL}/apis/petstore-mcp?api-version=${APIM_API_VERSION}" \
+  '{"properties":{"type":"mcp","path":"petstore-mcp","displayName":"Pet Store MCP Server","description":"Pet Store REST operations exposed as MCP tools.","protocols":["https"]}}'
+wait_for_apim_api petstore-mcp
+
+for operation in listPets getPet createPet; do
+  operation_resource_id="${APIM_BASE_URL#https://management.azure.com}/apis/petstore-api/operations/${operation}"
+  put_apim_resource \
+    "${APIM_BASE_URL}/apis/petstore-mcp/tools/${operation}?api-version=${APIM_API_VERSION}" \
+    "{\"properties\":{\"displayName\":\"${operation}\",\"description\":\"Pet Store ${operation} operation\",\"operationId\":\"${operation_resource_id}\"}}"
+done
+
+curl --fail --silent --show-error --request DELETE \
+  "${APIM_BASE_URL}/apis/math-mcp?api-version=${APIM_API_VERSION}" \
+  --header "Authorization: Bearer ${TOKEN}" \
+  --header "If-Match: *" >/dev/null 2>&1 || true
+
+put_apim_resource \
+  "${APIM_BASE_URL}/apis/math-mcp?api-version=${APIM_API_VERSION}" \
+  '{"properties":{"type":"mcp","path":"math-mcp","displayName":"Math and Text MCP Server","description":"Math and text REST operations exposed as MCP tools.","protocols":["https"]}}'
+wait_for_apim_api math-mcp
+
+for operation in calculate fibonacci isPrime textTransform; do
+  operation_resource_id="${APIM_BASE_URL#https://management.azure.com}/apis/math-tools-api/operations/${operation}"
+  put_apim_resource \
+    "${APIM_BASE_URL}/apis/math-mcp/tools/${operation}?api-version=${APIM_API_VERSION}" \
+    "{\"properties\":{\"displayName\":\"${operation}\",\"description\":\"Math and Text ${operation} operation\",\"operationId\":\"${operation_resource_id}\"}}"
+done
+
+for api_id in petstore-api petstore-mcp math-tools-api math-mcp; do
+  curl --fail --silent --show-error --request PUT \
+    "${APIM_BASE_URL}/products/product-fa/apis/${api_id}?api-version=2024-05-01" \
+    --header "Authorization: Bearer ${TOKEN}" \
+    --header "Content-Length: 0" >/dev/null
+done
+
+if az apic show \
+  --subscription "$GATEWAY_SUBSCRIPTION_ID" \
+  --resource-group "$GATEWAY_RESOURCE_GROUP" \
+  --name "$API_CENTER_NAME" >/dev/null 2>&1; then
+  if ! az apic integration show \
+    --subscription "$GATEWAY_SUBSCRIPTION_ID" \
+    --resource-group "$GATEWAY_RESOURCE_GROUP" \
+    --service-name "$API_CENTER_NAME" \
+    --integration-name ai-gateway-apim >/dev/null 2>&1; then
+    az apic integration create apim \
+      --subscription "$GATEWAY_SUBSCRIPTION_ID" \
+      --resource-group "$GATEWAY_RESOURCE_GROUP" \
+      --service-name "$API_CENTER_NAME" \
+      --integration-name ai-gateway-apim \
+      --azure-apim "$APIM_NAME"
+  fi
+fi
+
+GATEWAY_URL="$(az apim show --subscription "$GATEWAY_SUBSCRIPTION_ID" --resource-group "$GATEWAY_RESOURCE_GROUP" --name "$APIM_NAME" --query gatewayUrl -o tsv)"
+
+printf 'Pet Store backend: https://%s\n' "$PET_FQDN"
+printf 'Math MCP backend: https://%s/mcp\n' "$MATH_FQDN"
+printf 'Pet Store MCP: %s/petstore-mcp/mcp\n' "$GATEWAY_URL"
+printf 'Math MCP: %s/math-mcp/mcp\n' "$GATEWAY_URL"

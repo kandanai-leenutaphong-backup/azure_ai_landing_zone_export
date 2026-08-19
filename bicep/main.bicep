@@ -38,6 +38,9 @@ param aiGatewaySubscriptionId string = '0d04b43f-7d15-40fd-8aa5-830f71ab0d80'
 @description('Name of the AI Gateway resource group.')
 param aiGatewayResourceGroupName string = 'rg-ai-gateway-sea'
 
+@description('Azure region for API Center. API Center is not currently available in Southeast Asia.')
+param apiCenterLocation string = 'centralindia'
+
 @description('Publisher email required by the AI Gateway APIM instance.')
 param apimPublisherEmail string = 'ai-gateway-admin@contoso.com'
 
@@ -241,6 +244,28 @@ module aiGatewaySpokePeering 'modules/vnet-peering-spoke-side.bicep' = if (deplo
   params: {
     spokeVnetName: aiGatewayNetwork!.outputs.vnetName
     hubVnetId: hubNetwork.outputs.vnetId
+  }
+}
+
+// VNet peering is not transitive. APIM needs direct connectivity to the application
+// spoke to reach internal Container Apps backends used by REST and MCP APIs.
+module aiGatewayToAppSpokePeering 'modules/vnet-peering-direct.bicep' = if (deployAiGateway) {
+  name: 'deploy-ai-gateway-to-app-spoke-peering'
+  scope: resourceGroup(aiGatewaySubscriptionId, aiGatewayResourceGroupName)
+  params: {
+    localVnetName: aiGatewayNetwork!.outputs.vnetName
+    remoteVnetId: spokeNetwork.outputs.vnetId
+    peeringName: 'vnet-ai-gateway-sea-to-app-spoke'
+  }
+}
+
+module appSpokeToAiGatewayPeering 'modules/vnet-peering-direct.bicep' = if (deployAiGateway) {
+  name: 'deploy-app-spoke-to-ai-gateway-peering'
+  scope: resourceGroup(spokeSubscriptionId, spokeResourceGroupName)
+  params: {
+    localVnetName: spokeNetwork.outputs.vnetName
+    remoteVnetId: aiGatewayNetwork!.outputs.vnetId
+    peeringName: 'vnet-spoke-app-sea-to-ai-gateway'
   }
 }
 
@@ -602,6 +627,7 @@ module containerAppsPrivateDns 'modules/container-apps-private-dns.bicep' = {
     environmentStaticIp: containerAppsEnvironment.outputs.staticIp
     hubVnetId: hubNetwork.outputs.vnetId
     spokeVnetId: spokeNetwork.outputs.vnetId
+    aiGatewayVnetId: deployAiGateway ? aiGatewayNetwork!.outputs.vnetId : ''
     tags: tags
   }
 }
@@ -1054,6 +1080,17 @@ module aiGatewayApim 'modules/apim.bicep' = if (deployAiGateway) {
   }
 }
 
+module aiGatewayApiCenter 'modules/api-center.bicep' = if (deployAiGateway) {
+  name: 'deploy-ai-gateway-api-center'
+  scope: resourceGroup(aiGatewaySubscriptionId, aiGatewayResourceGroupName)
+  params: {
+    location: apiCenterLocation
+    name: 'apic-hub-sea${aiGatewayUniqueSuffix}'
+    apimName: aiGatewayApim!.outputs.apimName
+    tags: tags
+  }
+}
+
 // The APIM system-assigned identity is the priority-1 (hub) backend credential —
 // granted Cognitive Services User on the hub Foundry account in this same resource group.
 module aiGatewayApimHubCognitiveUser 'modules/resource-group-role-assignment.bicep' = if (deployAiGateway) {
@@ -1154,4 +1191,5 @@ output aiGatewaySubscription string = aiGatewaySubscriptionId
 output aiGatewayResourceGroup string = aiGatewayResourceGroupName
 output aiGatewayVnetId string = deployAiGateway ? aiGatewayNetwork!.outputs.vnetId : ''
 output aiGatewayApimGatewayUrl string = deployAiGateway ? aiGatewayApim!.outputs.gatewayUrl : ''
+output aiGatewayApiCenterName string = deployAiGateway ? aiGatewayApiCenter!.outputs.apiCenterName : ''
 output aiGatewayHubFoundryAccountName string = deployAiGateway ? foundryAccountHub!.outputs.accountName : ''

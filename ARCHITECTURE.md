@@ -76,7 +76,7 @@ target a different subscription through `hubSubscriptionId` and
 |---|---|
 | `rg-hub-sea` | Hub VNet, active-active VPN Gateway, DNS Private Resolver, and centralized private DNS zones |
 | `rg-ai-dev-sea` | The single workload spoke with its VNet, optional Bastion, compute, observability, AI services, data services, private endpoints, and supporting resources |
-| `rg-ai-gateway-sea` | The AI Gateway hub: APIM Standard V2, hub Foundry account, Managed Redis semantic cache, and the per-department/per-user usage pipeline. Deployed in a third subscription, `aiGatewaySubscriptionId` — see [AI Gateway Landing Zone](#ai-gateway-landing-zone-separate-subscription) |
+| `rg-ai-gateway-sea` | The AI Gateway hub: APIM Standard V2, API Center, hub Foundry account, Managed Redis semantic cache, and the per-department/per-user usage pipeline. Deployed in a third subscription, `aiGatewaySubscriptionId` — see [AI Gateway Landing Zone](#ai-gateway-landing-zone-separate-subscription) |
 
 Resource names that require global uniqueness use a suffix derived from the spoke
 subscription ID and spoke resource group name.
@@ -330,6 +330,7 @@ details, diagrams, and the implemented-module appendix are in
 | Component | Purpose |
 |---|---|
 | `apim-hub-sea<suffix>` (APIM Standard V2) | Single governed entry point for all AI callers; public gateway hostname, outbound VNet-integrated to reach private backends |
+| `apic-hub-sea<suffix>` (Azure API Center) | Continuously synchronized inventory of APIM REST APIs and MCP servers for discovery and governance |
 | `aif-hub-sea<suffix>` (Foundry hub account) | Shared model deployments — `gpt-4o-hub-prod` (underlying model `gpt-4.1-mini`; `gpt-4o`'s `GlobalStandard` SKU only maps to fine-tune quota in this tenant/region per a live `what-if` preflight check) and `text-embedding-3-small` (`GlobalStandard`); the **primary** quota target for gateway traffic |
 | `redis-hub-sea-<suffix>` (Azure Managed Redis, RediSearch) | Semantic caching of prompt/response pairs behind APIM |
 | `evhns-hub-sea-<suffix>` + `logic-hub-usage-sea<suffix>` | Usage-metering pipeline: token events flow to Event Hub / Application Insights, processed by a **Logic Apps Standard** workflow (`logic-app-workflows/usage-rollup/workflow.json`, zip-deployed) that upserts daily rollups into `cosmos-hub-sea-<suffix>` (Consumption is not supported for Foundry's Logic Apps connector/agent-tool pattern) |
@@ -367,4 +368,4 @@ granted `Cognitive Services User` on both Foundry accounts.
 | Virtual machines | [`bicep/modules/virtual-machine.bicep`](bicep/modules/virtual-machine.bicep) |
 | AI services | [`bicep/modules/cognitive-account.bicep`](bicep/modules/cognitive-account.bicep), [`bicep/modules/foundry-project.bicep`](bicep/modules/foundry-project.bicep) |
 | Data services | Storage, Cosmos DB, and AI Search modules under [`bicep/modules/`](bicep/modules/) |
-| AI Gateway (APIM, Redis, Foundry hub, usage pipeline) | [`bicep/modules/apim.bicep`](bicep/modules/apim.bicep), [`bicep/modules/managed-redis.bicep`](bicep/modules/managed-redis.bicep), [`bicep/modules/event-hub-namespace.bicep`](bicep/modules/event-hub-namespace.bicep), [`bicep/modules/logic-app-standard.bicep`](bicep/modules/logic-app-standard.bicep), [`bicep/modules/policies/`](bicep/modules/policies/) |
+| AI Gateway (APIM, API Center, Redis, Foundry hub, usage pipeline) | [`bicep/modules/apim.bicep`](bicep/modules/apim.bicep), [`bicep/modules/api-center.bicep`](bicep/modules/api-center.bicep), [`bicep/modules/managed-redis.bicep`](bicep/modules/managed-redis.bicep), [`bicep/modules/event-hub-namespace.bicep`](bicep/modules/event-hub-namespace.bicep), [`bicep/modules/logic-app-standard.bicep`](bicep/modules/logic-app-standard.bicep), [`bicep/modules/policies/`](bicep/modules/policies/) |

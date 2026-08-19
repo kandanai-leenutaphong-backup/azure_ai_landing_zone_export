@@ -1,0 +1,140 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Pet Store API",
+    "description": "Example REST API that Azure API Management exposes as MCP tools.",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/pets": {
+      "get": {
+        "operationId": "listPets",
+        "summary": "List pets",
+        "responses": {
+          "200": {
+            "description": "Pet list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Pet"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createPet",
+        "summary": "Create a pet",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PetCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created pet",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pets/{pet_id}": {
+      "get": {
+        "operationId": "getPet",
+        "summary": "Get a pet by ID",
+        "parameters": [
+          {
+            "name": "pet_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pet details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Pet not found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "PetCreate": {
+        "type": "object",
+        "required": [
+          "name",
+          "species",
+          "age"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "species": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "age": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100
+          }
+        }
+      },
+      "Pet": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/PetCreate"
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "created_at"
+            ],
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "created_at": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

@@ -10,7 +10,7 @@ scope alongside the two hub/spoke scopes, gated by `deployAiGateway` (default
 | Scope | Subscription | Status |
 |---|---|---|
 | Hub (`rg-hub-sea`) | `hubSubscriptionId` | Existing, unchanged |
-| Spoke (`rg-ai-dev-sea`) | `spokeSubscriptionId` | Existing, **unchanged** — no work required here |
+| Spoke (`rg-ai-dev-sea`) | `spokeSubscriptionId` | Existing, with example MCP Container Apps and direct gateway peering |
 | **AI Gateway** (`rg-ai-gateway-sea`) | `aiGatewaySubscriptionId` (default `0d04b43f-7d15-40fd-8aa5-830f71ab0d80`) | **Implemented** |
 
 Set `deployAiGateway = false` in `parameters/main.bicepparam` to skip this
@@ -57,6 +57,7 @@ flowchart TB
         subgraph RG["Resource group: rg-ai-gateway-sea"]
             APIM["apim-hub-sea<suffix><br/>APIM Standard V2<br/>(public gateway, outbound VNet-integrated)"]
             FoundryHub["aif-hub-sea<br/>Foundry (AIServices)<br/>PRIMARY quota target"]
+            ApiCenter["apic-hub-sea<br/>API Center<br/>REST + MCP inventory"]
             Redis["redis-hub-sea<br/>Azure Managed Redis (RediSearch)<br/>semantic cache"]
             Cosmos["cosmos-hub-sea<br/>Usage / chargeback store"]
             EventHub["evhns-hub-sea<br/>Usage event ingestion"]
@@ -69,6 +70,7 @@ flowchart TB
             APIM -->|usage events| EventHub
             APIM -->|semantic cache lookup/store| Redis
             APIM -->|primary backend| FoundryHub
+            APIM -.->|continuous inventory sync| ApiCenter
             EventHub --> LogicApp
             AppInsights --> LogicApp
             LogicApp --> Cosmos
@@ -96,6 +98,9 @@ flowchart TB
   existing hub (`rg-hub-sea`), the same way the current spoke is peered
   today, so it inherits the repo's centralized private-DNS model instead of
   duplicating DNS zones.
+- The gateway VNet is also directly peered with the application spoke because
+  VNet peering is not transitive. This path lets APIM reach the internal
+  Container Apps examples in `applications/mcp-examples/`.
 - **APIM Standard V2** uses **outbound VNet integration** from a dedicated
   subnet to reach Foundry, Redis, Cosmos DB, Event Hub, and Key Vault over
   private endpoints. Standard V2 does not support inbound private endpoints;

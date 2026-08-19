@@ -326,6 +326,7 @@ units, Redis SKU, Event Hub throughput units) are tuned for your workload.
 | Resource | Estimated monthly cost |
 |---|---:|
 | APIM Standard V2 (`apim-hub-sea<suffix>`, 1 unit, ~$0.96-$1.01/hour) | $700-$734 |
+| API Center (`apic-hub-sea<suffix>`, linked to APIM Standard V2) | $0 additional linked-plan cost |
 | Azure Managed Redis, smallest SKU (`redis-hub-sea-<suffix>`, semantic cache) | $40-$90 |
 | Event Hub Standard namespace, 1 throughput unit (`evhns-hub-sea-<suffix>`) | $22 plus ingress events |
 | Logic Apps **Standard**, WS1 plan (`logic-hub-usage-sea<suffix>`, usage ingestion) | $140-$143 |

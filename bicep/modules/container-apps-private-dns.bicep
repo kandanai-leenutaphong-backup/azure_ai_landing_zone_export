@@ -12,7 +12,12 @@ param hubVnetId string
 @description('Resource ID of the spoke virtual network.')
 param spokeVnetId string
 
+@description('Resource ID of the AI Gateway virtual network. Leave empty when the gateway is not deployed.')
+param aiGatewayVnetId string = ''
+
 param tags object = {}
+
+var deployAiGatewayLink = !empty(aiGatewayVnetId)
 
 resource zone 'Microsoft.Network/privateDnsZones@2020-06-01' = {
   name: zoneName
@@ -79,6 +84,18 @@ resource spokeLink 'Microsoft.Network/privateDnsZones/virtualNetworkLinks@2020-0
     registrationEnabled: false
     virtualNetwork: {
       id: spokeVnetId
+    }
+  }
+}
+
+resource aiGatewayLink 'Microsoft.Network/privateDnsZones/virtualNetworkLinks@2020-06-01' = if (deployAiGatewayLink) {
+  parent: zone
+  name: 'link-ai-gateway-vnet'
+  location: 'global'
+  properties: {
+    registrationEnabled: false
+    virtualNetwork: {
+      id: aiGatewayVnetId
     }
   }
 }
