@@ -105,6 +105,15 @@ az apim api import \
   --specification-format OpenApiJson \
   --specification-path "$MATH_OPENAPI_FILE"
 
+for api_id in petstore-api math-tools-api; do
+  az apim api update \
+    --subscription "$GATEWAY_SUBSCRIPTION_ID" \
+    --resource-group "$GATEWAY_RESOURCE_GROUP" \
+    --service-name "$APIM_NAME" \
+    --api-id "$api_id" \
+    --subscription-required false >/dev/null
+done
+
 TOKEN="$(az account get-access-token --resource https://management.azure.com --query accessToken -o tsv)"
 APIM_BASE_URL="https://management.azure.com/subscriptions/${GATEWAY_SUBSCRIPTION_ID}/resourceGroups/${GATEWAY_RESOURCE_GROUP}/providers/Microsoft.ApiManagement/service/${APIM_NAME}"
 
@@ -142,7 +151,7 @@ wait_for_apim_api() {
 
 put_apim_resource \
   "${APIM_BASE_URL}/apis/petstore-mcp?api-version=${APIM_API_VERSION}" \
-  '{"properties":{"type":"mcp","path":"petstore-mcp","displayName":"Pet Store MCP Server","description":"Pet Store REST operations exposed as MCP tools.","protocols":["https"]}}'
+  '{"properties":{"type":"mcp","path":"petstore-mcp","displayName":"Pet Store MCP Server","description":"Pet Store REST operations exposed as MCP tools.","protocols":["https"],"subscriptionRequired":false}}'
 wait_for_apim_api petstore-mcp
 
 for operation in listPets getPet createPet; do
@@ -159,7 +168,7 @@ curl --fail --silent --show-error --request DELETE \
 
 put_apim_resource \
   "${APIM_BASE_URL}/apis/math-mcp?api-version=${APIM_API_VERSION}" \
-  '{"properties":{"type":"mcp","path":"math-mcp","displayName":"Math and Text MCP Server","description":"Math and text REST operations exposed as MCP tools.","protocols":["https"]}}'
+  '{"properties":{"type":"mcp","path":"math-mcp","displayName":"Math and Text MCP Server","description":"Math and text REST operations exposed as MCP tools.","protocols":["https"],"subscriptionRequired":false}}'
 wait_for_apim_api math-mcp
 
 for operation in calculate fibonacci isPrime textTransform; do
@@ -176,13 +185,22 @@ for api_id in petstore-api petstore-mcp math-tools-api math-mcp; do
     --header "Content-Length: 0" >/dev/null
 done
 
-MCP_CORS_POLICY="<policies><inbound><cors allow-credentials=\"false\" terminate-unmatched-request=\"true\"><allowed-origins><origin>${API_CENTER_PORTAL_ORIGIN}</origin></allowed-origins><allowed-methods preflight-result-max-age=\"300\"><method>GET</method><method>POST</method><method>DELETE</method><method>OPTIONS</method></allowed-methods><allowed-headers><header>accept</header><header>content-type</header><header>mcp-protocol-version</header><header>mcp-session-id</header><header>ocp-apim-subscription-key</header></allowed-headers><expose-headers><header>mcp-session-id</header></expose-headers></cors><base /></inbound><backend><base /></backend><outbound><base /></outbound><on-error><base /></on-error></policies>"
+MCP_CORS_POLICY="<policies><inbound><cors allow-credentials=\"false\" terminate-unmatched-request=\"true\"><allowed-origins><origin>${API_CENTER_PORTAL_ORIGIN}</origin></allowed-origins><allowed-methods preflight-result-max-age=\"300\"><method>GET</method><method>POST</method><method>DELETE</method><method>OPTIONS</method></allowed-methods><allowed-headers><header>accept</header><header>content-type</header><header>mcp-protocol-version</header><header>mcp-session-id</header></allowed-headers><expose-headers><header>mcp-session-id</header></expose-headers></cors><rate-limit-by-key calls=\"30\" renewal-period=\"60\" counter-key=\"@(context.Request.IpAddress)\" /><base /></inbound><backend><base /></backend><outbound><base /></outbound><on-error><base /></on-error></policies>"
 MCP_CORS_BODY="$(jq -n --arg value "$MCP_CORS_POLICY" '{properties:{format:"rawxml",value:$value}}')"
 
 for api_id in petstore-mcp math-mcp; do
   put_apim_resource \
     "${APIM_BASE_URL}/apis/${api_id}/policies/policy?api-version=${APIM_API_VERSION}" \
     "$MCP_CORS_BODY"
+done
+
+BACKING_API_POLICY="<policies><inbound><choose><when condition='@(context.Request.Headers.GetValueOrDefault(\"Origin\", \"\") != \"${API_CENTER_PORTAL_ORIGIN}\")'><return-response><set-status code=\"403\" reason=\"Forbidden\" /></return-response></when></choose><cors allow-credentials=\"false\" terminate-unmatched-request=\"true\"><allowed-origins><origin>${API_CENTER_PORTAL_ORIGIN}</origin></allowed-origins><allowed-methods preflight-result-max-age=\"300\"><method>GET</method><method>POST</method><method>OPTIONS</method></allowed-methods><allowed-headers><header>accept</header><header>content-type</header></allowed-headers></cors><rate-limit-by-key calls=\"30\" renewal-period=\"60\" counter-key=\"@(context.Request.IpAddress)\" /><base /></inbound><backend><base /></backend><outbound><base /></outbound><on-error><base /></on-error></policies>"
+BACKING_API_BODY="$(jq -n --arg value "$BACKING_API_POLICY" '{properties:{format:"rawxml",value:$value}}')"
+
+for api_id in petstore-api math-tools-api; do
+  put_apim_resource \
+    "${APIM_BASE_URL}/apis/${api_id}/policies/policy?api-version=${APIM_API_VERSION}" \
+    "$BACKING_API_BODY"
 done
 
 if az apic show \
