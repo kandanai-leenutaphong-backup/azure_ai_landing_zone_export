@@ -12,6 +12,7 @@ GATEWAY_RESOURCE_GROUP="${GATEWAY_RESOURCE_GROUP:-rg-ai-gateway-sea}"
 APIM_NAME="${APIM_NAME:-apim-hub-sea2uy4dibzgdn34}"
 APIM_API_VERSION="${APIM_API_VERSION:-2025-09-01-preview}"
 API_CENTER_NAME="${API_CENTER_NAME:-apic-hub-sea2uy4dibzgdn34}"
+API_CENTER_PORTAL_ORIGIN="${API_CENTER_PORTAL_ORIGIN:-https://${API_CENTER_NAME}.portal.centralindia.azure-apicenter.ms}"
 
 PET_APP_NAME="${PET_APP_NAME:-petstore-mcp-api}"
 MATH_APP_NAME="${MATH_APP_NAME:-math-mcp-server}"
@@ -173,6 +174,15 @@ for api_id in petstore-api petstore-mcp math-tools-api math-mcp; do
     "${APIM_BASE_URL}/products/product-fa/apis/${api_id}?api-version=2024-05-01" \
     --header "Authorization: Bearer ${TOKEN}" \
     --header "Content-Length: 0" >/dev/null
+done
+
+MCP_CORS_POLICY="<policies><inbound><cors allow-credentials=\"false\" terminate-unmatched-request=\"true\"><allowed-origins><origin>${API_CENTER_PORTAL_ORIGIN}</origin></allowed-origins><allowed-methods preflight-result-max-age=\"300\"><method>GET</method><method>POST</method><method>DELETE</method><method>OPTIONS</method></allowed-methods><allowed-headers><header>accept</header><header>content-type</header><header>mcp-protocol-version</header><header>mcp-session-id</header><header>ocp-apim-subscription-key</header></allowed-headers><expose-headers><header>mcp-session-id</header></expose-headers></cors><base /></inbound><backend><base /></backend><outbound><base /></outbound><on-error><base /></on-error></policies>"
+MCP_CORS_BODY="$(jq -n --arg value "$MCP_CORS_POLICY" '{properties:{format:"rawxml",value:$value}}')"
+
+for api_id in petstore-mcp math-mcp; do
+  put_apim_resource \
+    "${APIM_BASE_URL}/apis/${api_id}/policies/policy?api-version=${APIM_API_VERSION}" \
+    "$MCP_CORS_BODY"
 done
 
 if az apic show \
