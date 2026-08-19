@@ -49,8 +49,8 @@ deploy_container_app() {
       --resource-group "$APP_RESOURCE_GROUP" \
       --name "$name" \
       --image "$image" \
-      --min-replicas 1 \
-      --max-replicas 3
+      --min-replicas 0 \
+      --max-replicas 1
   else
     az containerapp create \
       --subscription "$APP_SUBSCRIPTION_ID" \
@@ -66,8 +66,8 @@ deploy_container_app() {
       --transport auto \
       --cpu 0.5 \
       --memory 1Gi \
-      --min-replicas 1 \
-      --max-replicas 3
+      --min-replicas 0 \
+      --max-replicas 1
   fi
 }
 
