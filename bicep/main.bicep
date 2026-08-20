@@ -1087,7 +1087,6 @@ module foundryAppHubGatewayConnection 'modules/foundry-apim-model-connection.bic
   scope: resourceGroup(spokeSubscriptionId, spokeResourceGroupName)
   params: {
     accountName: foundryAccountApp.outputs.accountName
-    projectName: foundryProjectApp.outputs.projectName
     connectionName: 'hub-ai-gateway'
     gatewayBaseUrl: '${aiGatewayApim!.outputs.gatewayUrl}/openai'
     deploymentName: foundryHubDeploymentChat!.outputs.deploymentName
@@ -1101,7 +1100,6 @@ module foundryAgentHubGatewayConnection 'modules/foundry-apim-model-connection.b
   scope: resourceGroup(spokeSubscriptionId, spokeResourceGroupName)
   params: {
     accountName: foundryAccountAgent.outputs.accountName
-    projectName: foundryProjectAgent.outputs.projectName
     connectionName: 'hub-ai-gateway'
     gatewayBaseUrl: '${aiGatewayApim!.outputs.gatewayUrl}/openai'
     deploymentName: foundryHubDeploymentChat!.outputs.deploymentName

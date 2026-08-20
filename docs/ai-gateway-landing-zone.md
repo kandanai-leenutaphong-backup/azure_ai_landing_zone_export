@@ -289,9 +289,11 @@ Deviations from the original proposal worth noting:
   account.
 - Confirm regional quota/capacity for `aif-hub-sea` model deployments in
   `southeastasia` before assuming it can always be primary.
-- The hub chat deployment is also registered as an **admin-connected model** in
-  both spoke Foundry projects through an `ApiManagement` connection named
-  `hub-ai-gateway`. This does not duplicate model capacity in the spoke
-  subscription. Prompt agents in either spoke reference the centralized model
-  as `hub-ai-gateway/gpt-4o-hub-prod`, and their inference traffic flows through
-  APIM for the same policies, metering, and hub-first backend routing.
+- The hub chat deployment is also registered as a resource-scoped
+  **admin-connected model** on both spoke Foundry resources through an
+  `ApiManagement` connection named `hub-ai-gateway`. Foundry makes the
+  connection available to every project in each resource. This does not
+  duplicate model capacity in the spoke subscription. Prompt agents reference
+  the centralized model as `hub-ai-gateway/gpt-4o-hub-prod`, and their
+  inference traffic flows through APIM for the same policies, metering, and
+  hub-first backend routing.

@@ -4,9 +4,6 @@
 @description('Name of the spoke Foundry account.')
 param accountName string
 
-@description('Name of the spoke Foundry project.')
-param projectName string
-
 @description('Name shown for this gateway connection in Foundry.')
 param connectionName string = 'hub-ai-gateway'
 
@@ -25,17 +22,32 @@ param modelVersion string
 @description('Azure OpenAI inference API version appended by Foundry.')
 param inferenceApiVersion string = '2024-10-21'
 
-resource account 'Microsoft.CognitiveServices/accounts@2025-04-01-preview' existing = {
+resource account 'Microsoft.CognitiveServices/accounts@2025-06-01' existing = {
   name: accountName
 }
 
-resource project 'Microsoft.CognitiveServices/accounts/projects@2025-04-01-preview' existing = {
-  parent: account
-  name: projectName
+var connectionMetadata = {
+  deploymentInPath: 'true'
+  inferenceAPIVersion: inferenceApiVersion
+  models: string([
+    {
+      name: deploymentName
+      properties: {
+        model: {
+          name: modelName
+          version: modelVersion
+          format: 'OpenAI'
+        }
+      }
+    }
+  ])
 }
 
-resource connection 'Microsoft.CognitiveServices/accounts/projects/connections@2025-04-01-preview' = {
-  parent: project
+// Foundry model connections are resource-scoped. This appears under
+// Manage > Resource details > Admin-connected models and is available to every
+// project in the resource.
+resource connection 'Microsoft.CognitiveServices/accounts/connections@2025-06-01' = {
+  parent: account
   name: connectionName
   properties: {
     category: 'ApiManagement'
@@ -45,22 +57,7 @@ resource connection 'Microsoft.CognitiveServices/accounts/projects/connections@2
     audience: 'https://cognitiveservices.azure.com'
     isSharedToAll: true
     credentials: {}
-    metadata: {
-      deploymentInPath: 'true'
-      inferenceAPIVersion: inferenceApiVersion
-      models: string([
-        {
-          name: deploymentName
-          properties: {
-            model: {
-              name: modelName
-              version: modelVersion
-              format: 'OpenAI'
-            }
-          }
-        }
-      ])
-    }
+    metadata: connectionMetadata
   }
 }
 
