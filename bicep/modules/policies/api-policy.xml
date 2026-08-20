@@ -60,45 +60,52 @@
     <outbound>
         <base />
         <include-fragment fragment-id="frag-semantic-cache-store" />
-        <set-variable name="aiGatewayResponseBody" value="@(context.Response.Body?.As&lt;JObject&gt;(preserveContent: true))" />
-        <!-- Prefer the actual served base model (x-ms-served-model response header, e.g.
-             "gpt-4o-2024-08-06") over the response body's "model" field, which reflects the
-             DEPLOYMENT name (e.g. "gpt-4o-hub-prod"), not necessarily the underlying base
-             model/version. -->
-        <set-variable name="aiGatewayModel" value="@{
-            var served = context.Response.Headers.GetValueOrDefault(&quot;x-ms-served-model&quot;,&quot;&quot;);
-            if (!string.IsNullOrEmpty(served)) { return served; }
-            var body = context.Variables.GetValueOrDefault&lt;JObject&gt;(&quot;aiGatewayResponseBody&quot;);
-            var m = body?[&quot;model&quot;]?.ToString();
-            return !string.IsNullOrEmpty(m) ? m : &quot;unknown-model&quot;;
-        }" />
-        <emit-metric name="Tokens By Model" value="@{
-            var body = context.Variables.GetValueOrDefault&lt;JObject&gt;(&quot;aiGatewayResponseBody&quot;);
-            var usage = body?[&quot;usage&quot;];
-            return (double)((int?)usage?[&quot;total_tokens&quot;] ?? 0);
-        }" namespace="llm-usage-model">
-            <dimension name="department" value="@(context.Variables.GetValueOrDefault&lt;string&gt;(&quot;aiGatewayDepartment&quot;,&quot;unattributed&quot;))" />
-            <dimension name="user" value="@(context.Variables.GetValueOrDefault&lt;string&gt;(&quot;aiGatewayUserId&quot;,&quot;unknown-user&quot;))" />
-            <dimension name="userName" value="@(context.Variables.GetValueOrDefault&lt;string&gt;(&quot;aiGatewayUserName&quot;,&quot;unknown-user&quot;))" />
-            <dimension name="deployment" value="@(context.Request.MatchedParameters.GetValueOrDefault(&quot;deployment-id&quot;,&quot;unknown-deployment&quot;))" />
-            <dimension name="model" value="@(context.Variables.GetValueOrDefault&lt;string&gt;(&quot;aiGatewayModel&quot;,&quot;unknown-model&quot;))" />
-        </emit-metric>
-        <log-to-eventhub logger-id="eventhub-usage-logger"><![CDATA[@{
-            var body = context.Variables.GetValueOrDefault<JObject>("aiGatewayResponseBody");
-            var usage = body?["usage"];
-            return new JObject(
-                new JProperty("timestamp", DateTime.UtcNow.ToString("o")),
-                new JProperty("department", context.Variables.GetValueOrDefault<string>("aiGatewayDepartment","unattributed")),
-                new JProperty("user", context.Variables.GetValueOrDefault<string>("aiGatewayUserId","unknown-user")),
-                new JProperty("userName", context.Variables.GetValueOrDefault<string>("aiGatewayUserName","unknown-user")),
-                new JProperty("deployment", context.Request.MatchedParameters.GetValueOrDefault("deployment-id","unknown-deployment")),
-                new JProperty("model", context.Variables.GetValueOrDefault<string>("aiGatewayModel","unknown-model")),
-                new JProperty("backendId", context.Variables.GetValueOrDefault<string>("aiGatewayBackendId","unknown-backend")),
-                new JProperty("promptTokens", (int?)usage?["prompt_tokens"] ?? 0),
-                new JProperty("completionTokens", (int?)usage?["completion_tokens"] ?? 0),
-                new JProperty("totalTokens", (int?)usage?["total_tokens"] ?? 0)
-            ).ToString();
-        }]]></log-to-eventhub>
+        <!-- Streaming chat completions use text/event-stream and cannot be parsed as one
+             JObject. The built-in llm-emit-token-metric policy handles LLM responses;
+             custom body-based model metrics and Event Hub audit records run only for
+             ordinary JSON responses. -->
+        <choose>
+            <when condition="@(context.Response.Headers.GetValueOrDefault(&quot;Content-Type&quot;,&quot;&quot;).IndexOf(&quot;application/json&quot;, StringComparison.OrdinalIgnoreCase) &gt;= 0)">
+                <set-variable name="aiGatewayResponseBody" value="@(context.Response.Body?.As&lt;JObject&gt;(preserveContent: true))" />
+                <!-- Prefer the actual served base model (x-ms-served-model response header,
+                     e.g. "gpt-4o-2024-08-06") over the response body's "model" field, which
+                     reflects the deployment name. -->
+                <set-variable name="aiGatewayModel" value="@{
+                    var served = context.Response.Headers.GetValueOrDefault(&quot;x-ms-served-model&quot;,&quot;&quot;);
+                    if (!string.IsNullOrEmpty(served)) { return served; }
+                    var body = context.Variables.GetValueOrDefault&lt;JObject&gt;(&quot;aiGatewayResponseBody&quot;);
+                    var m = body?[&quot;model&quot;]?.ToString();
+                    return !string.IsNullOrEmpty(m) ? m : &quot;unknown-model&quot;;
+                }" />
+                <emit-metric name="Tokens By Model" value="@{
+                    var body = context.Variables.GetValueOrDefault&lt;JObject&gt;(&quot;aiGatewayResponseBody&quot;);
+                    var usage = body?[&quot;usage&quot;];
+                    return (double)((int?)usage?[&quot;total_tokens&quot;] ?? 0);
+                }" namespace="llm-usage-model">
+                    <dimension name="department" value="@(context.Variables.GetValueOrDefault&lt;string&gt;(&quot;aiGatewayDepartment&quot;,&quot;unattributed&quot;))" />
+                    <dimension name="user" value="@(context.Variables.GetValueOrDefault&lt;string&gt;(&quot;aiGatewayUserId&quot;,&quot;unknown-user&quot;))" />
+                    <dimension name="userName" value="@(context.Variables.GetValueOrDefault&lt;string&gt;(&quot;aiGatewayUserName&quot;,&quot;unknown-user&quot;))" />
+                    <dimension name="deployment" value="@(context.Request.MatchedParameters.GetValueOrDefault(&quot;deployment-id&quot;,&quot;unknown-deployment&quot;))" />
+                    <dimension name="model" value="@(context.Variables.GetValueOrDefault&lt;string&gt;(&quot;aiGatewayModel&quot;,&quot;unknown-model&quot;))" />
+                </emit-metric>
+                <log-to-eventhub logger-id="eventhub-usage-logger"><![CDATA[@{
+                    var body = context.Variables.GetValueOrDefault<JObject>("aiGatewayResponseBody");
+                    var usage = body?["usage"];
+                    return new JObject(
+                        new JProperty("timestamp", DateTime.UtcNow.ToString("o")),
+                        new JProperty("department", context.Variables.GetValueOrDefault<string>("aiGatewayDepartment","unattributed")),
+                        new JProperty("user", context.Variables.GetValueOrDefault<string>("aiGatewayUserId","unknown-user")),
+                        new JProperty("userName", context.Variables.GetValueOrDefault<string>("aiGatewayUserName","unknown-user")),
+                        new JProperty("deployment", context.Request.MatchedParameters.GetValueOrDefault("deployment-id","unknown-deployment")),
+                        new JProperty("model", context.Variables.GetValueOrDefault<string>("aiGatewayModel","unknown-model")),
+                        new JProperty("backendId", context.Variables.GetValueOrDefault<string>("aiGatewayBackendId","unknown-backend")),
+                        new JProperty("promptTokens", (int?)usage?["prompt_tokens"] ?? 0),
+                        new JProperty("completionTokens", (int?)usage?["completion_tokens"] ?? 0),
+                        new JProperty("totalTokens", (int?)usage?["total_tokens"] ?? 0)
+                    ).ToString();
+                }]]></log-to-eventhub>
+            </when>
+        </choose>
     </outbound>
     <on-error>
         <base />
