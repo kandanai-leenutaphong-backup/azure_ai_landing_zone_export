@@ -1071,12 +1071,42 @@ module aiGatewayApim 'modules/apim.bicep' = if (deployAiGateway) {
     redisHostName: aiGatewayRedis!.outputs.redisHostName
     entraTenantId: tenant().tenantId
     entraAudience: entraAudience
+    spokeAppProjectPrincipalId: foundryProjectApp.outputs.principalId
+    spokeAgentProjectPrincipalId: foundryProjectAgent.outputs.principalId
     appInsightsId: aiGatewayAppInsights!.outputs.id
     appInsightsInstrumentationKey: aiGatewayAppInsights!.outputs.instrumentationKey
     eventHubNamespaceHostName: '${aiGatewayEventHub!.outputs.namespaceName}.servicebus.windows.net'
     eventHubNamespaceId: aiGatewayEventHub!.outputs.namespaceId
     eventHubName: aiGatewayEventHub!.outputs.eventHubName
     tags: tags
+  }
+}
+
+module foundryAppHubGatewayConnection 'modules/foundry-apim-model-connection.bicep' = if (deployAiGateway) {
+  name: 'connect-foundry-app-to-hub-ai-gateway'
+  scope: resourceGroup(spokeSubscriptionId, spokeResourceGroupName)
+  params: {
+    accountName: foundryAccountApp.outputs.accountName
+    projectName: foundryProjectApp.outputs.projectName
+    connectionName: 'hub-ai-gateway'
+    gatewayBaseUrl: '${aiGatewayApim!.outputs.gatewayUrl}/openai'
+    deploymentName: foundryHubDeploymentChat!.outputs.deploymentName
+    modelName: 'gpt-4.1-mini'
+    modelVersion: '2025-04-14'
+  }
+}
+
+module foundryAgentHubGatewayConnection 'modules/foundry-apim-model-connection.bicep' = if (deployAiGateway) {
+  name: 'connect-foundry-agent-to-hub-ai-gateway'
+  scope: resourceGroup(spokeSubscriptionId, spokeResourceGroupName)
+  params: {
+    accountName: foundryAccountAgent.outputs.accountName
+    projectName: foundryProjectAgent.outputs.projectName
+    connectionName: 'hub-ai-gateway'
+    gatewayBaseUrl: '${aiGatewayApim!.outputs.gatewayUrl}/openai'
+    deploymentName: foundryHubDeploymentChat!.outputs.deploymentName
+    modelName: 'gpt-4.1-mini'
+    modelVersion: '2025-04-14'
   }
 }
 
@@ -1193,3 +1223,5 @@ output aiGatewayVnetId string = deployAiGateway ? aiGatewayNetwork!.outputs.vnet
 output aiGatewayApimGatewayUrl string = deployAiGateway ? aiGatewayApim!.outputs.gatewayUrl : ''
 output aiGatewayApiCenterName string = deployAiGateway ? aiGatewayApiCenter!.outputs.apiCenterName : ''
 output aiGatewayHubFoundryAccountName string = deployAiGateway ? foundryAccountHub!.outputs.accountName : ''
+output spokeFoundryAppGatewayModel string = deployAiGateway ? foundryAppHubGatewayConnection!.outputs.modelReference : ''
+output spokeFoundryAgentGatewayModel string = deployAiGateway ? foundryAgentHubGatewayConnection!.outputs.modelReference : ''

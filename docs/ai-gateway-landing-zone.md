@@ -207,9 +207,9 @@ layer with a **backend pool**, and the routing priority requested is
 - **Backend 2 — priority 2 (secondary / worked example)**: the existing
   spoke's `foundryAccountApp` (or `foundryAccountAgent`) deployment in
   `rg-ai-dev-sea`. This is registered purely to demonstrate cross-subscription
-  overflow; **the spoke needs no changes** to participate — only the APIM
-  backend pool in the AI Gateway subscription needs the spoke's private
-  endpoint / deployment URL as a second backend entry.
+  overflow. This backend route itself requires no additional spoke deployment;
+  separately, each spoke project receives an admin-connected model reference
+  so its prompt agents can intentionally call the hub gateway.
 - A `retry`/`choose` policy on `429 (RateLimitExceeded)` or `503` responses
   from Backend 1 fails over to Backend 2 within the same client call.
 - Both backends are stamped with the **same** `deployment` dimension in the
@@ -289,3 +289,9 @@ Deviations from the original proposal worth noting:
   account.
 - Confirm regional quota/capacity for `aif-hub-sea` model deployments in
   `southeastasia` before assuming it can always be primary.
+- The hub chat deployment is also registered as an **admin-connected model** in
+  both spoke Foundry projects through an `ApiManagement` connection named
+  `hub-ai-gateway`. This does not duplicate model capacity in the spoke
+  subscription. Prompt agents in either spoke reference the centralized model
+  as `hub-ai-gateway/gpt-4o-hub-prod`, and their inference traffic flows through
+  APIM for the same policies, metering, and hub-first backend routing.

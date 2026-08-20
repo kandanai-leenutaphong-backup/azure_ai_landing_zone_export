@@ -25,18 +25,42 @@
   this fragment (see apim.bicep namedValues).
 -->
 <fragment>
-    <validate-jwt header-name="Authorization"
-                   require-scheme="Bearer"
-                   failed-validation-httpcode="401"
-                   failed-validation-error-message="Missing or invalid Entra ID access token.">
-        <openid-config url="https://login.microsoftonline.com/{{entra-tenant-id}}/v2.0/.well-known/openid-configuration" />
-        <audiences>
-            <audience>{{entra-audience}}</audience>
-        </audiences>
-        <required-claims>
-            <claim name="oid" match="any" />
-        </required-claims>
-    </validate-jwt>
+    <choose>
+        <when condition="@{
+            var jwt = context.Request.Headers.GetValueOrDefault(&quot;Authorization&quot;,&quot;&quot;).AsJwt();
+            var audience = jwt?.Claims.GetValueOrDefault(&quot;aud&quot;, new string[0]).FirstOrDefault();
+            return audience == &quot;https://cognitiveservices.azure.com&quot;;
+        }">
+            <validate-azure-ad-token tenant-id="{{entra-tenant-id}}"
+                                     header-name="Authorization"
+                                     failed-validation-httpcode="401"
+                                     failed-validation-error-message="The Foundry project managed identity is not authorized for this gateway.">
+                <audiences>
+                    <audience>https://cognitiveservices.azure.com</audience>
+                </audiences>
+                <required-claims>
+                    <claim name="oid" match="any">
+                        <value>{{spoke-app-project-principal-id}}</value>
+                        <value>{{spoke-agent-project-principal-id}}</value>
+                    </claim>
+                </required-claims>
+            </validate-azure-ad-token>
+        </when>
+        <otherwise>
+            <validate-jwt header-name="Authorization"
+                           require-scheme="Bearer"
+                           failed-validation-httpcode="401"
+                           failed-validation-error-message="Missing or invalid Entra ID access token.">
+                <openid-config url="https://login.microsoftonline.com/{{entra-tenant-id}}/v2.0/.well-known/openid-configuration" />
+                <audiences>
+                    <audience>{{entra-audience}}</audience>
+                </audiences>
+                <required-claims>
+                    <claim name="oid" match="any" />
+                </required-claims>
+            </validate-jwt>
+        </otherwise>
+    </choose>
     <set-variable name="aiGatewayUserId" value="@(context.Request.Headers.GetValueOrDefault(&quot;Authorization&quot;,&quot;&quot;).AsJwt()?.Claims.GetValueOrDefault(&quot;oid&quot;, new string[0]).FirstOrDefault() ?? &quot;unknown-user&quot;)" />
     <set-variable name="aiGatewayUserName" value="@{
         var jwt = context.Request.Headers.GetValueOrDefault(&quot;Authorization&quot;,&quot;&quot;).AsJwt();
@@ -48,5 +72,14 @@
         if (!string.IsNullOrEmpty(azp)) { return &quot;service-principal:&quot; + azp; }
         return &quot;unknown-user&quot;;
     }" />
-    <set-variable name="aiGatewayDepartment" value="@(context.Request.Headers.GetValueOrDefault(&quot;Authorization&quot;,&quot;&quot;).AsJwt()?.Claims.GetValueOrDefault(&quot;roles&quot;, new string[0]).FirstOrDefault() ?? context.Subscription?.Name ?? context.Product?.Name ?? &quot;unattributed&quot;)" />
+    <set-variable name="aiGatewayDepartment" value="@{
+        var jwt = context.Request.Headers.GetValueOrDefault(&quot;Authorization&quot;,&quot;&quot;).AsJwt();
+        var role = jwt?.Claims.GetValueOrDefault(&quot;roles&quot;, new string[0]).FirstOrDefault();
+        if (!string.IsNullOrEmpty(role)) { return role; }
+        if (context.Subscription != null) { return context.Subscription.Name; }
+        var mirid = jwt?.Claims.GetValueOrDefault(&quot;xms_mirid&quot;, new string[0]).FirstOrDefault();
+        if (!string.IsNullOrEmpty(mirid)) { return &quot;foundry-project:&quot; + mirid.Split('/').Last(); }
+        if (context.Product != null) { return context.Product.Name; }
+        return &quot;unattributed&quot;;
+    }" />
 </fragment>

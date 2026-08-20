@@ -323,7 +323,8 @@ A **third subscription**, the AI Gateway Landing Zone
 (`aiGatewaySubscriptionId`, default `0d04b43f-7d15-40fd-8aa5-830f71ab0d80`,
 resource group `rg-ai-gateway-sea`), is deployed alongside the hub and spoke
 described above, gated by `deployAiGateway` (default `true`). It is additive:
-**the existing spoke (`rg-ai-dev-sea`) requires no changes**. Full design
+the spoke keeps its existing model capacity and receives only project-level
+`ApiManagement` connections that expose the centralized hub model. Full design
 details, diagrams, and the implemented-module appendix are in
 [`docs/ai-gateway-landing-zone.md`](docs/ai-gateway-landing-zone.md).
 
@@ -332,6 +333,7 @@ details, diagrams, and the implemented-module appendix are in
 | `apim-hub-sea<suffix>` (APIM Standard V2) | Single governed entry point for all AI callers; public gateway hostname, outbound VNet-integrated to reach private backends |
 | `apic-hub-sea<suffix>` (Azure API Center) | Continuously synchronized inventory of APIM REST APIs and MCP servers for discovery and governance |
 | `aif-hub-sea<suffix>` (Foundry hub account) | Shared model deployments — `gpt-4o-hub-prod` (underlying model `gpt-4.1-mini`; `gpt-4o`'s `GlobalStandard` SKU only maps to fine-tune quota in this tenant/region per a live `what-if` preflight check) and `text-embedding-3-small` (`GlobalStandard`); the **primary** quota target for gateway traffic |
+| `hub-ai-gateway/gpt-4o-hub-prod` (spoke projects) | Admin-connected model reference registered in both spoke Foundry projects. Capacity stays in the hub account while spoke prompt agents route inference through APIM. |
 | `redis-hub-sea-<suffix>` (Azure Managed Redis, RediSearch) | Semantic caching of prompt/response pairs behind APIM |
 | `evhns-hub-sea-<suffix>` + `logic-hub-usage-sea<suffix>` | Usage-metering pipeline: token events flow to Event Hub / Application Insights, processed by a **Logic Apps Standard** workflow (`logic-app-workflows/usage-rollup/workflow.json`, zip-deployed) that upserts daily rollups into `cosmos-hub-sea-<suffix>` (Consumption is not supported for Foundry's Logic Apps connector/agent-tool pattern) |
 | `cosmos-hub-sea-<suffix>` (Cosmos DB, serverless) | Durable per-department/per-user/per-model daily usage store (`usage`/`token-usage-daily`, partitioned by `/department`) — the queryable showback/chargeback backing store |

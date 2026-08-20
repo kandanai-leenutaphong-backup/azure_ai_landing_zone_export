@@ -69,6 +69,12 @@ param entraTenantId string = tenant().tenantId
 @description('Expected audience (application ID URI or client ID) for caller access tokens.')
 param entraAudience string
 
+@description('System-assigned principal ID of the application spoke Foundry project allowed to use the model gateway.')
+param spokeAppProjectPrincipalId string
+
+@description('System-assigned principal ID of the agent spoke Foundry project allowed to use the model gateway.')
+param spokeAgentProjectPrincipalId string
+
 @description('Application Insights instrumentation resource ID, for the APIM diagnostic logger.')
 param appInsightsId string
 
@@ -206,6 +212,26 @@ resource namedValueAudience 'Microsoft.ApiManagement/service/namedValues@2024-05
   }
 }
 
+resource namedValueSpokeAppProjectPrincipalId 'Microsoft.ApiManagement/service/namedValues@2024-05-01' = {
+  parent: apim
+  name: 'spoke-app-project-principal-id'
+  properties: {
+    displayName: 'spoke-app-project-principal-id'
+    value: spokeAppProjectPrincipalId
+    secret: false
+  }
+}
+
+resource namedValueSpokeAgentProjectPrincipalId 'Microsoft.ApiManagement/service/namedValues@2024-05-01' = {
+  parent: apim
+  name: 'spoke-agent-project-principal-id'
+  properties: {
+    displayName: 'spoke-agent-project-principal-id'
+    value: spokeAgentProjectPrincipalId
+    secret: false
+  }
+}
+
 resource hubFoundryBackend 'Microsoft.ApiManagement/service/backends@2024-05-01' = {
   parent: apim
   name: 'hub-foundry-backend'
@@ -285,6 +311,8 @@ resource fragValidateJwt 'Microsoft.ApiManagement/service/policyFragments@2024-0
   dependsOn: [
     namedValueTenantId
     namedValueAudience
+    namedValueSpokeAppProjectPrincipalId
+    namedValueSpokeAgentProjectPrincipalId
   ]
 }
 
@@ -329,7 +357,9 @@ resource api 'Microsoft.ApiManagement/service/apis@2024-05-01' = {
     protocols: [
       'https'
     ]
-    subscriptionRequired: true
+    // Project managed identities authenticate with Entra tokens and do not carry APIM
+    // subscription keys. JWT validation remains mandatory in the API policy.
+    subscriptionRequired: false
     serviceUrl: hubFoundryBackendUrl
   }
   name: 'ai-gateway-openai'
