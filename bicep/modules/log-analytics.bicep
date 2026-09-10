@@ -6,7 +6,7 @@ param location string = 'southeastasia'
 @description('Workspace name.')
 param name string
 
-param retentionInDays int = 30
+param retentionInDays int = 180
 param skuName string = 'PerGB2018'
 param tags object = {}
 

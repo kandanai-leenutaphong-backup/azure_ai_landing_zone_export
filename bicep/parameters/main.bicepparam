@@ -15,6 +15,7 @@ param aiGatewaySubscriptionId = '0d04b43f-7d15-40fd-8aa5-830f71ab0d80'
 param aiGatewayResourceGroupName = 'rg-ai-gateway-sea'
 param apimPublisherEmail = 'ai-gateway-admin@contoso.com'
 param entraAudience = 'e9de7c75-a166-4030-8c05-81694cc1fecb'
+param deployFoundryAppInsightsRoleAssignments = false
 param aiGatewayDepartments = [
   {
     name: 'odi'

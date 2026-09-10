@@ -100,6 +100,10 @@ resource site 'Microsoft.Web/sites@2024-04-01' = {
           value: toLower(name)
         }
         {
+          name: 'WEBSITE_CONTENTOVERVNET'
+          value: '1'
+        }
+        {
           name: 'FUNCTIONS_EXTENSION_VERSION'
           value: '~4'
         }

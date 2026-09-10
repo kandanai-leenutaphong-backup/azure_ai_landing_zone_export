@@ -27,6 +27,12 @@ param enableTablePrivateEndpoint bool = false
 @description('Resource ID of the privatelink.table.core.windows.net zone in the hub RG.')
 param tablePrivateDnsZoneId string = ''
 
+@description('Create a File private endpoint. Required for private Logic Apps Standard content storage.')
+param enableFilePrivateEndpoint bool = false
+
+@description('Resource ID of the privatelink.file.core.windows.net zone in the hub RG.')
+param filePrivateDnsZoneId string = ''
+
 @description('Blob containers to create in this storage account.')
 param blobContainerNames array = []
 
@@ -117,6 +123,23 @@ module tablePrivateEndpoint 'private-endpoint.bicep' = if (enableTablePrivateEnd
     ]
     privateDnsZoneIds: [
       tablePrivateDnsZoneId
+    ]
+    tags: tags
+  }
+}
+
+module filePrivateEndpoint 'private-endpoint.bicep' = if (enableFilePrivateEndpoint) {
+  name: 'pe-${name}-file'
+  params: {
+    location: location
+    name: '${name}-file-pe'
+    subnetId: privateEndpointSubnetId
+    targetResourceId: storage.id
+    groupIds: [
+      'file'
+    ]
+    privateDnsZoneIds: [
+      filePrivateDnsZoneId
     ]
     tags: tags
   }

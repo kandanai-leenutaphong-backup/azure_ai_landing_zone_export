@@ -30,6 +30,9 @@ param adminUsername string = 'azureuser'
 @description('VM size.')
 param vmSize string = 'Standard_B2s'
 
+@description('Managed OS disk SKU.')
+param osDiskStorageAccountType string = 'Standard_LRS'
+
 @description('Assign a public IP to this VM\'s NIC (set false once Bastion-only access is desired).')
 param assignPublicIp bool = false
 
@@ -117,7 +120,7 @@ resource vm 'Microsoft.Compute/virtualMachines@2024-07-01' = {
       osDisk: {
         createOption: 'FromImage'
         managedDisk: {
-          storageAccountType: 'Premium_LRS'
+          storageAccountType: osDiskStorageAccountType
         }
       }
     }

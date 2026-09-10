@@ -29,6 +29,9 @@ param appInsightsId string
 @secure()
 param appInsightsConnectionString string
 
+@description('Create App Insights reader role assignments for the Foundry project identity.')
+param deployReaderRoleAssignments bool = true
+
 resource account 'Microsoft.CognitiveServices/accounts@2025-06-01' existing = {
   name: accountName
 }
@@ -87,7 +90,7 @@ var appInsightsReaderRoleGuids = [
   'dbc9c667-e97f-4491-aee6-90b9cf960190' // Privileged Monitoring Data Reader
 ]
 
-resource appInsightsReaderRoleAssignments 'Microsoft.Authorization/roleAssignments@2022-04-01' = [for roleGuid in appInsightsReaderRoleGuids: {
+resource appInsightsReaderRoleAssignments 'Microsoft.Authorization/roleAssignments@2022-04-01' = [for roleGuid in appInsightsReaderRoleGuids: if (deployReaderRoleAssignments) {
   name: guid(project.id, roleGuid, appInsightsId)
   scope: appInsights
   properties: {

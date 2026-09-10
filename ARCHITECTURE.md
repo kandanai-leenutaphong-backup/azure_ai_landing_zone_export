@@ -235,7 +235,7 @@ The landing zone creates one Standard Azure Container Registry with the admin ac
 
 ## Observability
 
-The spoke contains a Log Analytics workspace with 30-day retention.
+The spoke contains a Log Analytics workspace with 180-day retention.
 
 - Container Apps sends platform and application logs directly to Log Analytics.
 - Application Insights is workspace-based and monitors the Function App.

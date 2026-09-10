@@ -134,6 +134,7 @@ az apim api update \
 
 TOKEN="$(az account get-access-token --resource https://management.azure.com --query accessToken -o tsv)"
 APIM_BASE_URL="https://management.azure.com/subscriptions/${GATEWAY_SUBSCRIPTION_ID}/resourceGroups/${GATEWAY_RESOURCE_GROUP}/providers/Microsoft.ApiManagement/service/${APIM_NAME}"
+MCP_POLICY_FILE="$ROOT_DIR/bicep/modules/policies/mcp-policy.xml"
 
 put_apim_resource() {
   local url="$1"
@@ -145,9 +146,14 @@ put_apim_resource() {
     --data "$body" >/dev/null
 }
 
+curl --fail --silent --show-error --request DELETE \
+  "${APIM_BASE_URL}/apis/user-data-mcp?api-version=${APIM_API_VERSION}" \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "If-Match: *" >/dev/null 2>&1 || true
+
 put_apim_resource \
   "${APIM_BASE_URL}/apis/user-data-mcp?api-version=${APIM_API_VERSION}" \
-  '{"properties":{"type":"mcp","path":"user-data-mcp","displayName":"Entra User Data MCP Server","description":"Returns demo data scoped to the authenticated Microsoft Entra user.","protocols":["https"],"subscriptionRequired":false}}'
+  "{\"properties\":{\"type\":\"http\",\"path\":\"user-data-mcp\",\"displayName\":\"Entra User Data MCP Server\",\"description\":\"Transparent authenticated proxy to the private native MCP server.\",\"protocols\":[\"https\"],\"subscriptionRequired\":false,\"serviceUrl\":\"https://${APP_FQDN}\"}}"
 
 for _ in $(seq 1 30); do
   if curl --fail --silent --show-error \
@@ -158,11 +164,11 @@ for _ in $(seq 1 30); do
   sleep 10
 done
 
-for operation in getMyProfile listMyOrders; do
-  operation_resource_id="${APIM_BASE_URL#https://management.azure.com}/apis/user-data-api/operations/${operation}"
+for method in POST GET DELETE; do
+  operation_id="mcp-$(tr '[:upper:]' '[:lower:]' <<<"$method")"
   put_apim_resource \
-    "${APIM_BASE_URL}/apis/user-data-mcp/tools/${operation}?api-version=${APIM_API_VERSION}" \
-    "{\"properties\":{\"displayName\":\"${operation}\",\"description\":\"Return only the signed-in user's data\",\"operationId\":\"${operation_resource_id}\"}}"
+    "${APIM_BASE_URL}/apis/user-data-mcp/operations/${operation_id}?api-version=2024-05-01" \
+    "{\"properties\":{\"displayName\":\"MCP ${method}\",\"method\":\"${method}\",\"urlTemplate\":\"/mcp\",\"templateParameters\":[],\"responses\":[]}}"
 done
 
 for api_id in user-data-api user-data-mcp; do
@@ -175,13 +181,32 @@ done
 JWT_POLICY="<policies><inbound><validate-jwt header-name=\"Authorization\" failed-validation-httpcode=\"401\" failed-validation-error-message=\"A valid Microsoft Entra access token is required.\" require-expiration-time=\"true\" require-scheme=\"Bearer\" output-token-variable-name=\"validated-jwt\"><openid-config url=\"https://login.microsoftonline.com/${TENANT_ID}/v2.0/.well-known/openid-configuration\" /><audiences><audience>${ENTRA_APP_ID}</audience><audience>${ENTRA_AUDIENCE}</audience></audiences><required-claims><claim name=\"scp\" match=\"any\"><value>access_as_user</value></claim></required-claims></validate-jwt><set-header name=\"X-Entra-Object-Id\" exists-action=\"override\"><value>@(((Jwt)context.Variables[\"validated-jwt\"]).Claims.GetValueOrDefault(\"oid\", \"\"))</value></set-header><set-header name=\"X-Entra-Display-Name\" exists-action=\"override\"><value>@(((Jwt)context.Variables[\"validated-jwt\"]).Claims.GetValueOrDefault(\"name\", \"\"))</value></set-header><set-header name=\"X-Entra-Username\" exists-action=\"override\"><value>@(((Jwt)context.Variables[\"validated-jwt\"]).Claims.GetValueOrDefault(\"preferred_username\", \"\"))</value></set-header><rate-limit-by-key calls=\"30\" renewal-period=\"60\" counter-key=\"@(((Jwt)context.Variables[\"validated-jwt\"]).Claims.GetValueOrDefault(\"oid\", context.Request.IpAddress))\" /><base /></inbound><backend><base /></backend><outbound><base /></outbound><on-error><base /></on-error></policies>"
 JWT_BODY="$(jq -n --arg value "$JWT_POLICY" '{properties:{format:"rawxml",value:$value}}')"
 
-for api_id in user-data-api user-data-mcp; do
+put_apim_resource \
+  "${APIM_BASE_URL}/namedValues/mcp-entra-audience?api-version=2024-05-01" \
+  "$(jq -n --arg value "$ENTRA_APP_ID" '{properties:{displayName:"mcp-entra-audience",value:$value,secret:false}}')"
+put_apim_resource \
+  "${APIM_BASE_URL}/namedValues/mcp-allowed-origin?api-version=2024-05-01" \
+  "$(jq -n --arg value "https://apic-hub-sea2uy4dibzgdn34.portal.centralindia.azure-apicenter.ms" '{properties:{displayName:"mcp-allowed-origin",value:$value,secret:false}}')"
+
+put_apim_resource \
+  "${APIM_BASE_URL}/apis/user-data-api/policies/policy?api-version=${APIM_API_VERSION}" \
+  "$JWT_BODY"
+
+MCP_POLICY_BODY="$(jq -n --rawfile value "$MCP_POLICY_FILE" '{properties:{format:"rawxml",value:$value}}')"
+put_apim_resource \
+  "${APIM_BASE_URL}/apis/user-data-mcp/policies/policy?api-version=${APIM_API_VERSION}" \
+  "$MCP_POLICY_BODY"
+
+APP_INSIGHTS_LOGGER_ID="${APIM_BASE_URL#https://management.azure.com}/loggers/appinsights-logger"
+MCP_DIAGNOSTICS_BODY="$(jq -n --arg loggerId "$APP_INSIGHTS_LOGGER_ID" '{properties:{loggerId:$loggerId,alwaysLog:"allErrors",verbosity:"information",metrics:true,httpCorrelationProtocol:"W3C"}}')"
+for api_id in user-data-mcp; do
   put_apim_resource \
-    "${APIM_BASE_URL}/apis/${api_id}/policies/policy?api-version=${APIM_API_VERSION}" \
-    "$JWT_BODY"
+    "${APIM_BASE_URL}/apis/${api_id}/diagnostics/applicationinsights?api-version=2024-05-01" \
+    "$MCP_DIAGNOSTICS_BODY"
 done
 
 GATEWAY_URL="$(az apim show --subscription "$GATEWAY_SUBSCRIPTION_ID" --resource-group "$GATEWAY_RESOURCE_GROUP" --name "$APIM_NAME" --query gatewayUrl -o tsv)"
 printf 'Entra application client ID: %s\n' "$ENTRA_APP_ID"
 printf 'Delegated scope: %s/access_as_user\n' "$ENTRA_AUDIENCE"
+printf 'Private Entra User Data MCP backend: https://%s/mcp\n' "$APP_FQDN"
 printf 'Entra User Data MCP: %s/user-data-mcp/mcp\n' "$GATEWAY_URL"

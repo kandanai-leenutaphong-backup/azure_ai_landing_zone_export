@@ -22,6 +22,7 @@ param functionAppSubnetPrefix string = '10.10.4.0/24'
 param agentSubnetPrefix string = '10.10.5.0/24'
 param privateEndpointsSubnetPrefix string = '10.10.6.0/24'
 param applicationGatewaySubnetPrefix string = '10.10.7.0/24'
+param claimpilotContainerAppsSubnetPrefix string = '10.10.8.0/23'
 
 @description('Tags applied to all resources.')
 param tags object = {}
@@ -126,6 +127,15 @@ resource applicationGatewayNsg 'Microsoft.Network/networkSecurityGroups@2023-11-
         }
       }
     ]
+  }
+}
+
+resource claimpilotContainerAppsNsg 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
+  name: '${vnetName}-snet-claimpilot-aca-nsg-${location}'
+  location: location
+  tags: tags
+  properties: {
+    securityRules: []
   }
 }
 
@@ -380,6 +390,23 @@ resource vnet 'Microsoft.Network/virtualNetworks@2023-11-01' = {
           }
         }
       }
+      {
+        name: 'snet-claimpilot-aca'
+        properties: {
+          addressPrefix: claimpilotContainerAppsSubnetPrefix
+          networkSecurityGroup: {
+            id: claimpilotContainerAppsNsg.id
+          }
+          delegations: [
+            {
+              name: 'Microsoft.App.environments'
+              properties: {
+                serviceName: 'Microsoft.App/environments'
+              }
+            }
+          ]
+        }
+      }
     ]
   }
 }
@@ -425,5 +452,6 @@ output functionAppSubnetId string = '${vnet.id}/subnets/snet-functionapp'
 output agentSubnetId string = '${vnet.id}/subnets/snet-agent'
 output privateEndpointsSubnetId string = '${vnet.id}/subnets/snet-pe'
 output applicationGatewaySubnetId string = '${vnet.id}/subnets/snet-appgw'
+output claimpilotContainerAppsSubnetId string = '${vnet.id}/subnets/snet-claimpilot-aca'
 output vmNsg1Id string = vmNsg1.id
 output vmNsg2Id string = vmNsg2.id

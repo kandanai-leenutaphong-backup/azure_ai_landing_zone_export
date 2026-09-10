@@ -62,26 +62,28 @@ async def main() -> None:
         if not access_token:
             access_token = await get_azure_cli_scope_token(entra_scope)
 
-        entra_headers = lambda _context: {"Authorization": f"Bearer {access_token}"}
-        demo_headers = lambda _context: {"Origin": allowed_origin}
+        authenticated_headers = lambda _context: {
+            "Authorization": f"Bearer {access_token}",
+            "Origin": allowed_origin,
+        }
         tools = [
             MCPStreamableHTTPTool(
                 name="Pet Store MCP",
                 tool_name_prefix="pet",
                 url=f"{gateway}/petstore-mcp/mcp",
-                header_provider=demo_headers,
+                header_provider=authenticated_headers,
             ),
             MCPStreamableHTTPTool(
                 name="Math MCP",
                 tool_name_prefix="math",
                 url=f"{gateway}/math-mcp/mcp",
-                header_provider=demo_headers,
+                header_provider=authenticated_headers,
             ),
             MCPStreamableHTTPTool(
                 name="Entra User Data MCP",
                 tool_name_prefix="user",
                 url=f"{gateway}/user-data-mcp/mcp",
-                header_provider=entra_headers,
+                header_provider=authenticated_headers,
             ),
         ]
         client = FoundryChatClient(project_client=project_client, model=model)

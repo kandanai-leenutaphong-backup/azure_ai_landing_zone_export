@@ -78,9 +78,9 @@ param spokeAgentProjectPrincipalId string
 @description('Application Insights instrumentation resource ID, for the APIM diagnostic logger.')
 param appInsightsId string
 
-@description('Application Insights instrumentation key.')
+@description('Application Insights connection string.')
 @secure()
-param appInsightsInstrumentationKey string
+param appInsightsConnectionString string
 
 @description('Event Hub namespace fully-qualified hostname (e.g. evhns-hub-sea-<suffix>.servicebus.windows.net), for the usage-event logger.')
 param eventHubNamespaceHostName string
@@ -139,7 +139,7 @@ resource loggerAppInsights 'Microsoft.ApiManagement/service/loggers@2024-05-01' 
     loggerType: 'applicationInsights'
     resourceId: appInsightsId
     credentials: {
-      instrumentationKey: appInsightsInstrumentationKey
+      connectionString: appInsightsConnectionString
     }
   }
 }

@@ -50,6 +50,9 @@ param entraAudience string = 'e9de7c75-a166-4030-8c05-81694cc1fecb'
 @description('Name of the Foundry project on the hub Foundry account used to publish/invoke agents from the Foundry Portal (currently auto-provisioned on first Portal use, not yet itself Bicep-managed).')
 param hubFoundryProjectName string = 'aiGatewayHubProject'
 
+@description('Create the Foundry project App Insights reader role assignments. Disable when equivalent assignments already exist under different resource IDs.')
+param deployFoundryAppInsightsRoleAssignments bool = true
+
 @description('Departments onboarded to the AI Gateway. Each becomes an APIM Product + Subscription — the chargeback boundary for per-department AI spend.')
 param aiGatewayDepartments array = [
   {
@@ -931,6 +934,9 @@ module aiGatewayStorage 'modules/storage-account.bicep' = if (deployAiGateway) {
     name: 'stlogicaigw${aiGatewayUniqueSuffix}'
     privateEndpointSubnetId: aiGatewayNetwork!.outputs.privateEndpointsSubnetId
     blobPrivateDnsZoneId: dnsZones.outputs.blobZoneId
+    enableFilePrivateEndpoint: true
+    filePrivateDnsZoneId: dnsZones.outputs.fileZoneId
+    allowSharedKeyAccess: true
     tags: tags
   }
 }
@@ -1004,6 +1010,7 @@ module foundryHubAppInsightsConnection 'modules/foundry-appinsights-connection.b
     appInsightsName: aiGatewayAppInsights!.outputs.name
     appInsightsId: aiGatewayAppInsights!.outputs.id
     appInsightsConnectionString: aiGatewayAppInsights!.outputs.connectionString
+    deployReaderRoleAssignments: deployFoundryAppInsightsRoleAssignments
   }
 }
 
@@ -1074,7 +1081,7 @@ module aiGatewayApim 'modules/apim.bicep' = if (deployAiGateway) {
     spokeAppProjectPrincipalId: foundryProjectApp.outputs.principalId
     spokeAgentProjectPrincipalId: foundryProjectAgent.outputs.principalId
     appInsightsId: aiGatewayAppInsights!.outputs.id
-    appInsightsInstrumentationKey: aiGatewayAppInsights!.outputs.instrumentationKey
+    appInsightsConnectionString: aiGatewayAppInsights!.outputs.connectionString
     eventHubNamespaceHostName: '${aiGatewayEventHub!.outputs.namespaceName}.servicebus.windows.net'
     eventHubNamespaceId: aiGatewayEventHub!.outputs.namespaceId
     eventHubName: aiGatewayEventHub!.outputs.eventHubName
@@ -1170,7 +1177,7 @@ module aiGatewayLogicAppLogAnalyticsReader 'modules/resource-group-role-assignme
   scope: resourceGroup(aiGatewaySubscriptionId, aiGatewayResourceGroupName)
   params: {
     principalId: aiGatewayLogicApp!.outputs.principalId
-    roleDefinitionId: '73c42c96-874c-492b-b04d-ab87d138a35a'
+    roleDefinitionId: '73c42c96-874c-492b-b04d-ab87d138a893'
   }
 }
 

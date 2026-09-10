@@ -116,6 +116,7 @@ done
 
 TOKEN="$(az account get-access-token --resource https://management.azure.com --query accessToken -o tsv)"
 APIM_BASE_URL="https://management.azure.com/subscriptions/${GATEWAY_SUBSCRIPTION_ID}/resourceGroups/${GATEWAY_RESOURCE_GROUP}/providers/Microsoft.ApiManagement/service/${APIM_NAME}"
+MCP_POLICY_FILE="$ROOT_DIR/bicep/modules/policies/mcp-policy.xml"
 
 put_apim_resource() {
   local url="$1"
@@ -185,13 +186,29 @@ for api_id in petstore-api petstore-mcp math-tools-api math-mcp; do
     --header "Content-Length: 0" >/dev/null
 done
 
-MCP_CORS_POLICY="<policies><inbound><cors allow-credentials=\"false\" terminate-unmatched-request=\"true\"><allowed-origins><origin>${API_CENTER_PORTAL_ORIGIN}</origin></allowed-origins><allowed-methods preflight-result-max-age=\"300\"><method>GET</method><method>POST</method><method>DELETE</method><method>OPTIONS</method></allowed-methods><allowed-headers><header>accept</header><header>content-type</header><header>mcp-protocol-version</header><header>mcp-session-id</header></allowed-headers><expose-headers><header>mcp-session-id</header></expose-headers></cors><rate-limit-by-key calls=\"30\" renewal-period=\"60\" counter-key=\"@(context.Request.IpAddress)\" /><base /></inbound><backend><base /></backend><outbound><base /></outbound><on-error><base /></on-error></policies>"
-MCP_CORS_BODY="$(jq -n --arg value "$MCP_CORS_POLICY" '{properties:{format:"rawxml",value:$value}}')"
+MCP_ENTRA_AUDIENCE="$(az rest --method get \
+  --url "${APIM_BASE_URL}/namedValues/mcp-entra-audience?api-version=2024-05-01" \
+  --query properties.value -o tsv 2>/dev/null || true)"
+if [[ -z "$MCP_ENTRA_AUDIENCE" ]]; then
+  echo "MCP Entra authentication is not configured. Run ./scripts/deploy-entra-mcp-example.sh first." >&2
+  exit 1
+fi
+
+put_apim_resource \
+  "${APIM_BASE_URL}/namedValues/mcp-allowed-origin?api-version=2024-05-01" \
+  "$(jq -n --arg value "$API_CENTER_PORTAL_ORIGIN" '{properties:{displayName:"mcp-allowed-origin",value:$value,secret:false}}')"
+
+MCP_POLICY_BODY="$(jq -n --rawfile value "$MCP_POLICY_FILE" '{properties:{format:"rawxml",value:$value}}')"
+APP_INSIGHTS_LOGGER_ID="${APIM_BASE_URL#https://management.azure.com}/loggers/appinsights-logger"
+MCP_DIAGNOSTICS_BODY="$(jq -n --arg loggerId "$APP_INSIGHTS_LOGGER_ID" '{properties:{loggerId:$loggerId,alwaysLog:"allErrors",verbosity:"information",metrics:true,httpCorrelationProtocol:"W3C"}}')"
 
 for api_id in petstore-mcp math-mcp; do
   put_apim_resource \
     "${APIM_BASE_URL}/apis/${api_id}/policies/policy?api-version=${APIM_API_VERSION}" \
-    "$MCP_CORS_BODY"
+    "$MCP_POLICY_BODY"
+  put_apim_resource \
+    "${APIM_BASE_URL}/apis/${api_id}/diagnostics/applicationinsights?api-version=2024-05-01" \
+    "$MCP_DIAGNOSTICS_BODY"
 done
 
 BACKING_API_POLICY="<policies><inbound><choose><when condition='@(context.Request.Headers.GetValueOrDefault(\"Origin\", \"\") != \"${API_CENTER_PORTAL_ORIGIN}\")'><return-response><set-status code=\"403\" reason=\"Forbidden\" /></return-response></when></choose><cors allow-credentials=\"false\" terminate-unmatched-request=\"true\"><allowed-origins><origin>${API_CENTER_PORTAL_ORIGIN}</origin></allowed-origins><allowed-methods preflight-result-max-age=\"300\"><method>GET</method><method>POST</method><method>OPTIONS</method></allowed-methods><allowed-headers><header>accept</header><header>content-type</header></allowed-headers></cors><rate-limit-by-key calls=\"30\" renewal-period=\"60\" counter-key=\"@(context.Request.IpAddress)\" /><base /></inbound><backend><base /></backend><outbound><base /></outbound><on-error><base /></on-error></policies>"
