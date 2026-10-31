@@ -91,9 +91,40 @@ param deployRepositoryApps bool = true
 
 @description('Deploy the Thai surname search Container App. The deployment script bootstraps SQL before enabling it.')
 param deployThaiSurnameApp bool = true
+@description('Optional private Foundry project endpoint called by the Thai search app agent module.')
+param regionalAgentProjectEndpoint string = ''
+@description('New versioned West US 3 Foundry agent name, not a Classic asst_ ID.')
+param regionalAgentName string = ''
+param regionalAgentVersion string = ''
+param regionalAgentModelSku string = ''
+@description('Existing private SEA project for the regional latency comparison.')
+param seaAgentProjectEndpoint string = ''
+param seaAgentName string = ''
+param seaAgentVersion string = ''
+param seaAgentModelSku string = ''
+@description('Matched Global Standard agent in the same West US 3 project as regionalAgentName.')
+param globalAgentName string = ''
+param globalAgentVersion string = ''
+@description('Reserved SEA Standard chat agent. Leave unset while this model SKU is unavailable in SEA.')
+param seaStandardAgentName string = ''
+param seaStandardAgentVersion string = ''
+@description('Optional Thai search app image override without changing the other repository applications.')
+param thaiSurnameAppImageTag string = appImageTag
 
 @description('Expose thai-surname-search publicly through Application Gateway WAF_v2.')
 param enableThaiPublicGateway bool = true
+
+@description('Deploy the hub Azure Firewall and force spoke/AI Gateway egress and inter-VNet traffic through it with user-defined routes.')
+param enableAzureFirewall bool = true
+
+@description('Expected private IP of the hub Azure Firewall (first usable address of AzureFirewallSubnet). Used as the UDR next hop; verify it matches the firewallPrivateIpAddress output after the first deployment.')
+param firewallPrivateIp string = '10.0.3.4'
+
+@description('Allow outbound HTTP/HTTPS to any destination through the firewall. Set false to allow-list only the FQDNs in azure-firewall.bicep.')
+param firewallAllowAllOutboundWeb bool = true
+
+@description('Route the Container Apps subnets through the firewall. Requires a workload-profiles Container Apps environment (capps-env-sea is one).')
+param enableContainerAppsFirewallRoute bool = true
 
 @description('Microsoft Entra administrator login for Azure SQL.')
 param sqlEntraAdminLogin string
@@ -160,6 +191,86 @@ module aiGatewayRg 'modules/resource-group.bicep' = if (deployAiGateway) {
 // Networking
 // ---------------------------------------------------------------------------
 
+var hubAddressPrefix = '10.0.0.0/16'
+var spokeAddressPrefix = '10.10.0.0/16'
+var aiGatewayAddressPrefix = '10.20.0.0/16'
+var hubApplicationGatewaySubnetPrefix = '10.0.5.0/24'
+
+module hubAppGwRouteTable 'modules/route-table.bicep' = if (enableAzureFirewall) {
+  name: 'deploy-hub-appgw-route-table'
+  scope: resourceGroup(hubSubscriptionId, hubResourceGroupName)
+  dependsOn: [
+    hubRg
+  ]
+  params: {
+    location: location
+    name: 'rt-hub-appgw'
+    routes: [
+      {
+        name: 'spoke-via-firewall'
+        addressPrefix: spokeAddressPrefix
+        nextHopType: 'VirtualAppliance'
+        nextHopIpAddress: firewallPrivateIp
+      }
+    ]
+    tags: tags
+  }
+}
+
+module spokeRouteTable 'modules/route-table.bicep' = if (enableAzureFirewall) {
+  name: 'deploy-spoke-route-table'
+  scope: resourceGroup(spokeSubscriptionId, spokeResourceGroupName)
+  dependsOn: [
+    spokeRg
+  ]
+  params: {
+    location: location
+    name: 'rt-spoke-via-firewall'
+    routes: [
+      {
+        name: 'default-via-firewall'
+        addressPrefix: '0.0.0.0/0'
+        nextHopType: 'VirtualAppliance'
+        nextHopIpAddress: firewallPrivateIp
+      }
+      {
+        name: 'ai-gateway-via-firewall'
+        addressPrefix: aiGatewayAddressPrefix
+        nextHopType: 'VirtualAppliance'
+        nextHopIpAddress: firewallPrivateIp
+      }
+    ]
+    tags: tags
+  }
+}
+
+module aiGatewayRouteTable 'modules/route-table.bicep' = if (enableAzureFirewall && deployAiGateway) {
+  name: 'deploy-ai-gateway-route-table'
+  scope: resourceGroup(aiGatewaySubscriptionId, aiGatewayResourceGroupName)
+  dependsOn: [
+    aiGatewayRg
+  ]
+  params: {
+    location: location
+    name: 'rt-ai-gateway-via-firewall'
+    routes: [
+      {
+        name: 'default-via-firewall'
+        addressPrefix: '0.0.0.0/0'
+        nextHopType: 'VirtualAppliance'
+        nextHopIpAddress: firewallPrivateIp
+      }
+      {
+        name: 'spoke-via-firewall'
+        addressPrefix: spokeAddressPrefix
+        nextHopType: 'VirtualAppliance'
+        nextHopIpAddress: firewallPrivateIp
+      }
+    ]
+    tags: tags
+  }
+}
+
 module hubNetwork 'modules/hub-network.bicep' = {
   name: 'deploy-hub-network'
   scope: resourceGroup(hubSubscriptionId, hubResourceGroupName)
@@ -167,6 +278,9 @@ module hubNetwork 'modules/hub-network.bicep' = {
     hubRg
   ]
   params: {
+    vnetAddressPrefix: hubAddressPrefix
+    applicationGatewaySubnetPrefix: hubApplicationGatewaySubnetPrefix
+    applicationGatewayRouteTableId: enableAzureFirewall ? hubAppGwRouteTable!.outputs.id : ''
     location: location
     vpnGatewayName: vpnGatewayName
     p2sClientAddressPool: p2sClientAddressPool
@@ -181,10 +295,13 @@ module spokeNetwork 'modules/spoke-network.bicep' = {
   scope: resourceGroup(spokeSubscriptionId, spokeResourceGroupName)
   dependsOn: [
     spokeRg
+    hubFirewall
   ]
   params: {
     location: location
     enableBastion: enableBastion
+    firewallRouteTableId: enableAzureFirewall ? spokeRouteTable!.outputs.id : ''
+    containerAppsRouteTableId: enableAzureFirewall && enableContainerAppsFirewallRoute ? spokeRouteTable!.outputs.id : ''
     tags: tags
   }
 }
@@ -194,9 +311,32 @@ module aiGatewayNetwork 'modules/ai-gateway-network.bicep' = if (deployAiGateway
   scope: resourceGroup(aiGatewaySubscriptionId, aiGatewayResourceGroupName)
   dependsOn: [
     aiGatewayRg
+    hubFirewall
   ]
   params: {
     location: location
+    firewallRouteTableId: enableAzureFirewall ? aiGatewayRouteTable!.outputs.id : ''
+    tags: tags
+  }
+}
+
+module hubFirewall 'modules/azure-firewall.bicep' = if (enableAzureFirewall) {
+  name: 'deploy-hub-firewall'
+  scope: resourceGroup(hubSubscriptionId, hubResourceGroupName)
+  params: {
+    location: location
+    firewallSubnetId: hubNetwork.outputs.firewallSubnetId
+    managementSubnetId: hubNetwork.outputs.firewallManagementSubnetId
+    internalRanges: [
+      hubAddressPrefix
+      spokeAddressPrefix
+      aiGatewayAddressPrefix
+    ]
+    applicationGatewaySubnetPrefix: hubApplicationGatewaySubnetPrefix
+    spokeAddressPrefix: spokeAddressPrefix
+    dnsResolverInboundIp: dnsResolverInboundIp
+    allowAllOutboundWeb: firewallAllowAllOutboundWeb
+    logAnalyticsWorkspaceId: logAnalytics.outputs.workspaceId
     tags: tags
   }
 }
@@ -511,6 +651,32 @@ module thaiSearchSql 'modules/sql-database.bicep' = {
     entraTenantId: tenant().tenantId
     privateEndpointSubnetId: spokeNetwork.outputs.privateEndpointsSubnetId
     sqlPrivateDnsZoneId: dnsZones.outputs.sqlZoneId
+    deployElasticPool: deployThaiSearchElasticPool
+    elasticPoolName: 'thai-search-pool-sea'
+    elasticPoolCapacity: 50
+    poolDatabaseName: 'thai-search-pool-demo-db'
+    tags: tags
+  }
+}
+
+@description('Deploy the Basic (50 eDTU) elastic pool and its pool-hosted showcase database alongside thai-search-db.')
+param deployThaiSearchElasticPool bool = true
+
+@description('Deploy the Thai surname search PostgreSQL Flexible Server (cheapest Burstable B1ms SKU, Entra-only auth, Private Link).')
+param deployThaiSearchPostgres bool = true
+
+module thaiSearchPostgres 'modules/postgres-flexible-server.bicep' = if (deployThaiSearchPostgres) {
+  name: 'deploy-thai-search-postgres'
+  scope: resourceGroup(spokeSubscriptionId, spokeResourceGroupName)
+  params: {
+    location: location
+    serverName: 'pg-thai-search-sea-${uniqueSuffix}'
+    databaseName: 'thai-search-pg-db'
+    entraAdminLogin: sqlEntraAdminLogin
+    entraAdminObjectId: sqlEntraAdminObjectId
+    entraTenantId: tenant().tenantId
+    privateEndpointSubnetId: spokeNetwork.outputs.privateEndpointsSubnetId
+    postgresPrivateDnsZoneId: dnsZones.outputs.postgresZoneId
     tags: tags
   }
 }
@@ -754,7 +920,7 @@ module thaiSurnameSearch 'modules/container-app.bicep' = if (deployRepositoryApp
     location: location
     name: 'thai-surname-search'
     environmentId: containerAppsEnvironment.outputs.environmentId
-    image: '${acr.outputs.acrLoginServer}/thai-surname-search:${appImageTag}'
+    image: '${acr.outputs.acrLoginServer}/thai-surname-search:${thaiSurnameAppImageTag}'
     targetPort: 8501
     externalIngress: true
     cpu: '1.0'
@@ -777,12 +943,96 @@ module thaiSurnameSearch 'modules/container-app.bicep' = if (deployRepositoryApp
         value: thaiSearchSql.outputs.databaseName
       }
       {
+        name: 'AZURE_SQL_POOL_DATABASE'
+        value: thaiSearchSql.outputs.poolDatabaseName
+      }
+      {
+        name: 'AZURE_POSTGRES_SERVER'
+        value: deployThaiSearchPostgres ? thaiSearchPostgres!.outputs.serverFqdn : ''
+      }
+      {
+        name: 'AZURE_POSTGRES_DATABASE'
+        value: deployThaiSearchPostgres ? thaiSearchPostgres!.outputs.databaseName : ''
+      }
+      {
+        name: 'AZURE_POSTGRES_USER'
+        value: 'uami-container-apps'
+      }
+      {
         name: 'AZURE_SEARCH_ENDPOINT'
         value: 'https://${aiSearch.outputs.searchName}.search.windows.net'
       }
       {
         name: 'AZURE_SEARCH_INDEX'
         value: 'thai-people'
+      }
+      {
+        name: 'FIREWALL_PUBLIC_IP'
+        value: enableAzureFirewall ? hubFirewall!.outputs.publicIpAddress : ''
+      }
+      {
+        name: 'AZURE_AGENT_PROJECT_ENDPOINT'
+        value: regionalAgentProjectEndpoint
+      }
+      {
+        name: 'AZURE_AGENT_NAME'
+        value: regionalAgentName
+      }
+      {
+        name: 'AZURE_AGENT_VERSION'
+        value: regionalAgentVersion
+      }
+      {
+        name: 'AZURE_AGENT_MODEL_SKU'
+        value: regionalAgentModelSku
+      }
+      {
+        name: 'AZURE_SEA_AGENT_PROJECT_ENDPOINT'
+        value: seaAgentProjectEndpoint
+      }
+      {
+        name: 'AZURE_SEA_AGENT_NAME'
+        value: seaAgentName
+      }
+      {
+        name: 'AZURE_SEA_AGENT_VERSION'
+        value: seaAgentVersion
+      }
+      {
+        name: 'AZURE_SEA_AGENT_MODEL_SKU'
+        value: seaAgentModelSku
+      }
+      {
+        name: 'AZURE_GLOBAL_AGENT_PROJECT_ENDPOINT'
+        value: regionalAgentProjectEndpoint
+      }
+      {
+        name: 'AZURE_GLOBAL_AGENT_NAME'
+        value: globalAgentName
+      }
+      {
+        name: 'AZURE_GLOBAL_AGENT_VERSION'
+        value: globalAgentVersion
+      }
+      {
+        name: 'AZURE_SEA_STANDARD_AGENT_PROJECT_ENDPOINT'
+        value: seaAgentProjectEndpoint
+      }
+      {
+        name: 'AZURE_SEA_STANDARD_AGENT_NAME'
+        value: seaStandardAgentName
+      }
+      {
+        name: 'AZURE_SEA_STANDARD_AGENT_VERSION'
+        value: seaStandardAgentVersion
+      }
+      {
+        name: 'AZURE_SEA_STANDARD_AGENT_MODEL_SKU'
+        value: 'Standard'
+      }
+      {
+        name: 'AZURE_GLOBAL_AGENT_MODEL_SKU'
+        value: 'GlobalStandard'
       }
     ]
     tags: tags
@@ -791,14 +1041,15 @@ module thaiSurnameSearch 'modules/container-app.bicep' = if (deployRepositoryApp
 
 module thaiPublicGateway 'modules/application-gateway-waf.bicep' = if (deployRepositoryApps && deployThaiSurnameApp && enableThaiPublicGateway) {
   name: 'deploy-thai-public-waf'
-  scope: resourceGroup(spokeSubscriptionId, spokeResourceGroupName)
+  scope: resourceGroup(hubSubscriptionId, hubResourceGroupName)
   dependsOn: [
     containerAppsPrivateDns
+    hubFirewall
   ]
   params: {
     location: location
     name: 'agw-thai-search-sea'
-    subnetId: spokeNetwork.outputs.applicationGatewaySubnetId
+    subnetId: hubNetwork.outputs.applicationGatewaySubnetId
     backendFqdn: thaiSurnameSearch!.outputs.fqdn
     publicDnsLabel: 'thai-search-sea-${uniqueSuffix}'
     tags: tags
@@ -1221,6 +1472,7 @@ output spokeResourceGroup string = spokeResourceGroupName
 output hubVnetId string = hubNetwork.outputs.vnetId
 output spokeVnetId string = spokeNetwork.outputs.vnetId
 output vpnGatewayName string = hubNetwork.outputs.vpnGatewayName
+output firewallPrivateIpAddress string = enableAzureFirewall ? hubFirewall!.outputs.privateIpAddress : ''
 output thaiSearchPublicUrl string = deployRepositoryApps && deployThaiSurnameApp && enableThaiPublicGateway ? thaiPublicGateway!.outputs.publicUrl : ''
 output aiGatewaySubscription string = aiGatewaySubscriptionId
 output aiGatewayResourceGroup string = aiGatewayResourceGroupName
@@ -1230,3 +1482,8 @@ output aiGatewayApiCenterName string = deployAiGateway ? aiGatewayApiCenter!.out
 output aiGatewayHubFoundryAccountName string = deployAiGateway ? foundryAccountHub!.outputs.accountName : ''
 output spokeFoundryAppGatewayModel string = deployAiGateway ? foundryAppHubGatewayConnection!.outputs.modelReference : ''
 output spokeFoundryAgentGatewayModel string = deployAiGateway ? foundryAgentHubGatewayConnection!.outputs.modelReference : ''
+output thaiSearchSqlServerFqdn string = thaiSearchSql.outputs.serverFqdn
+output thaiSearchSqlElasticPoolName string = thaiSearchSql.outputs.elasticPoolName
+output thaiSearchSqlPoolDatabaseName string = thaiSearchSql.outputs.poolDatabaseName
+output thaiSearchPostgresServerFqdn string = deployThaiSearchPostgres ? thaiSearchPostgres!.outputs.serverFqdn : ''
+output thaiSearchPostgresDatabaseName string = deployThaiSearchPostgres ? thaiSearchPostgres!.outputs.databaseName : ''

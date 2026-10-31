@@ -1,0 +1,17 @@
+{
+  "synthetic": true,
+  "warning": "Invented values for shape illustration only. Not a measurement.",
+  "experiment_id": "example-0000000000000000",
+  "protocol": "joint-smoke",
+  "model": "example-model",
+  "scorer_version": "example-macro-f1-v1",
+  "cohorts": {"development": 12, "evaluation": 12, "frozen": true},
+  "versions": 3,
+  "levers": ["detector_rulesets", "tools", "investigator_prompt"],
+  "action_policy": "recommendations-only",
+  "outcomes": [
+    {"version": 0, "role": "baseline", "training_f1": 0.30, "evaluation_f1": 0.28, "status": "completed"},
+    {"version": 1, "role": "successor", "training_f1": 0.41, "evaluation_f1": 0.36, "status": "completed"},
+    {"version": 2, "role": "successor", "training_f1": 0.38, "evaluation_f1": 0.33, "status": "completed", "note": "retained regression"}
+  ]
+}

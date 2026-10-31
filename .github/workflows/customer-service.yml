@@ -1,0 +1,115 @@
+name: Customer service quality
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - applications/customer-service-multi-agent/**
+      - deploy/**
+      - .github/workflows/customer-service.yml
+  pull_request:
+    paths:
+      - applications/customer-service-multi-agent/**
+      - deploy/**
+      - .github/workflows/customer-service.yml
+  workflow_dispatch:
+    inputs:
+      live_evaluation:
+        description: Run billable native evaluation on a pre-provisioned private-network runner
+        type: boolean
+        default: false
+      deploy_candidate:
+        description: Deploy only after all calibrated gold-baseline gates pass
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: customer-service-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  offline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: false
+      - name: Select an already provisioned Python interpreter
+        run: |
+          for interpreter in "$RUNNER_TOOL_CACHE"/Python/3.12.*/x64/bin/python3; do
+            if [ -x "$interpreter" ]; then
+              echo "CI_PYTHON=$interpreter" >> "$GITHUB_ENV"
+              exit 0
+            fi
+          done
+          echo "::error::Preinstalled Python 3.12 is missing from the runner tool cache."
+          exit 1
+      - name: Install declared packages into the runner's existing interpreter
+        run: uv pip install --python "$CI_PYTHON" -r deploy/requirements-ci.txt
+      - name: Focused application and deployment checks
+        run: '"$CI_PYTHON" -m pytest -q applications/customer-service-multi-agent deploy'
+      - name: Validate frozen synthetic cohort and UI syntax
+        run: |
+          "$CI_PYTHON" deploy/validate_dataset.py
+          node --check applications/customer-service-multi-agent/static/app.js
+
+  evaluate:
+    if: github.event_name == 'workflow_dispatch' && inputs.live_evaluation
+    needs: offline
+    runs-on: [self-hosted, linux, azure-vnet]
+    environment: evaluation
+    timeout-minutes: 60
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Require explicitly configured native evaluation prerequisites
+        env:
+          CLIENT_ID: ${{ vars.AZURE_DEPLOY_CLIENT_ID }}
+          TENANT_ID: ${{ vars.AZURE_TENANT_ID }}
+          HUB_SUBSCRIPTION_ID: ${{ vars.AZURE_HUB_SUBSCRIPTION_ID }}
+        run: |
+          command -v az
+          command -v uv
+          command -v python3
+          test -n "$CLIENT_ID" && test -n "$TENANT_ID" && test -n "$HUB_SUBSCRIPTION_ID"
+          test -f applications/customer-service-multi-agent/datasets/gold.json
+          python3 -c 'import azure.ai.evaluation'
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_DEPLOY_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_HUB_SUBSCRIPTION_ID }}
+      - name: Evaluate candidate through the existing native owner
+        run: bash deploy/deploy.sh -e sea regression
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: native-regression-${{ github.sha }}
+          path: deploy/.state/regression-report.json
+          if-no-files-found: warn
+          retention-days: 30
+
+  deploy:
+    if: github.event_name == 'workflow_dispatch' && inputs.deploy_candidate && inputs.live_evaluation
+    needs: [offline, evaluate]
+    runs-on: [self-hosted, linux, azure-vnet]
+    environment: production
+    timeout-minutes: 45
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_DEPLOY_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_HUB_SUBSCRIPTION_ID }}
+      - name: Build checked immutable image, release and verify protected WAF route
+        run: bash deploy/deploy.sh -e sea deploy

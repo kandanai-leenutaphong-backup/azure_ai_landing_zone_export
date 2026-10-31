@@ -1,0 +1,24 @@
+{
+  "synthetic": true,
+  "version": 2,
+  "name": "Example successor that regressed",
+  "role": "successor",
+  "parent_version": 1,
+  "system_prompt": "Read the supplied observations, weigh repeated events and timing, and return a grade with a rationale and cited observations.",
+  "tools": ["tool_event_counts"],
+  "situation_detector": "detectors/1.json",
+  "published_at": "2026-01-01T02:00:00+00:00",
+  "outcome_note": "Retained despite a lower evaluation score. Failed generations stay in the ledger and in the denominator.",
+  "design_audit": {
+    "hypothesis": "Adding a timing instruction to the prompt improves ordering of the rationale without changing the evidence.",
+    "levers": {
+      "detector_rulesets": {"decision": "retained", "justification": "Unchanged so the comparison against version 1 stays controlled."},
+      "tools": {"decision": "retained", "justification": "Same pinned tool set and same source digests as version 1."},
+      "investigator_prompt": {"decision": "changed", "justification": "Single added clause about event timing; everything else byte-identical."}
+    },
+    "probe_cases": ["example-case-0001", "example-case-0003"],
+    "code_changes": [],
+    "agent_changes": ["Prompt adds a timing clause"],
+    "held_fixed": ["model", "scorer", "cohorts", "detector", "tools"]
+  }
+}

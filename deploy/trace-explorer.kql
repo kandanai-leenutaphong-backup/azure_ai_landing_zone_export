@@ -1,0 +1,24 @@
+// Cross-agent trace explorer over SEA Log Analytics (workspace-spoke-app-sea).
+// Set one of trace_id or session_id. Rows are allowlisted fields only; no prompts or replies.
+// Tree: chat.turn (CApp, SEA) -> [Foundry gateway span, not logged] -> chat.workflow (Hosted, WUS3)
+//       -> chat.agent step 1..3. Join app and hosted rows on trace_id, not on parent_span_id:
+//       chat.workflow.parent_span_id is the platform span, never chat.turn.span_id.
+// Hosted rows appear here only once hosted telemetry reaches a shared sink; until then
+// read them with `deploy.sh -e sea verify-hosted-logs` and join on the same trace_id.
+let wanted_trace = "<trace_id>";
+let wanted_session = "";
+ContainerAppConsoleLogs_CL
+| where TimeGenerated > ago(30d)
+| where ContainerAppName_s == "customer-service-multi-agent"
+| extend e = parse_json(Log_s)
+| where tostring(e.trace_id) == wanted_trace or (wanted_session != "" and tostring(e.session_id) == wanted_session)
+| project TimeGenerated,
+    trace_id = tostring(e.trace_id), span_id = tostring(e.span_id),
+    parent_span_id = tostring(e.parent_span_id), service = tostring(e.service_name),
+    operation = tostring(e.operation_type), agent = tostring(e.agent_id),
+    agent_version = tostring(e.agent_version), step = tolong(e.agent_step),
+    session_id = tostring(e.session_id), response_id = tostring(e.response_id),
+    model = tostring(e.model_id), input_tokens = tolong(e.input_token_count),
+    output_tokens = tolong(e.output_token_count), latency_ms = todouble(e.latency_ms),
+    status = tostring(e.status), error_code = tostring(e.error_code)
+| order by trace_id asc, TimeGenerated asc, step asc

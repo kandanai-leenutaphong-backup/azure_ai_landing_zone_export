@@ -1,0 +1,1 @@
+"""Installed command adapters for guarded web-resource operations."""

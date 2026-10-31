@@ -1,11 +1,11 @@
 ---
 name: azure-ai-landing-zone-summary
-description: Summarize or refresh this repository's deployed Azure AI landing zone across the connectivity hub, workload spoke, and AI Gateway subscriptions, including subscription IDs, resource groups, VNets, peerings, subnets, and key resources. Use for environment orientation, deployment planning, troubleshooting, handoffs, and reuse of the current Azure topology.
+description: Summarize or refresh this repository's deployed Azure AI landing zone across the connectivity hub, SEA workload spoke, regional agent spoke, and AI Gateway subscriptions, including subscription IDs, resource groups, VNets, peerings, subnets, and key resources. Use for environment orientation, deployment planning, troubleshooting, handoffs, and reuse of the current Azure topology.
 ---
 
 # Azure AI Landing Zone Summary
 
-Use this skill to answer questions about the current three-subscription Azure
+Use this skill to answer questions about the current four-subscription Azure
 environment represented by this repository.
 
 ## Workflow
@@ -22,8 +22,11 @@ environment represented by this repository.
 
 4. Reconcile live output with:
    - `bicep/main.bicep` for deployment intent and defaults.
+   - `bicep/agent-spoke.bicep` for the minimal regional agent spoke.
    - `bicep/parameters/main.json` for checked-in hub and spoke values.
    - `ARCHITECTURE.md` and `docs/ai-gateway-landing-zone.md` for design context.
+   - `deploy/README.md` and `deploy/env/sea.env` for the independently released
+     `customer-service-multi-agent` app, public DNS, TLS and hub WAF route.
 5. Clearly label facts as either live Azure state, checked-in configuration, or
    documented intent when they differ.
 
@@ -46,8 +49,25 @@ environment represented by this repository.
 ## Stable role mapping
 
 - Connectivity hub: centralized VPN, DNS resolver, and private DNS.
-- Workload spoke: application compute, Foundry accounts, data services, private
-  endpoints, and Application Gateway.
+- Workload spoke: private application compute, SEA Foundry accounts, data
+  services and private endpoints. The public Application Gateway WAF is in the
+  connectivity hub, not this spoke.
+- Regional agent spoke: private Foundry standard agents with customer-owned
+  Blob Storage, AI Search, and Cosmos DB; global peerings to the hub and SEA spoke.
 - AI Gateway hub: APIM, shared Foundry quota, semantic cache, API inventory,
   and usage/chargeback services.
 
+## Customer service project
+
+`applications/customer-service-multi-agent` composes its workflow in SEA and
+invokes native prompt agents in the existing private West US 3 project. Reuse
+the four-subscription topology; do not interpret this app as another landing
+zone or move Foundry into SEA. Its target hostname is
+`customer-service-multi-agent.azuremew-domain.org`, backed by the existing
+hub WAF and delegated public DNS zone. A dated app `verify` receipt, not this
+skill, establishes whether the hostname is serving.
+
+Report system, journey-type and per-agent telemetry separately. Specialized
+judge scores are estimates; missing human calibration and real business-impact
+data remain explicit gaps. Imported harness guidance is project-adapted under
+`.github/instructions/customer-service-multi-agent.instructions.md`.

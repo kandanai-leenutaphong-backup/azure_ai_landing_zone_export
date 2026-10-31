@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "scope": "Current user grant: unchanged exact 191-file build/cache proposal only. Historical manifest authorization metadata is not authority.",
+  "proposal": {"path": "/tmp/agentcraft-closeout-inventory-20260917.proposed-narrow-batch.json", "sha256": "4eb1d88c03d6ed2a1ee066e66132e60e5edac148e0cd6e2a18c1afb5be647a3e"},
+  "frozen_manifest_sha256": "5204082a360296726d47ca70f94f2b1df983259999ea927a4757c744c1f4124d",
+  "removed": {"files": 191, "logical_bytes": 1512773, "measured_text_lines": 33194, "maintained_source_credit": 0, "directories": 0, "groups": {"G1": 61, "G3": 4, "G5": 126}},
+  "remaining_candidates": 0,
+  "evidence": {"path": "/tmp/agentcraft-deep-clean-final-20260917-5bxjimg1/receipt.json", "sha256": "ea71e80c4c7bc82729d93b5ebcff67f2f2f66f7a726263694b4788937a876a8a"},
+  "recovery": {
+    "root": "/tmp/agentcraft-deep-clean-final-20260917-5bxjimg1/recovery",
+    "tested_restore": "/tmp/agentcraft-deep-clean-final-20260917-5bxjimg1/verified-restore",
+    "manifest": {"path": "/tmp/agentcraft-deep-clean-final-20260917-5bxjimg1/recovery-manifest.json", "sha256": "ff77785af8c377b7a9aa1f03f5a76ff09b3ed541940dbf44354d7bd7f12db5af"},
+    "verified_files": 191,
+    "verification": "Independent backup and restored bytes matched every guarded original before unlink; files and directories fsynced; external directory mode 0700.",
+    "durability_limit": "Local /tmp only; no off-host backup or guaranteed retention through reboot or temporary-file cleanup."
+  },
+  "checks": {"before_and_after_installed_imports": 16, "before_and_after_canonical_source_agentconfig_assertions": 67, "exit_codes": [0, 0], "installed_file_hashes_unchanged": 126, "protected_notice_receipt_hashes_match_original": 62, "prior_external_receipt_hashes_match": 3},
+  "custom_optimizer": {"original_content_files": 50, "content_and_git_match_original": true, "inherited_metadata_changed_entries": 1712, "inherited_fields": ["nlink", "ctime_ns"], "inherited_source": "unknown; not rolled back", "fresh_before_after_metadata_stable": true, "new_unattributed_metadata_entries": 0, "owned_writes": 0, "owned_execution": 0},
+  "processes": {"same_uid_inspected": 39, "candidate_references": 0, "opaque_system_services": 2, "global_quiescence_claimed": false, "owned_processes_retained": 0},
+  "retained": "All environments, dependencies, shared caches, canonical source/data, testbeds, doc_app, notices and prior receipts. Separate 305-file guidance removal receives no credit here.",
+  "verification_limits": "Older installed agentconfig lacks strict=True; strict tests exercised current canonical source. Installed bytes remained unchanged; 125 of 126 build/source pairs still match current source. Integrated app acceptance and aggregate/source measurements belong to the parent task.",
+  "accounting": "Candidate totals only: no allocated-disk or RAM savings claim. This one added receipt and external recovery/evidence overhead are excluded from removal totals.",
+  "operations": {"builds": 0, "environment_syncs": 0, "dependency_uninstalls": 0, "cloud": 0, "models": 0, "publication": 0, "commits": 0}
+}

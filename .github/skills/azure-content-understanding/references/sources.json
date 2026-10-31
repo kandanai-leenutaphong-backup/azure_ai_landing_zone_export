@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "purpose": "First-party SDK and analyzer facts verified for the portable Content Understanding skill; source pages not redistributed.",
+  "sources": [
+    {
+      "url": "https://learn.microsoft.com/en-us/python/api/overview/azure/ai-contentunderstanding-readme?view=azure-python",
+      "retrieved_at": "2026-09-16T08:25:22Z",
+      "status": 200,
+      "sha256_html": "a7a270d8c2ce8d0aab074e3e14185891c540822ad71291537f4c4a224da71f3c",
+      "bytes_html": 88089,
+      "observed": "SDK 1.1.0 supports API 2025-11-01; native async client and binary analyzer path."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/azure/ai-services/content-understanding/concepts/prebuilt-analyzers",
+      "retrieved_at": "2026-09-16T08:25:24Z",
+      "status": 200,
+      "sha256_html": "e08119014927b42fb417407f24e958888c437e9d5fe0b14d449fbcd2dfe88f2a",
+      "bytes_html": 84459,
+      "observed": "prebuilt-layout is the native non-generative text/table/layout path; generative analyzers have distinct model requirements."
+    }
+  ]
+}

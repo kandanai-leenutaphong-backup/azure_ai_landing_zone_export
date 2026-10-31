@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "investigation-notebook"
+version = "0.1.0"
+description = "Local evidence notebook with explicit data ownership, schema validation and SQLite search."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+dependencies = []
+
+[project.scripts]
+investigation-notebook = "investigation_notebook:main"
+
+[tool.setuptools]
+packages = ["investigation_notebook"]
+package-dir = {investigation_notebook = "mechanism"}
+
+[tool.setuptools.package-data]
+investigation_notebook = ["note.schema.json", "py.typed"]

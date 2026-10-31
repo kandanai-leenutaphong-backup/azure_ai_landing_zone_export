@@ -1,0 +1,50 @@
+/* Gallery layout only. Reusable material paint lives in depth-effects.css. */
+.azure-sky .azs-depth-study { margin-top: 32px; padding-top: 32px; border-top: 1px solid var(--azs-line); scroll-margin-top: 80px; }
+.azure-sky .azs-depth-workbench { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 28px; align-items: start; }
+.azure-sky .azs-depth-comparison { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.azure-sky .azs-depth-comparison figure { margin: 0; min-width: 0; }
+.azure-sky .azs-depth-comparison figcaption { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 32px; font-weight: 500; font-size: 13px; }
+.azure-sky .azs-depth-comparison figcaption .azs-mono { color: var(--azs-steel); font-weight: 400; }
+:where(.azs-depth-plane) { background-color: #f0f5fb; }
+.azure-sky .azs-depth-plane { min-width: 0; padding: 24px; isolation: isolate; }
+.azure-sky .azs-depth-sample { min-width: 0; height: 188px; padding: 20px; display: flex; flex-direction: column; gap: 14px; }
+.azure-sky .azs-depth-sample > .azs-eyebrow { font-size: 10px; }
+.azure-sky .azs-depth-sample h4 { font: 600 24px/1.15 var(--azs-display); margin: 0; }
+.azure-sky .azs-depth-sample-footer { display: flex; align-items: end; justify-content: space-between; gap: 12px; margin-top: auto; }
+.azure-sky .azs-depth-sample-footer > span { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px; }
+.azure-sky .azs-depth-sample-footer strong { font: 600 32px/1.1 var(--azs-display); }
+.azure-sky .azs-depth-sample-footer .azs-mono { font-size: 10px; }
+.azure-sky .azs-depth-controls { border: 0; padding: 0; margin: 0; min-width: 0; }
+.azure-sky .azs-depth-controls legend { font-size: 13px; font-weight: 500; padding: 6px 0 10px; }
+.azure-sky .azs-depth-toggles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px 12px; }
+.azure-sky .azs-depth-toggle { display: flex; gap: 8px; align-items: center; min-height: 44px; font-size: 12px; cursor: pointer; }
+.azure-sky .azs-depth-toggle input { margin: 0; width: 16px; height: 16px; accent-color: var(--azs-action); flex-shrink: 0; }
+.azure-sky .azs-depth-grain-control { margin: 16px 0 0; }
+.azure-sky .azs-depth-grain-control input[type="range"] { min-height: 44px; margin: 0; }
+.azure-sky .azs-depth-recipe { border-block: 1px solid var(--azs-line); margin-top: 24px; }
+.azure-sky .azs-depth-recipe summary { min-height: 44px; display: flex; gap: 10px; align-items: center; cursor: pointer; font-size: 12px; color: var(--azs-action); }
+.azure-sky .azs-depth-recipe summary::after { content: "+"; margin-left: auto; font-size: 18px; }
+.azure-sky .azs-depth-recipe[open] summary::after { content: "-"; }
+.azure-sky .azs-depth-recipe pre { padding: 16px; margin: 0 0 16px; background: var(--azs-porcelain); border-left: 2px solid var(--azs-line); font: 11px/1.7 var(--azs-mono); white-space: pre-wrap; overflow-wrap: anywhere; }
+.azure-sky .azs-depth-isolated-title { font: 600 22px/1.2 var(--azs-display); margin: 24px 0 16px; }
+.azure-sky .azs-depth-isolates { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.azure-sky .azs-depth-isolates article { min-width: 0; }
+.azure-sky .azs-depth-isolate-heading { display: flex; align-items: center; gap: 10px; min-height: 44px; }
+.azure-sky .azs-depth-isolate-heading h5 { font: 500 13px/1.4 var(--azs-body); margin: 0; flex: 1; }
+.azure-sky .azs-depth-isolates .azs-depth-sample { height: 160px; }
+.azure-sky .azs-depth-class-name { display: block; margin-top: 10px; font: 11px/1.5 var(--azs-mono); color: var(--azs-steel); overflow-wrap: anywhere; }
+
+@media (max-width: 1100px) {
+  .azure-sky .azs-depth-workbench { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .azure-sky .azs-depth-toggles { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .azure-sky .azs-depth-grain-control { max-width: 360px; }
+  .azure-sky .azs-depth-isolates { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 767px) {
+  .azure-sky .azs-depth-comparison, .azure-sky .azs-depth-isolates { grid-template-columns: minmax(0, 1fr); }
+  .azure-sky .azs-depth-toggles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .azure-sky .azs-depth-plane { padding: 20px; }
+  .azure-sky .azs-depth-sample { height: 168px; }
+  .azure-sky .azs-depth-isolates { gap: 20px; }
+}

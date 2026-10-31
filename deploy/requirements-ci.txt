@@ -1,0 +1,3 @@
+-r ../applications/customer-service-multi-agent/requirements.txt
+-r requirements.txt
+pytest==9.0.2

@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "scope": "incremental tracked native SDK recipe; ignored environments/private state excluded and untouched; no testbed/spec writes",
+  "baseline": "not present in frozen 1038-file baseline",
+  "source_root": ".github/skills/azure-content-understanding/",
+  "owner": "libraries/content-understanding/",
+  "backup": "/tmp/agentcraft-native-distribution-20260916/content-understanding-original",
+  "files": [
+    {
+      "path": ".github/skills/azure-content-understanding/.gitignore",
+      "bytes": 44,
+      "sha256": "189f8480999d618c0560558c6ea5bc38b975ae61dba30b4f122f645bbe1b8511",
+      "mode": 420,
+      "retained_owner": "libraries/content-understanding/.gitignore",
+      "disposition": "relocated-native-sdk-recipe",
+      "backup": "/tmp/agentcraft-native-distribution-20260916/content-understanding-original/.gitignore"
+    },
+    {
+      "path": ".github/skills/azure-content-understanding/CONTRACT.md",
+      "bytes": 4745,
+      "sha256": "b8282ccce8c7bc3a00d5a6338493035618cd0c921e6d7170c4462cb510c5b336",
+      "mode": 420,
+      "retained_owner": "libraries/content-understanding/CONTRACT.md",
+      "disposition": "relocated-native-sdk-recipe",
+      "backup": "/tmp/agentcraft-native-distribution-20260916/content-understanding-original/CONTRACT.md"
+    },
+    {
+      "path": ".github/skills/azure-content-understanding/GOTCHAS.md",
+      "bytes": 2873,
+      "sha256": "de47294670b0037ba0cd3fd83177065bc24d4dadf6f4ccdf3ee09acd2c9ea058",
+      "mode": 420,
+      "retained_owner": "libraries/content-understanding/GOTCHAS.md",
+      "disposition": "relocated-native-sdk-recipe",
+      "backup": "/tmp/agentcraft-native-distribution-20260916/content-understanding-original/GOTCHAS.md"
+    },
+    {
+      "path": ".github/skills/azure-content-understanding/LICENSE",
+      "bytes": 1141,
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383",
+      "mode": 420,
+      "retained_owner": "libraries/content-understanding/LICENSE",
+      "disposition": "relocated-native-sdk-recipe",
+      "backup": "/tmp/agentcraft-native-distribution-20260916/content-understanding-original/LICENSE"
+    },
+    {
+      "path": ".github/skills/azure-content-understanding/README.md",
+      "bytes": 4670,
+      "sha256": "3b5f2ba4cab2e60f10c938c554a8b0124893a8852d39c8389ef4d2f13a20b748",
+      "mode": 420,
+      "retained_owner": "libraries/content-understanding/README.md",
+      "disposition": "relocated-native-sdk-recipe",
+      "backup": "/tmp/agentcraft-native-distribution-20260916/content-understanding-original/README.md"
+    },
+    {
+      "path": ".github/skills/azure-content-understanding/SKILL.md",
+      "bytes": 4671,
+      "sha256": "248421c025c2de3b6ea06384e85019fab5b3c8e6e664836f4228960eab0275c1",
+      "mode": 420,
+      "retained_owner": "libraries/content-understanding/GUIDE.md",
+      "disposition": "relocated-native-sdk-recipe",
+      "backup": "/tmp/agentcraft-native-distribution-20260916/content-understanding-original/SKILL.md"
+    },
+    {
+      "path": ".github/skills/azure-content-understanding/VERIFICATION.md",
+      "bytes": 4167,
+      "sha256": "ec874351b56bb4564d196c5d1b94dbcd7dee87939c48d628c36c7861b783b67a",
+      "mode": 420,
+      "retained_owner": "libraries/content-understanding/VERIFICATION.md",
+      "disposition": "relocated-native-sdk-recipe",
+      "backup": "/tmp/agentcraft-native-distribution-20260916/content-understanding-original/VERIFICATION.md"
+    },
+    {
+      "path": ".github/skills/azure-content-understanding/libraries/pyproject.toml",
+      "bytes": 379,
+      "sha256": "3125a98d7e6cb04f382cd8debd7431b68b8beb26d08ec96873d3faed69f76512",
+      "mode": 420,
+      "retained_owner": "libraries/content-understanding/libraries/pyproject.toml",
+      "disposition": "relocated-native-sdk-recipe",
+      "backup": "/tmp/agentcraft-native-distribution-20260916/content-understanding-original/libraries/pyproject.toml"
+    },
+    {
+      "path": ".github/skills/azure-content-understanding/libraries/uv.lock",
+      "bytes": 69645,
+      "sha256": "9c51c20e5bfcacc2c925736d91802215149e03e8f7d10e6f397b327a62a69a7e",
+      "mode": 420,
+      "retained_owner": "libraries/content-understanding/libraries/uv.lock",
+      "disposition": "relocated-native-sdk-recipe",
+      "backup": "/tmp/agentcraft-native-distribution-20260916/content-understanding-original/libraries/uv.lock"
+    },
+    {
+      "path": ".github/skills/azure-content-understanding/references/README.md",
+      "bytes": 1955,
+      "sha256": "2a3de7434b8b4ce76d452d936a7d36971d729c855bf7460b3bbd2358847891f5",
+      "mode": 420,
+      "retained_owner": "libraries/content-understanding/references/README.md",
+      "disposition": "relocated-native-sdk-recipe",
+      "backup": "/tmp/agentcraft-native-distribution-20260916/content-understanding-original/references/README.md"
+    },
+    {
+      "path": ".github/skills/azure-content-understanding/references/sources.json",
+      "bytes": 1062,
+      "sha256": "0c9210a2c43cf92917e45f152c58f7bcb62da7d25aaba465451da618f5883008",
+      "mode": 420,
+      "retained_owner": "libraries/content-understanding/references/sources.json",
+      "disposition": "relocated-native-sdk-recipe",
+      "backup": "/tmp/agentcraft-native-distribution-20260916/content-understanding-original/references/sources.json"
+    },
+    {
+      "path": ".github/skills/azure-content-understanding/scripts/extract.py",
+      "bytes": 13087,
+      "sha256": "14d1af3f940a9761c6303771894e4f139066ec1dbd3925d4402d34f599db7f39",
+      "mode": 420,
+      "retained_owner": "libraries/content-understanding/scripts/extract.py",
+      "disposition": "relocated-native-sdk-recipe",
+      "backup": "/tmp/agentcraft-native-distribution-20260916/content-understanding-original/scripts/extract.py"
+    },
+    {
+      "path": ".github/skills/azure-content-understanding/tests/test_extract.py",
+      "bytes": 11166,
+      "sha256": "c03a1a8a72d6a7fe8605a536b9e5154d30294790f1eb55caa70c6efe349fe20a",
+      "mode": 420,
+      "retained_owner": "libraries/content-understanding/tests/test_extract.py",
+      "disposition": "relocated-native-sdk-recipe",
+      "backup": "/tmp/agentcraft-native-distribution-20260916/content-understanding-original/tests/test_extract.py"
+    }
+  ],
+  "caller_updates": [
+    {
+      "path": "testbeds/datacrafting/README.md",
+      "line": 28,
+      "change": "Use libraries/content-understanding/libraries and libraries/content-understanding/tests for offline recipe tests."
+    },
+    {
+      "path": "testbeds/datacrafting/RESULT_CONTRACT.md",
+      "line": 5,
+      "change": "Link to libraries/content-understanding/CONTRACT.md."
+    }
+  ],
+  "historical_records": "Do not rewrite testbed records/results or spec evidence."
+}

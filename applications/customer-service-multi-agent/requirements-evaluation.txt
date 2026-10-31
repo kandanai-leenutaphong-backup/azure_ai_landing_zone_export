@@ -1,0 +1,3 @@
+# Optional SDK batch adapter only. Not installed or imported by serving runtime.
+# Pin verified against public package metadata. Local import/execution unverified: SDK absent.
+azure-ai-evaluation==1.18.9

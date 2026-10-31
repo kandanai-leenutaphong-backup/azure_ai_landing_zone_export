@@ -1,0 +1,388 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Investigation notebook note",
+  "description": "One durable answer to one bounded investigation question. System, type, and segment classify every current note. The optional category field adds an exact cross-axis collection such as architecture/design; widening any vocabulary is a reviewed edit to this file.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schema_version",
+    "id",
+    "created_at",
+    "updated_at",
+    "title",
+    "question",
+    "summary",
+    "confidence",
+    "tags",
+    "scope",
+    "findings",
+    "open_questions",
+    "related_notes",
+    "supersedes"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "required": ["schema_version"],
+        "properties": {
+          "schema_version": {
+            "const": 3
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "system",
+          "type",
+          "segment",
+          "content",
+          "status",
+          "status_history"
+        ]
+      }
+    },
+    {
+      "if": {
+        "required": ["schema_version"],
+        "properties": {
+          "schema_version": {
+            "const": 2
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "system",
+          "type",
+          "segment",
+          "content"
+        ],
+        "not": {
+          "anyOf": [
+            { "required": ["status"] },
+            { "required": ["status_history"] }
+          ]
+        }
+      }
+    },
+    {
+      "if": {
+        "required": ["schema_version"],
+        "properties": {
+          "schema_version": {
+            "const": 1
+          }
+        }
+      },
+      "then": {
+        "not": {
+          "anyOf": [
+            { "required": ["system"] },
+            { "required": ["type"] },
+            { "required": ["segment"] },
+            { "required": ["content"] },
+            { "required": ["status"] },
+            { "required": ["status_history"] }
+          ]
+        }
+      }
+    },
+    {
+      "if": {
+        "required": ["type"],
+        "properties": {
+          "type": {
+            "const": "user-experience-issue"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "findings": {
+            "minItems": 1,
+            "maxItems": 1
+          }
+        }
+      }
+    }
+  ],
+  "properties": {
+    "$schema": {
+      "const": "../../note.schema.json"
+    },
+    "schema_version": {
+      "description": "1 is the legacy uncategorized shape and 2 the categorized shape without status: both readable, both migration-required. 3 is current.",
+      "enum": [
+        1,
+        2,
+        3
+      ]
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^note-[0-9]{8}T[0-9]{6}Z-[0-9a-f]{8}$"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "question": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "system": {
+      "description": "The distinct repository feature or subsystem the knowledge belongs to. Project vocabulary: extend this list for this repository, it is scaffolded once and never overwritten by the harness installer.",
+      "enum": [
+        "agent-harness",
+        "application",
+        "docs-site",
+        "deployment",
+        "repository-tooling",
+        "cross-cutting"
+      ]
+    },
+    "type": {
+      "description": "The form the knowledge takes. Classify the form before the topic. principle is a timeless normative rule; architecture is a descriptive map of current topology, ownership, and dependency direction; work-issue is one authored unit of work, active while open and inactive once closed or cancelled.",
+      "enum": [
+        "bug",
+        "gotcha",
+        "solution",
+        "method",
+        "feature",
+        "deployment-note",
+        "data-engineering",
+        "data-exploration",
+        "decision",
+        "performance-note",
+        "user-experience-issue",
+        "principle",
+        "architecture",
+        "work-issue"
+      ]
+    },
+    "segment": {
+      "description": "The technical layer that must change. Use security only when the owning mechanism is authentication, authorization, credential handling, or policy enforcement.",
+      "enum": [
+        "frontend",
+        "backend",
+        "infra",
+        "data",
+        "security",
+        "devops",
+        "agent",
+        "cross-cutting"
+      ]
+    },
+    "category": {
+      "description": "Optional exact cross-axis collection. architecture/design holds implementation-ready designs: boundaries, contracts, dependency direction, acceptance, rollout, and named unknowns. It does not replace descriptive type=architecture or historical type=decision.",
+      "enum": [
+        "architecture/design"
+      ]
+    },
+    "content": {
+      "description": "Markdown narrative. Markdown is assumed in every string field.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 40000
+    },
+    "confidence": {
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "status": {
+      "description": "Whether the record still holds: a finding still reproduces, or a work-issue is still open. Orthogonal to supersession. The notebook is the sole authority; there is no external tracker.",
+      "enum": [
+        "active",
+        "inactive"
+      ]
+    },
+    "status_history": {
+      "description": "Append-only transition log. The first entry records none to active; the last entry's to equals status.",
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 50,
+      "items": {
+        "$ref": "#/$defs/statusTransition"
+      }
+    },
+    "tags": {
+      "description": "Free tags, plus labels: a tag containing a forward slash is a label, shaped <namespace>/<name> in lowercase letters, digits and hyphens. deployment/infra is applied automatically to any note with system deployment or segment infra.",
+      "$ref": "#/$defs/shortStringArray",
+      "maxItems": 20
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository",
+        "paths"
+      ],
+      "properties": {
+        "repository": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "paths": {
+          "$ref": "#/$defs/shortStringArray"
+        }
+      }
+    },
+    "findings": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 12,
+      "items": {
+        "$ref": "#/$defs/finding"
+      }
+    },
+    "open_questions": {
+      "$ref": "#/$defs/shortStringArray",
+      "maxItems": 20
+    },
+    "related_notes": {
+      "$ref": "#/$defs/noteIdArray"
+    },
+    "supersedes": {
+      "$ref": "#/$defs/noteIdArray"
+    }
+  },
+  "$defs": {
+    "statusTransition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "at",
+        "from",
+        "to",
+        "reason"
+      ],
+      "properties": {
+        "at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "from": {
+          "enum": [
+            "none",
+            "active",
+            "inactive"
+          ]
+        },
+        "to": {
+          "enum": [
+            "active",
+            "inactive"
+          ]
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "evidence_note": {
+          "description": "A different note documenting the re-observation. Required to retire a user-experience-issue and to transition a superseded note.",
+          "type": "string",
+          "pattern": "^note-[0-9]{8}T[0-9]{6}Z-[0-9a-f]{8}$"
+        }
+      }
+    },
+    "shortStringArray": {
+      "type": "array",
+      "maxItems": 50,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 500
+      }
+    },
+    "noteIdArray": {
+      "type": "array",
+      "maxItems": 30,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^note-[0-9]{8}T[0-9]{6}Z-[0-9a-f]{8}$"
+      }
+    },
+    "finding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "statement",
+        "evidence",
+        "implications"
+      ],
+      "properties": {
+        "statement": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 3000
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 20,
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        },
+        "implications": {
+          "$ref": "#/$defs/shortStringArray",
+          "maxItems": 20
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "reference",
+        "detail"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "command",
+            "dataset",
+            "decision",
+            "file",
+            "observation",
+            "url"
+          ]
+        },
+        "reference": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "detail": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 3000
+        }
+      }
+    }
+  }
+}

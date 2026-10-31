@@ -1,0 +1,23 @@
+{
+  "format": "agent-optimization-sources-v2",
+  "version": "2.0.0",
+  "basis": "first-party sources of this skill only; no host-application or third-party clone",
+  "trees": [
+    {"path": "python/agent_optimization", "destination": "runtime/agent_optimization", "role": "portable optimization runtime"},
+    {"path": "assets/example", "destination": "example", "role": "synthetic illustrative ledger"}
+  ],
+  "mapped_files": [
+    {"source": "LICENSE", "destination": "runtime/LICENSE", "role": "existing repository license notice"},
+    {"source": "pyproject.toml", "destination": "runtime/pyproject.toml", "role": "python package manifest"},
+    {"source": "package.json", "destination": "runtime/component-package.json", "role": "frontend package manifest"},
+    {"source": "assets/frontend-check.package.json", "destination": "runtime/package.json", "role": "frontend verification dependencies"},
+    {"source": "assets/frontend-check.tsconfig.json", "destination": "runtime/frontend-check.tsconfig.json", "role": "frontend verification recipe"},
+    {"source": "assets/frontend-check.mjs", "destination": "runtime/frontend-check.mjs", "role": "frontend verification recipe"}
+  ],
+  "excluded": [
+    "Any host application, deployment runbook or third-party component clone",
+    "Datasets, per-case outcomes, model transcripts and label databases",
+    "Credentials, cloud targets, tenant or subscription identifiers",
+    "Historical campaign artifacts from the originating project"
+  ]
+}

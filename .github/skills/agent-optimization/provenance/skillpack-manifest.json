@@ -1,0 +1,412 @@
+{
+  "format": "agent-optimization-skillpack-v1",
+  "version": "2.0.0",
+  "created_at": "2026-09-14T10:18:05.936136+00:00",
+  "consolidation": "first-party snapshot of this skill's own sources; no host application or third-party clone",
+  "source": {
+    "basis": "first-party sources of this skill only; no host-application or third-party clone",
+    "selection_sha256": "ceaca8b2a9e9105388ed813efbf7ad4421394545831a3503a7571ddc932c02fe"
+  },
+  "payload": {
+    "path": "assets/implementation.zip",
+    "sha256": "ea5e66cc108ec113da34ce76a70d8a3ad995b9281a3155f0302830ddbe7fe784",
+    "bytes": 134342,
+    "expanded_bytes": 417999
+  },
+  "files": [
+    {
+      "path": "example/README.md",
+      "source_path": "assets/example/README.md",
+      "role": "synthetic illustrative ledger",
+      "bytes": 956,
+      "sha256": "c0c54b9ba70d41e0c2594b3aa1c1496b7b236a01947c98a718d97cd07da7d6e6"
+    },
+    {
+      "path": "example/campaign-summary.json",
+      "source_path": "assets/example/campaign-summary.json",
+      "role": "synthetic illustrative ledger",
+      "bytes": 820,
+      "sha256": "4cea2f35758bd22247478a5e9e5e6d1104b4043ea6063b2a39202b8d5b8574de"
+    },
+    {
+      "path": "example/detectors/1.json",
+      "source_path": "assets/example/detectors/1.json",
+      "role": "synthetic illustrative ledger",
+      "bytes": 1146,
+      "sha256": "2ed19f19113f90e23c0a3356a9bd424b56bff7e3fe2caa6c742a3b9e1a75b1c8"
+    },
+    {
+      "path": "example/tools/tool_event_counts.json",
+      "source_path": "assets/example/tools/tool_event_counts.json",
+      "role": "synthetic illustrative ledger",
+      "bytes": 572,
+      "sha256": "5c2d81a3385f106bc2bc1cdfbb0a956faf1fbdb0882fa1fc527644bf79e8edc9"
+    },
+    {
+      "path": "example/tools/tool_event_counts.py",
+      "source_path": "assets/example/tools/tool_event_counts.py",
+      "role": "synthetic illustrative ledger",
+      "bytes": 465,
+      "sha256": "5bc6d78ba8990f988ff52cb95fe0dc8028be15b88df906b3bc47cacaecbe0f55"
+    },
+    {
+      "path": "example/trajectory.csv",
+      "source_path": "assets/example/trajectory.csv",
+      "role": "synthetic illustrative ledger",
+      "bytes": 160,
+      "sha256": "39cb067d49d1f8803eb80a3083c019dd8c128d33352ff2ff44161a1eb20fc9b1"
+    },
+    {
+      "path": "example/versions/0.json",
+      "source_path": "assets/example/versions/0.json",
+      "role": "synthetic illustrative ledger",
+      "bytes": 421,
+      "sha256": "5b0e37dfc382d84657a08401d2b4206133ddae0f509a868b84d30d4f4b0690ce"
+    },
+    {
+      "path": "example/versions/1.json",
+      "source_path": "assets/example/versions/1.json",
+      "role": "synthetic illustrative ledger",
+      "bytes": 1270,
+      "sha256": "6769b7d8c1b6539798af2c5f58fb6834f1cad61df55c4401d685a82295e32b05"
+    },
+    {
+      "path": "example/versions/2.json",
+      "source_path": "assets/example/versions/2.json",
+      "role": "synthetic illustrative ledger",
+      "bytes": 1321,
+      "sha256": "34fa5f848374e0454947942943bca72d297cb39119838be3f53f9459b1274ee6"
+    },
+    {
+      "path": "runtime/LICENSE",
+      "source_path": "LICENSE",
+      "role": "existing repository license notice",
+      "bytes": 1141,
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+    },
+    {
+      "path": "runtime/agent_optimization/LESSONS.md",
+      "source_path": "python/agent_optimization/LESSONS.md",
+      "role": "portable optimization runtime",
+      "bytes": 5458,
+      "sha256": "eb9f39d6a22ef3b3d9e4d155e90284ac1b477dad4be78950c3c61c883d19f1bd"
+    },
+    {
+      "path": "runtime/agent_optimization/PROCESS.md",
+      "source_path": "python/agent_optimization/PROCESS.md",
+      "role": "portable optimization runtime",
+      "bytes": 24906,
+      "sha256": "a940811cd55feaf53c372a5f385526a11c12dff612368b7500fa808739a28b85"
+    },
+    {
+      "path": "runtime/agent_optimization/README.md",
+      "source_path": "python/agent_optimization/README.md",
+      "role": "portable optimization runtime",
+      "bytes": 16006,
+      "sha256": "7320538a5c6e7f08c6d0f54d78860fffbe06890e1ac07762e111f93e3ad41db4"
+    },
+    {
+      "path": "runtime/agent_optimization/__init__.py",
+      "source_path": "python/agent_optimization/__init__.py",
+      "role": "portable optimization runtime",
+      "bytes": 1283,
+      "sha256": "5427239aeed4d77105aee26058afc62226bf4fa39dc77e38c0f42b0b7ad709b1"
+    },
+    {
+      "path": "runtime/agent_optimization/_local_query/README.md",
+      "source_path": "python/agent_optimization/_local_query/README.md",
+      "role": "portable optimization runtime",
+      "bytes": 3750,
+      "sha256": "db59186370584bbc50c4afd8519ba7caf5af8d79a8ca91e85e39737ae7a0af95"
+    },
+    {
+      "path": "runtime/agent_optimization/_local_query/__init__.py",
+      "source_path": "python/agent_optimization/_local_query/__init__.py",
+      "role": "portable optimization runtime",
+      "bytes": 390,
+      "sha256": "8ac3f64f532c407dd13d35a5279295953d3f000718900842aeb07079ed32feec"
+    },
+    {
+      "path": "runtime/agent_optimization/_local_query/reader.py",
+      "source_path": "python/agent_optimization/_local_query/reader.py",
+      "role": "portable optimization runtime",
+      "bytes": 8290,
+      "sha256": "3231c2c959ea19943ca15b813b9796dabbc46cf2c6bd3585def17397ed603776"
+    },
+    {
+      "path": "runtime/agent_optimization/cli.py",
+      "source_path": "python/agent_optimization/cli.py",
+      "role": "portable optimization runtime",
+      "bytes": 12820,
+      "sha256": "e45b50d6bcdbaf2493ec36eb4d049ae26a686cd6896ce0c49a99fbd2a705769a"
+    },
+    {
+      "path": "runtime/agent_optimization/evaluation.py",
+      "source_path": "python/agent_optimization/evaluation.py",
+      "role": "portable optimization runtime",
+      "bytes": 10289,
+      "sha256": "73c38cbafb3a14e499ca9d2e7eea7f4ae2d246091f1f281fe2a437627ca2d1bd"
+    },
+    {
+      "path": "runtime/agent_optimization/frontend/DetectorView.tsx",
+      "source_path": "python/agent_optimization/frontend/DetectorView.tsx",
+      "role": "portable optimization runtime",
+      "bytes": 4568,
+      "sha256": "fdf4c8eba4c040ccc78b7b1033cc564d62707f878cc61dfdc5770f8f37e529b8"
+    },
+    {
+      "path": "runtime/agent_optimization/frontend/OptimizationWorkspace.tsx",
+      "source_path": "python/agent_optimization/frontend/OptimizationWorkspace.tsx",
+      "role": "portable optimization runtime",
+      "bytes": 17553,
+      "sha256": "febd809cf50cea929ba8a047814693d37f4bc8825c60b54a5db06aab2adfbefa"
+    },
+    {
+      "path": "runtime/agent_optimization/frontend/PerformanceView.tsx",
+      "source_path": "python/agent_optimization/frontend/PerformanceView.tsx",
+      "role": "portable optimization runtime",
+      "bytes": 6337,
+      "sha256": "1ee6de47a07d5751ceb80d8059c16972ac07eda14aa218bbc626c4a0c9512887"
+    },
+    {
+      "path": "runtime/agent_optimization/frontend/RunReplay.tsx",
+      "source_path": "python/agent_optimization/frontend/RunReplay.tsx",
+      "role": "portable optimization runtime",
+      "bytes": 7203,
+      "sha256": "6ad25cdf06ec3c96bba5fea0a851a74987b972a9027e9e02e0eb4fc287b56121"
+    },
+    {
+      "path": "runtime/agent_optimization/frontend/TrajectoryChart.tsx",
+      "source_path": "python/agent_optimization/frontend/TrajectoryChart.tsx",
+      "role": "portable optimization runtime",
+      "bytes": 3426,
+      "sha256": "216ddc5f213da3952648c426e10255697ddf5320c3188fc860840688132678c3"
+    },
+    {
+      "path": "runtime/agent_optimization/frontend/api.ts",
+      "source_path": "python/agent_optimization/frontend/api.ts",
+      "role": "portable optimization runtime",
+      "bytes": 3300,
+      "sha256": "606ba3855e049a0ae618714fffd7adfcb7d81d0f0903f831df32f300d23ec41e"
+    },
+    {
+      "path": "runtime/agent_optimization/frontend/columns.ts",
+      "source_path": "python/agent_optimization/frontend/columns.ts",
+      "role": "portable optimization runtime",
+      "bytes": 3005,
+      "sha256": "1004e07abc49a9de33b18f32f8fa771f5024d175ebe77dfa38757d0fe20ebb42"
+    },
+    {
+      "path": "runtime/agent_optimization/frontend/index.ts",
+      "source_path": "python/agent_optimization/frontend/index.ts",
+      "role": "portable optimization runtime",
+      "bytes": 473,
+      "sha256": "6c9a606e5f43ac8d0118419ed63198579171afa47a6887c912bebbee1063d546"
+    },
+    {
+      "path": "runtime/agent_optimization/frontend/optimization.css",
+      "source_path": "python/agent_optimization/frontend/optimization.css",
+      "role": "portable optimization runtime",
+      "bytes": 26434,
+      "sha256": "ee5955c5acd75a1cdf9f71d609cb1db4c20b0a6a40196c04d1ae522407767fbe"
+    },
+    {
+      "path": "runtime/agent_optimization/frontend/panes.tsx",
+      "source_path": "python/agent_optimization/frontend/panes.tsx",
+      "role": "portable optimization runtime",
+      "bytes": 8761,
+      "sha256": "ad53fdcdf0f8e641f7c122c38581d34929a79ad306164d21d8ea73e92964fd65"
+    },
+    {
+      "path": "runtime/agent_optimization/frontend/trajectory.ts",
+      "source_path": "python/agent_optimization/frontend/trajectory.ts",
+      "role": "portable optimization runtime",
+      "bytes": 8770,
+      "sha256": "43bc2d75f3ffb614805247e456b5f707a2030167f204cbc97c6e9a0da00d99f3"
+    },
+    {
+      "path": "runtime/agent_optimization/frontend/types.ts",
+      "source_path": "python/agent_optimization/frontend/types.ts",
+      "role": "portable optimization runtime",
+      "bytes": 9522,
+      "sha256": "13bebafa5f9e965ae1e3b946d5321df10af7dcc0a10578924b2b9c969c4d1477"
+    },
+    {
+      "path": "runtime/agent_optimization/frontend/views.tsx",
+      "source_path": "python/agent_optimization/frontend/views.tsx",
+      "role": "portable optimization runtime",
+      "bytes": 17542,
+      "sha256": "2d1a7f40b322aeb1f85b226e360fe69d21b998143535abaad020e06aa9b2a813"
+    },
+    {
+      "path": "runtime/agent_optimization/joint.py",
+      "source_path": "python/agent_optimization/joint.py",
+      "role": "portable optimization runtime",
+      "bytes": 8231,
+      "sha256": "b934d21921b05d6e38d88e0518289d8bf4d6295b67fd89b0cbb3b14d671c9f90"
+    },
+    {
+      "path": "runtime/agent_optimization/process.py",
+      "source_path": "python/agent_optimization/process.py",
+      "role": "portable optimization runtime",
+      "bytes": 20097,
+      "sha256": "5f57d657b55e584df952f69855839358decd264f18502ead10664eb98b8cfa08"
+    },
+    {
+      "path": "runtime/agent_optimization/profile.py",
+      "source_path": "python/agent_optimization/profile.py",
+      "role": "portable optimization runtime",
+      "bytes": 1581,
+      "sha256": "78fc8860b86030422090b2df92d1dd01a025a79c207ce97ec46a118656d4adf3"
+    },
+    {
+      "path": "runtime/agent_optimization/python_tools.py",
+      "source_path": "python/agent_optimization/python_tools.py",
+      "role": "portable optimization runtime",
+      "bytes": 3550,
+      "sha256": "c8d95465f1fb7b53b7d533da43ffc61b618c31e4a5402da7eaabf779ace865a6"
+    },
+    {
+      "path": "runtime/agent_optimization/python_worker.py",
+      "source_path": "python/agent_optimization/python_worker.py",
+      "role": "portable optimization runtime",
+      "bytes": 3823,
+      "sha256": "59bfd851e9fbfae26a4ca4fe12341a088fb8f9349b74844cde04862cd47cb55a"
+    },
+    {
+      "path": "runtime/agent_optimization/runs.py",
+      "source_path": "python/agent_optimization/runs.py",
+      "role": "portable optimization runtime",
+      "bytes": 3081,
+      "sha256": "cf30ff1611330b0e2639eae7d35b99b747e72ca6f2ef6b59812be3f8a7ae5996"
+    },
+    {
+      "path": "runtime/agent_optimization/scripts/verify_campaign.py",
+      "source_path": "python/agent_optimization/scripts/verify_campaign.py",
+      "role": "portable optimization runtime",
+      "bytes": 35305,
+      "sha256": "0d0f62b474963e4af1990161aeb6455e9a21d510e8fa44b136e1cd8e8b190b25"
+    },
+    {
+      "path": "runtime/agent_optimization/service.py",
+      "source_path": "python/agent_optimization/service.py",
+      "role": "portable optimization runtime",
+      "bytes": 72051,
+      "sha256": "7ae1775e0ee12296bc14485a1fcfe48c5d6112e3f8dc414c4c0312303b850725"
+    },
+    {
+      "path": "runtime/agent_optimization/skills/creative-agent-optimization/LICENSE",
+      "source_path": "python/agent_optimization/skills/creative-agent-optimization/LICENSE",
+      "role": "portable optimization runtime",
+      "bytes": 1141,
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+    },
+    {
+      "path": "runtime/agent_optimization/skills/creative-agent-optimization/SKILL.md",
+      "source_path": "python/agent_optimization/skills/creative-agent-optimization/SKILL.md",
+      "role": "portable optimization runtime",
+      "bytes": 9440,
+      "sha256": "956666d552e5c3f59117272ec3dfaf44744c5921d0322127fdaf223e06ebc80d"
+    },
+    {
+      "path": "runtime/agent_optimization/tests/test_agent_optimization.py",
+      "source_path": "python/agent_optimization/tests/test_agent_optimization.py",
+      "role": "portable optimization runtime",
+      "bytes": 5453,
+      "sha256": "fe4db14663a06d22f1216d60b186a7b15de328f46e13938fc1afe7d3f3958886"
+    },
+    {
+      "path": "runtime/agent_optimization/tests/test_joint.py",
+      "source_path": "python/agent_optimization/tests/test_joint.py",
+      "role": "portable optimization runtime",
+      "bytes": 2650,
+      "sha256": "5cb1dd40a6b50f0cf43ba985ca0bad0c76dd5f35f3737daeb16d8224fa5ac9c6"
+    },
+    {
+      "path": "runtime/agent_optimization/tests/test_local_query.py",
+      "source_path": "python/agent_optimization/tests/test_local_query.py",
+      "role": "portable optimization runtime",
+      "bytes": 8320,
+      "sha256": "7fb4f993f4192855ea50304230a11080b5f6a9772db1be138b98b51c57f98e34"
+    },
+    {
+      "path": "runtime/agent_optimization/tests/test_process.py",
+      "source_path": "python/agent_optimization/tests/test_process.py",
+      "role": "portable optimization runtime",
+      "bytes": 6593,
+      "sha256": "76ae4214d11b5beb590cd6a6c601c0ed8a1bad87494cfac4ae9c5417455a437a"
+    },
+    {
+      "path": "runtime/agent_optimization/tests/test_verify_campaign.py",
+      "source_path": "python/agent_optimization/tests/test_verify_campaign.py",
+      "role": "portable optimization runtime",
+      "bytes": 18911,
+      "sha256": "d82945a9ffd626d46c6e4f36b9c8f082fe48611d65f20c82835d168e353d8c24"
+    },
+    {
+      "path": "runtime/agent_optimization/workflow.py",
+      "source_path": "python/agent_optimization/workflow.py",
+      "role": "portable optimization runtime",
+      "bytes": 6880,
+      "sha256": "58a5f084728d5e1e82f298977f8ef31700b328e4f9eacde72347b2a2e9c86475"
+    },
+    {
+      "path": "runtime/component-package.json",
+      "source_path": "package.json",
+      "role": "frontend package manifest",
+      "bytes": 336,
+      "sha256": "05de67940d0cfc64b2f02dc6042bb23763e1bc5e3907d8e1444b7158c2cd7be7"
+    },
+    {
+      "path": "runtime/frontend-check.mjs",
+      "source_path": "assets/frontend-check.mjs",
+      "role": "frontend verification recipe",
+      "bytes": 807,
+      "sha256": "b0f79afa362977ceaed7cf55da5fcec1a3295d4a82cb2cdaefeaf8664e52e0a5"
+    },
+    {
+      "path": "runtime/frontend-check.tsconfig.json",
+      "source_path": "assets/frontend-check.tsconfig.json",
+      "role": "frontend verification recipe",
+      "bytes": 433,
+      "sha256": "5362803554190050e9fe14e4092d280ec2e9dfba8fb659b5b6bab120f127b380"
+    },
+    {
+      "path": "runtime/package.json",
+      "source_path": "assets/frontend-check.package.json",
+      "role": "frontend verification dependencies",
+      "bytes": 485,
+      "sha256": "42df7e00dfe24ec831b38e62d4ba9ea0cde99107570ff2643b5a25727fb034c1"
+    },
+    {
+      "path": "runtime/pyproject.toml",
+      "source_path": "pyproject.toml",
+      "role": "python package manifest",
+      "bytes": 473,
+      "sha256": "933ff84d33a7bd0cb69b7fb04032214aa983dd654997114e7f385303fc5bd934"
+    }
+  ],
+  "roots": [
+    "example",
+    "runtime"
+  ],
+  "example": {
+    "synthetic": true,
+    "scope": "hand-authored record shapes; no measurement, dataset or campaign result"
+  },
+  "external_requirements": [
+    "Linux Python 3.11+ for native terminal and sandbox execution",
+    "Bubblewrap and libseccomp; never bypass isolation",
+    "Node 20+, React and TypeScript for the frontend check",
+    "Host-authorized dataset, model/knowledge adapters and a native Copilot CLI"
+  ],
+  "limitations": [
+    "Any host application, deployment runbook or third-party component clone",
+    "Datasets, per-case outcomes, model transcripts and label databases",
+    "Credentials, cloud targets, tenant or subscription identifiers",
+    "Historical campaign artifacts from the originating project",
+    "The archive duplicates this skill's portable sources for offline inspection; it is not a second installed runtime.",
+    "Hashes establish internal consistency, not publisher authenticity or a redistribution grant.",
+    "Example ledger records are invented illustrations and are never evidence of performance."
+  ]
+}

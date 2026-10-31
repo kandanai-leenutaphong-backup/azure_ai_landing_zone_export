@@ -1,0 +1,61 @@
+{
+  "name": "@harness/azure-sky-styling",
+  "version": "0.1.0",
+  "type": "module",
+  "license": "SEE LICENSE IN LICENSE",
+  "main": "./dist-library/index.js",
+  "types": "./dist-library/index.d.ts",
+  "exports": {
+    ".": { "types": "./dist-library/index.d.ts", "import": "./dist-library/index.js" },
+    "./styles.css": "./dist-library/azure-sky.css",
+    "./depth.css": "./frontend/depth-effects.css",
+    "./THIRD_PARTY_NOTICES.txt": "./public/THIRD_PARTY_NOTICES.txt"
+  },
+  "files": ["dist-library", "frontend", "public/THIRD_PARTY_NOTICES.txt", "README.md", "GUIDE.md", "DEPTH_EFFECTS.md", "DISTANT_ARCHITECTURE.md", "ASSETS.md", "LICENSE", "scripts", "research", "tests", "demo", "index.html", "plain.html", "security-review.html", "tsconfig.json", "tsconfig.library.json", "vite.config.ts", "vite.library.config.ts"],
+  "sideEffects": ["**/*.css"],
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build:library": "vite build --config vite.library.config.ts && tsc -p tsconfig.library.json && node --input-type=module -e \"import {readFileSync, renameSync, writeFileSync} from 'node:fs'; renameSync('dist-library/DistantArchitecture.d.ts', 'dist-library/DistantArchitectureComponent.d.ts'); const entry = 'dist-library/index.d.ts'; writeFileSync(entry, readFileSync(entry, 'utf8').replace('./DistantArchitecture', './DistantArchitectureComponent.js'));\"",
+    "build": "npm run build:library && tsc --noEmit && vite build",
+    "prepack": "npm run build:library",
+    "preview": "vite preview --host 127.0.0.1",
+    "verify": "node tests/verify.mjs",
+    "grain:generate": "node scripts/generate-grain.mjs",
+    "masks:generate": "node scripts/generate-painterly-masks.mjs",
+    "verify:depth-effects": "node tests/verify-depth-effects.mjs",
+    "verify:depth": "node tests/verify-depth-study.mjs",
+    "verify:architecture-generator": "node tests/verify-architecture-generator.mjs",
+    "verify:architecture": "node tests/verify-architecture.mjs",
+    "verify:security-review": "node tests/verify-security-review.mjs"
+  },
+  "dependencies": {
+    "@fontsource/barlow-condensed": "^5.2.0",
+    "@fontsource/ibm-plex-mono": "^5.2.0",
+    "@fontsource/ibm-plex-sans": "^5.2.0",
+    "@radix-ui/react-dialog": "^1.1.0",
+    "@radix-ui/react-dropdown-menu": "^2.1.0",
+    "@radix-ui/react-popover": "^1.1.0",
+    "@radix-ui/react-tabs": "^1.1.0",
+    "@radix-ui/react-tooltip": "^1.1.0",
+    "lucide-react": "^1.42.0",
+    "recharts": "^3.2.0"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@tailwindcss/vite": "^4.1.0",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^4.3.0",
+    "playwright": "1.62.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwindcss": "^4.1.0",
+    "typescript": "^5.9.0",
+    "vite": "^6.0.0"
+  }
+}

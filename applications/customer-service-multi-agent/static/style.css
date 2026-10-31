@@ -1,0 +1,32 @@
+:root { font-family: system-ui, sans-serif; color: #172d40; background: #eef3f7; color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+main { width: min(100% - 32px, 820px); margin: 24px auto; }
+.chat { padding: 24px; border: 1px solid #b9c9d5; border-radius: 12px; background: #fff; }
+header { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+h1 { margin: 0; font-size: 1.5rem; }
+p { line-height: 1.5; overflow-wrap: anywhere; }
+.notice, #chat-help, .empty { color: #435a6b; font-size: .875rem; }
+#auth-status, #chat-status { font-size: .9rem; }
+#auth-retry { margin-bottom: 16px; }
+#chat-transcript { height: clamp(240px, 42dvh, 480px); overflow-y: auto; border: 1px solid #b9c9d5; border-radius: 8px; padding: 16px; overscroll-behavior: contain; }
+.chat-bubble { max-width: 92%; width: fit-content; margin: 0 0 16px; padding: 12px 16px; border-radius: 8px; background: #eef3f7; overflow-wrap: anywhere; }
+.chat-bubble.user { margin-left: auto; background: #e1effb; }
+.chat-bubble strong { font-size: .875rem; }
+.chat-bubble p { margin: 6px 0 0; white-space: pre-wrap; }
+label { display: block; margin-bottom: 8px; font-weight: 600; }
+textarea { width: 100%; min-height: 96px; padding: 12px; border: 1px solid #627b8e; border-radius: 6px; resize: vertical; font: inherit; color: inherit; background: #fff; }
+button { min-height: 44px; min-width: 44px; padding: 10px 16px; border: 1px solid #125c91; border-radius: 6px; background: #125c91; color: #fff; font: inherit; font-weight: 600; cursor: pointer; }
+button.secondary { background: #fff; color: #125c91; }
+button:disabled { cursor: not-allowed; color: #4c5f6d; background: #e4eaf0; border-color: #91a4b2; }
+textarea:disabled { background: #f2f5f8; }
+:focus-visible { outline: 3px solid #8a3b00; outline-offset: 3px; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+#chat-error { color: #9f2020; }
+[hidden] { display: none !important; }
+@media (max-width: 480px) {
+  main { width: calc(100% - 16px); margin: 8px auto; }
+  .chat { padding: 16px; }
+  h1 { font-size: 1.25rem; }
+  #chat-transcript { padding: 12px; }
+}

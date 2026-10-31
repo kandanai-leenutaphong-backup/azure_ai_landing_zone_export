@@ -1,0 +1,2 @@
+# Python runtime and offline tests use only the standard library on Python 3.11+ POSIX.
+# The host declares its identity SDK separately; frontend dependencies are in package-lock.json.

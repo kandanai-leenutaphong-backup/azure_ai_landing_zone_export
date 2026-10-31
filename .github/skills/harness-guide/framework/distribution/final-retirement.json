@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "increment": "unified-recovery-exact-manifest-retirement",
+  "status": "blocked",
+  "observed_at": "2026-09-16T11:44:41.822Z",
+  "root": "/home/hanchoong/agentcraft",
+  "outcome": "All 33 frozen deletion candidates are physically absent. Shared tests now exercise native async Search; one retained malformed-document safety check blocks acceptance and requires the canonical data owner.",
+  "authority": {
+    "basis": "User-authorized exact source/cache retirement; no operational-data deletion",
+    "canonical_source_guidance_or_runtime_modified": false,
+    "skill_entries_or_guides_modified": false,
+    "migration_readmes_or_prior_receipts_modified": false,
+    "operational_data_writes": 0,
+    "cloud_model_publication_actions": false,
+    "shared_environment_or_lock_synced": false,
+    "git_staging_commit_reset_or_branch_actions": false,
+    "documentation_reconciliation": "Parent-owned; no documentation changes outside this receipt"
+  },
+  "initial_worktree": {
+    "head": "65ae1587a7b4d8815964a9d01c93b49bb8c449b4",
+    "scoped_tracked_diff_bytes": 0,
+    "record": "/tmp/agentcraft-recovery-cleanup/evidence/initial-worktree.json",
+    "ignored_content_examined_separately": true,
+    "unknown_user_changes_reverted": false
+  },
+  "recovery": {
+    "manifest": "/tmp/agentcraft-recovery-cleanup/evidence/frozen-manifest.json",
+    "manifest_sha256": "5e373519d2f44a3f660d05e2f572d8db4e86bdbec052c89ff3c0369a7ce2b351",
+    "payload_root": "/tmp/agentcraft-recovery-cleanup/evidence/recovery",
+    "deleted_payloads": 33,
+    "original_test_payloads": 1,
+    "payload_hash_mismatches": 0,
+    "contents": "Exact original file bytes and paths; manifest records size, SHA-256, mode, inode and mtime. Recovery copies were verified against source before deletion and checked again afterwards.",
+    "limits": "Recovery depends on retaining this external temporary directory. Empty directories were not removed. No permanent source snapshot was added to the repository."
+  },
+  "removal": {
+    "status": "PASS_PHYSICAL",
+    "files": 33,
+    "logical_bytes": 205553,
+    "remaining_manifest_paths": [],
+    "source_files": 8,
+    "source_logical_bytes": 35142,
+    "byte_identical_source_pairs_verified": 4,
+    "source_paths": [
+      ".github/skills/azure-data-connectors/src/azdata/arm/__init__.py",
+      ".github/skills/azure-data-connectors/src/azdata/arm/discover.py",
+      ".github/skills/azure-data-connectors/src/azdata/logs/__init__.py",
+      ".github/skills/azure-data-connectors/src/azdata/logs/read.py",
+      ".github/skills/resource-explorer/vendor/azdata/src/azdata/arm/__init__.py",
+      ".github/skills/resource-explorer/vendor/azdata/src/azdata/arm/discover.py",
+      ".github/skills/resource-explorer/vendor/azdata/src/azdata/logs/__init__.py",
+      ".github/skills/resource-explorer/vendor/azdata/src/azdata/logs/read.py"
+    ],
+    "source_disposition": "Chapter 04 S05/S22 retire ARM/logs estate discovery; no active caller found. No replacement engine or compatibility bridge was introduced.",
+    "legacy_artifacts": {"files": 25, "logical_bytes": 170411, "bytecode_files": 15, "egg_info_files": 10, "maintained_source_files": 0},
+    "method": "apply_patch reported 18 text deletions but physical validation found all 18 unchanged. Authorized fixed-manifest fs.unlinkSync fallback removed those files and 15 binary bytecode files after rechecking hashes, inode/mtime, recovery bytes, safe ancestors, mount boundaries, protected overlaps and candidate writers.",
+    "repair_loops_used": 1,
+    "repair_loop_limit": 2,
+    "symlinks_followed": 0,
+    "empty_directories_retained": true,
+    "cache_removal_credited_as_source_retirement": false
+  },
+  "comparison": {
+    "metric": "Regular file names and logical file-content bytes, including ignored files; no symlink traversal. Not allocated disk space, RAM or latency.",
+    "scope": "Six non-overlapping approved subtrees below; shared test and new receipt accounted separately",
+    "before": {"files": 36, "logical_bytes": 208380, "directories": 43, "symlinks": 0},
+    "after": {"files": 3, "logical_bytes": 2827, "directories": 43, "symlinks": 0},
+    "subtrees": [
+      {"path": ".github/skills/azure-data-connectors", "before_files": 7, "before_bytes": 20398, "after_files": 3, "after_bytes": 2827},
+      {"path": ".github/skills/resource-explorer/vendor", "before_files": 4, "before_bytes": 17571, "after_files": 0, "after_bytes": 0},
+      {"path": "libraries/azure-llm-compat/src", "before_files": 11, "before_bytes": 34222, "after_files": 0, "after_bytes": 0},
+      {"path": "libraries/azure-llm-compat/tests", "before_files": 3, "before_bytes": 32562, "after_files": 0, "after_bytes": 0},
+      {"path": "libraries/search-read-adapter/src", "before_files": 9, "before_bytes": 22081, "after_files": 0, "after_bytes": 0},
+      {"path": "libraries/search-read-adapter/tests", "before_files": 2, "before_bytes": 81546, "after_files": 0, "after_bytes": 0}
+    ],
+    "verification": "Canonical repository_inspection.filesystem scan/compare, same roots/exclusions/group depth; six complete before/after comparisons under the external evidence directory",
+    "shared_test": {
+      "path": "template_apps/shared/tests/test_search_read.py",
+      "before_bytes": 16232,
+      "after_bytes": 10077,
+      "before_test_functions": 18,
+      "after_test_functions": 10,
+      "before_sha256": "71ff4662258977a513b43cdcea425f0cac9900ba7a32dd36ff75ad677a3a2f8e",
+      "after_sha256": "8926a0d4b4a7c78cf0476224eedbffad4944254a482d945a1e3925976c7378de"
+    },
+    "receipt_overhead": "New receipt is outside the six measured subtrees. Its size/hash and total scoped net change are recorded externally after writing it.",
+    "global_co1_baseline": "Immutable prior recovery-retirement.json preserved; no global shipped-skill percentage or full migration completion claim made by this increment"
+  },
+  "reachability": {
+    "surface": "First-party Python/JS/TS, packaging, JSON/YAML configuration and shell launchers under .github, libraries, template_apps, deploy, doc_app and testbeds",
+    "excluded": "Historical prose, generated guidance, immutable distribution receipts, vendored candidates, environments, dependency/build/cache trees; exact rg arguments retained in evidence",
+    "symbols": ["search_read_adapter", "azure_llm_compat", "azdata.arm", "azdata.logs", "ArmDiscoverer", "LogsDiscoverer", "LogsReader"],
+    "before_matches": 4,
+    "before_only_file": "template_apps/shared/tests/test_search_read.py",
+    "after_matches": 0,
+    "records": ["before-retired-references.json", "after-retired-references.json"]
+  },
+  "safety_coverage_mapping": [
+    {"legacy": ["test_query_forwarding_thaws_values_and_only_aliases_knowledge_annotation", "test_first_response_continuation_does_not_walk_or_sort"], "retained": "Shared async tests preserve nested values, null/absence, rank order and one-page execution. Existing native test_live_search_scenario.py:test_exact_projection_filter_top_ties_and_native_annotation and test_search.py:test_query_options_and_scoped_continuation passed. Native reranker annotation replaces facade alias spelling."},
+    {"legacy": ["test_count_is_exact_metadata_not_number_of_key_documents", "test_count_unknown_or_invalid_refuses_instead_of_zero"], "retained": "Shared async status tests preserve exact zero/nonzero counts and absent/null/boolean/negative refusal; existing test_search.py:test_query_count_rejects_lossy_sdk_integer_coercion passed."},
+    {"legacy": ["test_keyed_content_and_absence_remain_distinct", "test_malformed_keyed_document_is_unavailable"], "retained": "Shared async keyed tests retain content/absence/failure and malformed identity checks. Existing KnowledgeCacheTests:test_key_collision_absence_and_provider_failure and native keyed workflow tests passed. Array-body refusal remains failing, not deleted or marked expected."},
+    {"legacy": ["test_output_bound_is_unavailable_not_empty_or_relaxable", "test_safe_numeric_failure_mapping"], "retained": "Shared async failure/byte-loss test preserves no relaxation, no retry and payload-free failures. Existing test_search.py:test_query_byte_bound_retains_prefix_and_discards_unusable_cursor and test_transport.py:test_http_transport_does_not_read_error_bodies passed. Sync numeric error/body aliases are retired."},
+    {"legacy": ["test_lifecycle_exact_integer_limit_refuses_before_io", "test_lifecycle_target_grant_key_and_async_credential_refuse_before_io"], "retained": "Shared exact-integer/missing-grant refusals passed without credential or transport calls. Existing BoundaryTests:test_target_cannot_escape_scope, ValueTests:test_config_requires_explicit_endpoint_allowlist and test_request_limits_cannot_raise_policy_ceilings passed. Fixed-index positional API and sync-only credential/policy restrictions are retired."},
+    {"legacy": ["test_lifecycle_construction_description_and_close_need_no_runner_or_io"], "retained": "Shared accounting test checks no-I/O description and borrowed lifetime. Existing BoundaryTests:test_close_is_idempotent_and_borrowed_transport_untouched, TransportTests:test_owned_transport_closes_once and KnowledgeCacheTests owned/borrowed replacement/reset tests passed."},
+    {"legacy": ["test_accounting_covers_query_count_keyed_failure_and_no_io_description", "test_accounting_unreported_operation_is_unknown_never_zero"], "retained": "Shared async owner tests verify five known attempts across count/query/keyed failure, and one unreported attempt as unknown rather than zero; both passed."},
+    {"legacy": ["test_selected_read_never_imports_template_implementations"], "retained": "All 25 existing native Search tests passed in a fresh process with imports of app and template_foundations forbidden before azdata import. Shared host tests are callers; canonical library remains independent."}
+  ],
+  "retired_sync_mechanics": [
+    "test_lifecycle_active_loop_refuses_every_sync_method_before_coroutine_creation",
+    "test_lifecycle_worker_calls_use_fresh_context_and_one_runner",
+    "test_lifecycle_close_marks_closing_before_wait_and_refuses_queued_reads",
+    "test_lifecycle_partial_startup_failure_closes_runner_not_borrowed_resources"
+  ],
+  "retired_sync_rationale": "No supported sync Runner/thread/context/lock facade remains. Native borrowed/owned close and concurrency checks passed; no failure was hidden to retire these implementation-specific expectations.",
+  "verification": {
+    "python": "/tmp/agentcraft-recovery-cleanup/bin/python",
+    "python_version": "3.12.3",
+    "environment": {
+      "PYTHONPATH": "/home/hanchoong/agentcraft/libraries/framework-core/src:/home/hanchoong/agentcraft/libraries/azure-data-connectors/src:/home/hanchoong/agentcraft/libraries/azure-data-connectors:/home/hanchoong/agentcraft/template_apps/investigation_app",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PYTHON_DOTENV_DISABLED": "1",
+      "PYTEST_DISABLE_PLUGIN_AUTOLOAD": "1"
+    },
+    "commands_use_python_above_from_repository_root": true,
+    "checks": [
+      {"command": "python -B -m unittest discover -s libraries/azure-data-connectors/tests/adapters -p test_search.py -v", "tests": 25, "exit_code": 0, "when": "Before deletion, immediately after ineffective edit-tool deletion, and immediately after native unlink"},
+      {"command": "python -B -m pytest -p no:cacheprovider --import-mode=importlib libraries/azure-data-connectors/tests/contract/test_boundary.py libraries/azure-data-connectors/tests/contract/test_values.py libraries/azure-data-connectors/tests/contract/test_transport.py libraries/azure-data-connectors/tests/contract/test_live_search_scenario.py -q", "tests_passed": 36, "exit_code": 0},
+      {"command": "python -B -m pytest -p no:cacheprovider -c template_apps/investigation_app/pyproject.toml template_apps/investigation_app/app/cybereye/tests/test_knowledge_search.py::KnowledgeCacheTests -q", "tests_passed": 5, "exit_code": 0},
+      {"command_record": "native-import-independence.json", "tests": 25, "exit_code": 0, "condition": "Fresh import guard rejects app/template_foundations imports while running existing native Search suite; not counted as 25 additional unique tests"},
+      {"command": "python -B -m unittest discover -s template_apps/shared/tests -p test_search_read.py -v", "tests_run": 10, "errors": 1, "failed_subtests": 1, "exit_code": 1, "record": "async-safety-tests.json"},
+      {"command": "git diff --check -- <initial scoped path allowlist>", "exit_code": 0},
+      {"tool": "get_errors", "path": "template_apps/shared/tests/test_search_read.py", "diagnostics": 0}
+    ],
+    "existing_warnings": "azure-search-documents 11.6.0 emits two invalid-escape SyntaxWarnings under Python 3.12; not modified",
+    "full_application_browser_live_data_model_or_cloud_checks": "Not run; outside this filesystem/test-retirement increment"
+  },
+  "blocker": {
+    "kind": "canonical_owner_required",
+    "failing_test": "template_apps/shared/tests/test_search_read.py:97:AsyncSearchSafetyTests.test_malformed_keyed_document_is_unavailable",
+    "input": "HttpResponse(200, [\"not a document\"])",
+    "expected": "Payload-free KnowledgeUnavailable via a failed native operation",
+    "observed": "azure.core.exceptions.DeserializationError escapes, including the provider response body in its message",
+    "owning_path": "libraries/azure-data-connectors/src/azdata/sdk.py:271",
+    "verified_cause": "SDK invoke catches TimeoutError, OSError and AzureError. Installed DeserializationError inherits ValueError, not AzureError, so this exception is not classified or sanitized.",
+    "dependency_versions": {"azure-core": "1.41.0", "azure-search-documents": "11.6.0"},
+    "exception_mro": ["DeserializationError", "ValueError", "Exception", "BaseException", "object"],
+    "canonical_source_unchanged_from_capture": true,
+    "test_disabled_weakened_or_xfailed": false,
+    "canonical_source_repair_attempted": false,
+    "duplicate_runtime_restored_to_mask_failure": false,
+    "required_next": "Parent data owner handles native deserialization faults in canonical azdata, adds owner-level malformed-response coverage, then reruns the retained shared safety check. No broader write authority was inferred."
+  },
+  "protected_and_retained": {
+    "fingerprinted_files": 106,
+    "unchanged_fingerprints": 106,
+    "scope": "Canonical data/model/Content Understanding source and tests, available Content Understanding guides, thin skill files, migration notices and prior receipts; exact list in protected-before.json",
+    "prior_receipt": "libraries/framework/distribution/recovery-retirement.json",
+    "prior_receipt_unchanged": true,
+    "azure_data_skill_kept": [".github/skills/azure-data-connectors/.gitignore", ".github/skills/azure-data-connectors/LICENSE", ".github/skills/azure-data-connectors/SKILL.md"],
+    "content_understanding_parent_deletions": {"expected_absent": 12, "physically_absent": 12, "credited_to_this_increment": false},
+    "out_of_scope_caches_and_builds": [
+      {"path": ".github/skills/azure-content-understanding/libraries/.venv", "files": 1176, "logical_bytes": 35203456, "disposition": "kept; installed environment, not maintained skill source"},
+      {"paths": [".github/skills/azure-content-understanding/scripts/__pycache__", ".github/skills/azure-content-understanding/tests/__pycache__"], "files": 2, "logical_bytes": 43300, "disposition": "kept; outside write allowlist"},
+      {"path": "libraries/azure-llm-compat/.pytest_cache", "files": 4, "logical_bytes": 2707, "disposition": "kept; only src/tests were writable"},
+      {"path": "template_apps/shared/tests/__pycache__", "files": 1, "logical_bytes": 3130, "disposition": "kept; only test_search_read.py was writable"},
+      {"path": "libraries/repository-inspection/build", "files": 4, "logical_bytes": 41941, "disposition": "kept; prior worker output outside allowlist"},
+      {"path": "libraries/repository-inspection/src/repository_inspection.egg-info", "files": 5, "logical_bytes": 7050, "disposition": "kept; prior worker output outside allowlist"}
+    ],
+    "content_understanding_symlinks": {"count": 4, "followed": false, "retained": true},
+    "legacy_migration_readmes": ["libraries/azure-llm-compat/README.md", "libraries/search-read-adapter/README.md"],
+    "operational_output": {"path": ".github/skills/modular-agents/deploy/state/example/artifacts/145251a26bd63f18c7bf259b50ebbc5bb8e16469fa5441efae9681a2378a551b", "files": 3, "logical_bytes": 75591, "inspection": "metadata only; no payload read, extraction or deletion"},
+    "other_data_notes_archives_credentials": "Outside deletion manifest; untouched"
+  },
+  "writer_checks": {
+    "same_user_processes_examined_at_freeze": 37,
+    "candidate_access_observed": 0,
+    "rechecked_before_unlink": true,
+    "unresolved_application_processes": 0,
+    "limitation": "User-session systemd (PID 561) and sd-pam (PID 562) deny cwd/fd inspection. Identities recorded; no full OS-process visibility claim. Command-line arguments and environments were not read."
+  },
+  "retained_state": {
+    "root": "/tmp/agentcraft-recovery-cleanup",
+    "contents": "Isolated third-party test dependencies, 34 verified recovery payloads, frozen manifest, original scoped worktree, canonical inventories/comparisons, exact commands/results and final-state-before-receipt.json",
+    "repository_source_installs_or_builds": false,
+    "running_processes_started": [],
+    "new_permanent_cleanup_framework": false,
+    "notebook": "No separate note: bounded evidence is retained in this requested receipt",
+    "recurrence_prevention": "Tests use -B and disable pytest cache writes. Ignore rules and other parent-owned cleanup policies were not changed."
+  },
+  "smallest_next_decision": "Assign canonical Search deserialization-fault handling to the data owner; preserve this failing safety test and all external recovery evidence until that gate passes."
+}

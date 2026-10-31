@@ -1,0 +1,30 @@
+// Cross-agent trace in Application Insights `appi-tracing-xlpu` (workspace law-tracing-xlpu).
+// Run in the component's Logs blade, or against the workspace with App* table names.
+// OperationId is the W3C trace_id shared by the SEA app and the West US 3 Hosted Agent.
+// Tree: http.request -> chat.turn (app) -> [Foundry gateway span, not exported]
+//       -> chat.workflow (hosted) -> chat.agent step 1..3. Allowlisted fields only.
+let wanted_trace = "<trace_id>";
+dependencies
+| where timestamp > ago(30d)
+| where operation_Id == wanted_trace
+| where name in ("chat.turn", "chat.workflow", "chat.agent")
+| project timestamp, trace_id = operation_Id, span_id = id, parent_span_id = operation_ParentId,
+    service = cloud_RoleName, operation = name, agent = tostring(customDimensions.agent_id),
+    step = toint(customDimensions.agent_step), session_id = tostring(customDimensions.session_id),
+    response_id = tostring(customDimensions.response_id), model = tostring(customDimensions.model_id),
+    input_tokens = toint(customDimensions.input_token_count),
+    output_tokens = toint(customDimensions.output_token_count),
+    duration_ms = duration, status = tostring(customDimensions.status),
+    error_code = tostring(customDimensions.error_code)
+| order by timestamp asc
+
+// Per-agent view, same trace, in Log Analytics workspace law-tracing-xlpu (App* tables).
+// response_id (hosted v3+) and span_id join to Cosmos run-state-v1 object.metadata;
+// see trace-explorer-cosmos.sql.
+// AppDependencies
+// | where TimeGenerated > ago(30d) and OperationId == "<trace_id>" and Name == "chat.agent"
+// | project TimeGenerated, span_id = Id, parent_span_id = ParentId,
+//     agent = tostring(Properties.agent_id), step = toint(Properties.agent_step),
+//     response_id = tostring(Properties.response_id), DurationMs,
+//     input_tokens = toint(Properties.input_token_count), output_tokens = toint(Properties.output_token_count)
+// | order by step asc

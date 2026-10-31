@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=78"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "harness-web-resource"
+version = "1.1.0"
+description = "Guarded public-web acquisition with local provenance catalogues."
+requires-python = ">=3.11"
+readme = "README.md"
+license = {file = "LICENSE"}
+dependencies = []
+
+[project.optional-dependencies]
+browser = ["playwright>=1.58,<2"]
+test = ["Pillow>=11,<13"]
+
+[project.scripts]
+web-resource-fetch-page = "webres.cli.fetch_page:main"
+web-resource-capture-screenshot = "webres.cli.capture_screenshot:main"
+web-resource-probe-url = "webres.cli.probe_url:main"
+web-resource-extract-images = "webres.cli.extract_images:main"
+web-resource-catalogue = "webres.cli.catalogue:main"
+
+[dependency-groups]
+test = ["Pillow>=11,<13"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+webres = ["py.typed"]
+
+[tool.setuptools.data-files]
+"share/web-resource" = ["README.md", "GUIDE.md", "CONTRACT.md", "GOTCHAS.md", "PROVENANCE.md", "LICENSE"]
+"share/web-resource/scripts/fetch-page" = ["scripts/fetch-page/README.md"]
+"share/web-resource/scripts/capture-screenshot" = ["scripts/capture-screenshot/README.md"]
+"share/web-resource/scripts/probe-url" = ["scripts/probe-url/README.md"]
+"share/web-resource/scripts/extract-images" = ["scripts/extract-images/README.md"]
+"share/web-resource/scripts/catalogue" = ["scripts/catalogue/README.md"]
+"share/web-resource/collections/soc-dashboards" = ["collections/soc-dashboards/*"]
+"share/web-resource/collections/sentinel" = ["collections/sentinel/*"]
+"share/web-resource/collections/attack-telemetry-datasets" = ["collections/attack-telemetry-datasets/*"]
+"share/web-resource/examples" = ["examples/*.py"]
+"share/web-resource/tests" = ["tests/*.py"]

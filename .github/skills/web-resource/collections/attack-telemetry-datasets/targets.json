@@ -1,0 +1,185 @@
+[
+  {
+    "url": "https://github.com/darpa-i2o/Transparent-Computing",
+    "name": "darpa-tc-engagements",
+    "subject": "attack-telemetry-datasets",
+    "kind": "page",
+    "notes": "TC E3/E5 release notes, CDM Avro schema, ground-truth report manifest; data itself on Google Drive"
+  },
+  {
+    "url": "https://github.com/FiveDirections/OpTC-data",
+    "name": "darpa-optc",
+    "subject": "attack-telemetry-datasets",
+    "kind": "page",
+    "notes": "eCAR endpoint telemetry from 500 Windows 10 hosts; red-team ground-truth PDF in repo"
+  },
+  {
+    "url": "https://pwnjutsu.irisa.fr/",
+    "name": "pwnjutsu",
+    "subject": "attack-telemetry-datasets",
+    "kind": "page",
+    "notes": "22 human red teamers on dedicated instances; page carries the full size tree"
+  },
+  {
+    "url": "https://zenodo.org/records/19483937",
+    "name": "ait-log-data-set-v2-1",
+    "subject": "attack-telemetry-datasets",
+    "kind": "page",
+    "notes": "Eight enterprise testbeds, per-line attack labels, CC BY-NC-SA 4.0"
+  },
+  {
+    "url": "https://zenodo.org/records/8263181",
+    "name": "ait-alert-data-set",
+    "subject": "attack-telemetry-datasets",
+    "kind": "page",
+    "notes": "Suricata/Wazuh/AMiner alerts derived from AIT-LDSv2; alert-layer ground truth"
+  },
+  {
+    "url": "https://datasets.uwf.edu/",
+    "name": "uwf-zeek-datasets",
+    "subject": "attack-telemetry-datasets",
+    "kind": "page",
+    "notes": "Zeek logs labelled with MITRE ATT&CK tactics; data card and record counts"
+  },
+  {
+    "url": "https://archive.wrccdc.org/pcaps/",
+    "name": "wrccdc-pcap-archive",
+    "subject": "attack-telemetry-datasets",
+    "kind": "page",
+    "notes": "Open nginx index, competition years 2012 through 2026"
+  },
+  {
+    "url": "https://www.netresec.com/?page=PcapFiles",
+    "name": "netresec-public-pcaps",
+    "subject": "attack-telemetry-datasets",
+    "kind": "page",
+    "notes": "Index of public capture repositories; the discovery surface for CDX and honeypot captures"
+  },
+  {
+    "url": "https://www.netresec.com/?page=MACCDC",
+    "name": "netresec-maccdc",
+    "subject": "attack-telemetry-datasets",
+    "kind": "page",
+    "notes": "MACCDC 2010-2012 captures; files themselves on robots-disallowed share host"
+  },
+  {
+    "url": "https://github.com/logpai/loghub",
+    "name": "loghub",
+    "subject": "attack-telemetry-datasets",
+    "kind": "page",
+    "notes": "19 system log datasets; labels mark failures, not intrusions"
+  },
+  {
+    "url": "https://github.com/logpai/loghub-2.0",
+    "name": "loghub-2-0",
+    "subject": "attack-telemetry-datasets",
+    "kind": "page",
+    "notes": "Successor with template annotations for log parsing evaluation"
+  },
+  {
+    "url": "https://zenodo.org/records/8196385",
+    "name": "loghub-zenodo-record",
+    "subject": "attack-telemetry-datasets",
+    "kind": "page",
+    "notes": "Authoritative file list, sizes, and CC BY 4.0 licence for Loghub"
+  },
+  {
+    "url": "https://www.unb.ca/cic/datasets/index.html",
+    "name": "cic-dataset-index",
+    "subject": "attack-telemetry-datasets",
+    "kind": "page",
+    "notes": "Catalogue of CIC releases; download links lead to a registration form"
+  },
+  {
+    "url": "https://www.unb.ca/cic/datasets/iiot-dataset-2024.html",
+    "name": "cicapt-iiot-2024",
+    "subject": "attack-telemetry-datasets",
+    "kind": "page",
+    "notes": "APT29-modelled campaign, provenance graph CSV plus pcap, attack info file"
+  },
+  {
+    "url": "https://zenodo.org/records/21043546",
+    "name": "miningbeat",
+    "subject": "attack-telemetry-datasets",
+    "kind": "page",
+    "notes": "Linux syscall telemetry with Atomic Red Team activity; single 15 MB CSV"
+  },
+  {
+    "url": "https://zenodo.org/records/22121599",
+    "name": "vantage-nids",
+    "subject": "attack-telemetry-datasets",
+    "kind": "page",
+    "notes": "Cyber-range flow dataset, 67 scenarios, timestamp-plus-victim label rule"
+  },
+
+  {
+    "url": "https://zenodo.org/records/19483937/files/russellmitchell_no-pcaps.zip?download=1",
+    "name": "ait-v2-1-smallest-scenario",
+    "subject": "attack-telemetry-datasets",
+    "kind": "endpoint",
+    "notes": "Smallest AIT scenario without pcaps; the cheapest end-to-end shape test"
+  },
+  {
+    "url": "https://zenodo.org/records/19483937/files/fox.zip?download=1",
+    "name": "ait-v2-1-largest-scenario",
+    "subject": "attack-telemetry-datasets",
+    "kind": "endpoint",
+    "notes": "Largest AIT scenario with pcaps"
+  },
+  {
+    "url": "https://zenodo.org/records/8263181/files/ait_ads.zip?download=1",
+    "name": "ait-ads-alerts",
+    "subject": "attack-telemetry-datasets",
+    "kind": "endpoint",
+    "notes": "2.66M IDS alerts across eight scenarios"
+  },
+  {
+    "url": "https://zenodo.org/records/8196385/files/Thunderbird.tar.gz?download=1",
+    "name": "loghub-thunderbird",
+    "subject": "attack-telemetry-datasets",
+    "kind": "endpoint",
+    "notes": "Largest Loghub member; 211M lines uncompressed"
+  },
+  {
+    "url": "https://pwnjutsu.irisa.fr/dataset/",
+    "name": "pwnjutsu-index",
+    "subject": "attack-telemetry-datasets",
+    "kind": "endpoint",
+    "notes": "Open nginx index: network/, system/, reference/"
+  },
+  {
+    "url": "https://datasets.uwf.edu/data/UWF-ZeekData22/parquet/",
+    "name": "uwf-zeekdata22-parquet",
+    "subject": "attack-telemetry-datasets",
+    "kind": "endpoint",
+    "notes": "Week-partitioned parquet; six sibling datasets under /data/"
+  },
+  {
+    "url": "https://archive.wrccdc.org/pcaps/2026/quals/",
+    "name": "wrccdc-2026-quals",
+    "subject": "attack-telemetry-datasets",
+    "kind": "endpoint",
+    "notes": "Most recent competition capture set; ~165-215 MiB per gzipped pcap"
+  },
+  {
+    "url": "https://drive.google.com/drive/folders/1okt4AYElyBohW4XiOBqmsvjwXsnUjLVf",
+    "name": "darpa-tc-drive-folder",
+    "subject": "attack-telemetry-datasets",
+    "kind": "endpoint",
+    "notes": "Answers 200 with a JavaScript shell; not enumerable without the Drive API"
+  },
+  {
+    "url": "https://drive.google.com/drive/folders/1n3kkS3KR31KUegn42yk3-e6JkZvf0Caa",
+    "name": "darpa-optc-drive-folder",
+    "subject": "attack-telemetry-datasets",
+    "kind": "endpoint",
+    "notes": "Same limitation as the TC folder; ~1 TB behind it"
+  },
+  {
+    "url": "https://cicresearch.ca/IOTDataset/CICAPT-IIoT-Dataset/",
+    "name": "cic-download-gate",
+    "subject": "attack-telemetry-datasets",
+    "kind": "endpoint",
+    "notes": "Answers 200 with a registration form, not a file index"
+  }
+]

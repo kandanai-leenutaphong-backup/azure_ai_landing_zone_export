@@ -1,0 +1,5 @@
+include README.md GUIDE.md CONTRACT.md GOTCHAS.md PROVENANCE.md LICENSE
+recursive-include scripts *.md
+recursive-include collections *.md *.json *.txt
+recursive-include examples *.py
+recursive-include tests *.py

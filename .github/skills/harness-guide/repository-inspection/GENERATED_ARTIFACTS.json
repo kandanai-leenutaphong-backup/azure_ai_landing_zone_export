@@ -1,0 +1,423 @@
+{
+  "action": "move generated build artifacts; no deletion",
+  "canonical_source_files_unchanged": 29,
+  "moves": [
+    {
+      "source": ".github/skills/portable-app-composition/build",
+      "destination": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/.github/skills/portable-app-composition/build",
+      "files": [
+        {
+          "from": ".github/skills/portable-app-composition/build/lib/appcompose/__init__.py",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/.github/skills/portable-app-composition/build/lib/appcompose/__init__.py",
+          "sha256": "dfe70ab2012f2ab1bf52365424d9af38009d34461bcf44eb597bc511fd797e90"
+        },
+        {
+          "from": ".github/skills/portable-app-composition/build/lib/appcompose/asgi.py",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/.github/skills/portable-app-composition/build/lib/appcompose/asgi.py",
+          "sha256": "337af2eb3f002172d32fd69c2a6ca03808b9bd500a9991305c1d091432cc2c0a"
+        },
+        {
+          "from": ".github/skills/portable-app-composition/build/lib/appcompose/compose.py",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/.github/skills/portable-app-composition/build/lib/appcompose/compose.py",
+          "sha256": "dfe3dc5eaecbd104b749d2c9da89a1c0cf7c853c56407d1b37a64d40c3de5266"
+        },
+        {
+          "from": ".github/skills/portable-app-composition/build/lib/appcompose/demo/__init__.py",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/.github/skills/portable-app-composition/build/lib/appcompose/demo/__init__.py",
+          "sha256": "c64e076daef80d35683ea34e924abdb23cbf99fb476ac12e80251e206d640e1a"
+        },
+        {
+          "from": ".github/skills/portable-app-composition/build/lib/appcompose/demo/digest.py",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/.github/skills/portable-app-composition/build/lib/appcompose/demo/digest.py",
+          "sha256": "1048ab0db3b533881d7d566e2d253c4acbf9835ee25abda5588051b74bb5fa7e"
+        },
+        {
+          "from": ".github/skills/portable-app-composition/build/lib/appcompose/demo/notes.py",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/.github/skills/portable-app-composition/build/lib/appcompose/demo/notes.py",
+          "sha256": "99c25ed5776037c05110344a61e0039f5549dd0e2b2b42aeed694c29dd609948"
+        },
+        {
+          "from": ".github/skills/portable-app-composition/build/lib/appcompose/document.py",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/.github/skills/portable-app-composition/build/lib/appcompose/document.py",
+          "sha256": "0ced27fd7334db810944a7ea3d59eae37e4c7563731e6cd53273453e02bd2648"
+        },
+        {
+          "from": ".github/skills/portable-app-composition/build/lib/appcompose/errors.py",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/.github/skills/portable-app-composition/build/lib/appcompose/errors.py",
+          "sha256": "c34cb06449776883686e099e54c0f24c7d9b13e6f3519dd6ffe34b1d4b37df61"
+        },
+        {
+          "from": ".github/skills/portable-app-composition/build/lib/appcompose/serialisation.py",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/.github/skills/portable-app-composition/build/lib/appcompose/serialisation.py",
+          "sha256": "e1580b1c8a6caf5b79ca4528a9e2855b88d4dbc54454594edca260de02afe36c"
+        }
+      ]
+    },
+    {
+      "source": ".github/skills/portable-app-composition/portable_app_composition.egg-info",
+      "destination": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/.github/skills/portable-app-composition/portable_app_composition.egg-info",
+      "files": [
+        {
+          "from": ".github/skills/portable-app-composition/portable_app_composition.egg-info/PKG-INFO",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/.github/skills/portable-app-composition/portable_app_composition.egg-info/PKG-INFO",
+          "sha256": "6102bb31b28bb36781d73a90e580b4ec268b142d21fd7c2528186a98c550eb2d"
+        },
+        {
+          "from": ".github/skills/portable-app-composition/portable_app_composition.egg-info/SOURCES.txt",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/.github/skills/portable-app-composition/portable_app_composition.egg-info/SOURCES.txt",
+          "sha256": "9cb3811d0f1904b1591314a481f9983783e6bda3db52749a1a0c82d918f33a3c"
+        },
+        {
+          "from": ".github/skills/portable-app-composition/portable_app_composition.egg-info/dependency_links.txt",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/.github/skills/portable-app-composition/portable_app_composition.egg-info/dependency_links.txt",
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+        },
+        {
+          "from": ".github/skills/portable-app-composition/portable_app_composition.egg-info/requires.txt",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/.github/skills/portable-app-composition/portable_app_composition.egg-info/requires.txt",
+          "sha256": "ebc36093443427f8e7f0e75d94c5818427449ec074995bc5066c6830d85701f2"
+        },
+        {
+          "from": ".github/skills/portable-app-composition/portable_app_composition.egg-info/top_level.txt",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/.github/skills/portable-app-composition/portable_app_composition.egg-info/top_level.txt",
+          "sha256": "f87a07a456aa02b1cd510e12431f7f14fe3719adade379a24be096ae05c4b068"
+        }
+      ]
+    },
+    {
+      "source": "libraries/app-composition/build",
+      "destination": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/app-composition/build",
+      "files": [
+        {
+          "from": "libraries/app-composition/build/lib/appcompose/__init__.py",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/app-composition/build/lib/appcompose/__init__.py",
+          "sha256": "dfe70ab2012f2ab1bf52365424d9af38009d34461bcf44eb597bc511fd797e90"
+        },
+        {
+          "from": "libraries/app-composition/build/lib/appcompose/asgi.py",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/app-composition/build/lib/appcompose/asgi.py",
+          "sha256": "337af2eb3f002172d32fd69c2a6ca03808b9bd500a9991305c1d091432cc2c0a"
+        },
+        {
+          "from": "libraries/app-composition/build/lib/appcompose/cli.py",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/app-composition/build/lib/appcompose/cli.py",
+          "sha256": "2c0071470f4964f660ba3f500cd57cde76a24f2ae3c2f538cc68a20e981f94f2"
+        },
+        {
+          "from": "libraries/app-composition/build/lib/appcompose/compose.py",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/app-composition/build/lib/appcompose/compose.py",
+          "sha256": "dfe3dc5eaecbd104b749d2c9da89a1c0cf7c853c56407d1b37a64d40c3de5266"
+        },
+        {
+          "from": "libraries/app-composition/build/lib/appcompose/demo/__init__.py",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/app-composition/build/lib/appcompose/demo/__init__.py",
+          "sha256": "c64e076daef80d35683ea34e924abdb23cbf99fb476ac12e80251e206d640e1a"
+        },
+        {
+          "from": "libraries/app-composition/build/lib/appcompose/demo/digest.py",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/app-composition/build/lib/appcompose/demo/digest.py",
+          "sha256": "1048ab0db3b533881d7d566e2d253c4acbf9835ee25abda5588051b74bb5fa7e"
+        },
+        {
+          "from": "libraries/app-composition/build/lib/appcompose/demo/field-notes.yaml",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/app-composition/build/lib/appcompose/demo/field-notes.yaml",
+          "sha256": "b18509489c5fcb8007fbdd99f64e85359937c687536c400d24034d678e59b982"
+        },
+        {
+          "from": "libraries/app-composition/build/lib/appcompose/demo/notes.py",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/app-composition/build/lib/appcompose/demo/notes.py",
+          "sha256": "99c25ed5776037c05110344a61e0039f5549dd0e2b2b42aeed694c29dd609948"
+        },
+        {
+          "from": "libraries/app-composition/build/lib/appcompose/document.py",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/app-composition/build/lib/appcompose/document.py",
+          "sha256": "0ced27fd7334db810944a7ea3d59eae37e4c7563731e6cd53273453e02bd2648"
+        },
+        {
+          "from": "libraries/app-composition/build/lib/appcompose/errors.py",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/app-composition/build/lib/appcompose/errors.py",
+          "sha256": "c34cb06449776883686e099e54c0f24c7d9b13e6f3519dd6ffe34b1d4b37df61"
+        },
+        {
+          "from": "libraries/app-composition/build/lib/appcompose/mcp.py",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/app-composition/build/lib/appcompose/mcp.py",
+          "sha256": "0c2082726defa8d57e67c55d87e53195c9b1930945611b9b8ec6e89ed3b73c40"
+        },
+        {
+          "from": "libraries/app-composition/build/lib/appcompose/serialisation.py",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/app-composition/build/lib/appcompose/serialisation.py",
+          "sha256": "e1580b1c8a6caf5b79ca4528a9e2855b88d4dbc54454594edca260de02afe36c"
+        }
+      ]
+    },
+    {
+      "source": "libraries/app-composition/portable_app_composition.egg-info",
+      "destination": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/app-composition/portable_app_composition.egg-info",
+      "files": [
+        {
+          "from": "libraries/app-composition/portable_app_composition.egg-info/PKG-INFO",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/app-composition/portable_app_composition.egg-info/PKG-INFO",
+          "sha256": "b7c5ebc10cd99ce83b00d30dcbff645b3eeeab95cde00bbf5bb8d91310ceea3f"
+        },
+        {
+          "from": "libraries/app-composition/portable_app_composition.egg-info/SOURCES.txt",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/app-composition/portable_app_composition.egg-info/SOURCES.txt",
+          "sha256": "1d3a28a43297a64b9eb6b28f5714600af4f9dc984a1ce6069a02c9a5865b4924"
+        },
+        {
+          "from": "libraries/app-composition/portable_app_composition.egg-info/dependency_links.txt",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/app-composition/portable_app_composition.egg-info/dependency_links.txt",
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+        },
+        {
+          "from": "libraries/app-composition/portable_app_composition.egg-info/entry_points.txt",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/app-composition/portable_app_composition.egg-info/entry_points.txt",
+          "sha256": "75fbeb4959bcd016b438c6ae50d36465f45f8e617b53857eb7ef63bda29b97bf"
+        },
+        {
+          "from": "libraries/app-composition/portable_app_composition.egg-info/requires.txt",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/app-composition/portable_app_composition.egg-info/requires.txt",
+          "sha256": "ebc36093443427f8e7f0e75d94c5818427449ec074995bc5066c6830d85701f2"
+        },
+        {
+          "from": "libraries/app-composition/portable_app_composition.egg-info/top_level.txt",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/app-composition/portable_app_composition.egg-info/top_level.txt",
+          "sha256": "f87a07a456aa02b1cd510e12431f7f14fe3719adade379a24be096ae05c4b068"
+        }
+      ]
+    },
+    {
+      "source": "libraries/recoverable-jobs/build",
+      "destination": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/recoverable-jobs/build",
+      "files": [
+        {
+          "from": "libraries/recoverable-jobs/build/lib/workrecovery/__init__.py",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/recoverable-jobs/build/lib/workrecovery/__init__.py",
+          "sha256": "a75e3b6f469439312a0b0b1c11b1b815f2ea0a0cad130c17a8a145b7e21dd8c9"
+        },
+        {
+          "from": "libraries/recoverable-jobs/build/lib/workrecovery/artifacts.py",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/recoverable-jobs/build/lib/workrecovery/artifacts.py",
+          "sha256": "49253676b948f457d69b55c45e4fab7ca7cef82c9e93613d679911a4ba7c01ff"
+        },
+        {
+          "from": "libraries/recoverable-jobs/build/lib/workrecovery/cli.py",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/recoverable-jobs/build/lib/workrecovery/cli.py",
+          "sha256": "2a64f7ebe8966f755177b94e6da2e545b6387538d6e706d724eecbcfaf6f25d1"
+        },
+        {
+          "from": "libraries/recoverable-jobs/build/lib/workrecovery/clock.py",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/recoverable-jobs/build/lib/workrecovery/clock.py",
+          "sha256": "99810f913b0e16fa47ddedf6dc986bb0f8ef185569851ded91f5b2ab804e6260"
+        },
+        {
+          "from": "libraries/recoverable-jobs/build/lib/workrecovery/commit.py",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/recoverable-jobs/build/lib/workrecovery/commit.py",
+          "sha256": "d9ad3f51e80ce9e5f372ea394e534bd91a8618189b59727c7cefc4bc557de302"
+        },
+        {
+          "from": "libraries/recoverable-jobs/build/lib/workrecovery/errors.py",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/recoverable-jobs/build/lib/workrecovery/errors.py",
+          "sha256": "c01640bedcfe6cc13760cf7f51397cf72ee30cbfc6fdbd5da61d233a44f51c5d"
+        },
+        {
+          "from": "libraries/recoverable-jobs/build/lib/workrecovery/mcp.py",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/recoverable-jobs/build/lib/workrecovery/mcp.py",
+          "sha256": "19a99a96c6297d7a7da8dba4df7022f4aaa5e01e94adb3146d4901adac3e76c6"
+        },
+        {
+          "from": "libraries/recoverable-jobs/build/lib/workrecovery/payload.py",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/recoverable-jobs/build/lib/workrecovery/payload.py",
+          "sha256": "61d7fe41142a148abd25fd5c79beaec61df2d598445eac2df8fbc26f08397dad"
+        },
+        {
+          "from": "libraries/recoverable-jobs/build/lib/workrecovery/store.py",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/recoverable-jobs/build/lib/workrecovery/store.py",
+          "sha256": "0b2337c363bea07941837cba24313a32d8ae68d657800753731f79bbdde68471"
+        }
+      ]
+    },
+    {
+      "source": "libraries/recoverable-jobs/recoverable_jobs.egg-info",
+      "destination": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/recoverable-jobs/recoverable_jobs.egg-info",
+      "files": [
+        {
+          "from": "libraries/recoverable-jobs/recoverable_jobs.egg-info/PKG-INFO",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/recoverable-jobs/recoverable_jobs.egg-info/PKG-INFO",
+          "sha256": "62a3aa2b207619a62081271f9095e9ccd0c3c0c64793c0b8065314c8b3ebb4a2"
+        },
+        {
+          "from": "libraries/recoverable-jobs/recoverable_jobs.egg-info/SOURCES.txt",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/recoverable-jobs/recoverable_jobs.egg-info/SOURCES.txt",
+          "sha256": "569a5fb8476f581652e7f3346b28172ac81812c6ef4e5a79f759c647538abf59"
+        },
+        {
+          "from": "libraries/recoverable-jobs/recoverable_jobs.egg-info/dependency_links.txt",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/recoverable-jobs/recoverable_jobs.egg-info/dependency_links.txt",
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+        },
+        {
+          "from": "libraries/recoverable-jobs/recoverable_jobs.egg-info/entry_points.txt",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/recoverable-jobs/recoverable_jobs.egg-info/entry_points.txt",
+          "sha256": "4b68514c63638909af803a101fe6bcbc9ef8b90f0afb5d5a815a30bb4e57dae5"
+        },
+        {
+          "from": "libraries/recoverable-jobs/recoverable_jobs.egg-info/requires.txt",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/recoverable-jobs/recoverable_jobs.egg-info/requires.txt",
+          "sha256": "51c1a4df58620963d637eb0bcb64174abe9bdf13eaf0e41db09ca314bbc18731"
+        },
+        {
+          "from": "libraries/recoverable-jobs/recoverable_jobs.egg-info/top_level.txt",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/recoverable-jobs/recoverable_jobs.egg-info/top_level.txt",
+          "sha256": "cd7cb53a31f018dd1c55068e67a501200d8774cdd6852865f85d210d6ed51cc5"
+        }
+      ]
+    },
+    {
+      "source": "libraries/investigation-notebook/build",
+      "destination": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/investigation-notebook/build",
+      "files": [
+        {
+          "from": "libraries/investigation-notebook/build/lib/investigation_notebook/__init__.py",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/investigation-notebook/build/lib/investigation_notebook/__init__.py",
+          "sha256": "9995598404b2fe6b330e829bed90cc4b1455384226476427b66533e62ced7442"
+        },
+        {
+          "from": "libraries/investigation-notebook/build/lib/investigation_notebook/__main__.py",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/investigation-notebook/build/lib/investigation_notebook/__main__.py",
+          "sha256": "6a685c03dc9a4afaf765e7d4a8b3b97ef7f422596a6826fe916c9d9a7650b981"
+        },
+        {
+          "from": "libraries/investigation-notebook/build/lib/investigation_notebook/note.schema.json",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/investigation-notebook/build/lib/investigation_notebook/note.schema.json",
+          "sha256": "db3bb5b26eb429535bd1cf515106c0f430c7a58423d8dd6894624f706fdd6d23"
+        },
+        {
+          "from": "libraries/investigation-notebook/build/lib/investigation_notebook/notebook.py",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/investigation-notebook/build/lib/investigation_notebook/notebook.py",
+          "sha256": "31875463ca717a6ce57709d235b2a4f4b9db762f934ded85fcf4ec7833347881"
+        }
+      ]
+    },
+    {
+      "source": "libraries/investigation-notebook/investigation_notebook.egg-info",
+      "destination": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/investigation-notebook/investigation_notebook.egg-info",
+      "files": [
+        {
+          "from": "libraries/investigation-notebook/investigation_notebook.egg-info/PKG-INFO",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/investigation-notebook/investigation_notebook.egg-info/PKG-INFO",
+          "sha256": "5a0b5cd2e344a04d624373993de3e8db136875b207be94692d837a52d0167913"
+        },
+        {
+          "from": "libraries/investigation-notebook/investigation_notebook.egg-info/SOURCES.txt",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/investigation-notebook/investigation_notebook.egg-info/SOURCES.txt",
+          "sha256": "b9095860afa378f90fb1442d004de51def1909825ca516d909f5199c43699729"
+        },
+        {
+          "from": "libraries/investigation-notebook/investigation_notebook.egg-info/dependency_links.txt",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/investigation-notebook/investigation_notebook.egg-info/dependency_links.txt",
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+        },
+        {
+          "from": "libraries/investigation-notebook/investigation_notebook.egg-info/entry_points.txt",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/investigation-notebook/investigation_notebook.egg-info/entry_points.txt",
+          "sha256": "863b27c2ee3971a4c0adf12a18162612cdf4317ae8550b6582375e8078f83a1f"
+        },
+        {
+          "from": "libraries/investigation-notebook/investigation_notebook.egg-info/top_level.txt",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/investigation-notebook/investigation_notebook.egg-info/top_level.txt",
+          "sha256": "733dec8e9dc0d3a64b1fd6db5c73ce0d604e8b384ed50b64ba9eef5681f7db3e"
+        }
+      ]
+    },
+    {
+      "source": "libraries/repository-inspection/build",
+      "destination": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/repository-inspection/build",
+      "files": [
+        {
+          "from": "libraries/repository-inspection/build/lib/repository_inspection/__init__.py",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/repository-inspection/build/lib/repository_inspection/__init__.py",
+          "sha256": "6e5ec2e015ec0e38981273ec752c9cc556673404bd9bb76fd0212335c4369094"
+        },
+        {
+          "from": "libraries/repository-inspection/build/lib/repository_inspection/architecture.py",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/repository-inspection/build/lib/repository_inspection/architecture.py",
+          "sha256": "05e8d171f5ad988c645b8b319180d9f482986c219879ca68e0d45fc3895cda76"
+        },
+        {
+          "from": "libraries/repository-inspection/build/lib/repository_inspection/catalogue.py",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/repository-inspection/build/lib/repository_inspection/catalogue.py",
+          "sha256": "ace8b8c31204fab7a4300964d75c8ec614efabe32c745827f3d8ff6c62a44759"
+        },
+        {
+          "from": "libraries/repository-inspection/build/lib/repository_inspection/filesystem.py",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/repository-inspection/build/lib/repository_inspection/filesystem.py",
+          "sha256": "0763645c48a1f15486e8a8ec1a28c50bd630c820a7a32f7250c715406629aab5"
+        }
+      ]
+    },
+    {
+      "source": "libraries/repository-inspection/src/repository_inspection.egg-info",
+      "destination": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/repository-inspection/src/repository_inspection.egg-info",
+      "files": [
+        {
+          "from": "libraries/repository-inspection/src/repository_inspection.egg-info/PKG-INFO",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/repository-inspection/src/repository_inspection.egg-info/PKG-INFO",
+          "sha256": "6d5203dcf27e5c3b98938d541493bfb5e5ef3e97de84c76affb386adcb56421d"
+        },
+        {
+          "from": "libraries/repository-inspection/src/repository_inspection.egg-info/SOURCES.txt",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/repository-inspection/src/repository_inspection.egg-info/SOURCES.txt",
+          "sha256": "7d15245b8e9634bedcd27d37f4d6e0477ca0552da2d64f7169adfe3ff8c9b2d5"
+        },
+        {
+          "from": "libraries/repository-inspection/src/repository_inspection.egg-info/dependency_links.txt",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/repository-inspection/src/repository_inspection.egg-info/dependency_links.txt",
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+        },
+        {
+          "from": "libraries/repository-inspection/src/repository_inspection.egg-info/entry_points.txt",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/repository-inspection/src/repository_inspection.egg-info/entry_points.txt",
+          "sha256": "0246877c4504f83e7cb960d3b0e35940ca8ef8ffdbe5cf34d8e725d790ebc9e1"
+        },
+        {
+          "from": "libraries/repository-inspection/src/repository_inspection.egg-info/top_level.txt",
+          "to": "/tmp/agentcraft-migration.fTQyVn/generated-artifacts/libraries/repository-inspection/src/repository_inspection.egg-info/top_level.txt",
+          "sha256": "4cb98ba4fb79e73e76e5aa072c1f34ea238d44f1af2505a542311e1ab5be622d"
+        }
+      ]
+    }
+  ],
+  "retired_launcher_residue": [
+    {
+      "from": "libraries/app-composition/scripts/inspect_document.py",
+      "to": "/tmp/agentcraft-migration.fTQyVn/retired-launcher-residue/libraries/app-composition/scripts/inspect_document.py",
+      "sha256": "f2dc8f313764610625323301b0d554154d8b57115abd146adc0ec9ae5fde5f00"
+    },
+    {
+      "from": "libraries/app-composition/scripts/mcp_server.py",
+      "to": "/tmp/agentcraft-migration.fTQyVn/retired-launcher-residue/libraries/app-composition/scripts/mcp_server.py",
+      "sha256": "92b8371c08c006f0739251758897cbcdc206f4b515e75ff5723901b2ec88c7c2"
+    },
+    {
+      "from": "libraries/app-composition/scripts/serve_mcp.py",
+      "to": "/tmp/agentcraft-migration.fTQyVn/retired-launcher-residue/libraries/app-composition/scripts/serve_mcp.py",
+      "sha256": "ed1650f508bcb419f656f6efbd3f67b686e8df06332bf306effe0a087d4dd754"
+    },
+    {
+      "from": "libraries/recoverable-jobs/scripts/recover.py",
+      "to": "/tmp/agentcraft-migration.fTQyVn/retired-launcher-residue/libraries/recoverable-jobs/scripts/recover.py",
+      "sha256": "039cdcbeccd66c093044b586fa7338f624a2d96c41f5e3f3715ce49e9e969ecd"
+    },
+    {
+      "from": "libraries/recoverable-jobs/scripts/mcp_server.py",
+      "to": "/tmp/agentcraft-migration.fTQyVn/retired-launcher-residue/libraries/recoverable-jobs/scripts/mcp_server.py",
+      "sha256": "fb0cce398f66a6847619557d1a3540c2b00c4b80060869fc11f0016706df49a1"
+    },
+    {
+      "from": "libraries/recoverable-jobs/scripts/serve_mcp.py",
+      "to": "/tmp/agentcraft-migration.fTQyVn/retired-launcher-residue/libraries/recoverable-jobs/scripts/serve_mcp.py",
+      "sha256": "ed1650f508bcb419f656f6efbd3f67b686e8df06332bf306effe0a087d4dd754"
+    }
+  ]
+}

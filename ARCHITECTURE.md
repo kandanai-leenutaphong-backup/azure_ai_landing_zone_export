@@ -16,16 +16,149 @@ The design has these primary goals:
 
 The deployment entry point is [`bicep/main.bicep`](bicep/main.bicep).
 
+### Customer service multi-agent application
+
+[`applications/customer-service-multi-agent`](applications/customer-service-multi-agent)
+owns the synthetic support workflow, authoritative simulation tools, API, browser
+surface, correlated telemetry, and evaluation. Its independent release owner is
+[`deploy/deploy.sh`](deploy/README.md); the landing-zone orchestrator is not
+rerun to release this app.
+
+The verified public route is
+`https://customer-service-multi-agent.azuremew-domain.org` -> existing hub
+`agw-thai-search-sea` WAF Prevention -> private SEA `capps-env-sea` ->
+`customer-service-multi-agent`, at 0.5 CPU, 1 GiB, replicas 0-1. The app ingress
+accepts the dedicated hub gateway and firewall-node subnets; existing firewall
+policy forces SNAT on the gateway-to-spoke leg. A new host-specific TLS listener and HTTP
+redirect preserve the existing Thai search listener and route. The public
+hostname uses the existing delegated `azuremew-domain.org` zone. Certificate
+renewal ownership and operator procedure belong to `deploy/README.md`.
+
+SEA orchestration invokes namespaced native prompt agents through the private
+West US 3 Foundry project using existing global peering and the existing workload
+managed identity. The model is the existing regional Standard `gpt-4.1-mini`.
+For local development only, an app-local gitignored `.env` can explicitly select
+tenant-scoped Azure CLI credentials. Process configuration takes precedence;
+deployed managed identity remains the default, with no credential fallback.
+No Foundry account, model deployment or role assignment is created.
+The separately approved, tenant-only secretless browser SPA obtains delegated tokens
+using vendored MSAL and PKCE; only its existing-API preauthorization is added.
+Incoming callers must present a signed, tenant-scoped access token
+with the existing delegated scope and pass this application's object-ID allowlist.
+The outbound managed identity never substitutes for caller authorization.
+
+Conversational support has a separate owner-isolated `chat.py` service behind the same
+authorization boundary. The UI and callable API share that implementation and the
+simulation concurrency lock. Three Microsoft Agent Framework roles compose in
+`hosted/` through `Workflow.as_agent()`, using canonical synthetic policy and telemetry.
+Native source upload is the deployment path, without registry role grants; the existing
+model is separate from hosted compute. Hosted version `cs-customer-service-chat:1`
+is active, downloaded-source verified and exercised for two native stored-response turns
+after VPN connectivity recovered. Native console readback includes all required telemetry
+fields for triage, policy and resolution. The minimal UI uses automatic tenant sign-in,
+one chat window and Logout; simulation and hierarchy measurement stay callable APIs,
+not dashboard controls on this surface.
+
+One service implementation serves the API and browser. Simulated transactions
+never touch real orders or payments. Binary task completion is checked against
+authoritative fixture/tool state; specialized factual, task, tone and consistency
+judges assess semantic quality separately. Consensus, disagreement and calibration
+are explicit evaluation concerns, not inferred from a successful model response.
+The metric hierarchy is system -> journey type -> per-agent task accuracy,
+latency, errors and tokens. Real customer resolution/reopen impact remains
+unmeasured without feedback data. Stdout JSON enters existing SEA Log Analytics;
+trace/span correlation and pseudonymous sessions join the decision timeline.
+Deployment/readback status, exact revisions and known limitations belong to the
+application README and deployment runbook, not this topology description.
+
+### Additional regional agent spoke
+
+[`bicep/agent-spoke.bicep`](bicep/agent-spoke.bicep) independently adds a minimal
+private standard-agent spoke in subscription
+`6bacd437-5d04-4afd-850e-51bdc4041496`, without redeploying the SEA orchestrator.
+Its selected region is West US 3, resource group is `rg-ai-dev-wus3`, and VNet is
+`vnet-spoke-agent-wus3` (`10.80.0.0/16`). `snet-agent` (`10.80.5.0/24`) is delegated
+to `Microsoft.App/environments`; `snet-pe` (`10.80.6.0/24`) holds four private endpoints.
+
+The spoke contains one Foundry account/project with agent network injection,
+AAD connections, and a standard-agent capability host, plus AI Search Basic,
+Blob Storage Standard LRS, serverless Cosmos DB, and a regional `gpt-4.1-mini`
+Standard model deployment. Public access is disabled on all four services.
+There is no additional application compute, gateway, firewall, or monitoring.
+
+Bidirectional global VNet peerings connect the regional spoke to both `vnet-hub-2`
+and `vnet-spoke-app-sea`. The hub shares its existing VPN gateway with the spoke.
+Six existing hub private DNS zones are linked to its VNet; no duplicate zones
+are created. Direct SEA-to-agent-spoke traffic uses VNet peering, not the SEA
+default route to Azure Firewall. The AI Gateway VNet is not directly peered to
+the regional spoke, because this deployment does not add AI Gateway integration.
+
+The SEA `thai-surname-search` Container App includes **Option 6: Private Foundry
+agents and regional latency**. It uses the new Conversations/Responses API, not
+Classic Assistants, to invoke `regional-latency-agent` version `1` in each region.
+West US 3 uses the existing global peering and `agent-project`; SEA uses the
+private `foundry-agent-vnet-seaxlpu` / `agent-vnet-projectxlpu` project.
+`uami-container-apps` has project-scoped Foundry User on both projects.
+Agent calls and timing are implemented in
+[`applications/thai-surname-search/foundry_agent.py`](applications/thai-surname-search/foundry_agent.py);
+the app keeps region/browser-isolated conversations, supports fresh paired
+comparisons, and captures total response time, server-observed first-token time,
+TCP connection probes, and CSV measurements. Both agents use `gpt-4.1-mini`
+version `2025-04-14` with identical instructions and file-search content.
+West US 3 is regional Standard; SEA supports only GlobalStandard for this chat
+model, so SEA inference is not guaranteed local and response-time deltas are not
+a pure regional network penalty. Existing Classic agents and their data remain
+untouched. The app never creates or deletes agents. Gateway/WAF and DNS are
+unchanged; the gateway was verified Running on 2026-10-15.
+
+The app offers only **Global Standard West US 3 vs Global Standard SEA** and
+**Standard SEA vs Standard West US 3**. The latter is explicitly unavailable:
+both SEA catalogs offered Standard only for an embedding model on 2026-10-15,
+not a Standard chat model. No mixed-SKU or different-region fallback is used.
+The additional West
+`gpt-4.1-mini-global` deployment matches the Standard base model/version,
+capacity 10, content policy and upgrade policy; it is deployed independently
+with `bicep/agent-sku-comparison.bicep`. `sku-global-latency-agent:1` copies
+`regional-latency-agent:1` with only the model deployment reference changed,
+sharing the original vector store; the matching SEA Global agent has identical
+document bytes in its own store. Actual agent/deployment metadata is checked
+before calls, including model/version, SKU, capacity and corpus/settings.
+Model-only comparisons disable tools. Fresh paired calls alternate
+starting order, record tool/cache/token usage, and exclude warm-up, single-chat
+and incomplete pairs from benchmark medians. The in-app diagram displays direct
+SEA-to-West global peering, same-VNet SEA access, unmeasured browser/service hops
+and the latest complete current-workload pair. Additive timelines separate setup,
+API wait-to-first-text, remaining stream and local processing; coarse service
+timestamps overlap rather than add. Global inference location and service load
+remain uncontrolled; total response time is not pure network latency.
+
+The transfer calculator uses USD retail checked 2026-10-15: global peering
+$0.09/GB SEA + $0.035/GB West, plus $0.01/GB destination Private Link processing;
+same-VNet SEA has only the latter on this leg. Request + response bytes count
+once. Thus 1 GB each way is approximately $0.27 West versus $0.02 SEA, excluding
+fixed endpoint hours and model/tools, compute, Gateway/common browser paths.
+Observed Responses HTTP-body bytes are a partial baseline, not Azure billing
+telemetry. Hidden model-backend routing does not imply customer VNet charges.
+
+On 2026-10-14, Sweden Central could not provision Search, East US could not
+provision Cosmos DB, and East US 2 could not provision Search despite available
+service quotas. West US 3 successfully provisioned the complete colocated
+standard-agent setup, including the regional model. The empty Sweden Central,
+East US, and East US 2 trial resource groups and their external peerings and DNS
+links/records were retired after the private agent workflow passed verification.
+
 ## Logical architecture
 
 ```mermaid
 flowchart LR
     Users["Private users and administrators"]
+    Browser["Application browser"]
 
     subgraph Hub["Hub resource group: rg-hub-sea"]
         HubVNet["Hub VNet<br/>vnet-hub-2<br/>10.0.0.0/16"]
         VPN["VPN Gateway"]
         DNS["DNS Private Resolver<br/>and private DNS zones"]
+        WAF["Application Gateway + WAF<br/>agw-thai-search-sea"]
         HubVNet --- VPN
         HubVNet --- DNS
     end
@@ -34,6 +167,7 @@ flowchart LR
         SpokeVNet["Spoke VNet<br/>vnet-spoke-app-sea<br/>10.10.0.0/16"]
         Compute["Container Apps<br/>Function App<br/>Linux VMs"]
         AI["AI Foundry<br/>Optional AI Vision<br/>Grounding with Bing"]
+        SEAAgent["Private new Foundry agent v1<br/>gpt-4.1-mini GlobalStandard<br/>(inference not guaranteed SEA)"]
         Data["Storage<br/>Cosmos DB<br/>AI Search"]
         PrivateEndpoints["Private endpoints<br/>snet-pe"]
         Operations["ACR<br/>Log Analytics<br/>Application Insights"]
@@ -41,6 +175,9 @@ flowchart LR
         SpokeVNet --> Compute
         Compute --> PrivateEndpoints
         PrivateEndpoints --> AI
+        Compute -->|"Conversations/Responses"| SEAAgent
+        PrivateEndpoints --> SEAAgent
+        SEAAgent --> Data
         PrivateEndpoints --> Data
         Compute --> Operations
     end
@@ -56,15 +193,32 @@ flowchart LR
         APIM --> UsagePipeline
     end
 
+    subgraph AgentSpoke["West US 3 agent spoke: rg-ai-dev-wus3"]
+        AgentVNet["vnet-spoke-agent-wus3<br/>10.80.0.0/16"]
+        AgentFoundry["Private Foundry standard setup<br/>new agent v1<br/>gpt-4.1-mini Standard"]
+        AgentData["Blob Storage<br/>Cosmos DB<br/>AI Search Basic"]
+        AgentVNet --> AgentFoundry
+        AgentFoundry --> AgentData
+    end
+
     Users --> VPN
+    Browser --> WAF
+    WAF -->|"existing private app backend"| Compute
     HubVNet <-->|VNet peering| SpokeVNet
     HubVNet <-->|VNet peering| AIGW
     DNS -.-> SpokeVNet
     DNS -.-> AIGW
+    HubVNet <-->|Global VNet peering| AgentVNet
+    SpokeVNet <-->|Global VNet peering| AgentVNet
+    Compute -->|"Conversations/Responses, managed identity"| AgentFoundry
+    DNS -.-> AgentVNet
     APIM -.->|"priority 2: overflow example, no spoke changes"| AI
 ```
 
-The diagram reflects the deployed topology: one hub, one spoke, and the AI Gateway subscription (see below). The single spoke contains all application, AI, data, private endpoint, and operational resources. Set `deployAiGateway = false` to skip the AI Gateway subscription.
+The diagram includes the SEA application spoke, the separate West US 3 agent
+spoke, the connectivity hub, and the AI Gateway subscription. The agent spoke
+has its own deployment entry point; `deployAiGateway = false` only skips the
+AI Gateway subscription in the SEA orchestrator.
 
 ## Resource organization
 
@@ -92,6 +246,9 @@ The default hub address space is `10.0.0.0/16`.
 | `default` | `10.0.0.0/24` | General hub workload subnet |
 | `GatewaySubnet` | `10.0.1.0/27` | Active-active route-based VPN Gateway |
 | `DnsResolverInboundSubnet` | `10.0.2.0/28` | Delegated subnet for the DNS Private Resolver inbound endpoint |
+| `AzureFirewallSubnet` | `10.0.3.0/26` | Hub Azure Firewall (Basic) |
+| `AzureFirewallManagementSubnet` | `10.0.4.0/26` | Azure Firewall Basic management plane |
+| `snet-appgw` | `10.0.5.0/24` | Application Gateway WAF_v2 (hub) |
 
 The hub VPN Gateway uses the `VpnGw1AZ` SKU by default and exposes gateway transit to the spoke.
 
@@ -107,9 +264,8 @@ The single spoke address space is `10.10.0.0/16`.
 | `snet-functionapp` | `10.10.4.0/24` | Delegated for Function App VNet integration |
 | `snet-agent` | `10.10.5.0/24` | Reserved for agent workloads, with NAT Gateway egress |
 | `snet-pe` | `10.10.6.0/24` | Private endpoints, with private endpoint network policies disabled |
-| `snet-appgw` | `10.10.7.0/24` | Dedicated Application Gateway WAF_v2 subnet |
 
-All seven spoke subnets above are created by [`bicep/modules/spoke-network.bicep`](bicep/modules/spoke-network.bicep). The agent subnet exists as network infrastructure even though the current Foundry account module does not yet consume it.
+All spoke subnets above are created by [`bicep/modules/spoke-network.bicep`](bicep/modules/spoke-network.bicep). The agent subnet exists as network infrastructure even though the current Foundry account module does not yet consume it.
 
 The hub and spoke are peered in both directions. The hub permits gateway transit, and the spoke uses the hub's remote gateway.
 
@@ -162,11 +318,20 @@ All applications scale from zero to one replica.
 
 The managed environment is configured with `internal: true`. As a result, apps with external ingress are exposed through the environment's private load balancer rather than directly to the public internet. Back-end apps are limited to environment-level service-to-service ingress.
 
-Application Gateway WAF_v2 has its own `snet-appgw` subnet and public IP. Its
+Application Gateway WAF_v2 lives in the hub `snet-appgw` subnet (10.0.5.0/24) with its own public IP. Its
 public HTTP listener applies OWASP 3.2 rules in prevention mode and forwards
 traffic over HTTPS to the private `thai-surname-search` hostname. A scoped
 Origin rewrite allows Streamlit WebSockets through the reverse proxy while
 keeping Streamlit CORS and XSRF protections enabled.
+
+The hub Azure Firewall (Basic, `afw-hub-sea`) inspects spoke and AI Gateway
+egress and spoke-to-AI-Gateway traffic. Route tables send `0.0.0.0/0` and the
+peer VNet prefix to the firewall for the VM, Function App, and agent subnets
+(spoke) and the APIM outbound and Logic Apps subnets (AI Gateway). The Application
+Gateway subnet routes the spoke prefix through the firewall. The firewall always
+SNATs so backends without a UDR return traffic symmetrically. Point-to-site VPN
+and hub DNS traffic stay direct. Container Apps subnets use the same route table
+(`enableContainerAppsFirewallRoute`; requires a workload-profiles environment).
 
 The generated `azurecontainerapps.io` environment domain is hosted in an
 Azure Private DNS zone linked to the hub and spoke VNets. Apex, wildcard, and
@@ -360,6 +525,7 @@ granted `Cognitive Services User` on both Foundry accounts.
 | Area | Bicep source |
 |---|---|
 | Subscription orchestration | [`bicep/main.bicep`](bicep/main.bicep) |
+| Regional standard-agent spoke | [`bicep/agent-spoke.bicep`](bicep/agent-spoke.bicep), [`bicep/modules/foundry-standard-agent.bicep`](bicep/modules/foundry-standard-agent.bicep) |
 | Hub network | [`bicep/modules/hub-network.bicep`](bicep/modules/hub-network.bicep) |
 | Spoke network | [`bicep/modules/spoke-network.bicep`](bicep/modules/spoke-network.bicep) |
 | AI Gateway network | [`bicep/modules/ai-gateway-network.bicep`](bicep/modules/ai-gateway-network.bicep) |

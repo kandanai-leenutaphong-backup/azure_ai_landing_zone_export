@@ -1,0 +1,3057 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "evidence_class": "PASS_ARTIFACT",
+  "scope": "CO-2/CO-3, chapter 03 F2 and chapter 07: eight frontend/Node npm artifacts usable in a fresh outside-checkout host",
+  "completion_claim": "This npm artifact increment passed. No full unified release, new app build, tarball browser rendering, native render, deployed auth or live-provider acceptance is claimed.",
+  "started_utc": "2026-09-16T12:50:54.848Z",
+  "observed_through_utc": "2026-09-16T13:14:23.079Z",
+  "evidence_root": "/tmp/agentcraft-recovery-npm",
+  "consumer_host": "/tmp/agentcraft-recovery-npm/repair-1/host",
+  "baseline_runs": 1,
+  "package_repair_rounds": 1,
+  "package_repair_round_limit": 2,
+  "repository_changes": [
+    "libraries/source-code/package.json",
+    "libraries/resource-explorer/package.json",
+    "libraries/copilot-terminal/package.json",
+    "libraries/azure-sky-styling/package.json",
+    "libraries/framework/distribution/npm-artifacts.json"
+  ],
+  "repair_details": [
+    {
+      "defect": "TS2882: copilot-terminal/styles lacked declarations for strict side-effect import checking",
+      "change": "Generate a CSS-only export declaration during build and publish it as the styles types condition",
+      "path": "libraries/copilot-terminal/package.json"
+    },
+    {
+      "defect": "TS1149: Azure Sky emitted DistantArchitecture.d.ts and distantArchitecture.d.ts with case-colliding names",
+      "change": "Give only the published component declaration a distinct filename and update its emitted ESM declaration reference; authored TS stays unchanged",
+      "path": "libraries/azure-sky-styling/package.json"
+    },
+    {
+      "defect": "TS2305: Lucide 0.460 declarations import ReactSVG, absent from installed React 19 types",
+      "change": "Align source-code/resource-explorer peers and Azure Sky dependency with the already-used Lucide ^1.42.0 family; final consumer verifies 1.42.0",
+      "paths": [
+        "libraries/source-code/package.json",
+        "libraries/resource-explorer/package.json",
+        "libraries/azure-sky-styling/package.json"
+      ]
+    }
+  ],
+  "counts": {
+    "packages_expected": 8,
+    "packages_attempted": 8,
+    "packages_passed": 8,
+    "packages_failed": 0,
+    "packages_blocked": 0,
+    "packages_unrun": 0,
+    "installed_test_cases_expected": 17,
+    "installed_test_cases_passed": 17,
+    "installed_test_cases_failed": 0,
+    "installed_test_cases_skipped": 0,
+    "original_public_selftest_cases": 11,
+    "additional_consumer_cases": 6,
+    "installed_archive_files_verified": 301,
+    "installed_css_and_visual_asset_files": 33,
+    "resolved_export_and_peer_specifiers": 35,
+    "consumer_bundle_manifest_files": 314,
+    "consumer_css_files": 1,
+    "consumer_literal_css_asset_references": 3
+  },
+  "environment": {
+    "node": "v22.23.2",
+    "node_binary": "/tmp/agentcraft-recovery-native-evidence.4BDirv/hyperframes-runtime.NN7mGE/node_modules/node/bin/node",
+    "npm": "10.8.2",
+    "platform": "linux",
+    "architecture": "x64",
+    "os_release": "6.6.87.2-microsoft-standard-WSL2",
+    "selected_consumer_versions": {
+      "node": "v22.23.2",
+      "npm": "10.8.2",
+      "typescript": "6.0.2",
+      "vite": "7.3.0",
+      "react": "19.3.0",
+      "react-dom": "19.3.0",
+      "lucide-react": "1.42.0",
+      "shiki": "4.4.3",
+      "@types/react": "19.3.0",
+      "@types/react-dom": "19.3.0"
+    },
+    "typescript_profile": "strict, skipLibCheck=false, moduleResolution=Bundler; no source paths or aliases",
+    "build_versions": "Recorded per artifact; member TypeScript 5.9.3 or 6.0.3, Vite 6.4.3 or 7.3.6 where installed. Consumer uses TypeScript 6.0.2 and Vite 7.3.0."
+  },
+  "isolation": {
+    "builds": "Isolated /tmp package snapshots; npm pack prepack runs build there, never in checkout dist",
+    "final_install_command": [
+      "npm",
+      "install",
+      "--ignore-scripts",
+      "--install-links",
+      "--no-audit",
+      "--no-fund"
+    ],
+    "dependencies": "Eight local tarball paths plus declared native runtime/peer packages, resolved by npm in a new host",
+    "package_symlinks": false,
+    "source_checkout_aliases": false,
+    "NODE_PATH": "unset",
+    "NODE_OPTIONS": "unset",
+    "root_typescript_paths": null,
+    "root_vite_aliases": null,
+    "checked_checkout_dist_unchanged": true,
+    "checkout_dist_before": {
+      "event-stream": {
+        "dist": {
+          "file_count": 4,
+          "sha256": "901b2cc78578722beaf3d24e27ca809632dff59810761832a881f8d60017fc6f"
+        },
+        "dist-library": null
+      },
+      "source-code": {
+        "dist": {
+          "file_count": 5,
+          "sha256": "a3d76ec8e0cd0d9fe1a3584c8d751406fb7af9f0e9a30d2ed1ef6bb0da75f102"
+        },
+        "dist-library": null
+      },
+      "resource-explorer": {
+        "dist": {
+          "file_count": 32,
+          "sha256": "a6a89b672bd5560aba9d4e3c4c4b2d706c16cc40ed5ab9631994bd5b4794450f"
+        },
+        "dist-library": null
+      },
+      "copilot-terminal": {
+        "dist": {
+          "file_count": 5,
+          "sha256": "74f8ddd689b7c0b002ee9afd7c5f3d52654bbf9bb17961259bf6219464a46d56"
+        },
+        "dist-library": null
+      },
+      "azure-sky-styling": {
+        "dist": {
+          "file_count": 28,
+          "sha256": "aa502305c191f2bf91c4b700b641420eca8e8b801b095a9d35866260f14e09ca"
+        },
+        "dist-library": {
+          "file_count": 25,
+          "sha256": "4d1551fb5b18aadab2c68dfbfba19c61b01f9095256c659ec9c4bbd5c376b419"
+        }
+      },
+      "hyperframes-tools": {
+        "dist": null,
+        "dist-library": null
+      },
+      "modular-agents": {
+        "dist": {
+          "file_count": 18,
+          "sha256": "7ee89460b2753a7ada81de0d065c3cbd972246a42a51bff0e7f67cfbee8e9f8c"
+        },
+        "dist-library": null
+      },
+      "agent-optimization": {
+        "dist": {
+          "file_count": 14,
+          "sha256": "2a94b8b0408874aae200174015bcb0e7716ce4f808abb1c51b44288047ac37b2"
+        },
+        "dist-library": null
+      }
+    },
+    "checkout_dist_after": {
+      "event-stream": {
+        "dist": {
+          "file_count": 4,
+          "sha256": "901b2cc78578722beaf3d24e27ca809632dff59810761832a881f8d60017fc6f"
+        },
+        "dist-library": null
+      },
+      "source-code": {
+        "dist": {
+          "file_count": 5,
+          "sha256": "a3d76ec8e0cd0d9fe1a3584c8d751406fb7af9f0e9a30d2ed1ef6bb0da75f102"
+        },
+        "dist-library": null
+      },
+      "resource-explorer": {
+        "dist": {
+          "file_count": 32,
+          "sha256": "a6a89b672bd5560aba9d4e3c4c4b2d706c16cc40ed5ab9631994bd5b4794450f"
+        },
+        "dist-library": null
+      },
+      "copilot-terminal": {
+        "dist": {
+          "file_count": 5,
+          "sha256": "74f8ddd689b7c0b002ee9afd7c5f3d52654bbf9bb17961259bf6219464a46d56"
+        },
+        "dist-library": null
+      },
+      "azure-sky-styling": {
+        "dist": {
+          "file_count": 28,
+          "sha256": "aa502305c191f2bf91c4b700b641420eca8e8b801b095a9d35866260f14e09ca"
+        },
+        "dist-library": {
+          "file_count": 25,
+          "sha256": "4d1551fb5b18aadab2c68dfbfba19c61b01f9095256c659ec9c4bbd5c376b419"
+        }
+      },
+      "hyperframes-tools": {
+        "dist": null,
+        "dist-library": null
+      },
+      "modular-agents": {
+        "dist": {
+          "file_count": 18,
+          "sha256": "7ee89460b2753a7ada81de0d065c3cbd972246a42a51bff0e7f67cfbee8e9f8c"
+        },
+        "dist-library": null
+      },
+      "agent-optimization": {
+        "dist": {
+          "file_count": 14,
+          "sha256": "2a94b8b0408874aae200174015bcb0e7716ce4f808abb1c51b44288047ac37b2"
+        },
+        "dist-library": null
+      }
+    },
+    "ui_team": "No live coordination claimed. User reports that separate browser work uses installed older fixture exports. No server, app source, or checkout compiled output was changed here."
+  },
+  "artifacts": [
+    {
+      "owner": "event-stream",
+      "name": "@agentcraft/event-stream",
+      "version": "0.1.0",
+      "status": "PASS_ARTIFACT",
+      "tarball": "/tmp/agentcraft-recovery-npm/baseline/artifacts/agentcraft-event-stream-0.1.0.tgz",
+      "sha256": "df1c282dfb48f0c0ec174fe48c458ae43f110bba388663f08dd16d170a3143d0",
+      "shasum": "387257e55389adb655e99f10b7438faa8dd7555c",
+      "integrity": "sha512-QOy/2s7jOvSDR48SR+aJp/Ry966+uvftMaFLcN3OnaUr2BKtMJrg8MlX8Wsy8r8lHdGb8yg2TMhzYjsLsx+MMg==",
+      "size": 4487,
+      "unpacked_size": 11222,
+      "files_count": 8,
+      "pack_json": "/tmp/agentcraft-recovery-npm/baseline/event-stream-pack.json",
+      "pack_json_sha256": "3e033a00ac8438eaaa1c397504cd102f5139f87e0d3883c9c77952d9805b9abf",
+      "import_origin": "file:///tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/event-stream/dist/index.js",
+      "real_origin": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/event-stream/dist/index.js",
+      "dependencies": {},
+      "peer_dependencies": {},
+      "build_tools": {
+        "typescript": "5.9.3"
+      },
+      "notices": [
+        {
+          "path": "LICENSE",
+          "size": 1141,
+          "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+        }
+      ],
+      "files": [
+        {
+          "path": "LICENSE",
+          "size": 1141,
+          "mode": 420
+        },
+        {
+          "path": "README.md",
+          "size": 2660,
+          "mode": 420
+        },
+        {
+          "path": "dist/index.d.ts",
+          "size": 120,
+          "mode": 420
+        },
+        {
+          "path": "dist/index.js",
+          "size": 68,
+          "mode": 420
+        },
+        {
+          "path": "dist/read-events.d.ts",
+          "size": 1713,
+          "mode": 420
+        },
+        {
+          "path": "dist/read-events.js",
+          "size": 2794,
+          "mode": 420
+        },
+        {
+          "path": "docs/skills/event-stream.md",
+          "size": 2143,
+          "mode": 420
+        },
+        {
+          "path": "package.json",
+          "size": 583,
+          "mode": 420
+        }
+      ]
+    },
+    {
+      "owner": "source-code",
+      "name": "@agentcraft/source-code",
+      "version": "0.1.0",
+      "status": "PASS_ARTIFACT",
+      "tarball": "/tmp/agentcraft-recovery-npm/repair-1/artifacts/agentcraft-source-code-0.1.0.tgz",
+      "sha256": "741871baa667c31cc0e3521ba7676d9b8160f23266bbe9bfde50e791867725dc",
+      "shasum": "843607adcaae1ef2679d798ce6eff27107b44930",
+      "integrity": "sha512-aYw6MA6m48xjIr9/0psKoei6hLMNgKqMUPzLTQhgbfcZWF50AmDsy62r+haJqDGJtaFG1n+67CqdnkynoMvuGA==",
+      "size": 6160,
+      "unpacked_size": 14720,
+      "files_count": 9,
+      "pack_json": "/tmp/agentcraft-recovery-npm/repair-1/source-code-pack.json",
+      "pack_json_sha256": "606eb714d8e1a563fcc30d2e5a006358117cfbc1082188e6bf8ffb94188a4baf",
+      "import_origin": "file:///tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/source-code/dist/index.js",
+      "real_origin": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/source-code/dist/index.js",
+      "dependencies": {},
+      "peer_dependencies": {
+        "react": "^19.0.0",
+        "lucide-react": "^1.42.0",
+        "shiki": "^4.4.3"
+      },
+      "build_tools": {
+        "typescript": "5.9.3",
+        "react": "19.3.0",
+        "react-dom": "19.3.0",
+        "lucide-react": "1.46.0",
+        "shiki": "4.4.3"
+      },
+      "notices": [
+        {
+          "path": "LICENSE",
+          "size": 1141,
+          "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+        }
+      ],
+      "files": [
+        {
+          "path": "LICENSE",
+          "size": 1141,
+          "mode": 420
+        },
+        {
+          "path": "README.md",
+          "size": 2227,
+          "mode": 420
+        },
+        {
+          "path": "dist/index.d.ts",
+          "size": 154,
+          "mode": 420
+        },
+        {
+          "path": "dist/index.js",
+          "size": 86,
+          "mode": 420
+        },
+        {
+          "path": "dist/source-code.css",
+          "size": 2382,
+          "mode": 420
+        },
+        {
+          "path": "dist/SourceCodeViewer.d.ts",
+          "size": 441,
+          "mode": 420
+        },
+        {
+          "path": "dist/SourceCodeViewer.js",
+          "size": 4807,
+          "mode": 420
+        },
+        {
+          "path": "docs/skills/source-code.md",
+          "size": 2602,
+          "mode": 420
+        },
+        {
+          "path": "package.json",
+          "size": 880,
+          "mode": 420
+        }
+      ]
+    },
+    {
+      "owner": "resource-explorer",
+      "name": "@agentcraft/resource-explorer",
+      "version": "0.1.0",
+      "status": "PASS_ARTIFACT",
+      "tarball": "/tmp/agentcraft-recovery-npm/repair-1/artifacts/agentcraft-resource-explorer-0.1.0.tgz",
+      "sha256": "7785c0b0e74d27857a74fc46c37be1e06e648c031fbcd9756b2870cfd2381698",
+      "shasum": "f7015ff6d1ee79b89578d19058f8a104f4d32630",
+      "integrity": "sha512-qm/HHFCXYIbQSOexciTqThL3KHtdq+OOji/wNGU2phYGPnZw60H/muIXuZLgTRAnTLVCMufJZZ/y1xU1I/csRQ==",
+      "size": 119829,
+      "unpacked_size": 232118,
+      "files_count": 42,
+      "pack_json": "/tmp/agentcraft-recovery-npm/repair-1/resource-explorer-pack.json",
+      "pack_json_sha256": "ad89ce71b8254dbcb66b7967f6788f7e5986b68468d0795e7bc36188e80ad70d",
+      "import_origin": "file:///tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/resource-explorer/dist/index.js",
+      "real_origin": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/resource-explorer/dist/index.js",
+      "dependencies": {},
+      "peer_dependencies": {
+        "@agentcraft/source-code": "^0.1.0",
+        "react": "^19.0.0",
+        "lucide-react": "^1.42.0"
+      },
+      "build_tools": {
+        "typescript": "5.9.3",
+        "react": "19.3.0",
+        "lucide-react": "1.46.0",
+        "shiki": "4.4.3"
+      },
+      "notices": [
+        {
+          "path": "LICENSE",
+          "size": 1141,
+          "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+        },
+        {
+          "path": "THIRD_PARTY_NOTICES",
+          "size": 528,
+          "sha256": "f1dc1a12df9ee90deddb9820b6b91c0dce04efeb3ba7fcfeb17e41d3f402b530"
+        },
+        {
+          "path": "docs/skills/assets/fonts/LICENSE-OFL-1.1.txt",
+          "size": 4557,
+          "sha256": "5038a9e27dc93fd7996545e851d426da8d74b253e6d19e734e0e7e8d12e7863e"
+        },
+        {
+          "path": "docs/skills/assets/THIRD_PARTY_NOTICES.txt",
+          "size": 5358,
+          "sha256": "32d36c47b38593ac1dc2c7781b2745d33f5bd3aba9d4ec1761ce6b72d9028eb7"
+        }
+      ],
+      "files": [
+        {
+          "path": "LICENSE",
+          "size": 1141,
+          "mode": 420
+        },
+        {
+          "path": "README.md",
+          "size": 3554,
+          "mode": 420
+        },
+        {
+          "path": "THIRD_PARTY_NOTICES",
+          "size": 528,
+          "mode": 420
+        },
+        {
+          "path": "dist/client.d.ts",
+          "size": 1870,
+          "mode": 420
+        },
+        {
+          "path": "dist/client.js",
+          "size": 3084,
+          "mode": 420
+        },
+        {
+          "path": "dist/DetailPane.d.ts",
+          "size": 1335,
+          "mode": 420
+        },
+        {
+          "path": "dist/DetailPane.js",
+          "size": 8228,
+          "mode": 420
+        },
+        {
+          "path": "dist/explorer.css",
+          "size": 7978,
+          "mode": 420
+        },
+        {
+          "path": "dist/ExplorerLayout.d.ts",
+          "size": 445,
+          "mode": 420
+        },
+        {
+          "path": "dist/ExplorerLayout.js",
+          "size": 927,
+          "mode": 420
+        },
+        {
+          "path": "dist/index.d.ts",
+          "size": 2904,
+          "mode": 420
+        },
+        {
+          "path": "dist/index.js",
+          "size": 1853,
+          "mode": 420
+        },
+        {
+          "path": "dist/inventory.css",
+          "size": 10453,
+          "mode": 420
+        },
+        {
+          "path": "dist/InventoryExplorer.d.ts",
+          "size": 2243,
+          "mode": 420
+        },
+        {
+          "path": "dist/InventoryExplorer.js",
+          "size": 13000,
+          "mode": 420
+        },
+        {
+          "path": "dist/keyboard.d.ts",
+          "size": 1044,
+          "mode": 420
+        },
+        {
+          "path": "dist/keyboard.js",
+          "size": 2707,
+          "mode": 420
+        },
+        {
+          "path": "dist/ResourceExplorer.d.ts",
+          "size": 1529,
+          "mode": 420
+        },
+        {
+          "path": "dist/ResourceExplorer.js",
+          "size": 8083,
+          "mode": 420
+        },
+        {
+          "path": "dist/rows.d.ts",
+          "size": 1466,
+          "mode": 420
+        },
+        {
+          "path": "dist/rows.js",
+          "size": 3444,
+          "mode": 420
+        },
+        {
+          "path": "dist/RowsTable.d.ts",
+          "size": 1288,
+          "mode": 420
+        },
+        {
+          "path": "dist/RowsTable.js",
+          "size": 2029,
+          "mode": 420
+        },
+        {
+          "path": "dist/selection.d.ts",
+          "size": 3124,
+          "mode": 420
+        },
+        {
+          "path": "dist/selection.js",
+          "size": 5361,
+          "mode": 420
+        },
+        {
+          "path": "dist/state.d.ts",
+          "size": 5162,
+          "mode": 420
+        },
+        {
+          "path": "dist/state.js",
+          "size": 13693,
+          "mode": 420
+        },
+        {
+          "path": "dist/status.d.ts",
+          "size": 2077,
+          "mode": 420
+        },
+        {
+          "path": "dist/status.js",
+          "size": 4524,
+          "mode": 420
+        },
+        {
+          "path": "dist/StatusNote.d.ts",
+          "size": 885,
+          "mode": 420
+        },
+        {
+          "path": "dist/StatusNote.js",
+          "size": 1597,
+          "mode": 420
+        },
+        {
+          "path": "dist/TreeView.d.ts",
+          "size": 1047,
+          "mode": 420
+        },
+        {
+          "path": "dist/TreeView.js",
+          "size": 6507,
+          "mode": 420
+        },
+        {
+          "path": "dist/wire.d.ts",
+          "size": 4361,
+          "mode": 420
+        },
+        {
+          "path": "dist/wire.js",
+          "size": 7727,
+          "mode": 420
+        },
+        {
+          "path": "docs/skills/assets/fonts/ibm-plex-mono-400.woff2",
+          "size": 14708,
+          "mode": 384
+        },
+        {
+          "path": "docs/skills/assets/fonts/ibm-plex-mono-600.woff2",
+          "size": 15620,
+          "mode": 384
+        },
+        {
+          "path": "docs/skills/assets/fonts/ibm-plex-sans-var.woff2",
+          "size": 45712,
+          "mode": 384
+        },
+        {
+          "path": "docs/skills/assets/fonts/LICENSE-OFL-1.1.txt",
+          "size": 4557,
+          "mode": 384
+        },
+        {
+          "path": "docs/skills/assets/THIRD_PARTY_NOTICES.txt",
+          "size": 5358,
+          "mode": 384
+        },
+        {
+          "path": "docs/skills/resource-explorer.md",
+          "size": 7894,
+          "mode": 420
+        },
+        {
+          "path": "package.json",
+          "size": 1071,
+          "mode": 420
+        }
+      ]
+    },
+    {
+      "owner": "copilot-terminal",
+      "name": "copilot-terminal",
+      "version": "0.2.0",
+      "status": "PASS_ARTIFACT",
+      "tarball": "/tmp/agentcraft-recovery-npm/repair-1/artifacts/copilot-terminal-0.2.0.tgz",
+      "sha256": "362fe2481c5dc511138c338787157d355c596ac18d22b7824f444fa20eaa32e3",
+      "shasum": "dc841248bf892f6a9e77e693d4300fc1ef04b711",
+      "integrity": "sha512-7Et+9gtPU8x7uTqJhPuiUbKPj/W2qrXrMDg56mMqJ0Voyby8ybSs8vZj+kYhB+WEfQkm9+uWSF6/MiCIJEzeVw==",
+      "size": 36191,
+      "unpacked_size": 127333,
+      "files_count": 36,
+      "pack_json": "/tmp/agentcraft-recovery-npm/repair-1/copilot-terminal-pack.json",
+      "pack_json_sha256": "5b341f8fef73da7c327a13ca41d54c68ed70612b21db2f58574596d10d288292",
+      "import_origin": "file:///tmp/agentcraft-recovery-npm/repair-1/host/node_modules/copilot-terminal/dist/index.js",
+      "real_origin": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/copilot-terminal/dist/index.js",
+      "dependencies": {
+        "@xterm/addon-fit": "^0.11.0",
+        "@xterm/xterm": "^6.0.0",
+        "lucide-react": "^1.42.0"
+      },
+      "peer_dependencies": {
+        "react": "^19.2.8"
+      },
+      "build_tools": {
+        "typescript": "6.0.3",
+        "vite": "7.3.6",
+        "react": "19.3.0",
+        "react-dom": "19.3.0",
+        "lucide-react": "1.46.0"
+      },
+      "notices": [
+        {
+          "path": "LICENSE",
+          "size": 1141,
+          "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+        }
+      ],
+      "files": [
+        {
+          "path": "CONTRACT.md",
+          "size": 4838,
+          "mode": 420
+        },
+        {
+          "path": "GOTCHAS.md",
+          "size": 1837,
+          "mode": 420
+        },
+        {
+          "path": "GUIDE.md",
+          "size": 6978,
+          "mode": 420
+        },
+        {
+          "path": "LICENSE",
+          "size": 1141,
+          "mode": 420
+        },
+        {
+          "path": "PROVENANCE.md",
+          "size": 1244,
+          "mode": 420
+        },
+        {
+          "path": "README.md",
+          "size": 8776,
+          "mode": 420
+        },
+        {
+          "path": "dist/copilot-terminal.css",
+          "size": 3795,
+          "mode": 420
+        },
+        {
+          "path": "dist/copilot-terminal.css.d.ts",
+          "size": 11,
+          "mode": 420
+        },
+        {
+          "path": "dist/CopilotTerminal.d.ts",
+          "size": 897,
+          "mode": 420
+        },
+        {
+          "path": "dist/CopilotTerminal.js",
+          "size": 18605,
+          "mode": 420
+        },
+        {
+          "path": "dist/index.d.ts",
+          "size": 178,
+          "mode": 420
+        },
+        {
+          "path": "dist/index.js",
+          "size": 56,
+          "mode": 420
+        },
+        {
+          "path": "examples/fixture_cli.py",
+          "size": 1650,
+          "mode": 493
+        },
+        {
+          "path": "examples/index.html",
+          "size": 260,
+          "mode": 420
+        },
+        {
+          "path": "examples/main.tsx",
+          "size": 1120,
+          "mode": 420
+        },
+        {
+          "path": "examples/serve.py",
+          "size": 5958,
+          "mode": 420
+        },
+        {
+          "path": "examples/style.css",
+          "size": 798,
+          "mode": 420
+        },
+        {
+          "path": "examples/vite.config.ts",
+          "size": 555,
+          "mode": 420
+        },
+        {
+          "path": "package.json",
+          "size": 1560,
+          "mode": 420
+        },
+        {
+          "path": "references/official-cli-features.md",
+          "size": 7322,
+          "mode": 420
+        },
+        {
+          "path": "references/official-sources.json",
+          "size": 1455,
+          "mode": 420
+        },
+        {
+          "path": "src/copilot-terminal.css",
+          "size": 3795,
+          "mode": 420
+        },
+        {
+          "path": "src/CopilotTerminal.tsx",
+          "size": 16819,
+          "mode": 420
+        },
+        {
+          "path": "src/index.ts",
+          "size": 175,
+          "mode": 420
+        },
+        {
+          "path": "src/styles.d.ts",
+          "size": 22,
+          "mode": 420
+        },
+        {
+          "path": "tests/autopilot.mjs",
+          "size": 4321,
+          "mode": 420
+        },
+        {
+          "path": "tests/browser.mjs",
+          "size": 6471,
+          "mode": 420
+        },
+        {
+          "path": "tests/native_cli.py",
+          "size": 5031,
+          "mode": 420
+        },
+        {
+          "path": "tests/selftest.py",
+          "size": 399,
+          "mode": 420
+        },
+        {
+          "path": "tests/test_host_plugins.py",
+          "size": 3558,
+          "mode": 420
+        },
+        {
+          "path": "tests/test_options.py",
+          "size": 4299,
+          "mode": 420
+        },
+        {
+          "path": "tests/test_runtime.py",
+          "size": 3007,
+          "mode": 420
+        },
+        {
+          "path": "tests/test_service.py",
+          "size": 5707,
+          "mode": 420
+        },
+        {
+          "path": "tests/test_source_scope.py",
+          "size": 4157,
+          "mode": 420
+        },
+        {
+          "path": "tsconfig.build.json",
+          "size": 173,
+          "mode": 420
+        },
+        {
+          "path": "tsconfig.json",
+          "size": 365,
+          "mode": 420
+        }
+      ]
+    },
+    {
+      "owner": "azure-sky-styling",
+      "name": "@harness/azure-sky-styling",
+      "version": "0.1.0",
+      "status": "PASS_ARTIFACT",
+      "tarball": "/tmp/agentcraft-recovery-npm/repair-1/artifacts/harness-azure-sky-styling-0.1.0.tgz",
+      "sha256": "10da0172b7556b9ac911a748be36b28ef73685b25abf53c434526a1d47f3f910",
+      "shasum": "64d084553933d542cd1cac718e39f0ed11983c5e",
+      "integrity": "sha512-nQKdR8w9YcZ4PineVLUKpKKsZTBw/+iXx77l03UY0gzUbc8NrORGnFNs4Z1ZSHigvpvtkDfzxaEz0cAqmAqRpw==",
+      "size": 6959741,
+      "unpacked_size": 7592996,
+      "files_count": 103,
+      "pack_json": "/tmp/agentcraft-recovery-npm/repair-1/azure-sky-styling-pack.json",
+      "pack_json_sha256": "e04ae552ab31124554fbfcd57f30af04e16c90dcd3dbbbf31a34f800766eac2e",
+      "import_origin": "file:///tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@harness/azure-sky-styling/dist-library/index.js",
+      "real_origin": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@harness/azure-sky-styling/dist-library/index.js",
+      "dependencies": {
+        "@fontsource/barlow-condensed": "^5.2.0",
+        "@fontsource/ibm-plex-mono": "^5.2.0",
+        "@fontsource/ibm-plex-sans": "^5.2.0",
+        "@radix-ui/react-dialog": "^1.1.0",
+        "@radix-ui/react-dropdown-menu": "^2.1.0",
+        "@radix-ui/react-popover": "^1.1.0",
+        "@radix-ui/react-tabs": "^1.1.0",
+        "@radix-ui/react-tooltip": "^1.1.0",
+        "lucide-react": "^1.42.0",
+        "recharts": "^3.2.0"
+      },
+      "peer_dependencies": {
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0"
+      },
+      "build_tools": {
+        "typescript": "5.9.3",
+        "vite": "6.4.3",
+        "react": "19.3.0",
+        "react-dom": "19.3.0",
+        "lucide-react": "1.46.0"
+      },
+      "notices": [
+        {
+          "path": "LICENSE",
+          "size": 1141,
+          "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+        },
+        {
+          "path": "public/THIRD_PARTY_NOTICES.txt",
+          "size": 27087,
+          "sha256": "c004c5a2f9e68a84aec638738b4be0834d18811c629ebdf91892682ec7ddbeee"
+        }
+      ],
+      "files": [
+        {
+          "path": "ASSETS.md",
+          "size": 6550,
+          "mode": 420
+        },
+        {
+          "path": "DEPTH_EFFECTS.md",
+          "size": 12138,
+          "mode": 420
+        },
+        {
+          "path": "DISTANT_ARCHITECTURE.md",
+          "size": 11570,
+          "mode": 420
+        },
+        {
+          "path": "GUIDE.md",
+          "size": 1308,
+          "mode": 420
+        },
+        {
+          "path": "LICENSE",
+          "size": 1141,
+          "mode": 420
+        },
+        {
+          "path": "README.md",
+          "size": 19830,
+          "mode": 420
+        },
+        {
+          "path": "demo/main.tsx",
+          "size": 716,
+          "mode": 420
+        },
+        {
+          "path": "demo/security-review/Chat.tsx",
+          "size": 7377,
+          "mode": 420
+        },
+        {
+          "path": "demo/security-review/Explorer.tsx",
+          "size": 8699,
+          "mode": 420
+        },
+        {
+          "path": "demo/security-review/fixtures.ts",
+          "size": 8854,
+          "mode": 420
+        },
+        {
+          "path": "demo/security-review/Investigation.tsx",
+          "size": 19071,
+          "mode": 420
+        },
+        {
+          "path": "demo/security-review/main.tsx",
+          "size": 581,
+          "mode": 420
+        },
+        {
+          "path": "demo/security-review/preview.css",
+          "size": 40462,
+          "mode": 420
+        },
+        {
+          "path": "demo/security-review/Preview.tsx",
+          "size": 7236,
+          "mode": 420
+        },
+        {
+          "path": "demo/tailwind.css",
+          "size": 317,
+          "mode": 420
+        },
+        {
+          "path": "dist-library/assets/challe-arcade-zh6pbAvq.webp",
+          "size": 117732,
+          "mode": 420
+        },
+        {
+          "path": "dist-library/assets/challe-crowned-hall-Deqnur1o.webp",
+          "size": 324996,
+          "mode": 420
+        },
+        {
+          "path": "dist-library/assets/legeay-temple-BaFERHHC.webp",
+          "size": 59134,
+          "mode": 420
+        },
+        {
+          "path": "dist-library/assets/surface-grain-rrelE3Gm.png",
+          "size": 26662,
+          "mode": 420
+        },
+        {
+          "path": "dist-library/azure-sky.css",
+          "size": 69780,
+          "mode": 420
+        },
+        {
+          "path": "dist-library/AzureSkyGallery.d.ts",
+          "size": 179,
+          "mode": 420
+        },
+        {
+          "path": "dist-library/Compositions.d.ts",
+          "size": 148,
+          "mode": 420
+        },
+        {
+          "path": "dist-library/Controls.d.ts",
+          "size": 144,
+          "mode": 420
+        },
+        {
+          "path": "dist-library/DataGallery.d.ts",
+          "size": 147,
+          "mode": 420
+        },
+        {
+          "path": "dist-library/depthEffects.d.ts",
+          "size": 1328,
+          "mode": 420
+        },
+        {
+          "path": "dist-library/DepthStudy.d.ts",
+          "size": 204,
+          "mode": 420
+        },
+        {
+          "path": "dist-library/distantArchitecture.d.ts",
+          "size": 746,
+          "mode": 420
+        },
+        {
+          "path": "dist-library/DistantArchitectureComponent.d.ts",
+          "size": 343,
+          "mode": 420
+        },
+        {
+          "path": "dist-library/Feedback.d.ts",
+          "size": 144,
+          "mode": 420
+        },
+        {
+          "path": "dist-library/fixtures.d.ts",
+          "size": 361,
+          "mode": 420
+        },
+        {
+          "path": "dist-library/Foundations.d.ts",
+          "size": 257,
+          "mode": 420
+        },
+        {
+          "path": "dist-library/index-CxaU_5lt.js",
+          "size": 179886,
+          "mode": 420
+        },
+        {
+          "path": "dist-library/index.d.ts",
+          "size": 429,
+          "mode": 420
+        },
+        {
+          "path": "dist-library/index.js",
+          "size": 445,
+          "mode": 420
+        },
+        {
+          "path": "dist-library/Materials.d.ts",
+          "size": 145,
+          "mode": 420
+        },
+        {
+          "path": "dist-library/Overlays.d.ts",
+          "size": 180,
+          "mode": 420
+        },
+        {
+          "path": "dist-library/painterlyArchitecture.d.ts",
+          "size": 177,
+          "mode": 420
+        },
+        {
+          "path": "dist-library/primitives.d.ts",
+          "size": 1444,
+          "mode": 420
+        },
+        {
+          "path": "dist-library/Visualizations-DceVK9h4.js",
+          "size": 8105,
+          "mode": 420
+        },
+        {
+          "path": "dist-library/Visualizations.d.ts",
+          "size": 71,
+          "mode": 420
+        },
+        {
+          "path": "frontend/assets/painterly/challe-arcade.webp",
+          "size": 117732,
+          "mode": 420
+        },
+        {
+          "path": "frontend/assets/painterly/challe-crowned-hall.webp",
+          "size": 324996,
+          "mode": 420
+        },
+        {
+          "path": "frontend/assets/painterly/legeay-temple.webp",
+          "size": 59134,
+          "mode": 420
+        },
+        {
+          "path": "frontend/assets/painterly/manifest.json",
+          "size": 2727,
+          "mode": 420
+        },
+        {
+          "path": "frontend/assets/surface-grain.png",
+          "size": 26662,
+          "mode": 420
+        },
+        {
+          "path": "frontend/azure-sky.css",
+          "size": 68785,
+          "mode": 420
+        },
+        {
+          "path": "frontend/AzureSkyGallery.tsx",
+          "size": 6456,
+          "mode": 420
+        },
+        {
+          "path": "frontend/Compositions.tsx",
+          "size": 10728,
+          "mode": 420
+        },
+        {
+          "path": "frontend/Controls.tsx",
+          "size": 13252,
+          "mode": 420
+        },
+        {
+          "path": "frontend/DataGallery.tsx",
+          "size": 8738,
+          "mode": 420
+        },
+        {
+          "path": "frontend/depth-effects.css",
+          "size": 4866,
+          "mode": 420
+        },
+        {
+          "path": "frontend/depth-study.css",
+          "size": 4388,
+          "mode": 420
+        },
+        {
+          "path": "frontend/depthEffects.ts",
+          "size": 1690,
+          "mode": 420
+        },
+        {
+          "path": "frontend/DepthStudy.tsx",
+          "size": 5190,
+          "mode": 420
+        },
+        {
+          "path": "frontend/distant-architecture.css",
+          "size": 859,
+          "mode": 420
+        },
+        {
+          "path": "frontend/distantArchitecture.ts",
+          "size": 7726,
+          "mode": 420
+        },
+        {
+          "path": "frontend/DistantArchitecture.tsx",
+          "size": 3459,
+          "mode": 420
+        },
+        {
+          "path": "frontend/Feedback.tsx",
+          "size": 5319,
+          "mode": 420
+        },
+        {
+          "path": "frontend/fixtures.ts",
+          "size": 2515,
+          "mode": 420
+        },
+        {
+          "path": "frontend/Foundations.tsx",
+          "size": 3654,
+          "mode": 420
+        },
+        {
+          "path": "frontend/index.ts",
+          "size": 416,
+          "mode": 420
+        },
+        {
+          "path": "frontend/Materials.tsx",
+          "size": 6525,
+          "mode": 420
+        },
+        {
+          "path": "frontend/Overlays.tsx",
+          "size": 10192,
+          "mode": 420
+        },
+        {
+          "path": "frontend/painterlyArchitecture.ts",
+          "size": 899,
+          "mode": 420
+        },
+        {
+          "path": "frontend/primitives.tsx",
+          "size": 3399,
+          "mode": 420
+        },
+        {
+          "path": "frontend/Visualizations.tsx",
+          "size": 8611,
+          "mode": 420
+        },
+        {
+          "path": "index.html",
+          "size": 507,
+          "mode": 420
+        },
+        {
+          "path": "package.json",
+          "size": 2937,
+          "mode": 420
+        },
+        {
+          "path": "plain.html",
+          "size": 3379,
+          "mode": 420
+        },
+        {
+          "path": "public/THIRD_PARTY_NOTICES.txt",
+          "size": 27087,
+          "mode": 420
+        },
+        {
+          "path": "research/benchmark-results.json",
+          "size": 7587,
+          "mode": 420
+        },
+        {
+          "path": "research/CLOUD_RESEARCH.md",
+          "size": 8313,
+          "mode": 420
+        },
+        {
+          "path": "research/cloud-sources.txt",
+          "size": 449,
+          "mode": 420
+        },
+        {
+          "path": "research/painterly/holdings/catalogue.json",
+          "size": 9452,
+          "mode": 420
+        },
+        {
+          "path": "research/painterly/holdings/images/challe-architectural-fantasy.jpg",
+          "size": 108160,
+          "mode": 420
+        },
+        {
+          "path": "research/painterly/holdings/images/cole-titans-goblet.jpg",
+          "size": 135558,
+          "mode": 420
+        },
+        {
+          "path": "research/painterly/holdings/images/legeay-architectural-fantasy.jpg",
+          "size": 120241,
+          "mode": 420
+        },
+        {
+          "path": "research/painterly/holdings/images/turner-venice.jpg",
+          "size": 250496,
+          "mode": 420
+        },
+        {
+          "path": "research/painterly/holdings/originals/met-343077-original.jpg",
+          "size": 2489466,
+          "mode": 420
+        },
+        {
+          "path": "research/painterly/holdings/originals/met-343439-original.jpg",
+          "size": 2622640,
+          "mode": 420
+        },
+        {
+          "path": "research/painterly/holdings/records/met-10499.json",
+          "size": 2591,
+          "mode": 420
+        },
+        {
+          "path": "research/painterly/holdings/records/met-343077.json",
+          "size": 2212,
+          "mode": 420
+        },
+        {
+          "path": "research/painterly/holdings/records/met-343439.json",
+          "size": 2192,
+          "mode": 420
+        },
+        {
+          "path": "research/painterly/holdings/records/met-437853.json",
+          "size": 2722,
+          "mode": 420
+        },
+        {
+          "path": "research/painterly/README.md",
+          "size": 7429,
+          "mode": 420
+        },
+        {
+          "path": "research/painterly/RIGHTS.md",
+          "size": 4049,
+          "mode": 420
+        },
+        {
+          "path": "research/painterly/sources.json",
+          "size": 4278,
+          "mode": 420
+        },
+        {
+          "path": "research/SURFACE_DEPTH.md",
+          "size": 6561,
+          "mode": 420
+        },
+        {
+          "path": "research/surface-depth-sources.txt",
+          "size": 347,
+          "mode": 420
+        },
+        {
+          "path": "scripts/generate-grain.mjs",
+          "size": 1351,
+          "mode": 420
+        },
+        {
+          "path": "scripts/generate-painterly-masks.mjs",
+          "size": 9230,
+          "mode": 420
+        },
+        {
+          "path": "scripts/painterly-mask-recipes.json",
+          "size": 2390,
+          "mode": 420
+        },
+        {
+          "path": "security-review.html",
+          "size": 549,
+          "mode": 420
+        },
+        {
+          "path": "tests/verify-architecture-generator.mjs",
+          "size": 7027,
+          "mode": 420
+        },
+        {
+          "path": "tests/verify-architecture.mjs",
+          "size": 18814,
+          "mode": 420
+        },
+        {
+          "path": "tests/verify-depth-effects.mjs",
+          "size": 9211,
+          "mode": 420
+        },
+        {
+          "path": "tests/verify-depth-study.mjs",
+          "size": 17974,
+          "mode": 420
+        },
+        {
+          "path": "tests/verify-security-review.mjs",
+          "size": 18879,
+          "mode": 420
+        },
+        {
+          "path": "tests/verify.mjs",
+          "size": 38650,
+          "mode": 420
+        },
+        {
+          "path": "tsconfig.json",
+          "size": 399,
+          "mode": 420
+        },
+        {
+          "path": "tsconfig.library.json",
+          "size": 224,
+          "mode": 420
+        },
+        {
+          "path": "vite.config.ts",
+          "size": 620,
+          "mode": 420
+        },
+        {
+          "path": "vite.library.config.ts",
+          "size": 1070,
+          "mode": 420
+        }
+      ]
+    },
+    {
+      "owner": "hyperframes-tools",
+      "name": "@agentcraft/hyperframes-tools",
+      "version": "0.1.0",
+      "status": "PASS_ARTIFACT",
+      "tarball": "/tmp/agentcraft-recovery-npm/baseline/artifacts/agentcraft-hyperframes-tools-0.1.0.tgz",
+      "sha256": "78b02ce99cec02069445bcd9c4fa3515add78b63ba14a4c8cad68a9c552595e3",
+      "shasum": "a6bf7870df605231a67f130f037ff0073c49dcd7",
+      "integrity": "sha512-s6Hdydl6DaygF9wX0rcYWp9jVP9o1U/PHrmrvprqmYmHLtXYalsPTQqp1MvYK4fHEsNrw7Un86Avm4abQD/gnA==",
+      "size": 42463,
+      "unpacked_size": 149998,
+      "files_count": 22,
+      "pack_json": "/tmp/agentcraft-recovery-npm/baseline/hyperframes-tools-pack.json",
+      "pack_json_sha256": "2a75db6c67cdd2b57eff01c3679f091f93282a41644f508ff0240f5ea44a512a",
+      "import_origin": "file:///tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/hyperframes-tools/scripts/hf.mjs",
+      "real_origin": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/hyperframes-tools/scripts/hf.mjs",
+      "dependencies": {
+        "parse5": "7.3.0"
+      },
+      "peer_dependencies": {},
+      "build_tools": {},
+      "notices": [
+        {
+          "path": "LICENSE",
+          "size": 1141,
+          "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+        },
+        {
+          "path": "THIRD_PARTY_NOTICES.md",
+          "size": 1509,
+          "sha256": "c258d4561808ca239d576a69974559da758bcbf62dc71c237b45ee0bdf8a195a"
+        }
+      ],
+      "files": [
+        {
+          "path": "CONTRACT.md",
+          "size": 2133,
+          "mode": 420
+        },
+        {
+          "path": "GOTCHAS.md",
+          "size": 1377,
+          "mode": 420
+        },
+        {
+          "path": "GUIDE.md",
+          "size": 6555,
+          "mode": 420
+        },
+        {
+          "path": "LICENSE",
+          "size": 1141,
+          "mode": 420
+        },
+        {
+          "path": "PROVENANCE.md",
+          "size": 969,
+          "mode": 420
+        },
+        {
+          "path": "README.md",
+          "size": 4650,
+          "mode": 420
+        },
+        {
+          "path": "THIRD_PARTY_NOTICES.md",
+          "size": 1509,
+          "mode": 420
+        },
+        {
+          "path": "examples/pulse/beat-map.json",
+          "size": 164,
+          "mode": 420
+        },
+        {
+          "path": "examples/pulse/index.html",
+          "size": 1027,
+          "mode": 420
+        },
+        {
+          "path": "examples/validate.mjs",
+          "size": 717,
+          "mode": 420
+        },
+        {
+          "path": "package.json",
+          "size": 949,
+          "mode": 420
+        },
+        {
+          "path": "references/authoring-contract.md",
+          "size": 2092,
+          "mode": 420
+        },
+        {
+          "path": "references/critique-rubric.md",
+          "size": 1575,
+          "mode": 420
+        },
+        {
+          "path": "references/gates-and-evidence.md",
+          "size": 2766,
+          "mode": 420
+        },
+        {
+          "path": "runtime/package-lock.json",
+          "size": 99505,
+          "mode": 420
+        },
+        {
+          "path": "runtime/package.json",
+          "size": 403,
+          "mode": 420
+        },
+        {
+          "path": "scripts/hf.d.mts",
+          "size": 1285,
+          "mode": 420
+        },
+        {
+          "path": "scripts/hf.mjs",
+          "size": 9570,
+          "mode": 420
+        },
+        {
+          "path": "tests/render_smoke.mjs",
+          "size": 3506,
+          "mode": 420
+        },
+        {
+          "path": "tests/selftest.py",
+          "size": 899,
+          "mode": 420
+        },
+        {
+          "path": "tests/test_wrapper.mjs",
+          "size": 4195,
+          "mode": 420
+        },
+        {
+          "path": "tools/unzip",
+          "size": 3011,
+          "mode": 493
+        }
+      ]
+    },
+    {
+      "owner": "modular-agents",
+      "name": "@agentcraft/modular-agents",
+      "version": "0.2.0",
+      "status": "PASS_ARTIFACT",
+      "tarball": "/tmp/agentcraft-recovery-npm/baseline/artifacts/agentcraft-modular-agents-0.2.0.tgz",
+      "sha256": "b204dc7bf1e477c3c5fe36cca90fc1ab5da98bc5b34ca669d92ea75f6ab58027",
+      "shasum": "73fafb1d31c816630f70a84061c1cfe8cd89e388",
+      "integrity": "sha512-sxBQQh/TtZXfKkowY+u2iDJjRlqhZDI5rthmsQk2gVlt4KBj9gvyjVHJ8CAzu+mEQ/aCP1Zl9eDfRtKQvXTFHQ==",
+      "size": 58557,
+      "unpacked_size": 190010,
+      "files_count": 47,
+      "pack_json": "/tmp/agentcraft-recovery-npm/baseline/modular-agents-pack.json",
+      "pack_json_sha256": "6de853e607b3aef68bee3ddfaa29cb96a13c01727d0c83ffcba2f3bd5c4b75ab",
+      "import_origin": "file:///tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/modular-agents/dist/modular-agents.js",
+      "real_origin": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/modular-agents/dist/modular-agents.js",
+      "dependencies": {},
+      "peer_dependencies": {
+        "react": "^19.0.0"
+      },
+      "build_tools": {
+        "typescript": "6.0.3",
+        "vite": "7.3.6",
+        "react": "19.3.0"
+      },
+      "notices": [
+        {
+          "path": "LICENSE",
+          "size": 1141,
+          "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+        },
+        {
+          "path": "modules/purpose-built-tools/LICENSE",
+          "size": 1141,
+          "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+        }
+      ],
+      "files": [
+        {
+          "path": "CONTRACT.md",
+          "size": 4640,
+          "mode": 420
+        },
+        {
+          "path": "LICENSE",
+          "size": 1141,
+          "mode": 420
+        },
+        {
+          "path": "PROVENANCE.md",
+          "size": 1154,
+          "mode": 420
+        },
+        {
+          "path": "README.md",
+          "size": 3543,
+          "mode": 420
+        },
+        {
+          "path": "dist/archetypes/_common.d.ts",
+          "size": 2305,
+          "mode": 420
+        },
+        {
+          "path": "dist/archetypes/ActionRenderer.d.ts",
+          "size": 564,
+          "mode": 420
+        },
+        {
+          "path": "dist/archetypes/DocumentRenderer.d.ts",
+          "size": 1206,
+          "mode": 420
+        },
+        {
+          "path": "dist/archetypes/GraphRenderer.d.ts",
+          "size": 863,
+          "mode": 420
+        },
+        {
+          "path": "dist/archetypes/index.d.ts",
+          "size": 2468,
+          "mode": 420
+        },
+        {
+          "path": "dist/archetypes/MetricsRenderer.d.ts",
+          "size": 670,
+          "mode": 420
+        },
+        {
+          "path": "dist/archetypes/MultiTabularRenderer.d.ts",
+          "size": 765,
+          "mode": 420
+        },
+        {
+          "path": "dist/archetypes/SearchRenderer.d.ts",
+          "size": 537,
+          "mode": 420
+        },
+        {
+          "path": "dist/archetypes/StatusRenderer.d.ts",
+          "size": 389,
+          "mode": 420
+        },
+        {
+          "path": "dist/archetypes/TabularRenderer.d.ts",
+          "size": 623,
+          "mode": 420
+        },
+        {
+          "path": "dist/graphLayout.d.ts",
+          "size": 2280,
+          "mode": 420
+        },
+        {
+          "path": "dist/GraphView.d.ts",
+          "size": 873,
+          "mode": 420
+        },
+        {
+          "path": "dist/helpers.d.ts",
+          "size": 2750,
+          "mode": 420
+        },
+        {
+          "path": "dist/index.d.ts",
+          "size": 2157,
+          "mode": 420
+        },
+        {
+          "path": "dist/MarkdownBody.d.ts",
+          "size": 1366,
+          "mode": 420
+        },
+        {
+          "path": "dist/modular-agents.js",
+          "size": 35287,
+          "mode": 420
+        },
+        {
+          "path": "dist/ResultTable.d.ts",
+          "size": 1236,
+          "mode": 420
+        },
+        {
+          "path": "dist/ToolResultCard.d.ts",
+          "size": 4120,
+          "mode": 420
+        },
+        {
+          "path": "modules/purpose-built-tools/CONTRACT.md",
+          "size": 21634,
+          "mode": 420
+        },
+        {
+          "path": "modules/purpose-built-tools/LICENSE",
+          "size": 1141,
+          "mode": 420
+        },
+        {
+          "path": "modules/purpose-built-tools/README.md",
+          "size": 13345,
+          "mode": 420
+        },
+        {
+          "path": "modules/purpose-built-tools/renderers/archetypes/_common.tsx",
+          "size": 3382,
+          "mode": 420
+        },
+        {
+          "path": "modules/purpose-built-tools/renderers/archetypes/ActionRenderer.tsx",
+          "size": 2397,
+          "mode": 420
+        },
+        {
+          "path": "modules/purpose-built-tools/renderers/archetypes/DocumentRenderer.tsx",
+          "size": 2715,
+          "mode": 420
+        },
+        {
+          "path": "modules/purpose-built-tools/renderers/archetypes/GraphRenderer.tsx",
+          "size": 3989,
+          "mode": 420
+        },
+        {
+          "path": "modules/purpose-built-tools/renderers/archetypes/index.ts",
+          "size": 3562,
+          "mode": 420
+        },
+        {
+          "path": "modules/purpose-built-tools/renderers/archetypes/MetricsRenderer.tsx",
+          "size": 3359,
+          "mode": 420
+        },
+        {
+          "path": "modules/purpose-built-tools/renderers/archetypes/MultiTabularRenderer.tsx",
+          "size": 3654,
+          "mode": 420
+        },
+        {
+          "path": "modules/purpose-built-tools/renderers/archetypes/SearchRenderer.tsx",
+          "size": 2532,
+          "mode": 420
+        },
+        {
+          "path": "modules/purpose-built-tools/renderers/archetypes/StatusRenderer.tsx",
+          "size": 1568,
+          "mode": 420
+        },
+        {
+          "path": "modules/purpose-built-tools/renderers/archetypes/TabularRenderer.tsx",
+          "size": 2232,
+          "mode": 420
+        },
+        {
+          "path": "modules/purpose-built-tools/renderers/graphLayout.ts",
+          "size": 6773,
+          "mode": 420
+        },
+        {
+          "path": "modules/purpose-built-tools/renderers/GraphView.tsx",
+          "size": 5114,
+          "mode": 420
+        },
+        {
+          "path": "modules/purpose-built-tools/renderers/helpers.ts",
+          "size": 4673,
+          "mode": 420
+        },
+        {
+          "path": "modules/purpose-built-tools/renderers/index.ts",
+          "size": 2200,
+          "mode": 420
+        },
+        {
+          "path": "modules/purpose-built-tools/renderers/MarkdownBody.tsx",
+          "size": 9986,
+          "mode": 420
+        },
+        {
+          "path": "modules/purpose-built-tools/renderers/README.md",
+          "size": 4903,
+          "mode": 420
+        },
+        {
+          "path": "modules/purpose-built-tools/renderers/ResultTable.tsx",
+          "size": 5350,
+          "mode": 420
+        },
+        {
+          "path": "modules/purpose-built-tools/renderers/style-export.d.ts",
+          "size": 10,
+          "mode": 420
+        },
+        {
+          "path": "modules/purpose-built-tools/renderers/tailwind-preset.cjs",
+          "size": 1740,
+          "mode": 420
+        },
+        {
+          "path": "modules/purpose-built-tools/renderers/tokens.css",
+          "size": 1778,
+          "mode": 420
+        },
+        {
+          "path": "modules/purpose-built-tools/renderers/ToolResultCard.tsx",
+          "size": 10070,
+          "mode": 420
+        },
+        {
+          "path": "package.json",
+          "size": 966,
+          "mode": 420
+        }
+      ]
+    },
+    {
+      "owner": "agent-optimization",
+      "name": "@agentcraft/agent-optimization",
+      "version": "0.1.0",
+      "status": "PASS_ARTIFACT",
+      "tarball": "/tmp/agentcraft-recovery-npm/baseline/artifacts/agentcraft-agent-optimization-0.1.0.tgz",
+      "sha256": "995bbf0a72e1cd06416666db24e7b3451be61e3d380e0e89a6bd51d385c6fb33",
+      "shasum": "c98262011c9735490098e63d9e6f4c79a1303e5f",
+      "integrity": "sha512-5Ua9ihsowyvxooeN+R5peV4vsVARgKc8V3pg1jP8AJMTppW2XRg602EJGpv+W0CMieE61WTyqNK8kKN//wj/rg==",
+      "size": 60594,
+      "unpacked_size": 268815,
+      "files_count": 34,
+      "pack_json": "/tmp/agentcraft-recovery-npm/baseline/agent-optimization-pack.json",
+      "pack_json_sha256": "03450c00d39ac0a1db7edacc1cbff0131eba489f59fde35d0488dbf76d94f347",
+      "import_origin": "file:///tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/agent-optimization/dist/agent-optimization.js",
+      "real_origin": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/agent-optimization/dist/agent-optimization.js",
+      "dependencies": {},
+      "peer_dependencies": {
+        "react": "^19.0.0",
+        "lucide-react": ">=0.460.0 <2",
+        "copilot-terminal": "^0.2.0",
+        "@agentcraft/source-code": "^0.1.0"
+      },
+      "build_tools": {
+        "typescript": "6.0.3",
+        "vite": "7.3.6",
+        "react": "19.3.0",
+        "react-dom": "19.3.0",
+        "lucide-react": "0.460.0",
+        "shiki": "4.4.3"
+      },
+      "notices": [
+        {
+          "path": "LICENSE",
+          "size": 1141,
+          "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+        }
+      ],
+      "files": [
+        {
+          "path": "CONTRACT.md",
+          "size": 10849,
+          "mode": 420
+        },
+        {
+          "path": "LICENSE",
+          "size": 1141,
+          "mode": 420
+        },
+        {
+          "path": "PROVENANCE.md",
+          "size": 1531,
+          "mode": 420
+        },
+        {
+          "path": "README.md",
+          "size": 3690,
+          "mode": 420
+        },
+        {
+          "path": "dist/agent-optimization.js",
+          "size": 88868,
+          "mode": 420
+        },
+        {
+          "path": "dist/api.d.ts",
+          "size": 1661,
+          "mode": 420
+        },
+        {
+          "path": "dist/columns.d.ts",
+          "size": 770,
+          "mode": 420
+        },
+        {
+          "path": "dist/DetectorView.d.ts",
+          "size": 333,
+          "mode": 420
+        },
+        {
+          "path": "dist/index.d.ts",
+          "size": 514,
+          "mode": 420
+        },
+        {
+          "path": "dist/optimization.css",
+          "size": 22598,
+          "mode": 420
+        },
+        {
+          "path": "dist/OptimizationWorkspace.d.ts",
+          "size": 390,
+          "mode": 420
+        },
+        {
+          "path": "dist/panes.d.ts",
+          "size": 877,
+          "mode": 420
+        },
+        {
+          "path": "dist/PerformanceView.d.ts",
+          "size": 252,
+          "mode": 420
+        },
+        {
+          "path": "dist/RunReplay.d.ts",
+          "size": 288,
+          "mode": 420
+        },
+        {
+          "path": "dist/trajectory.d.ts",
+          "size": 3451,
+          "mode": 420
+        },
+        {
+          "path": "dist/TrajectoryChart.d.ts",
+          "size": 708,
+          "mode": 420
+        },
+        {
+          "path": "dist/types.d.ts",
+          "size": 11609,
+          "mode": 420
+        },
+        {
+          "path": "dist/views.d.ts",
+          "size": 1113,
+          "mode": 420
+        },
+        {
+          "path": "frontend/api.ts",
+          "size": 3300,
+          "mode": 420
+        },
+        {
+          "path": "frontend/columns.ts",
+          "size": 3005,
+          "mode": 420
+        },
+        {
+          "path": "frontend/DetectorView.tsx",
+          "size": 4571,
+          "mode": 420
+        },
+        {
+          "path": "frontend/index.ts",
+          "size": 514,
+          "mode": 420
+        },
+        {
+          "path": "frontend/optimization.css",
+          "size": 26434,
+          "mode": 420
+        },
+        {
+          "path": "frontend/OptimizationWorkspace.tsx",
+          "size": 17553,
+          "mode": 420
+        },
+        {
+          "path": "frontend/panes.tsx",
+          "size": 8764,
+          "mode": 420
+        },
+        {
+          "path": "frontend/PerformanceView.tsx",
+          "size": 6337,
+          "mode": 420
+        },
+        {
+          "path": "frontend/RunReplay.tsx",
+          "size": 7206,
+          "mode": 420
+        },
+        {
+          "path": "frontend/style-export.d.ts",
+          "size": 10,
+          "mode": 420
+        },
+        {
+          "path": "frontend/styles.d.ts",
+          "size": 23,
+          "mode": 420
+        },
+        {
+          "path": "frontend/trajectory.ts",
+          "size": 8770,
+          "mode": 420
+        },
+        {
+          "path": "frontend/TrajectoryChart.tsx",
+          "size": 3426,
+          "mode": 420
+        },
+        {
+          "path": "frontend/types.ts",
+          "size": 9522,
+          "mode": 420
+        },
+        {
+          "path": "frontend/views.tsx",
+          "size": 17545,
+          "mode": 420
+        },
+        {
+          "path": "package.json",
+          "size": 1192,
+          "mode": 420
+        }
+      ]
+    }
+  ],
+  "consumer_import_meta_resolve": {
+    "react": {
+      "resolved": "file:///tmp/agentcraft-recovery-npm/repair-1/host/node_modules/react/index.js",
+      "real": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/react/index.js"
+    },
+    "react-dom": {
+      "resolved": "file:///tmp/agentcraft-recovery-npm/repair-1/host/node_modules/react-dom/index.js",
+      "real": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/react-dom/index.js"
+    },
+    "react-dom/server": {
+      "resolved": "file:///tmp/agentcraft-recovery-npm/repair-1/host/node_modules/react-dom/server.node.js",
+      "real": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/react-dom/server.node.js"
+    },
+    "lucide-react": {
+      "resolved": "file:///tmp/agentcraft-recovery-npm/repair-1/host/node_modules/lucide-react/dist/cjs/lucide-react.js",
+      "real": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/lucide-react/dist/cjs/lucide-react.js"
+    },
+    "shiki": {
+      "resolved": "file:///tmp/agentcraft-recovery-npm/repair-1/host/node_modules/shiki/dist/index.mjs",
+      "real": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/shiki/dist/index.mjs"
+    },
+    "parse5": {
+      "resolved": "file:///tmp/agentcraft-recovery-npm/repair-1/host/node_modules/parse5/dist/index.js",
+      "real": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/parse5/dist/index.js"
+    },
+    "@xterm/xterm": {
+      "resolved": "file:///tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@xterm/xterm/lib/xterm.js",
+      "real": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@xterm/xterm/lib/xterm.js"
+    },
+    "@xterm/addon-fit": {
+      "resolved": "file:///tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@xterm/addon-fit/lib/addon-fit.js",
+      "real": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@xterm/addon-fit/lib/addon-fit.js"
+    },
+    "@agentcraft/event-stream": {
+      "resolved": "file:///tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/event-stream/dist/index.js",
+      "real": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/event-stream/dist/index.js"
+    },
+    "@agentcraft/source-code": {
+      "resolved": "file:///tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/source-code/dist/index.js",
+      "real": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/source-code/dist/index.js"
+    },
+    "@agentcraft/source-code/styles.css": {
+      "resolved": "file:///tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/source-code/dist/source-code.css",
+      "real": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/source-code/dist/source-code.css"
+    },
+    "@agentcraft/resource-explorer": {
+      "resolved": "file:///tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/resource-explorer/dist/index.js",
+      "real": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/resource-explorer/dist/index.js"
+    },
+    "@agentcraft/resource-explorer/inventory.css": {
+      "resolved": "file:///tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/resource-explorer/dist/inventory.css",
+      "real": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/resource-explorer/dist/inventory.css"
+    },
+    "@agentcraft/resource-explorer/explorer.css": {
+      "resolved": "file:///tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/resource-explorer/dist/explorer.css",
+      "real": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/resource-explorer/dist/explorer.css"
+    },
+    "@agentcraft/resource-explorer/assets/fonts/ibm-plex-mono-400.woff2": {
+      "resolved": "file:///tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/resource-explorer/docs/skills/assets/fonts/ibm-plex-mono-400.woff2",
+      "real": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/resource-explorer/docs/skills/assets/fonts/ibm-plex-mono-400.woff2"
+    },
+    "@agentcraft/resource-explorer/assets/fonts/ibm-plex-mono-600.woff2": {
+      "resolved": "file:///tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/resource-explorer/docs/skills/assets/fonts/ibm-plex-mono-600.woff2",
+      "real": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/resource-explorer/docs/skills/assets/fonts/ibm-plex-mono-600.woff2"
+    },
+    "@agentcraft/resource-explorer/assets/fonts/ibm-plex-sans-var.woff2": {
+      "resolved": "file:///tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/resource-explorer/docs/skills/assets/fonts/ibm-plex-sans-var.woff2",
+      "real": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/resource-explorer/docs/skills/assets/fonts/ibm-plex-sans-var.woff2"
+    },
+    "@agentcraft/resource-explorer/assets/fonts/LICENSE-OFL-1.1.txt": {
+      "resolved": "file:///tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/resource-explorer/docs/skills/assets/fonts/LICENSE-OFL-1.1.txt",
+      "real": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/resource-explorer/docs/skills/assets/fonts/LICENSE-OFL-1.1.txt"
+    },
+    "@agentcraft/resource-explorer/assets/THIRD_PARTY_NOTICES.txt": {
+      "resolved": "file:///tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/resource-explorer/docs/skills/assets/THIRD_PARTY_NOTICES.txt",
+      "real": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/resource-explorer/docs/skills/assets/THIRD_PARTY_NOTICES.txt"
+    },
+    "copilot-terminal": {
+      "resolved": "file:///tmp/agentcraft-recovery-npm/repair-1/host/node_modules/copilot-terminal/dist/index.js",
+      "real": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/copilot-terminal/dist/index.js"
+    },
+    "copilot-terminal/styles": {
+      "resolved": "file:///tmp/agentcraft-recovery-npm/repair-1/host/node_modules/copilot-terminal/dist/copilot-terminal.css",
+      "real": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/copilot-terminal/dist/copilot-terminal.css"
+    },
+    "@harness/azure-sky-styling": {
+      "resolved": "file:///tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@harness/azure-sky-styling/dist-library/index.js",
+      "real": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@harness/azure-sky-styling/dist-library/index.js"
+    },
+    "@harness/azure-sky-styling/styles.css": {
+      "resolved": "file:///tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@harness/azure-sky-styling/dist-library/azure-sky.css",
+      "real": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@harness/azure-sky-styling/dist-library/azure-sky.css"
+    },
+    "@harness/azure-sky-styling/depth.css": {
+      "resolved": "file:///tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@harness/azure-sky-styling/frontend/depth-effects.css",
+      "real": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@harness/azure-sky-styling/frontend/depth-effects.css"
+    },
+    "@harness/azure-sky-styling/THIRD_PARTY_NOTICES.txt": {
+      "resolved": "file:///tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@harness/azure-sky-styling/public/THIRD_PARTY_NOTICES.txt",
+      "real": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@harness/azure-sky-styling/public/THIRD_PARTY_NOTICES.txt"
+    },
+    "@agentcraft/hyperframes-tools": {
+      "resolved": "file:///tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/hyperframes-tools/scripts/hf.mjs",
+      "real": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/hyperframes-tools/scripts/hf.mjs"
+    },
+    "@agentcraft/hyperframes-tools/CONTRACT.md": {
+      "resolved": "file:///tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/hyperframes-tools/CONTRACT.md",
+      "real": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/hyperframes-tools/CONTRACT.md"
+    },
+    "@agentcraft/hyperframes-tools/GUIDE.md": {
+      "resolved": "file:///tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/hyperframes-tools/GUIDE.md",
+      "real": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/hyperframes-tools/GUIDE.md"
+    },
+    "@agentcraft/hyperframes-tools/runtime/package.json": {
+      "resolved": "file:///tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/hyperframes-tools/runtime/package.json",
+      "real": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/hyperframes-tools/runtime/package.json"
+    },
+    "@agentcraft/modular-agents": {
+      "resolved": "file:///tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/modular-agents/dist/modular-agents.js",
+      "real": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/modular-agents/dist/modular-agents.js"
+    },
+    "@agentcraft/modular-agents/styles": {
+      "resolved": "file:///tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/modular-agents/modules/purpose-built-tools/renderers/tokens.css",
+      "real": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/modular-agents/modules/purpose-built-tools/renderers/tokens.css"
+    },
+    "@agentcraft/modular-agents/tailwind-preset": {
+      "resolved": "file:///tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/modular-agents/modules/purpose-built-tools/renderers/tailwind-preset.cjs",
+      "real": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/modular-agents/modules/purpose-built-tools/renderers/tailwind-preset.cjs"
+    },
+    "@agentcraft/agent-optimization": {
+      "resolved": "file:///tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/agent-optimization/dist/agent-optimization.js",
+      "real": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/agent-optimization/dist/agent-optimization.js"
+    },
+    "@agentcraft/agent-optimization/types": {
+      "resolved": "file:///tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/agent-optimization/dist/types.d.ts",
+      "real": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/agent-optimization/dist/types.d.ts"
+    },
+    "@agentcraft/agent-optimization/styles": {
+      "resolved": "file:///tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/agent-optimization/dist/optimization.css",
+      "real": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/agent-optimization/dist/optimization.css"
+    }
+  },
+  "installed_hyperframes_bin": "/tmp/agentcraft-recovery-npm/repair-1/host/node_modules/@agentcraft/hyperframes-tools/scripts/hf.mjs",
+  "native_runtime_manifest": {
+    "name": "harness-hyperframes-motion",
+    "version": "1.0.0",
+    "private": true,
+    "description": "Pinned local runtime for deterministic HyperFrames compositions.",
+    "type": "module",
+    "engines": {
+      "node": ">=22"
+    },
+    "dependencies": {
+      "@ffmpeg-installer/ffmpeg": "1.1.0",
+      "@ffprobe-installer/ffprobe": "2.1.2",
+      "hyperframes": "0.8.12",
+      "node": "^22.19.0",
+      "parse5": "7.3.0"
+    }
+  },
+  "checks": [
+    {
+      "label": "consumer-tsc",
+      "executable": "/tmp/agentcraft-recovery-native-evidence.4BDirv/hyperframes-runtime.NN7mGE/node_modules/node/bin/node",
+      "args": [
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "-p",
+        "tsconfig.json"
+      ],
+      "cwd": "/tmp/agentcraft-recovery-npm/repair-1/host",
+      "started_utc": "2026-09-16T13:05:19.423Z",
+      "finished_utc": "2026-09-16T13:05:20.981Z",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "/tmp/agentcraft-recovery-npm/repair-1/consumer-tsc-0.stdout.log",
+      "stderr": "/tmp/agentcraft-recovery-npm/repair-1/consumer-tsc-0.stderr.log",
+      "status": "PASS",
+      "counts": null
+    },
+    {
+      "label": "installed-native-selftests",
+      "executable": "/tmp/agentcraft-recovery-native-evidence.4BDirv/hyperframes-runtime.NN7mGE/node_modules/node/bin/node",
+      "args": [
+        "--test",
+        "tests/event-stream.mjs",
+        "node_modules/@agentcraft/hyperframes-tools/tests/test_wrapper.mjs"
+      ],
+      "cwd": "/tmp/agentcraft-recovery-npm/repair-1/host",
+      "started_utc": "2026-09-16T13:05:20.984Z",
+      "finished_utc": "2026-09-16T13:05:21.055Z",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "/tmp/agentcraft-recovery-npm/repair-1/installed-native-selftests-0.stdout.log",
+      "stderr": "/tmp/agentcraft-recovery-npm/repair-1/installed-native-selftests-0.stderr.log",
+      "status": "PASS",
+      "counts": {
+        "label": "installed-native-selftests",
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "label": "installed-ui-selftest-build",
+      "executable": "/tmp/agentcraft-recovery-native-evidence.4BDirv/hyperframes-runtime.NN7mGE/node_modules/node/bin/node",
+      "args": [
+        "node_modules/vite/bin/vite.js",
+        "build",
+        "--config",
+        "vite.selftests.config.mjs"
+      ],
+      "cwd": "/tmp/agentcraft-recovery-npm/repair-1/host",
+      "started_utc": "2026-09-16T13:06:55.864Z",
+      "finished_utc": "2026-09-16T13:06:56.871Z",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "/tmp/agentcraft-recovery-npm/repair-1/installed-ui-selftest-build-1.stdout.log",
+      "stderr": "/tmp/agentcraft-recovery-npm/repair-1/installed-ui-selftest-build-1.stderr.log",
+      "status": "PASS",
+      "counts": null
+    },
+    {
+      "label": "installed-ui-selftests",
+      "executable": "/tmp/agentcraft-recovery-native-evidence.4BDirv/hyperframes-runtime.NN7mGE/node_modules/node/bin/node",
+      "args": [
+        "--test",
+        "selftests-output/selftests.mjs"
+      ],
+      "cwd": "/tmp/agentcraft-recovery-npm/repair-1/host",
+      "started_utc": "2026-09-16T13:06:56.871Z",
+      "finished_utc": "2026-09-16T13:06:57.202Z",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "/tmp/agentcraft-recovery-npm/repair-1/installed-ui-selftests-1.stdout.log",
+      "stderr": "/tmp/agentcraft-recovery-npm/repair-1/installed-ui-selftests-1.stderr.log",
+      "status": "PASS",
+      "counts": {
+        "label": "installed-ui-selftests",
+        "tests": 11,
+        "pass": 11,
+        "fail": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "label": "consumer-vite",
+      "executable": "/tmp/agentcraft-recovery-native-evidence.4BDirv/hyperframes-runtime.NN7mGE/node_modules/node/bin/node",
+      "args": [
+        "node_modules/vite/bin/vite.js",
+        "build",
+        "--config",
+        "vite.config.mjs"
+      ],
+      "cwd": "/tmp/agentcraft-recovery-npm/repair-1/host",
+      "started_utc": "2026-09-16T13:06:57.202Z",
+      "finished_utc": "2026-09-16T13:07:02.174Z",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "/tmp/agentcraft-recovery-npm/repair-1/consumer-vite-0.stdout.log",
+      "stderr": "/tmp/agentcraft-recovery-npm/repair-1/consumer-vite-0.stderr.log",
+      "status": "PASS",
+      "counts": null
+    },
+    {
+      "label": "installed-hyperframes-selftests",
+      "executable": "/tmp/agentcraft-recovery-native-evidence.4BDirv/hyperframes-runtime.NN7mGE/node_modules/node/bin/node",
+      "args": [
+        "node_modules/@agentcraft/hyperframes-tools/tests/test_wrapper.mjs"
+      ],
+      "cwd": "/tmp/agentcraft-recovery-npm/repair-1/host",
+      "started_utc": "2026-09-16T13:11:25.014Z",
+      "finished_utc": "2026-09-16T13:11:25.128Z",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "/tmp/agentcraft-recovery-npm/repair-1/installed-hyperframes-selftests-0.stdout.log",
+      "stderr": "/tmp/agentcraft-recovery-npm/repair-1/installed-hyperframes-selftests-0.stderr.log",
+      "status": "PASS",
+      "counts": {
+        "label": "installed-hyperframes-selftests",
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "skipped": 0
+      }
+    }
+  ],
+  "final_readback_checks": [
+    {
+      "label": "final-consumer-origins",
+      "executable": "/tmp/agentcraft-recovery-native-evidence.4BDirv/hyperframes-runtime.NN7mGE/node_modules/node/bin/node",
+      "args": [
+        "--input-type=module",
+        "-e",
+        "import assert from 'node:assert/strict'; import {realpathSync} from 'node:fs'; import {fileURLToPath} from 'node:url'; const root=process.cwd()+'/node_modules/'; const origins={}; for(const name of [\"react\",\"react-dom\",\"react-dom/server\",\"lucide-react\",\"shiki\",\"parse5\",\"@xterm/xterm\",\"@xterm/addon-fit\",\"@agentcraft/event-stream\",\"@agentcraft/source-code\",\"@agentcraft/source-code/styles.css\",\"@agentcraft/resource-explorer\",\"@agentcraft/resource-explorer/inventory.css\",\"@agentcraft/resource-explorer/explorer.css\",\"@agentcraft/resource-explorer/assets/fonts/ibm-plex-mono-400.woff2\",\"@agentcraft/resource-explorer/assets/fonts/ibm-plex-mono-600.woff2\",\"@agentcraft/resource-explorer/assets/fonts/ibm-plex-sans-var.woff2\",\"@agentcraft/resource-explorer/assets/fonts/LICENSE-OFL-1.1.txt\",\"@agentcraft/resource-explorer/assets/THIRD_PARTY_NOTICES.txt\",\"copilot-terminal\",\"copilot-terminal/styles\",\"@harness/azure-sky-styling\",\"@harness/azure-sky-styling/styles.css\",\"@harness/azure-sky-styling/depth.css\",\"@harness/azure-sky-styling/THIRD_PARTY_NOTICES.txt\",\"@agentcraft/hyperframes-tools\",\"@agentcraft/hyperframes-tools/CONTRACT.md\",\"@agentcraft/hyperframes-tools/GUIDE.md\",\"@agentcraft/hyperframes-tools/runtime/package.json\",\"@agentcraft/modular-agents\",\"@agentcraft/modular-agents/styles\",\"@agentcraft/modular-agents/tailwind-preset\",\"@agentcraft/agent-optimization\",\"@agentcraft/agent-optimization/types\",\"@agentcraft/agent-optimization/styles\"]) {const resolved=import.meta.resolve(name); const real=realpathSync(fileURLToPath(resolved)); assert.ok(real.startsWith(root),name+' escaped consumer'); origins[name]={resolved,real};} console.log(JSON.stringify(origins,null,2));"
+      ],
+      "cwd": "/tmp/agentcraft-recovery-npm/repair-1/host",
+      "started_utc": "2026-09-16T13:14:22.594Z",
+      "finished_utc": "2026-09-16T13:14:22.630Z",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "/tmp/agentcraft-recovery-npm/repair-1/final-consumer-origins.stdout.log",
+      "stderr": "/tmp/agentcraft-recovery-npm/repair-1/final-consumer-origins.stderr.log"
+    },
+    {
+      "label": "final-consumer-dependency-tree",
+      "executable": "npm",
+      "args": [
+        "ls",
+        "--all",
+        "--json"
+      ],
+      "cwd": "/tmp/agentcraft-recovery-npm/repair-1/host",
+      "started_utc": "2026-09-16T13:14:22.631Z",
+      "finished_utc": "2026-09-16T13:14:22.971Z",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "/tmp/agentcraft-recovery-npm/repair-1/final-consumer-dependency-tree.stdout.log",
+      "stderr": "/tmp/agentcraft-recovery-npm/repair-1/final-consumer-dependency-tree.stderr.log"
+    },
+    {
+      "label": "installed-native-runtime-manifest",
+      "executable": "/tmp/agentcraft-recovery-native-evidence.4BDirv/hyperframes-runtime.NN7mGE/node_modules/node/bin/node",
+      "args": [
+        "--input-type=module",
+        "-e",
+        "const value=await import('@agentcraft/hyperframes-tools/runtime/package.json',{with:{type:'json'}}); if(value.default.dependencies.hyperframes!=='0.8.12')throw Error('Wrong declared native runtime'); console.log(JSON.stringify(value.default));"
+      ],
+      "cwd": "/tmp/agentcraft-recovery-npm/repair-1/host",
+      "started_utc": "2026-09-16T13:14:22.972Z",
+      "finished_utc": "2026-09-16T13:14:22.994Z",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "/tmp/agentcraft-recovery-npm/repair-1/installed-native-runtime-manifest.stdout.log",
+      "stderr": "/tmp/agentcraft-recovery-npm/repair-1/installed-native-runtime-manifest.stderr.log"
+    }
+  ],
+  "pack_build_install_commands": [
+    {
+      "executable": "npm",
+      "args": [
+        "install",
+        "--ignore-scripts",
+        "--no-save",
+        "--package-lock=false",
+        "--install-links",
+        "--no-audit",
+        "--no-fund"
+      ],
+      "cwd": "/tmp/agentcraft-recovery-npm/baseline/build/event-stream",
+      "started_utc": "2026-09-16T12:50:55.020Z",
+      "finished_utc": "2026-09-16T12:50:56.285Z",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "/tmp/agentcraft-recovery-npm/baseline/event-stream-install-build-deps.stdout.log",
+      "stderr": "/tmp/agentcraft-recovery-npm/baseline/event-stream-install-build-deps.stderr.log"
+    },
+    {
+      "executable": "npm",
+      "args": [
+        "pack",
+        "--json",
+        "--pack-destination",
+        "/tmp/agentcraft-recovery-npm/baseline/artifacts"
+      ],
+      "cwd": "/tmp/agentcraft-recovery-npm/baseline/build/event-stream",
+      "started_utc": "2026-09-16T12:50:56.286Z",
+      "finished_utc": "2026-09-16T12:50:56.940Z",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "/tmp/agentcraft-recovery-npm/baseline/event-stream-pack.stdout.log",
+      "stderr": "/tmp/agentcraft-recovery-npm/baseline/event-stream-pack.stderr.log"
+    },
+    {
+      "executable": "npm",
+      "args": [
+        "install",
+        "--ignore-scripts",
+        "--no-save",
+        "--package-lock=false",
+        "--install-links",
+        "--no-audit",
+        "--no-fund"
+      ],
+      "cwd": "/tmp/agentcraft-recovery-npm/baseline/build/source-code",
+      "started_utc": "2026-09-16T12:50:56.951Z",
+      "finished_utc": "2026-09-16T12:51:00.184Z",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "/tmp/agentcraft-recovery-npm/baseline/source-code-install-build-deps.stdout.log",
+      "stderr": "/tmp/agentcraft-recovery-npm/baseline/source-code-install-build-deps.stderr.log"
+    },
+    {
+      "executable": "npm",
+      "args": [
+        "pack",
+        "--json",
+        "--pack-destination",
+        "/tmp/agentcraft-recovery-npm/baseline/artifacts"
+      ],
+      "cwd": "/tmp/agentcraft-recovery-npm/baseline/build/source-code",
+      "started_utc": "2026-09-16T12:51:00.184Z",
+      "finished_utc": "2026-09-16T12:51:01.247Z",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "/tmp/agentcraft-recovery-npm/baseline/source-code-pack.stdout.log",
+      "stderr": "/tmp/agentcraft-recovery-npm/baseline/source-code-pack.stderr.log"
+    },
+    {
+      "executable": "npm",
+      "args": [
+        "install",
+        "--ignore-scripts",
+        "--no-save",
+        "--package-lock=false",
+        "--install-links",
+        "--no-audit",
+        "--no-fund",
+        "/tmp/agentcraft-recovery-npm/baseline/artifacts/agentcraft-source-code-0.1.0.tgz"
+      ],
+      "cwd": "/tmp/agentcraft-recovery-npm/baseline/build/resource-explorer",
+      "started_utc": "2026-09-16T12:51:01.280Z",
+      "finished_utc": "2026-09-16T12:51:03.592Z",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "/tmp/agentcraft-recovery-npm/baseline/resource-explorer-install-build-deps.stdout.log",
+      "stderr": "/tmp/agentcraft-recovery-npm/baseline/resource-explorer-install-build-deps.stderr.log"
+    },
+    {
+      "executable": "npm",
+      "args": [
+        "pack",
+        "--json",
+        "--pack-destination",
+        "/tmp/agentcraft-recovery-npm/baseline/artifacts"
+      ],
+      "cwd": "/tmp/agentcraft-recovery-npm/baseline/build/resource-explorer",
+      "started_utc": "2026-09-16T12:51:03.593Z",
+      "finished_utc": "2026-09-16T12:51:05.095Z",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "/tmp/agentcraft-recovery-npm/baseline/resource-explorer-pack.stdout.log",
+      "stderr": "/tmp/agentcraft-recovery-npm/baseline/resource-explorer-pack.stderr.log"
+    },
+    {
+      "executable": "npm",
+      "args": [
+        "install",
+        "--ignore-scripts",
+        "--no-save",
+        "--package-lock=false",
+        "--install-links",
+        "--no-audit",
+        "--no-fund"
+      ],
+      "cwd": "/tmp/agentcraft-recovery-npm/baseline/build/copilot-terminal",
+      "started_utc": "2026-09-16T12:53:24.254Z",
+      "finished_utc": "2026-09-16T12:53:27.769Z",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "/tmp/agentcraft-recovery-npm/baseline/copilot-terminal-install-build-deps.stdout.log",
+      "stderr": "/tmp/agentcraft-recovery-npm/baseline/copilot-terminal-install-build-deps.stderr.log"
+    },
+    {
+      "executable": "npm",
+      "args": [
+        "pack",
+        "--json",
+        "--pack-destination",
+        "/tmp/agentcraft-recovery-npm/baseline/artifacts"
+      ],
+      "cwd": "/tmp/agentcraft-recovery-npm/baseline/build/copilot-terminal",
+      "started_utc": "2026-09-16T12:53:27.770Z",
+      "finished_utc": "2026-09-16T12:53:28.877Z",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "/tmp/agentcraft-recovery-npm/baseline/copilot-terminal-pack.stdout.log",
+      "stderr": "/tmp/agentcraft-recovery-npm/baseline/copilot-terminal-pack.stderr.log"
+    },
+    {
+      "executable": "npm",
+      "args": [
+        "install",
+        "--ignore-scripts",
+        "--no-save",
+        "--package-lock=false",
+        "--install-links",
+        "--no-audit",
+        "--no-fund"
+      ],
+      "cwd": "/tmp/agentcraft-recovery-npm/baseline/build/azure-sky-styling",
+      "started_utc": "2026-09-16T12:53:28.923Z",
+      "finished_utc": "2026-09-16T12:53:46.915Z",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "/tmp/agentcraft-recovery-npm/baseline/azure-sky-styling-install-build-deps.stdout.log",
+      "stderr": "/tmp/agentcraft-recovery-npm/baseline/azure-sky-styling-install-build-deps.stderr.log"
+    },
+    {
+      "executable": "npm",
+      "args": [
+        "pack",
+        "--json",
+        "--pack-destination",
+        "/tmp/agentcraft-recovery-npm/baseline/artifacts"
+      ],
+      "cwd": "/tmp/agentcraft-recovery-npm/baseline/build/azure-sky-styling",
+      "started_utc": "2026-09-16T12:53:46.916Z",
+      "finished_utc": "2026-09-16T12:53:50.299Z",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "/tmp/agentcraft-recovery-npm/baseline/azure-sky-styling-pack.stdout.log",
+      "stderr": "/tmp/agentcraft-recovery-npm/baseline/azure-sky-styling-pack.stderr.log"
+    },
+    {
+      "executable": "npm",
+      "args": [
+        "install",
+        "--ignore-scripts",
+        "--no-save",
+        "--package-lock=false",
+        "--install-links",
+        "--no-audit",
+        "--no-fund"
+      ],
+      "cwd": "/tmp/agentcraft-recovery-npm/baseline/build/hyperframes-tools",
+      "started_utc": "2026-09-16T12:53:50.314Z",
+      "finished_utc": "2026-09-16T12:53:50.747Z",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "/tmp/agentcraft-recovery-npm/baseline/hyperframes-tools-install-build-deps.stdout.log",
+      "stderr": "/tmp/agentcraft-recovery-npm/baseline/hyperframes-tools-install-build-deps.stderr.log"
+    },
+    {
+      "executable": "npm",
+      "args": [
+        "pack",
+        "--json",
+        "--pack-destination",
+        "/tmp/agentcraft-recovery-npm/baseline/artifacts"
+      ],
+      "cwd": "/tmp/agentcraft-recovery-npm/baseline/build/hyperframes-tools",
+      "started_utc": "2026-09-16T12:53:50.747Z",
+      "finished_utc": "2026-09-16T12:53:50.981Z",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "/tmp/agentcraft-recovery-npm/baseline/hyperframes-tools-pack.stdout.log",
+      "stderr": "/tmp/agentcraft-recovery-npm/baseline/hyperframes-tools-pack.stderr.log"
+    },
+    {
+      "executable": "npm",
+      "args": [
+        "install",
+        "--ignore-scripts",
+        "--no-save",
+        "--package-lock=false",
+        "--install-links",
+        "--no-audit",
+        "--no-fund"
+      ],
+      "cwd": "/tmp/agentcraft-recovery-npm/baseline/build/modular-agents",
+      "started_utc": "2026-09-16T12:53:51.036Z",
+      "finished_utc": "2026-09-16T12:53:52.444Z",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "/tmp/agentcraft-recovery-npm/baseline/modular-agents-install-build-deps.stdout.log",
+      "stderr": "/tmp/agentcraft-recovery-npm/baseline/modular-agents-install-build-deps.stderr.log"
+    },
+    {
+      "executable": "npm",
+      "args": [
+        "pack",
+        "--json",
+        "--pack-destination",
+        "/tmp/agentcraft-recovery-npm/baseline/artifacts"
+      ],
+      "cwd": "/tmp/agentcraft-recovery-npm/baseline/build/modular-agents",
+      "started_utc": "2026-09-16T12:53:52.445Z",
+      "finished_utc": "2026-09-16T12:53:54.012Z",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "/tmp/agentcraft-recovery-npm/baseline/modular-agents-pack.stdout.log",
+      "stderr": "/tmp/agentcraft-recovery-npm/baseline/modular-agents-pack.stderr.log"
+    },
+    {
+      "executable": "npm",
+      "args": [
+        "install",
+        "--ignore-scripts",
+        "--no-save",
+        "--package-lock=false",
+        "--install-links",
+        "--no-audit",
+        "--no-fund",
+        "/tmp/agentcraft-recovery-npm/baseline/artifacts/agentcraft-source-code-0.1.0.tgz",
+        "/tmp/agentcraft-recovery-npm/baseline/artifacts/copilot-terminal-0.2.0.tgz"
+      ],
+      "cwd": "/tmp/agentcraft-recovery-npm/baseline/build/agent-optimization",
+      "started_utc": "2026-09-16T12:53:54.046Z",
+      "finished_utc": "2026-09-16T12:53:58.676Z",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "/tmp/agentcraft-recovery-npm/baseline/agent-optimization-install-build-deps.stdout.log",
+      "stderr": "/tmp/agentcraft-recovery-npm/baseline/agent-optimization-install-build-deps.stderr.log"
+    },
+    {
+      "executable": "npm",
+      "args": [
+        "pack",
+        "--json",
+        "--pack-destination",
+        "/tmp/agentcraft-recovery-npm/baseline/artifacts"
+      ],
+      "cwd": "/tmp/agentcraft-recovery-npm/baseline/build/agent-optimization",
+      "started_utc": "2026-09-16T12:53:58.676Z",
+      "finished_utc": "2026-09-16T12:54:00.886Z",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "/tmp/agentcraft-recovery-npm/baseline/agent-optimization-pack.stdout.log",
+      "stderr": "/tmp/agentcraft-recovery-npm/baseline/agent-optimization-pack.stderr.log"
+    },
+    {
+      "executable": "npm",
+      "args": [
+        "install",
+        "--ignore-scripts",
+        "--install-links",
+        "--no-audit",
+        "--no-fund"
+      ],
+      "cwd": "/tmp/agentcraft-recovery-npm/baseline/host",
+      "started_utc": "2026-09-16T12:54:48.791Z",
+      "finished_utc": "2026-09-16T12:54:56.254Z",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "/tmp/agentcraft-recovery-npm/baseline/consumer-install.stdout.log",
+      "stderr": "/tmp/agentcraft-recovery-npm/baseline/consumer-install.stderr.log"
+    },
+    {
+      "executable": "/tmp/agentcraft-recovery-native-evidence.4BDirv/hyperframes-runtime.NN7mGE/node_modules/node/bin/node",
+      "args": [
+        "--input-type=module",
+        "-e",
+        "import assert from 'node:assert/strict'; import {realpathSync,lstatSync} from 'node:fs'; import {fileURLToPath} from 'node:url'; const root=process.cwd()+'/node_modules/'; const origins={}; for(const name of [\"@agentcraft/event-stream\",\"@agentcraft/source-code\",\"@agentcraft/resource-explorer\",\"copilot-terminal\",\"@harness/azure-sky-styling\",\"@agentcraft/hyperframes-tools\",\"@agentcraft/modular-agents\",\"@agentcraft/agent-optimization\"]) { const resolved=import.meta.resolve(name); const real=realpathSync(fileURLToPath(resolved)); assert.ok(real.startsWith(root),name+' outside installed host'); assert.ok(!lstatSync(root+name).isSymbolicLink(),name+' is symlink'); origins[name]={resolved,real}; } console.log(JSON.stringify(origins,null,2));"
+      ],
+      "cwd": "/tmp/agentcraft-recovery-npm/baseline/host",
+      "started_utc": "2026-09-16T12:54:56.255Z",
+      "finished_utc": "2026-09-16T12:54:56.282Z",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "/tmp/agentcraft-recovery-npm/baseline/consumer-origins.stdout.log",
+      "stderr": "/tmp/agentcraft-recovery-npm/baseline/consumer-origins.stderr.log"
+    },
+    {
+      "executable": "npm",
+      "args": [
+        "ls",
+        "--all",
+        "--json"
+      ],
+      "cwd": "/tmp/agentcraft-recovery-npm/baseline/host",
+      "started_utc": "2026-09-16T12:54:56.282Z",
+      "finished_utc": "2026-09-16T12:54:56.528Z",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "/tmp/agentcraft-recovery-npm/baseline/consumer-dependency-tree.stdout.log",
+      "stderr": "/tmp/agentcraft-recovery-npm/baseline/consumer-dependency-tree.stderr.log"
+    },
+    {
+      "label": "source-code-install-build-deps",
+      "executable": "npm",
+      "args": [
+        "install",
+        "--ignore-scripts",
+        "--no-save",
+        "--package-lock=false",
+        "--install-links",
+        "--no-audit",
+        "--no-fund"
+      ],
+      "cwd": "/tmp/agentcraft-recovery-npm/repair-1/build/source-code",
+      "started_utc": "2026-09-16T13:04:29.226Z",
+      "finished_utc": "2026-09-16T13:04:33.793Z",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "/tmp/agentcraft-recovery-npm/repair-1/source-code-install-build-deps.stdout.log",
+      "stderr": "/tmp/agentcraft-recovery-npm/repair-1/source-code-install-build-deps.stderr.log"
+    },
+    {
+      "label": "source-code-pack",
+      "executable": "npm",
+      "args": [
+        "pack",
+        "--json",
+        "--pack-destination",
+        "/tmp/agentcraft-recovery-npm/repair-1/artifacts"
+      ],
+      "cwd": "/tmp/agentcraft-recovery-npm/repair-1/build/source-code",
+      "started_utc": "2026-09-16T13:04:33.794Z",
+      "finished_utc": "2026-09-16T13:04:34.880Z",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "/tmp/agentcraft-recovery-npm/repair-1/source-code-pack.stdout.log",
+      "stderr": "/tmp/agentcraft-recovery-npm/repair-1/source-code-pack.stderr.log"
+    },
+    {
+      "label": "resource-explorer-install-build-deps",
+      "executable": "npm",
+      "args": [
+        "install",
+        "--ignore-scripts",
+        "--no-save",
+        "--package-lock=false",
+        "--install-links",
+        "--no-audit",
+        "--no-fund",
+        "/tmp/agentcraft-recovery-npm/repair-1/artifacts/agentcraft-source-code-0.1.0.tgz"
+      ],
+      "cwd": "/tmp/agentcraft-recovery-npm/repair-1/build/resource-explorer",
+      "started_utc": "2026-09-16T13:04:34.912Z",
+      "finished_utc": "2026-09-16T13:04:37.397Z",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "/tmp/agentcraft-recovery-npm/repair-1/resource-explorer-install-build-deps.stdout.log",
+      "stderr": "/tmp/agentcraft-recovery-npm/repair-1/resource-explorer-install-build-deps.stderr.log"
+    },
+    {
+      "label": "resource-explorer-pack",
+      "executable": "npm",
+      "args": [
+        "pack",
+        "--json",
+        "--pack-destination",
+        "/tmp/agentcraft-recovery-npm/repair-1/artifacts"
+      ],
+      "cwd": "/tmp/agentcraft-recovery-npm/repair-1/build/resource-explorer",
+      "started_utc": "2026-09-16T13:04:37.397Z",
+      "finished_utc": "2026-09-16T13:04:38.890Z",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "/tmp/agentcraft-recovery-npm/repair-1/resource-explorer-pack.stdout.log",
+      "stderr": "/tmp/agentcraft-recovery-npm/repair-1/resource-explorer-pack.stderr.log"
+    },
+    {
+      "label": "copilot-terminal-install-build-deps",
+      "executable": "npm",
+      "args": [
+        "install",
+        "--ignore-scripts",
+        "--no-save",
+        "--package-lock=false",
+        "--install-links",
+        "--no-audit",
+        "--no-fund"
+      ],
+      "cwd": "/tmp/agentcraft-recovery-npm/repair-1/build/copilot-terminal",
+      "started_utc": "2026-09-16T13:04:38.909Z",
+      "finished_utc": "2026-09-16T13:04:51.387Z",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "/tmp/agentcraft-recovery-npm/repair-1/copilot-terminal-install-build-deps.stdout.log",
+      "stderr": "/tmp/agentcraft-recovery-npm/repair-1/copilot-terminal-install-build-deps.stderr.log"
+    },
+    {
+      "label": "copilot-terminal-pack",
+      "executable": "npm",
+      "args": [
+        "pack",
+        "--json",
+        "--pack-destination",
+        "/tmp/agentcraft-recovery-npm/repair-1/artifacts"
+      ],
+      "cwd": "/tmp/agentcraft-recovery-npm/repair-1/build/copilot-terminal",
+      "started_utc": "2026-09-16T13:04:51.388Z",
+      "finished_utc": "2026-09-16T13:04:52.590Z",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "/tmp/agentcraft-recovery-npm/repair-1/copilot-terminal-pack.stdout.log",
+      "stderr": "/tmp/agentcraft-recovery-npm/repair-1/copilot-terminal-pack.stderr.log"
+    },
+    {
+      "label": "azure-sky-styling-install-build-deps",
+      "executable": "npm",
+      "args": [
+        "install",
+        "--ignore-scripts",
+        "--no-save",
+        "--package-lock=false",
+        "--install-links",
+        "--no-audit",
+        "--no-fund"
+      ],
+      "cwd": "/tmp/agentcraft-recovery-npm/repair-1/build/azure-sky-styling",
+      "started_utc": "2026-09-16T13:04:52.647Z",
+      "finished_utc": "2026-09-16T13:05:09.165Z",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "/tmp/agentcraft-recovery-npm/repair-1/azure-sky-styling-install-build-deps.stdout.log",
+      "stderr": "/tmp/agentcraft-recovery-npm/repair-1/azure-sky-styling-install-build-deps.stderr.log"
+    },
+    {
+      "label": "azure-sky-styling-pack",
+      "executable": "npm",
+      "args": [
+        "pack",
+        "--json",
+        "--pack-destination",
+        "/tmp/agentcraft-recovery-npm/repair-1/artifacts"
+      ],
+      "cwd": "/tmp/agentcraft-recovery-npm/repair-1/build/azure-sky-styling",
+      "started_utc": "2026-09-16T13:05:09.166Z",
+      "finished_utc": "2026-09-16T13:05:12.590Z",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "/tmp/agentcraft-recovery-npm/repair-1/azure-sky-styling-pack.stdout.log",
+      "stderr": "/tmp/agentcraft-recovery-npm/repair-1/azure-sky-styling-pack.stderr.log"
+    },
+    {
+      "label": "consumer-install",
+      "executable": "npm",
+      "args": [
+        "install",
+        "--ignore-scripts",
+        "--install-links",
+        "--no-audit",
+        "--no-fund"
+      ],
+      "cwd": "/tmp/agentcraft-recovery-npm/repair-1/host",
+      "started_utc": "2026-09-16T13:05:12.600Z",
+      "finished_utc": "2026-09-16T13:05:19.399Z",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "/tmp/agentcraft-recovery-npm/repair-1/consumer-install.stdout.log",
+      "stderr": "/tmp/agentcraft-recovery-npm/repair-1/consumer-install.stderr.log"
+    }
+  ],
+  "asset_readback": {
+    "manifest_files": 314,
+    "css_files": 1,
+    "css_asset_references": 3,
+    "references": [
+      {
+        "stylesheet": "assets/index-CXPkzZU3.css",
+        "reference": "./surface-grain-rrelE3Gm.png",
+        "file": "assets/surface-grain-rrelE3Gm.png",
+        "sha256": "9403025a0503e882c4af41fd5f008c67d7049b360b18d1383bf5ab204da6bfcb"
+      },
+      {
+        "stylesheet": "assets/index-CXPkzZU3.css",
+        "reference": "./surface-grain-rrelE3Gm.png",
+        "file": "assets/surface-grain-rrelE3Gm.png",
+        "sha256": "9403025a0503e882c4af41fd5f008c67d7049b360b18d1383bf5ab204da6bfcb"
+      },
+      {
+        "stylesheet": "assets/index-CXPkzZU3.css",
+        "reference": "./surface-grain-rrelE3Gm.png",
+        "file": "assets/surface-grain-rrelE3Gm.png",
+        "sha256": "9403025a0503e882c4af41fd5f008c67d7049b360b18d1383bf5ab204da6bfcb"
+      }
+    ]
+  },
+  "notices": {
+    "status": "PASS",
+    "missing_required_notices": [],
+    "scope": "Root LICENSE for every package; resource-explorer font/art notices, Azure Sky font/art notices and HyperFrames third-party notices checked in installed archives. Native npm dependencies retain their own notices."
+  },
+  "retained_failure_evidence": {
+    "original_typecheck": {
+      "path": "/tmp/agentcraft-recovery-npm/baseline/consumer-tsc-0.stdout.log",
+      "sha256": "202d33df5caefafff55c9692c869240fd70c5b84d4411d8cfb6e7c95c504da1e"
+    },
+    "initial_capture_failures": [
+      {
+        "owner": "azure-sky-styling",
+        "error": "Unexpected token 'v', \"vite v6.4.\"... is not valid JSON"
+      },
+      {
+        "owner": "modular-agents",
+        "error": "Unexpected token 'v', \"vite v7.3.\"... is not valid JSON"
+      },
+      {
+        "owner": "agent-optimization",
+        "error": "Unexpected token 'v', \"vite v7.3.\"... is not valid JSON"
+      }
+    ],
+    "baseline_interruption": [
+      {
+        "resumed_utc": "2026-09-16T12:53:24.247Z",
+        "reason": "Terminal returned unrelated UI output; incomplete own receipt and absent process observed. Retain completed packs; resume unrecorded owners only."
+      }
+    ],
+    "probe_failures": [
+      {
+        "label": "installed-ui-selftests",
+        "executable": "/tmp/agentcraft-recovery-native-evidence.4BDirv/hyperframes-runtime.NN7mGE/node_modules/node/bin/node",
+        "args": [
+          "--test",
+          "selftests-output/selftests.mjs"
+        ],
+        "cwd": "/tmp/agentcraft-recovery-npm/repair-1/host",
+        "started_utc": "2026-09-16T13:05:22.002Z",
+        "finished_utc": "2026-09-16T13:05:22.331Z",
+        "exit_code": 1,
+        "signal": null,
+        "stdout": "/tmp/agentcraft-recovery-npm/repair-1/installed-ui-selftests-0.stdout.log",
+        "stderr": "/tmp/agentcraft-recovery-npm/repair-1/installed-ui-selftests-0.stderr.log"
+      }
+    ],
+    "probe_corrections": [
+      "Shiki source equality is checked through parse5, not a particular HTML entity spelling",
+      "Optimization API/provider positive/refusal replaces an invalid assumption that a browser-only layout supports SSR without window",
+      "Node test discovery skipped tests under node_modules; installed HyperFrames selftest is invoked directly and exact 2+4+11 counts are asserted"
+    ],
+    "superseded_tarballs": [
+      {
+        "name": "@agentcraft/source-code",
+        "tarball": "/tmp/agentcraft-recovery-npm/baseline/artifacts/agentcraft-source-code-0.1.0.tgz",
+        "sha256": "1b09ce72d5e36fac7f747fd4529014ce9e25e84f513e07fe9f603e28571eeb2b",
+        "status": "SUPERSEDED_TYPECHECK_FAILURE"
+      },
+      {
+        "name": "@agentcraft/resource-explorer",
+        "tarball": "/tmp/agentcraft-recovery-npm/baseline/artifacts/agentcraft-resource-explorer-0.1.0.tgz",
+        "sha256": "8fab7af698ff5eb35b3782fedfeef9c9bcc83c0f7cf6780616ee0d020017f32b",
+        "status": "SUPERSEDED_TYPECHECK_FAILURE"
+      },
+      {
+        "name": "copilot-terminal",
+        "tarball": "/tmp/agentcraft-recovery-npm/baseline/artifacts/copilot-terminal-0.2.0.tgz",
+        "sha256": "e9c5c7c71822b39cd759d0f75fcd471eb9c8b0f82344adc414aac1fb908580f9",
+        "status": "SUPERSEDED_TYPECHECK_FAILURE"
+      },
+      {
+        "name": "@harness/azure-sky-styling",
+        "tarball": "/tmp/agentcraft-recovery-npm/baseline/artifacts/harness-azure-sky-styling-0.1.0.tgz",
+        "sha256": "1d772e726d1d551d14123b34026f34dcf8529bff25fcd9d45b1a2e824f28c3fe",
+        "status": "SUPERSEDED_TYPECHECK_FAILURE"
+      }
+    ]
+  },
+  "evidence_files": [
+    {
+      "path": "/tmp/agentcraft-recovery-npm/baseline/baseline.json",
+      "sha256": "f7df086e497a61f2abba89bc5e09f6679559329a46a9c8b777c966ce51ef4024"
+    },
+    {
+      "path": "/tmp/agentcraft-recovery-npm/repair-1/baseline.json",
+      "sha256": "2e9a87ced7db8a3a620d66b0f3a5dfae3ddd12eab2afd1b50e42584bd29f0a70"
+    },
+    {
+      "path": "/tmp/agentcraft-recovery-npm/repair-1/verification.json",
+      "sha256": "7eb2e8f7f9ab268359a61df937483abac19195d571894d7f268b8f1cccab2579"
+    },
+    {
+      "path": "/tmp/agentcraft-recovery-npm/repair-1/installed-integrity.json",
+      "sha256": "11cc6b01c8bd4268520cb8ae8ed27ea535e49e32e53b999e7f395bf0b19a3ed3"
+    },
+    {
+      "path": "/tmp/agentcraft-recovery-npm/repair-1/final-readback.json",
+      "sha256": "4d3d7e0b70e13dd0ed6d65cb2a0b993e5c5dc2798767a670871a8b9eb4e89f2f"
+    },
+    {
+      "path": "/tmp/agentcraft-recovery-npm/repair-1/final-consumer-origins.stdout.log",
+      "sha256": "94c680bbf56734e743c623158285eb43ae8c87c53f8dc3d24776c1455a5ca504"
+    },
+    {
+      "path": "/tmp/agentcraft-recovery-npm/repair-1/final-consumer-dependency-tree.stdout.log",
+      "sha256": "311b41c8b0991de6d280abc3e7b9564ccd230ca825e0fb1884449846f79e3b9a"
+    }
+  ],
+  "warnings": [
+    "Vite reports native dependency use-client directives ignored in this client bundle and chunks above 500 kB; compilation succeeds. No unresolved CSS imports or external/missing literal CSS assets remain."
+  ],
+  "exclusions": [
+    "Member-wide npm suites and both application builds already passed per assignment; not rerun here",
+    "No tarball browser/canvas/video rendering, new screenshots or responsive UI acceptance; current-source UI evidence belongs to the separate UI work",
+    "No full OptimizationWorkspace SSR guarantee: it is browser-only; typed browser compilation and installed API/provider behavior are verified",
+    "HyperFrames 0.8.12 native rendering was verified by the previous native worker (libraries/framework/distribution/native-local.json); no costly rerender here and no claim that previous render used this tarball",
+    "Browser-only Azure Sky/Copilot/modular/optimization journeys are not npm selftests in this gate; relevant installed common exports are covered by the listed consumers",
+    "agent-optimization test_continue_campaign.mjs exercises Python-owner campaign authoring, not a shipped npm export; excluded from npm artifact test counts",
+    "Central guidance owns documentation navigation; relative Markdown hyperlinks inside tarballs are not a gate",
+    "Only recorded Linux/Node/TypeScript/bundler/React/dependency versions verified; other supported ranges, operating systems, Node floors and registry installation are unverified",
+    "Python sources/metadata, docs, locks, catalogue, EXECUTION, application source and other repository paths unchanged by this increment",
+    "No cloud/live endpoint/provider calls, credential acquisition, registry publish, commits, branch changes, user-data deletion or third-party repository mirroring"
+  ],
+  "retained_state": {
+    "owned_running_processes": 0,
+    "servers_started": 0,
+    "evidence_and_tarballs_retained": "/tmp/agentcraft-recovery-npm",
+    "stale_baseline_artifacts_retained": true,
+    "cleanup": "Wrapper tests clean only their own generated temporary fixtures. Build snapshots, node_modules, clean hosts, bundles and receipts remain for parent integration; borrowed Node runtime untouched."
+  },
+  "blockers": [],
+  "next_decision": "Parent integrates the eight selected hashes and four manifest changes. Source lockfiles/application installations remain untouched; reconcile any pins incompatible with Lucide ^1.42.0 when adopting these artifacts."
+}

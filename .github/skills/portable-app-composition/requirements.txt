@@ -1,0 +1,6 @@
+# The whole dependency surface.
+#
+# PyYAML is needed only for the YAML serialisation (to_yaml / from_yaml). The
+# canonical JSON path — parse, from_json, canonical_json — and the composer
+# itself are stdlib only.
+PyYAML>=6.0

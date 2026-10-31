@@ -1,0 +1,46 @@
+// Preserve queued/failed attempts and keep only the latest lifecycle state per run.
+let runs = materialize(
+    ContainerAppConsoleLogs_CL
+    | where TimeGenerated > ago(7d)
+    | where ContainerAppName_s == "customer-service-multi-agent"
+    | extend event = parse_json(Log_s)
+    | where event.operation_type == "simulation.snapshot"
+    | extend run_id=tostring(event.run_id), journey=tostring(event.journey_type)
+    | summarize arg_max(TimeGenerated, *) by run_id
+    | extend metrics=event.metrics
+);
+// Tier 1: platform outcome. Missing feedback is unknown, not zero.
+let system = runs
+| summarize attempts=count(),
+    completed=countif(tobool(metrics.task_completed)),
+    failed=countif(tobool(metrics.error)),
+    scored=countif(tobool(metrics.scored)),
+    avg_goal=avg(todouble(metrics.goal_index)),
+    journey_coherence=avg(todouble(metrics.coherence))
+| extend task_completion_rate=iff(attempts > 0, todouble(completed)/attempts, real(null)),
+    customer_resolution_rate=real(null), session_reopen_rate=real(null), tier="system";
+// Tier 2: same denominators, segmented by interaction type.
+let journeys = runs
+| summarize attempts=count(),
+    completed=countif(tobool(metrics.task_completed)),
+    failed=countif(tobool(metrics.error)),
+    scored=countif(tobool(metrics.scored)),
+    avg_goal=avg(todouble(metrics.goal_index)),
+    journey_coherence=avg(todouble(metrics.coherence)) by journey
+| extend task_completion_rate=iff(attempts > 0, todouble(completed)/attempts, real(null)), tier="journey";
+// Tier 3: explicit correctness labels are a separate denominator from failures.
+let agents = runs
+| mv-expand agent_sample=metrics.agent_samples
+| extend agent=tostring(agent_sample.agent), correct=tobool(agent_sample.correct)
+| summarize calls=count(),
+    errors=countif(tobool(agent_sample.error)),
+    evaluated=countif(isnotnull(correct)),
+    correct_count=countif(correct == true),
+    latency_p95_ms=percentile(todouble(agent_sample.latency_ms), 95),
+    latency_avg_ms=avg(todouble(agent_sample.latency_ms)),
+    input_tokens=sum(tolong(agent_sample.input_token_count)),
+    output_tokens=sum(tolong(agent_sample.output_token_count)) by journey, agent
+| extend error_rate=iff(calls > 0, todouble(errors)/calls, real(null)),
+    task_accuracy=iff(evaluated > 0, todouble(correct_count)/evaluated, real(null)), tier="agent";
+union system, journeys, agents
+| order by tier asc, journey asc, agent asc

@@ -27,9 +27,125 @@ It implements the requested changes on top of a faithful export:
 
 ## Layout
 
+### Minimal regional agent spoke
+
+`agent-spoke.bicep` is a separate subscription-scope entry point for subscription
+`6bacd437-5d04-4afd-850e-51bdc4041496`. It does not redeploy the existing SEA
+landing zone. It defaults to West US 3, creating `rg-ai-dev-wus3` and
+`vnet-spoke-agent-wus3` (`10.80.0.0/16`), with only `snet-agent`
+(`10.80.5.0/24`, delegated to `Microsoft.App/environments`) and `snet-pe`
+(`10.80.6.0/24`). Location, region code, resource group, VNet name, and subnet
+prefixes are parameters so another supported region can be selected without
+hardcoded Sweden resource names.
+
+The workload follows the official
+[private standard-agent sample](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15-private-network-standard-agent-setup)
+and the live SEA capability-host pattern: one private Foundry account and project,
+AI Search Basic, Blob Storage Standard LRS, and serverless Cosmos DB. A regional
+`gpt-4.1-mini` Standard deployment uses capacity 10. All four services disable
+public network access. Project connections use Microsoft Entra authentication,
+with provisioning and runtime roles assigned to the project identity. Storage,
+Cosmos, and Foundry disable account-key authentication.
+
+Six existing private DNS zones in `rg-hub-sea` are linked to the new VNet.
+Reciprocal global peerings connect it to `vnet-hub-2` and
+`vnet-spoke-app-sea`. The hub peering shares the existing VPN gateway; direct
+SEA peering does not enable gateway transit. No VMs, Container Apps, APIM,
+firewall, NAT gateway, Key Vault, or monitoring resources are added.
+
+Register `Microsoft.Network`, `Microsoft.CognitiveServices`, `Microsoft.DocumentDB`,
+`Microsoft.Search`, `Microsoft.Storage`, `Microsoft.App`, `Microsoft.KeyVault`,
+`Microsoft.MachineLearningServices`, and `Microsoft.ContainerService` in the target
+subscription before deployment. The deploying identity needs resource and role
+assignment permissions in the target subscription, and peering/DNS-link permissions
+in the existing hub and SEA resource groups.
+
+```bash
+az deployment sub what-if \
+  --subscription 6bacd437-5d04-4afd-850e-51bdc4041496 \
+  --location westus3 --name agent-standard-westus3 \
+  --template-file bicep/agent-spoke.bicep \
+  --parameters developerPrincipalId="$(az ad signed-in-user show --query id -o tsv)"
+
+az deployment sub create \
+  --subscription 6bacd437-5d04-4afd-850e-51bdc4041496 \
+  --location westus3 --name agent-standard-westus3 \
+  --template-file bicep/agent-spoke.bicep \
+  --parameters developerPrincipalId="$(az ad signed-in-user show --query id -o tsv)"
+```
+
+Capability-host provisioning can take 10 to 20 minutes. Test agents from a
+VPN-connected client or the peered SEA network. VNet peering is not transitive:
+the AI Gateway VNet has no direct connection to this spoke.
+
+The SEA `thai-surname-search` app includes a private new-Foundry agent module
+using Conversations/streaming Responses, not Classic Assistants. Configure
+`regionalAgentProjectEndpoint`, `regionalAgentName`, `regionalAgentVersion`,
+`regionalAgentModelSku` and the corresponding `seaAgent*` parameters.
+`thaiSurnameAppImageTag` selects its image independently of the other apps.
+Both projects use `regional-latency-agent`, pinned version `1`, with matching
+`gpt-4.1-mini` model version `2025-04-14`, instructions and document content.
+SEA's model uses GlobalStandard (not guaranteed SEA inference); West US 3 uses
+regional Standard. The UI flags this limitation when comparing latency.
+Its managed identity has project-scoped Foundry User on both projects.
+Set `callerPrincipalId` on `agent-spoke.bicep`, or
+deploy `modules/foundry-agent-invoker-access.bicep` directly against an existing
+project without redeploying the capability host. See
+[`applications/thai-surname-search/README.md`](../applications/thai-surname-search/README.md)
+for current IDs and the application-only configuration.
+
+For a matched deployment-SKU comparison, `agent-sku-comparison.bicep` adds
+`gpt-4.1-mini-global` alongside the existing West US 3 Standard deployment.
+It reuses the account and copies the baseline model/version, content policy
+and upgrade policy; explicitly match capacity (currently 10). It does not
+redeploy the account, project, networking or capability host. Deploy it only
+after checking GlobalStandard quota and model capacity. `globalAgentName`
+and `globalAgentVersion` in the main parameters configure the added agent
+at `regionalAgentProjectEndpoint`; its definition shares the Standard agent's
+vector store and differs only in model deployment. The app now compares that
+Global agent against SEA GlobalStandard, with live same-SKU/model validation.
+Its only other choice, Standard SEA vs Standard West, is explicitly unavailable
+because SEA offers no Standard chat deployment (2026-10-15). Reserved
+`seaStandardAgentName`/`seaStandardAgentVersion` remain empty; no fallback model,
+agent or region is deployed. The UI includes measured data-flow diagrams,
+additive timelines and a sourced approximate transfer-cost calculator.
+See the application README for provisioning and benchmark controls.
+
+**Regional selection, 2026-10-14:** quota does not guarantee current regional
+capacity. The migration checks found:
+
+| Region | Live provisioning result |
+|---|---|
+| Sweden Central | Search Basic and Standard S1 blocked by regional capacity |
+| East US | Search Basic succeeded; Cosmos DB blocked by demand/region access |
+| East US 2 | Cosmos DB succeeded; Search Basic and Standard S1 blocked |
+| West US 3 | Foundry standard agents, Search Basic, Blob, Cosmos DB, and regional model all succeeded; selected |
+
+East US, East US 2, and West US 3 each had 12 Basic Search slots, 100 Foundry
+account slots, and 5000 regional `gpt-4.1-mini` quota units available. Each also
+had 250 Storage accounts, 1000 VNets, 65536 private endpoints, and 5000 units of
+platform model capacity available. North Europe lacked quota for the selected
+model, West Europe passed the model/Search quota checks without a provisioning
+probe, and Central US had only GlobalStandard quota for this model.
+
+The West US 3 replacement reused its successful Search and Cosmos probes.
+Subscription deployment `agent-standard-westus3` is `Succeeded`, with all four
+services private, all six DNS links completed, and all four global peerings
+connected. A VPN-connected agent smoke test uploaded a document to Blob, indexed
+it in Search, persisted a conversation in Cosmos, and returned the readiness
+code with a source citation. Its temporary test resources were deleted.
+
+Foundry account private-endpoint creation waits for model provisioning, matching
+the official sample's ordering and avoiding the initial account-startup race.
+The earlier regional data stores were empty, so no application data required
+migration. Resource groups `rg-ai-dev-swc`, `rg-ai-dev-eus`, and `rg-ai-dev-eus2`
+were deleted after the replacement passed verification. Their external hub/SEA
+peerings, DNS VNet links, and private DNS A records were also removed.
+
 ```
 bicep/
   main.bicep                    # subscription-scope orchestrator (entry point)
+  agent-spoke.bicep             # minimal private standard-agent regional spoke
   parameters/main.bicepparam    # sample parameter file
   modules/
     resource-group.bicep        # cross-subscription resource group creation
@@ -164,7 +280,7 @@ is accessible, and use `az deployment sub create` (drop `what-if`) to actually d
 |---|---|
 | `rg-vnet-hub-2` (original hub) | `rg-hub-sea` (hub network + 9 centralized DNS zones) |
 | `rg-vm-vnet-test` + `rg-foundry-standard-private-westus3` | `rg-ai-dev-sea` (single spoke RG) |
-| `vnet-1` / `vnet-2` / `agent-vnet-test` | `vnet-spoke-app-sea` (single VNet, including dedicated `snet-appgw` and workload/private-endpoint subnets) |
+| `vnet-1` / `vnet-2` / `agent-vnet-test` | `vnet-spoke-app-sea` (single VNet, including workload/private-endpoint subnets; the Application Gateway subnet is in the hub) |
 | DNS zones in both original spokes | 9 hub-hosted zones, linked to the hub and single spoke VNets |
 | `fe-app`, `fe-app2`, `be-app`, `be-app2`, `thai-surname-search` | deployed into the merged Container Apps environment |
 | `stgaccpriv`, `publicstoragevnet`, `foundryrbjpstorage` | 4 storage accounts (added a dedicated Function App storage account), all PE-only, public access now disabled on all (including the former `publicstoragevnet`) |
@@ -194,7 +310,12 @@ is accessible, and use `az deployment sub create` (drop `what-if`) to actually d
   hub, spoke, peered, or on-premises network.
 - **Container app images/env vars** for the backend samples are placeholders (`mcr.microsoft.com/...helloworld`).
   Supply real `image`/`envVars`/`targetPort` values per app via module parameters.
-- **Public Thai search endpoint**: Application Gateway WAF_v2 is enabled by
+- **Hub firewall**: `modules/azure-firewall.bicep` deploys Azure Firewall Basic in
+  the hub; `modules/route-table.bicep` UDRs send spoke and AI Gateway traffic to it.
+  Migration: delete the old spoke `agw-thai-search-sea` (and its public IP/WAF policy)
+  before deploying, because the spoke `snet-appgw` subnet is removed and the new
+  gateway gets a new public IP/FQDN.
+- **Public Thai search endpoint**: Application Gateway WAF_v2 (hub VNet) is enabled by
   default and exposes `thai-surname-search` through an HTTP
   `cloudapp.azure.com` hostname. It uses OWASP 3.2 prevention mode and HTTPS to
   the private backend. Production HTTPS requires a custom domain and certificate.

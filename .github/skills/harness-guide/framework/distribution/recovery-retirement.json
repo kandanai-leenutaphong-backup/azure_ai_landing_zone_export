@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "increment": "native-distribution-recovery-retirement",
+  "status": "blocked",
+  "observed_at": "2026-09-16T10:17:40.082133+00:00",
+  "outcome": "Native generator recovered and retirement measured; portable discovery/release acceptance remains blocked on parent-owned integration and cleanup.",
+  "specification": "specs/20260916T045818Z_UNIFIED_LIBRARY_SPEC",
+  "changed_paths": [
+    ".github/tools/package_native.py",
+    ".github/tests/test_native_distribution.py",
+    "libraries/framework/distribution/recovery-retirement.json"
+  ],
+  "authority": {
+    "cloud_model_publication_commit_actions": false,
+    "skill_source_or_user_data_deleted": false,
+    "parent_catalogue_framework_src_readme_execution_modified": false,
+    "shared_environment_or_lock_synced": false,
+    "tooling_build_side_effects": "See retained_state: isolated environment installation unexpectedly created ignored setuptools outputs beside the read-only tooling source."
+  },
+  "native_generation": {
+    "status": "PASS_OFFLINE",
+    "fix": "native_catalogue() and materialize() now use .github instead of removed core; native_files() already used .github.",
+    "repair_loops_used": 1,
+    "repair_loop_limit": 2,
+    "test_command": "python3 -B -m unittest discover -s .github/tests -p test_native_distribution.py -v",
+    "initial": {"tests_run": 1, "errors": 0, "exit_code": 0},
+    "reproduction": {"tests_run": 5, "errors": 5, "exit_code": 1, "cause": "FileNotFoundError: core/protocols/catalogue.json; retirement test includes two subtests."},
+    "after_repair": {"tests_run": 5, "errors": 0, "failures": 0, "exit_code": 0},
+    "verified": ["dry-run does not write", "generation/check idempotence", "manifest SHA-256 read-back", "no capability source vendoring", "guidance fixture relocation", "retired edited-file preservation", "escaped-output symlink refusal"],
+    "workspace_check": {"command": "python3 -B .github/tools/package_native.py --check", "exit_code": 1, "status": "STALE", "changed_paths": 20, "generated_in_workspace": false},
+    "external_guidance_fixture": {"files": 107, "generated_document_hashes_verified": 18, "generation_changed_paths": 20, "subsequent_check_changes": 0, "capability_source_or_release_artifacts_copied": 0, "cwd": "/tmp", "pythonpath_present": false, "python": "3.11.14"},
+    "source_sha256": {
+      ".github/tools/package_native.py": "d20c00d4d31c77b231abd56ec407925b7247713915050c5358d200c40f69412c",
+      ".github/tests/test_native_distribution.py": "806e06a605b7b263cc775305da08f3aaa70972f916173a2c2f221a252c296498"
+    }
+  },
+  "counting": {
+    "scope": "git-visible shipped skill files; excludes ignored dependencies/caches/unshipped builds; no symlink traversal",
+    "after_selection": "git ls-files -z --cached --others --exclude-standard -- .github/skills; unique existing regular paths; lstat without symlink traversal; logical byte length and SHA-256",
+    "included": ["source", "guidance", "tests", "examples", "assets", "shipped generated entries", "tracked files even when an ignore pattern matches"],
+    "excluded": ["Git-ignored untracked files", "installed environments", "dependency caches", "unshipped builds", "symlink traversal", "non-regular files"],
+    "excluded_source_caveat": "Eight ignored legacy Python source files are excluded from both Git-visible selection rules, but explicitly reported by the physical audit; Git invisibility is not retirement evidence.",
+    "root_ignore_policy": "Compared with baseline: only /testbeds/datacrafting/reference/ and /specs/ were added; neither affects the skills scope. ARM/logs/artifacts ignore rules predate this increment.",
+    "root_gitignore_sha256": "af33163283e748198b7c291f9eb97492f06d2353756c02072307e7c5a21b6481",
+    "attribution": "Measures accumulated migration state, not removals performed by this increment. Logical content bytes are not disk, RAM or latency savings."
+  },
+  "baseline": {
+    "revision": "015d1bfc683c3b929490ce595f66744a4c8d56fa",
+    "path": "/tmp/agentcraft-unified-execution-20260916/skills-before.json",
+    "observed_at": "2026-09-16T05:31:08.748Z",
+    "sha256": "3a2c2ad1106c59b047a0a50dcf2c983de6b749c42853a0fb43085bd35b3ae3f0",
+    "files": 1038,
+    "logical_bytes": 18258167,
+    "preserved_unchanged": true,
+    "reconstructed_replacement_used": false,
+    "revision_verification": {"method": "git ls-tree -r -l -z REV -- .github/skills plus git cat-file --batch; SHA-256 of each regular-file blob", "files": 1038, "logical_bytes": 18258167, "missing_paths": 0, "extra_paths": 0, "hash_or_size_mismatches": 0}
+  },
+  "after": {
+    "head_revision": "65ae1587a7b4d8815964a9d01c93b49bb8c449b4",
+    "observed_at": "2026-09-16T10:12:35.232028+00:00",
+    "files": 70,
+    "logical_bytes": 273817,
+    "native_top_level_skill_entries": 29,
+    "tracked_paths_absent": 0,
+    "excluded_visible_paths": 0
+  },
+  "reduction": {"files": 968, "logical_bytes": 17984350, "files_percent": 93.256262, "bytes_percent": 98.500304, "both_50_percent_targets_met": true, "zero_skill_runtime_target_met": false},
+  "physical_audit": {
+    "command": "/tmp/agentcraft-native-recovery-20260916.R3aMc8/venv/bin/repository-inventory scan /home/hanchoong/agentcraft/.github/skills --group-depth 4 --output /tmp/agentcraft-native-recovery-20260916.R3aMc8/skills-physical.json",
+    "complete": true,
+    "totals": {"files": 1318, "logical_bytes": 36063284, "directories": 464, "symlinks": 4, "special_files": 0},
+    "noncache": {"files": 81, "logical_bytes": 384550},
+    "ignored_noncache": {"files": 11, "logical_bytes": 110733, "legacy_python_files": 8, "legacy_python_bytes": 35142, "protected_deployment_state_files": 3, "protected_deployment_state_bytes": 75591},
+    "cache_and_unshipped_build_classification": "Separate physical census includes an installed .venv, __pycache__, setuptools build trees and egg-info; these are not counted as independent maintained runtimes. No cache deletion credited toward CO-1.",
+    "remaining_runtime_paths": [
+      {"path": ".github/skills/azure-content-understanding/scripts/extract.py", "bytes": 13087, "kind": "Git-visible SDK extraction implementation, not an installed-library launcher", "related_paths": [".github/skills/azure-content-understanding/tests/test_extract.py", ".github/skills/azure-content-understanding/libraries/pyproject.toml", ".github/skills/azure-content-understanding/libraries/uv.lock"]},
+      {"paths": [".github/skills/azure-data-connectors/src/azdata/arm/__init__.py", ".github/skills/azure-data-connectors/src/azdata/arm/discover.py", ".github/skills/azure-data-connectors/src/azdata/logs/__init__.py", ".github/skills/azure-data-connectors/src/azdata/logs/read.py"], "files": 4, "logical_bytes": 17571, "kind": "Ignored legacy runtime fragments; ArmDiscoverer, LogsDiscoverer and LogsReader", "ignore_rules": [".gitignore:47:[Aa][Rr][Mm]/", ".gitignore:54:[Ll]ogs/"]},
+      {"paths": [".github/skills/resource-explorer/vendor/azdata/src/azdata/arm/__init__.py", ".github/skills/resource-explorer/vendor/azdata/src/azdata/arm/discover.py", ".github/skills/resource-explorer/vendor/azdata/src/azdata/logs/__init__.py", ".github/skills/resource-explorer/vendor/azdata/src/azdata/logs/read.py"], "files": 4, "logical_bytes": 17571, "kind": "Ignored vendored fragments; four byte-identical pairs with the preceding azdata sources"}
+    ]
+  },
+  "portable_links": {
+    "status": "BLOCKED",
+    "fixture": "/tmp/agentcraft-native-recovery-20260916.R3aMc8/native-bundle",
+    "inline_local_links_checked": 251,
+    "unresolved_links": 51,
+    "escaping_links": 37,
+    "affected_documents": 29,
+    "also_missing_in_workspace": 11,
+    "scope_limit": "Guidance-only fixture. Inline Markdown outside fenced code only; no external URL, anchor or reference-style link validation. Missing wheel/npm artifacts and canonical guidance/assets were not masked with source copies."
+  },
+  "parent_gaps": [
+    {"path": "libraries/capabilities.json", "fact": "Canonical catalogue absent. Existing generator still projects v1 .github metadata, not a versioned canonical source with revision/digests and validated aliases/status."},
+    {"path": ".github/skills/catalogue.json", "records": 37, "protocol_records": 8, "fact": "Five embedded paths are missing: creative-agent-optimization, agent-config-build, foundry-agent-runtime, purpose-built-tools, resource-inventory. Installed repository-catalogue refuses the first missing optimization guide."},
+    {"path": ".github/skills", "fact": "All eight catalogue-declared protocol-*/SKILL.md native views are absent. Current native_files() generates agents/rules only; parent must settle native workflow projection from authored protocol path metadata."},
+    {"path": ".github/mcp.json", "registrations": 7, "missing_launcher_paths": [".github/skills/azure-data-connectors/scripts/serve_mcp.py", ".github/skills/azure-llm-connectors/scripts/serve_mcp.py", ".github/skills/resource-explorer/scripts/serve_mcp.py", ".github/skills/managed-identity-model-clients/scripts/serve_mcp.py", ".github/skills/portable-app-composition/scripts/serve_mcp.py", ".github/skills/recoverable-jobs/scripts/serve_mcp.py", ".github/skills/azure-access-management/scripts/serve_mcp.py"], "catalogue_declared_tools": 27, "fact": "All active launchers are physically absent; no server was started."},
+    {"path": ".github/skills/catalogue.json", "required_mcp_disposition": {"azure-data-connectors": "azdata_status/query_* and azdata_search -> configured data_status/data_query", "azure-llm-connectors and managed-identity-model-clients": "Retire duplicate azllm/modelaccess registrations; one model_status/model_chat/model_embed adapter", "azure-access-management": "Retire all five azaccess administrative tool claims", "portable-app-composition": "composition_status/composition_validate/composition_demo", "recoverable-jobs": "recovery_status/recovery_list/recovery_stage/recovery_read", "resource-explorer": "inventory_status/inventory_tree/inventory_content; retire resource_explorer_search"}, "fact": "Required chapter04 dispositions, not claims that replacement adapters are implemented. Mark unavailable/retired until parent-owned adapters pass real SDK round trips."},
+    {"path": ".github/plugin.json", "fact": "Description still advertises 38 native skills and seven MCP servers; physical native skill entries number 29 and all seven configured launchers are missing."},
+    {"paths": [".github/skills/README.md", ".github/skills/AGENT-PLUGINS-SKILLS.md", ".github/skills/azure-cli-infra-management/SKILL.md"], "fact": "Eleven checked inline targets are missing even in the checkout: five embedded guides, three notices/rights paths and three deployment receipts. Full path/line evidence is in retirement-evidence.json; do not fabricate or delete missing receipts."},
+    {"path": ".github/skills", "fact": "Canonical library guide links commonly escape the plugin. Parent must include canonical guidance/notices/assets and reviewed hashed release artifacts or versioned public docs, not vendor capability source."}
+  ],
+  "catalogue_check": {
+    "command": "/tmp/agentcraft-native-recovery-20260916.R3aMc8/venv/bin/repository-catalogue --root /home/hanchoong/agentcraft/.github --list --json",
+    "exit_code": 1,
+    "status": "BLOCKED",
+    "error": "Discovery refused: Catalogue file is missing: python/agent_optimization/skills/creative-agent-optimization/SKILL.md"
+  },
+  "evidence": {
+    "root": "/tmp/agentcraft-native-recovery-20260916.R3aMc8",
+    "sha256": {
+      "skills-after.json": "fb0974a44a8b6ebdea45b6ddcba505c7ab51e0ac4d07514556d68fb28af12f4f",
+      "skills-revision-verification.json": "d26345732bbb90c50af25af31d21fd81fd659bb2d9b425eccfd3d52f91ef3078",
+      "skills-physical.json": "94838d583c1553a75f25834df5aca28a96449b4fd84ca91478f4dce3900fd00b",
+      "skills-runtime-audit.json": "6d43160676b86cd14c8df0ffc1a83dfde9cc084f052677b41708277c93cf1e2e",
+      "native-bundle-audit.json": "2013273eb64055758ea5d98588849371eb82c128458d71122e6d8d20598b77c4",
+      "retirement-evidence.json": "c65e67beaf9bef087023b5c5dabdd504ada5791a75bf3741a7060f69f6fd276f"
+    }
+  },
+  "unverified": ["Clean install of a complete canonical plugin/artifact set", "Wheel/sdist rebuild and npm artifacts", "Real MCP SDK discovery/invocation/refusal/budget/cancellation/teardown", "Full alias and canonical catalogue validation", "Ignored legacy fragment import usability", "Cloud/model/deployed behavior and publication: not authorized"],
+  "retained_state": {
+    "temporary_root": "/tmp/agentcraft-native-recovery-20260916.R3aMc8",
+    "contents": ["isolated repository-inspection 0.1.0 environment", "six hashed evidence reports", "native-source guidance fixture", "native-bundle guidance fixture"],
+    "tooling_install_command": "uv venv \"$RECOVERY_TMP/venv\" --python python3 && uv pip install --offline --python \"$RECOVERY_TMP/venv/bin/python\" --no-deps ./libraries/repository-inspection",
+    "tooling_import_origin": "/tmp/agentcraft-native-recovery-20260916.R3aMc8/venv/lib/python3.11/site-packages/repository_inspection/__init__.py",
+    "unexpected_ignored_build_paths": ["libraries/repository-inspection/build", "libraries/repository-inspection/src/repository_inspection.egg-info"],
+    "build_cleanup": "Created by setuptools during tooling installation at 2026-09-16T10:10:49Z. Retained for parent cleanup because these paths are outside the exclusive write allowlist; no pre-existing changes reverted.",
+    "protected_deployment_state": ".github/skills/modular-agents/deploy/state/example/artifacts/145251a26bd63f18c7bf259b50ebbc5bb8e16469fa5441efae9681a2378a551b",
+    "protected_archive_sha256": "2eb156b015131184a93dc354408fbc45a87889d921a94ca7d4d9353c22b5b447",
+    "protected_archive_members": 33,
+    "protected_state_disposition": "Unshipped operator/deployment output, not an independently maintained source tree; preserved, not extracted or deleted.",
+    "running_processes": []
+  },
+  "smallest_next_decision": "Parent reconciles canonical catalogue/native workflow views/MCP registrations and portable guidance, scopes legacy fragment retirement, and cleans the disclosed tooling build outputs. No additional local repair loop is needed for the generator root fix."
+}

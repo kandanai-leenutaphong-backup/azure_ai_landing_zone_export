@@ -1,0 +1,150 @@
+{
+  "sources": [
+    ".github/skills/architecture-placement",
+    ".github/skills/codebase-cleanup",
+    ".github/skills/harness-guide"
+  ],
+  "destination": "libraries/repository-inspection",
+  "files": [
+    {
+      "from": ".github/skills/architecture-placement/GOTCHAS.md",
+      "to": "libraries/repository-inspection/guides/architecture/GOTCHAS.md",
+      "sha256": "3a5dc0f95d4caf4f57a6a497946c2ad72ad688bae83530aa591e687a07c64e83"
+    },
+    {
+      "from": ".github/skills/architecture-placement/LICENSE",
+      "to": "libraries/repository-inspection/guides/architecture/LICENSE",
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+    },
+    {
+      "from": ".github/skills/architecture-placement/README.md",
+      "to": "libraries/repository-inspection/guides/architecture/README.md",
+      "sha256": "11464fa8bb074a2ecb013bfab613a21188d4a6217d699a7b8589377185f05edf"
+    },
+    {
+      "from": ".github/skills/architecture-placement/SKILL.md",
+      "to": "libraries/repository-inspection/guides/architecture/GUIDE.md",
+      "sha256": "7d3ef581b856dc848a2cb695ff6e9eabaa7e78cf4430619cce2611e35c793367"
+    },
+    {
+      "from": ".github/skills/architecture-placement/requirements.txt",
+      "to": "libraries/repository-inspection/guides/architecture/requirements.txt",
+      "sha256": "0caa2d0f055cc295d0925b724228429b6296d97e8409408c49951fada9d36e39"
+    },
+    {
+      "from": ".github/skills/architecture-placement/scripts/arch.py",
+      "to": "libraries/repository-inspection/src/repository_inspection/architecture.py",
+      "sha256": "05e8d171f5ad988c645b8b319180d9f482986c219879ca68e0d45fc3895cda76"
+    },
+    {
+      "from": ".github/skills/architecture-placement/tests/fitness.py",
+      "to": "libraries/repository-inspection/tests/architecture/fitness.py",
+      "sha256": "76ca7e84ee5c2ba6cd5a42493a084db0899b17253b07cb583408fb6315c68482"
+    },
+    {
+      "from": ".github/skills/architecture-placement/tests/selftest.py",
+      "to": "libraries/repository-inspection/tests/architecture/selftest.py",
+      "sha256": "2d86b09b91c16689668dc81ba445ad7d0f9c8c01da3e3e43048c417d69c43613"
+    },
+    {
+      "from": ".github/skills/codebase-cleanup/GOTCHAS.md",
+      "to": "libraries/repository-inspection/guides/filesystem/GOTCHAS.md",
+      "sha256": "bad4c07c57624b00ff45969736fc1f08d08ec94ba7968343398869d3e824f0fc"
+    },
+    {
+      "from": ".github/skills/codebase-cleanup/LICENSE",
+      "to": "libraries/repository-inspection/guides/filesystem/LICENSE",
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+    },
+    {
+      "from": ".github/skills/codebase-cleanup/README.md",
+      "to": "libraries/repository-inspection/guides/filesystem/README.md",
+      "sha256": "9221862a4238391e9f425e27d15b81e354701e13ef05c7b0334b65c69c40fff8"
+    },
+    {
+      "from": ".github/skills/codebase-cleanup/SKILL.md",
+      "to": "libraries/repository-inspection/guides/filesystem/GUIDE.md",
+      "sha256": "98120bc2499a470009d70f6cb56e4893115240c80636c120307be20e329fec3d"
+    },
+    {
+      "from": ".github/skills/codebase-cleanup/assets/cleanup-plan.example.json",
+      "to": "libraries/repository-inspection/guides/filesystem/assets/cleanup-plan.example.json",
+      "sha256": "d911519bf03baa504e02255d8388c4510caf36cf108a26b5be35024a39d80c31"
+    },
+    {
+      "from": ".github/skills/codebase-cleanup/references/anonymized-cleanup.catalogue.json",
+      "to": "libraries/repository-inspection/guides/filesystem/references/anonymized-cleanup.catalogue.json",
+      "sha256": "2f2f0d01ea5e0a48beffaa0df24af4b2a5d2ddf1a73cd4918d892700cb9b9919"
+    },
+    {
+      "from": ".github/skills/codebase-cleanup/references/anonymized-cleanup.md",
+      "to": "libraries/repository-inspection/guides/filesystem/references/anonymized-cleanup.md",
+      "sha256": "cd23d731bbe56d5378a32f63d215856429daeefdfbf2c0c976aa8509fa67157e"
+    },
+    {
+      "from": ".github/skills/codebase-cleanup/references/perth-cyber-20260913.md",
+      "to": "libraries/repository-inspection/guides/filesystem/references/perth-cyber-20260913.md",
+      "sha256": "c8dffc1388de2fd7e191d0c06cd2a516ad34d9ae68e797c361fa39862e11472c"
+    },
+    {
+      "from": ".github/skills/codebase-cleanup/requirements.txt",
+      "to": "libraries/repository-inspection/guides/filesystem/requirements.txt",
+      "sha256": "f8443262238882ee0715c23c58efda6c5e867da60a9dcc893abd3c96580237dc"
+    },
+    {
+      "from": ".github/skills/codebase-cleanup/scripts/inventory.py",
+      "to": "libraries/repository-inspection/src/repository_inspection/filesystem.py",
+      "sha256": "0763645c48a1f15486e8a8ec1a28c50bd630c820a7a32f7250c715406629aab5"
+    },
+    {
+      "from": ".github/skills/codebase-cleanup/tests/selftest.py",
+      "to": "libraries/repository-inspection/tests/filesystem/selftest.py",
+      "sha256": "73dceab73de922f41c5d14cfa2d410ced04e1df7acf55aef3233b6f7bfda8bfc"
+    },
+    {
+      "from": ".github/skills/codebase-cleanup/tests/test_inventory.py",
+      "to": "libraries/repository-inspection/tests/filesystem/test_inventory.py",
+      "sha256": "1e47093e7404a89939d67e60e2d072596dc502bb76050b547b81ed9e805c085b"
+    },
+    {
+      "from": ".github/skills/harness-guide/CONTRACT.md",
+      "to": "libraries/repository-inspection/guides/catalogue/CONTRACT.md",
+      "sha256": "a57ec4b734ede263c70f6f6250c796f63793d0911035e340b7da0ccbacd8ff76"
+    },
+    {
+      "from": ".github/skills/harness-guide/GOTCHAS.md",
+      "to": "libraries/repository-inspection/guides/catalogue/GOTCHAS.md",
+      "sha256": "a6830170776ba0ee4ef0e37b46ce455e12f4dfa45fb8a57f8f1af8fde219b5d7"
+    },
+    {
+      "from": ".github/skills/harness-guide/LICENSE",
+      "to": "libraries/repository-inspection/guides/catalogue/LICENSE",
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+    },
+    {
+      "from": ".github/skills/harness-guide/README.md",
+      "to": "libraries/repository-inspection/guides/catalogue/README.md",
+      "sha256": "614c6e925895e6d3fc57c20b56b75c1ec071fa9093e512d032f4bad45e3084c6"
+    },
+    {
+      "from": ".github/skills/harness-guide/SKILL.md",
+      "to": "libraries/repository-inspection/guides/catalogue/GUIDE.md",
+      "sha256": "86ff9c7da5aac9ad03ecec9d262e1fe42eda33b1b00feea5e71fb9060e93f296"
+    },
+    {
+      "from": ".github/skills/harness-guide/requirements.txt",
+      "to": "libraries/repository-inspection/guides/catalogue/requirements.txt",
+      "sha256": "9e47f3bf2cd9d3aa3b8be15d1ab7c3d5e618b36ff86a5d0a9e29a4372dbc30ec"
+    },
+    {
+      "from": ".github/skills/harness-guide/scripts/catalogue.py",
+      "to": "libraries/repository-inspection/src/repository_inspection/catalogue.py",
+      "sha256": "1bbe43ee712dc6cddf0621684015ed44b8c9e11eb9366fb49af7f2a61e98fb4c"
+    },
+    {
+      "from": ".github/skills/harness-guide/tests/selftest.py",
+      "to": "libraries/repository-inspection/tests/catalogue/selftest.py",
+      "sha256": "3ea4901a948b0af1f864490e0e0dab4a0672abcec72a4a3f2f9489442c439c83"
+    }
+  ]
+}

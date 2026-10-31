@@ -1,0 +1,162 @@
+{
+  "source": ".github/skills/recoverable-jobs",
+  "destination": "libraries/recoverable-jobs",
+  "files": [
+    {
+      "from": ".github/skills/recoverable-jobs/CONTRACT.md",
+      "to": "libraries/recoverable-jobs/CONTRACT.md",
+      "sha256": "f7ce8dbd2c89f95210bebdc60c335e7362860bca7675ec3260e190b257cda013"
+    },
+    {
+      "from": ".github/skills/recoverable-jobs/GOTCHAS.md",
+      "to": "libraries/recoverable-jobs/GOTCHAS.md",
+      "sha256": "b7f81c2a480c8718dac4ea9a3f8a5998f2425f61e05680ffdcf9f46f66a7fa53"
+    },
+    {
+      "from": ".github/skills/recoverable-jobs/LICENSE",
+      "to": "libraries/recoverable-jobs/LICENSE",
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+    },
+    {
+      "from": ".github/skills/recoverable-jobs/README.md",
+      "to": "libraries/recoverable-jobs/README.md",
+      "sha256": "9f87b17202d04ea99dcd5034086533c60a2b65e319af79a7fe72b3576bf3590a"
+    },
+    {
+      "from": ".github/skills/recoverable-jobs/SKILL.md",
+      "to": "libraries/recoverable-jobs/GUIDE.md",
+      "sha256": "3b4001d2715a5cfa651848574285299f5012f5e87f81882cf21d935930149d5b"
+    },
+    {
+      "from": ".github/skills/recoverable-jobs/examples/01_generic_export.py",
+      "to": "libraries/recoverable-jobs/examples/01_generic_export.py",
+      "sha256": "ae6560e1421c46f53a83190577b25cc9685aa2488bed99b870bdfccef436104e"
+    },
+    {
+      "from": ".github/skills/recoverable-jobs/examples/02_commit_then_timeout.py",
+      "to": "libraries/recoverable-jobs/examples/02_commit_then_timeout.py",
+      "sha256": "eca83fdc97f6de424332d6f6d19b47fe787fde6e9800f4a4897e99586c4999bc"
+    },
+    {
+      "from": ".github/skills/recoverable-jobs/examples/03_absent_unknown.py",
+      "to": "libraries/recoverable-jobs/examples/03_absent_unknown.py",
+      "sha256": "4c05508c733040afad3dc3bf18d30c1cfc1d095286957dab58c717c51a9be231"
+    },
+    {
+      "from": ".github/skills/recoverable-jobs/examples/04_restart_and_recommit.py",
+      "to": "libraries/recoverable-jobs/examples/04_restart_and_recommit.py",
+      "sha256": "32de1d5ce75fd6feb1fb8fbe728eb078215debada3caffbed2526667b7d27c33"
+    },
+    {
+      "from": ".github/skills/recoverable-jobs/examples/05_wrong_content_preserved.py",
+      "to": "libraries/recoverable-jobs/examples/05_wrong_content_preserved.py",
+      "sha256": "37c192234bfefeab875e34aebdaa716ef6b83e941016a6129724a0571ebb4645"
+    },
+    {
+      "from": ".github/skills/recoverable-jobs/examples/06_capped_payload.py",
+      "to": "libraries/recoverable-jobs/examples/06_capped_payload.py",
+      "sha256": "a268ee48b132c8cede8d7e73f6e5badec1badebf6513a6adeb9b786866e51cd9"
+    },
+    {
+      "from": ".github/skills/recoverable-jobs/pyproject.toml",
+      "to": "libraries/recoverable-jobs/pyproject.toml",
+      "sha256": "416e19db0b558b0468b08fa80631f5f52247a2fc75c7e9439ee12a88fcf74079"
+    },
+    {
+      "from": ".github/skills/recoverable-jobs/pytest.ini",
+      "to": "libraries/recoverable-jobs/pytest.ini",
+      "sha256": "c809c969ec7e11b9ff37784e9c6fcc0b7c5148d168e18b05aed797e03fbd6ead"
+    },
+    {
+      "from": ".github/skills/recoverable-jobs/requirements-dev.txt",
+      "to": "libraries/recoverable-jobs/requirements-dev.txt",
+      "sha256": "186a38adc2a48208e1eab3790abef2b1b3a31bc0be49bbdda98eedb4dd35ac93"
+    },
+    {
+      "from": ".github/skills/recoverable-jobs/requirements.txt",
+      "to": "libraries/recoverable-jobs/requirements.txt",
+      "sha256": "621e233dcc1362d374fc828bd673d414b16e5d3d89b738a58eee2b9319bafd81"
+    },
+    {
+      "from": ".github/skills/recoverable-jobs/scripts/mcp_server.py",
+      "to": "libraries/recoverable-jobs/workrecovery/mcp.py",
+      "sha256": "a2800494a04b54a8d609ae3991688ab92c5f94353ed13b1b8f70d371cbda389a"
+    },
+    {
+      "from": ".github/skills/recoverable-jobs/scripts/recover.py",
+      "to": "libraries/recoverable-jobs/workrecovery/cli.py",
+      "sha256": "91c5a3aaf65c382dc017e17813cdcb2eb8edd47ac26cf953640e69380fd4a9b0"
+    },
+    {
+      "from": ".github/skills/recoverable-jobs/scripts/serve_mcp.py",
+      "disposition": "retired automatic environment installer",
+      "replacement": "workrecovery.mcp:main",
+      "sha256": "f44e89220dbd8be32d9ea64af75d63ff0591de1770a03790fe14f27e0357a69e"
+    },
+    {
+      "from": ".github/skills/recoverable-jobs/tests/mcp_smoke.py",
+      "to": "libraries/recoverable-jobs/tests/mcp_smoke.py",
+      "sha256": "4755b96b69b87542fca4abd6b8d77c41301bb5ff984ccacdf8e44891d1201469"
+    },
+    {
+      "from": ".github/skills/recoverable-jobs/tests/selftest.py",
+      "to": "libraries/recoverable-jobs/tests/selftest.py",
+      "sha256": "a6a061a763f822b42ea36c05225f76b08cbf97cf93fbaba23e70f05a9a111425"
+    },
+    {
+      "from": ".github/skills/recoverable-jobs/tests/test_recovery.py",
+      "to": "libraries/recoverable-jobs/tests/test_recovery.py",
+      "sha256": "baae141238e379319f888049b0b1feefd95c2fbf27c41cd6e5b9e841a3b7f7f8"
+    },
+    {
+      "from": ".github/skills/recoverable-jobs/tests/test_regressions.py",
+      "to": "libraries/recoverable-jobs/tests/test_regressions.py",
+      "sha256": "68fb7965452da41777fb0e3122e0d2803ef2b7765c5305e0cdf442f79da85ced"
+    },
+    {
+      "from": ".github/skills/recoverable-jobs/uv.lock",
+      "to": "libraries/recoverable-jobs/uv.lock",
+      "sha256": "2630781ed7d71c73d7c4998b8dfc0fdc67653de5e026ba57e98a4735b7d72172"
+    },
+    {
+      "from": ".github/skills/recoverable-jobs/workrecovery/__init__.py",
+      "to": "libraries/recoverable-jobs/workrecovery/__init__.py",
+      "sha256": "a75e3b6f469439312a0b0b1c11b1b815f2ea0a0cad130c17a8a145b7e21dd8c9"
+    },
+    {
+      "from": ".github/skills/recoverable-jobs/workrecovery/artifacts.py",
+      "to": "libraries/recoverable-jobs/workrecovery/artifacts.py",
+      "sha256": "49253676b948f457d69b55c45e4fab7ca7cef82c9e93613d679911a4ba7c01ff"
+    },
+    {
+      "from": ".github/skills/recoverable-jobs/workrecovery/clock.py",
+      "to": "libraries/recoverable-jobs/workrecovery/clock.py",
+      "sha256": "99810f913b0e16fa47ddedf6dc986bb0f8ef185569851ded91f5b2ab804e6260"
+    },
+    {
+      "from": ".github/skills/recoverable-jobs/workrecovery/commit.py",
+      "to": "libraries/recoverable-jobs/workrecovery/commit.py",
+      "sha256": "d9ad3f51e80ce9e5f372ea394e534bd91a8618189b59727c7cefc4bc557de302"
+    },
+    {
+      "from": ".github/skills/recoverable-jobs/workrecovery/errors.py",
+      "to": "libraries/recoverable-jobs/workrecovery/errors.py",
+      "sha256": "c01640bedcfe6cc13760cf7f51397cf72ee30cbfc6fdbd5da61d233a44f51c5d"
+    },
+    {
+      "from": ".github/skills/recoverable-jobs/workrecovery/payload.py",
+      "to": "libraries/recoverable-jobs/workrecovery/payload.py",
+      "sha256": "61d7fe41142a148abd25fd5c79beaec61df2d598445eac2df8fbc26f08397dad"
+    },
+    {
+      "from": ".github/skills/recoverable-jobs/workrecovery/store.py",
+      "to": "libraries/recoverable-jobs/workrecovery/store.py",
+      "sha256": "0b2337c363bea07941837cba24313a32d8ae68d657800753731f79bbdde68471"
+    }
+  ],
+  "retired_library_launchers": [
+    "libraries/recoverable-jobs/scripts/recover.py",
+    "libraries/recoverable-jobs/scripts/mcp_server.py",
+    "libraries/recoverable-jobs/scripts/serve_mcp.py"
+  ]
+}

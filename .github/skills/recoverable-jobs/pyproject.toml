@@ -1,0 +1,43 @@
+# Packaging metadata, so adoption is an install rather than a path hack.
+#
+# The documented adoption route is: copy this folder into your repository,
+# then `python -m pip install ./recoverable-jobs` from the consuming
+# environment. After that `import workrecovery` works from any working
+# directory with no PYTHONPATH and no sys.path edit, because the package
+# lives in site-packages.
+#
+# Only `workrecovery` is installed. `tests/`, `examples/` and `scripts/` stay
+# in the copied folder and are run from there; they are evidence and worked
+# examples, not library surface, and installing them would put `tests` on the
+# consumer's import path.
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "recoverable-jobs"
+version = "1.0.0"
+description = "Completed expensive work survives a failed save: stage locally, store, verify the read-back, then delete."
+readme = "README.md"
+requires-python = ">=3.10"
+# Standard library only. requirements.txt says the same thing in prose; this
+# is the machine-readable copy of it, and there is no hidden runtime import.
+dependencies = []
+
+[project.scripts]
+workrecovery = "workrecovery.cli:main"
+workrecovery-mcp = "workrecovery.mcp:main"
+
+[project.optional-dependencies]
+mcp = ["mcp>=1.27.1,<2", "pydantic>=2"]
+# Not needed to use the package, and not needed by tests/selftest.py, which
+# runs on a bare interpreter. Mirrors requirements-dev.txt.
+dev = ["pytest>=8"]
+
+[tool.setuptools.packages.find]
+include = ["workrecovery*"]
+namespaces = false
+
+[tool.setuptools.package-data]
+workrecovery = ["py.typed"]

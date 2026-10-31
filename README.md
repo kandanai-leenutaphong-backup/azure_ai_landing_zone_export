@@ -65,6 +65,10 @@ before running the deployment.
 | `enableMdeExtension` | Optional | Keep `false` unless Defender for Servers and Microsoft Defender for Endpoint onboarding are configured. |
 | `enableComputerVision` | Optional | Keep `false` unless the subscription has quota/feature access for a Computer Vision S0 account. |
 | `enableThaiPublicGateway` | Optional | Keep `true` to publish Thai search through Application Gateway WAF_v2; set `false` to keep it VPN/private-only and avoid the gateway cost. |
+| `enableAzureFirewall` | Optional | Keep `true` to deploy the hub Azure Firewall (Basic) and route spoke/AI Gateway egress and inter-VNet traffic through it. |
+| `firewallPrivateIp` | Review | UDR next hop, `10.0.3.4` (first usable IP of `AzureFirewallSubnet`). Compare with the `firewallPrivateIpAddress` deployment output. |
+| `firewallAllowAllOutboundWeb` | Optional | `true` allows any HTTP/HTTPS egress through the firewall; `false` allow-lists FQDNs in `azure-firewall.bicep`. |
+| `enableContainerAppsFirewallRoute` | Optional | Keep `true` while Container Apps use a workload-profiles environment (supports UDRs); `false` if the environment is consumption-only. |
 | `dnsResolverInboundIp` | Review | Static DNS Private Resolver inbound IP advertised to VPN clients, currently `10.0.2.4`. It must belong to `dnsResolverInboundSubnetPrefix`. |
 | `tags` | Recommended | Replace the sample environment and source tags with your organization tags. |
 | `uniqueSuffix` | Only for name conflicts | Normally generated automatically. Override it in the parameter file only if a globally unique resource name collides. |
@@ -208,6 +212,47 @@ Application source deployed by the complete deployment command is stored under:
 - `applications/ping-url`, deployed to `fe-app`
 - `applications/azure-ocr-service`, deployed to `fe-app2`
 - `applications/thai-surname-search`, deployed to `thai-surname-search`
+- [`applications/customer-service-multi-agent`](applications/customer-service-multi-agent),
+  a separate synthetic customer-service multi-agent project. Its independent
+  [`deploy/deploy.sh`](deploy/README.md) reuses SEA private Container Apps,
+  the hub WAF, and private West US 3 Foundry. It is not released by
+  `scripts/deploy-apps.sh`.
+
+### Customer service multi-agent
+
+Live URL: <https://customer-service-multi-agent.azuremew-domain.org>.
+The [deployment runbook](deploy/README.md) records verification and renewal.
+`bash deploy/deploy.sh -e sea configure-local` populates the app's private `.env`
+from deployed non-secret settings using an already-authorized Azure CLI login.
+The app implements realistic synthetic support journeys, native Foundry agents,
+specialized LLM judges, structured trace-correlated logging, and a three-tier
+scorecard: system -> journey type -> per-agent metrics.
+Twenty frozen LLM-generated cases, canaries and authored failure safeguards
+support fail-closed regression and seven-day drift comparison. Standalone source
+and offline CI live in [customer-service-production-multi-agent-azure](https://github.com/edsml-kl121/customer-service-production-multi-agent-azure).
+It cannot modify real orders or issue real refunds. Judge calibration and real
+customer resolution/reopen measurements require separately supplied evidence.
+Caller authorization is tenant-scoped Entra plus an explicit project allowlist;
+the simplified browser uses automatic Microsoft sign-in, vendored MSAL and PKCE,
+without manual API-token entry. Outgoing Foundry calls retain managed identity.
+The three-role Microsoft Agent Framework Hosted version `cs-customer-service-chat:2`
+is active in West US 3; downloaded source matches the accepted archive.
+Revision `customer-service-multi-agent--0000005` serves one chat window and Logout.
+The login callback now passes WAF with cookie-free redirect state; actual SDK callback
+denial handling passed. Two Hosted chat turns passed on revision `0000005` in a
+separately labeled CLI-user test context, not completed human SSO.
+Shared quality and operations Workbooks now query structured events in the existing
+180-day Log Analytics workspace. One W3C trace spans the Container App turn and the hosted
+triage/policy/resolution steps (shared `trace_id`/`session_id`, `parent_span_id`,
+`response_id`); verified live. Both services export spans with Entra auth to Application
+Insights `appi-tracing-xlpu` (private link; `deploy.sh -e sea observability`), so one
+`operation_Id` shows app and hosted spans together. `deploy.sh -e sea replay --trace-id|--span-id`
+prints the span tree and the full conversation (operator-only app route; verified live).
+App chat history is replica-local SQLite.
+GitHub pushes and CI/CD work are paused;
+the earlier published snapshot does not contain this increment's changes.
+Completed interactive human sign-in/MFA remains unverified.
+Existing apps and shared resources remain separate owners.
 
 The deployment script uses a unique UTC image tag by default so source-only
 changes always create a new Container Apps revision. Override
@@ -217,7 +262,7 @@ changes always create a new Container Apps revision. Override
 ## Public Thai surname endpoint
 
 `thai-surname-search` remains private inside the internal Container Apps
-environment. Application Gateway WAF_v2 exposes it to the internet using a
+environment. Application Gateway WAF_v2 (in the hub VNet) exposes it to the internet using a
 public hostname similar to:
 
 ```text

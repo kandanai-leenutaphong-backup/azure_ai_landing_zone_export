@@ -1,0 +1,3085 @@
+{
+  "format": "codebase-cleanup-anonymized-catalogue-v1",
+  "project": "example-project",
+  "performed_on": "2026-09-13",
+  "historical_only": true,
+  "permission_to_reapply": false,
+  "scope": "Historical path groups with generalized names; not a per-file inventory or an executable deletion plan.",
+  "measurement": {
+    "excludes": [
+      ".git"
+    ],
+    "follow_symlinks": false,
+    "bytes": "logical regular-file content bytes, not allocated blocks or RAM",
+    "before": {
+      "files": 1656578,
+      "bytes": 130007426386,
+      "directories": 657488,
+      "symlinks": 167
+    },
+    "after": {
+      "files": 66089,
+      "bytes": 61173812358,
+      "directories": 13079,
+      "symlinks": 19
+    },
+    "net_removed": {
+      "files": 1590489,
+      "bytes": 68833614028,
+      "directories": 644409
+    },
+    "file_reduction_percent": 96.01051082412057,
+    "application_before": {
+      "files": 72402,
+      "bytes": 13318459941
+    },
+    "application_after": {
+      "path": "app",
+      "files": 12743,
+      "bytes": 2443814880
+    },
+    "timing": "Post-check counters before later note publication; subsequent files are not included."
+  },
+  "execution": {
+    "groups": 335,
+    "local_groups": 15,
+    "research_groups": 320,
+    "planned_files": 1590495,
+    "planned_logical_bytes": 68833819555,
+    "unknown_size_paths": [
+      "app/security-review/frontend/artifacts"
+    ]
+  },
+  "deleted": [
+    {
+      "path": "investigation_notebook",
+      "category": "local_legacy_or_generated",
+      "baseline_files": 96,
+      "baseline_logical_bytes": 2038389,
+      "reason": "Legacy notebook, archived before removal; active notebook retained.",
+      "removal_confirmed_by": "local-deletion.json"
+    },
+    {
+      "path": "reference_skills",
+      "category": "local_legacy_or_generated",
+      "baseline_files": 328,
+      "baseline_logical_bytes": 2442831,
+      "reason": "Unimported reference copies, archived before removal; adopted components retained.",
+      "removal_confirmed_by": "local-deletion.json"
+    },
+    {
+      "path": "artifacts/tabs",
+      "category": "local_legacy_or_generated",
+      "baseline_files": 6,
+      "baseline_logical_bytes": 1107485,
+      "reason": "User-named stale screenshot output, archived before removal.",
+      "removal_confirmed_by": "local-deletion.json"
+    },
+    {
+      "path": "app/security-review/.local/optimization/reproduction-checks",
+      "category": "local_legacy_or_generated",
+      "baseline_files": 19713,
+      "baseline_logical_bytes": 4907382845,
+      "reason": "Duplicate restore and rebuild test copies; verified final bundle and saved proof retained.",
+      "removal_confirmed_by": "local-deletion.json"
+    },
+    {
+      "path": "app/security-review/.local/optimization/contexts",
+      "category": "regenerable_case_cache",
+      "baseline_files": 14316,
+      "baseline_logical_bytes": 2405900288,
+      "reason": "Regenerable cache or duplicate of the independently verified accepted bundle",
+      "removal_confirmed_by": "local-deletion.json"
+    },
+    {
+      "path": "app/security-review/.local/optimization/discovery-preview/contexts",
+      "category": "regenerable_case_cache",
+      "baseline_files": 7162,
+      "baseline_logical_bytes": 1203441664,
+      "reason": "Regenerable cache or duplicate of the independently verified accepted bundle",
+      "removal_confirmed_by": "local-deletion.json"
+    },
+    {
+      "path": "app/security-review/.local/optimization/candidate-campaign/contexts",
+      "category": "regenerable_case_cache",
+      "baseline_files": 4353,
+      "baseline_logical_bytes": 706703360,
+      "reason": "Regenerable cache or duplicate of the independently verified accepted bundle",
+      "removal_confirmed_by": "local-deletion.json"
+    },
+    {
+      "path": "app/components/azure_sky_styling/node_modules",
+      "category": "local_legacy_or_generated",
+      "baseline_files": 14084,
+      "baseline_logical_bytes": 201441185,
+      "reason": "Installed dependencies of an unused standalone study, not the active application.",
+      "removal_confirmed_by": "local-deletion.json"
+    },
+    {
+      "path": "app/components/azure_sky_styling/dist",
+      "category": "local_legacy_or_generated",
+      "baseline_files": 27,
+      "baseline_logical_bytes": 1889180,
+      "reason": "Regenerable standalone-study build output; source retained.",
+      "removal_confirmed_by": "local-deletion.json"
+    },
+    {
+      "path": "app/security-review/frontend/artifacts",
+      "category": "local_legacy_or_generated",
+      "baseline_files": null,
+      "baseline_logical_bytes": null,
+      "reason": "Disposable frontend artifact directory; separate baseline size not recorded.",
+      "removal_confirmed_by": "local-deletion.json"
+    },
+    {
+      "path": ".pytest_cache",
+      "category": "local_legacy_or_generated",
+      "baseline_files": 5,
+      "baseline_logical_bytes": 382575,
+      "reason": "Regenerable test cache, not a source or result authority.",
+      "removal_confirmed_by": "local-deletion.json"
+    },
+    {
+      "path": "app/security-review/.local/optimization/bundles/accepted-campaign-check.tar.gz",
+      "category": "duplicate_trial_bundle",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 723977971,
+      "reason": "Regenerable cache or duplicate of the independently verified accepted bundle",
+      "removal_confirmed_by": "local-deletion.json"
+    },
+    {
+      "path": "app/security-review/.local/optimization/bundles/accepted-campaign-check.tar.gz.sha256",
+      "category": "duplicate_trial_bundle",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 96,
+      "reason": "Regenerable cache or duplicate of the independently verified accepted bundle",
+      "removal_confirmed_by": "local-deletion.json"
+    },
+    {
+      "path": "app/security-review/.local/optimization/bundles/reexport-check.tar.gz",
+      "category": "duplicate_trial_bundle",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 723962985,
+      "reason": "Regenerable cache or duplicate of the independently verified accepted bundle",
+      "removal_confirmed_by": "local-deletion.json"
+    },
+    {
+      "path": "app/security-review/.local/optimization/bundles/reexport-check.tar.gz.sha256",
+      "category": "duplicate_trial_bundle",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 97,
+      "reason": "Regenerable cache or duplicate of the independently verified accepted bundle",
+      "removal_confirmed_by": "local-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/abuse-phishing-ransomware-leak-fraud/abuseipdb-v2--7cce797b9b68",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 653,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/abuse-phishing-ransomware-leak-fraud/apwg-ecrime-exchange--73a6487ef2e0",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 653,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/abuse-phishing-ransomware-leak-fraud/chainabuse--a63b46d52c58",
+      "category": "unused_research_resource",
+      "baseline_files": 5,
+      "baseline_logical_bytes": 43321,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/abuse-phishing-ransomware-leak-fraud/dehashed--94fb8b2237e7",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 648,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/abuse-phishing-ransomware-leak-fraud/have-i-been-pwned-api--3cf00056afdf",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 682,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/abuse-phishing-ransomware-leak-fraud/leak-lookup--b5cc95f52cdc",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 656,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/abuse-phishing-ransomware-leak-fraud/ofac-sanctions-list-service--c84f5f357173",
+      "category": "unused_research_resource",
+      "baseline_files": 5,
+      "baseline_logical_bytes": 153999,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/abuse-phishing-ransomware-leak-fraud/pwned-passwords--e1682555fbd4",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 670,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/abuse-phishing-ransomware-leak-fraud/ransomlook--5a1c00b709a2",
+      "category": "unused_research_resource",
+      "baseline_files": 5,
+      "baseline_logical_bytes": 91430,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/abuse-phishing-ransomware-leak-fraud/ransomware-live--e0e9f76c1042",
+      "category": "unused_research_resource",
+      "baseline_files": 5,
+      "baseline_logical_bytes": 1211316,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/abuse-phishing-ransomware-leak-fraud/ransomware-live-api--adbd09919452",
+      "category": "unused_research_resource",
+      "baseline_files": 5,
+      "baseline_logical_bytes": 845045,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/abuse-phishing-ransomware-leak-fraud/spamcop-blocking-list--707ad4ae3242",
+      "category": "unused_research_resource",
+      "baseline_files": 5,
+      "baseline_logical_bytes": 20873,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/abuse-phishing-ransomware-leak-fraud/spamhaus-blocklists--49831ca6b285",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 677,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/abuse-phishing-ransomware-leak-fraud/stalkerware-indicators--6cda74d01e60",
+      "category": "unused_research_resource",
+      "baseline_files": 77,
+      "baseline_logical_bytes": 10601122,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/abuse-phishing-ransomware-leak-fraud/stop-forum-spam--b408ac7157ee",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 671,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/detection-hunting-rules/apache-caldera--f96802488919",
+      "category": "unused_research_resource",
+      "baseline_files": 420,
+      "baseline_logical_bytes": 11880709,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/detection-hunting-rules/aqua-tracee--ea7ba12cf2c8",
+      "category": "unused_research_resource",
+      "baseline_files": 1484,
+      "baseline_logical_bytes": 22056103,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/detection-hunting-rules/awesome-yara--d602d5287ff0",
+      "category": "unused_research_resource",
+      "baseline_files": 38,
+      "baseline_logical_bytes": 972653,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/detection-hunting-rules/bzar--a3454af5fbe3",
+      "category": "unused_research_resource",
+      "baseline_files": 50,
+      "baseline_logical_bytes": 1060464,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/detection-hunting-rules/capa-rules--87472b8dc526",
+      "category": "unused_research_resource",
+      "baseline_files": 1101,
+      "baseline_logical_bytes": 2227722,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/detection-hunting-rules/detectionlab--af622ad364b9",
+      "category": "unused_research_resource",
+      "baseline_files": 446,
+      "baseline_logical_bytes": 290271670,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/detection-hunting-rules/elastic-detection-rules--d971bc27abd7",
+      "category": "unused_research_resource",
+      "baseline_files": 3176,
+      "baseline_logical_bytes": 144430384,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/detection-hunting-rules/elastic-protections-artifacts--08da3230d846",
+      "category": "unused_research_resource",
+      "baseline_files": 2406,
+      "baseline_logical_bytes": 10965240,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/detection-hunting-rules/emerging-threats-open--3297f30a5823",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 878,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/detection-hunting-rules/falco-rules--4e5c56a169ca",
+      "category": "unused_research_resource",
+      "baseline_files": 136,
+      "baseline_logical_bytes": 1743278,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/detection-hunting-rules/google-security-analytics--0e6c285fa9a9",
+      "category": "unused_research_resource",
+      "baseline_files": 410,
+      "baseline_logical_bytes": 2510083,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/detection-hunting-rules/helk--1b067ddb2a3e",
+      "category": "unused_research_resource",
+      "baseline_files": 826,
+      "baseline_logical_bytes": 481836069,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/detection-hunting-rules/msticpy--d5ea4e7cb25d",
+      "category": "unused_research_resource",
+      "baseline_files": 1280,
+      "baseline_logical_bytes": 235911522,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/detection-hunting-rules/neo23x0-signature-base--55a22e97496c",
+      "category": "unused_research_resource",
+      "baseline_files": 805,
+      "baseline_logical_bytes": 11139166,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/detection-hunting-rules/palantir-osquery-config--533a53e48d6a",
+      "category": "unused_research_resource",
+      "baseline_files": 61,
+      "baseline_logical_bytes": 886197,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/detection-hunting-rules/pysigma--4468f4f0fe23",
+      "category": "unused_research_resource",
+      "baseline_files": 200,
+      "baseline_logical_bytes": 3262443,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/detection-hunting-rules/red-team-tool-countermeasures--931669ed6391",
+      "category": "unused_research_resource",
+      "baseline_files": 358,
+      "baseline_logical_bytes": 1905012,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/detection-hunting-rules/reversinglabs-yara--f96cbf97cda7",
+      "category": "unused_research_resource",
+      "baseline_files": 344,
+      "baseline_logical_bytes": 4558332,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/detection-hunting-rules/rita--54194c096154",
+      "category": "unused_research_resource",
+      "baseline_files": 1323,
+      "baseline_logical_bytes": 754500605,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/detection-hunting-rules/sentinel-notebooks--82d79f4d0807",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 1997,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/detection-hunting-rules/sigma-cli--3028013b8143",
+      "category": "unused_research_resource",
+      "baseline_files": 80,
+      "baseline_logical_bytes": 987069,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/detection-hunting-rules/slips--337f6cec8c5e",
+      "category": "unused_research_resource",
+      "baseline_files": 844,
+      "baseline_logical_bytes": 160834348,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/detection-hunting-rules/soc-prime-marketplace--f92d31a435d1",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 1998,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/detection-hunting-rules/splunk-attack-range--4b2c3b7a594c",
+      "category": "unused_research_resource",
+      "baseline_files": 216,
+      "baseline_logical_bytes": 44533367,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/detection-hunting-rules/splunk-security-content--e0b146cefdaf",
+      "category": "unused_research_resource",
+      "baseline_files": 4266,
+      "baseline_logical_bytes": 57774519,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/detection-hunting-rules/suricata--fc7d2c756163",
+      "category": "unused_research_resource",
+      "baseline_files": 2384,
+      "baseline_logical_bytes": 37310369,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/detection-hunting-rules/tenzir-library--0c501ab02660",
+      "category": "unused_research_resource",
+      "baseline_files": 2113,
+      "baseline_logical_bytes": 4701390,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/detection-hunting-rules/threat-hunter-playbook--2d6fcc357af4",
+      "category": "unused_research_resource",
+      "baseline_files": 186,
+      "baseline_logical_bytes": 45851781,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/detection-hunting-rules/yara-forge--11b865119409",
+      "category": "unused_research_resource",
+      "baseline_files": 68,
+      "baseline_logical_bytes": 874438,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/detection-hunting-rules/yara-rules-rules--68c123ddcae3",
+      "category": "unused_research_resource",
+      "baseline_files": 614,
+      "baseline_logical_bytes": 8822011,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/detection-hunting-rules/zeek--dc4c41723461",
+      "category": "unused_research_resource",
+      "baseline_files": 11794,
+      "baseline_logical_bytes": 173575007,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/detection-hunting-rules/zeek-packages--620710d5bf94",
+      "category": "unused_research_resource",
+      "baseline_files": 5,
+      "baseline_logical_bytes": 29823,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/discovery-catalogs/gtfobins--a7263d98ede1",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 626164,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/discovery-catalogs/hijacklibs--59e92a6cdff9",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 17313,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/discovery-catalogs/lolbas--611b3029de46",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 253754,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/discovery-catalogs/owasp-crs--249c05be6cb4",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 72397,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/discovery-catalogs/owasp-wstg--e0c1c4e1f31b",
+      "category": "unused_research_resource",
+      "baseline_files": 395,
+      "baseline_logical_bytes": 33770975,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/discovery-catalogs/payloadsallthethings--a02517c35b89",
+      "category": "unused_research_resource",
+      "baseline_files": 482,
+      "baseline_logical_bytes": 20854809,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/discovery-catalogs/security-onion--fecb59c2af9d",
+      "category": "unused_research_resource",
+      "baseline_files": 1817,
+      "baseline_logical_bytes": 66542782,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/exposure-asset-search/censys-search--218b00a2d2d5",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 626,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/exposure-asset-search/criminal-ip--a8d74d582acc",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 623,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/exposure-asset-search/fofa--bdb39c3b3d1c",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 601,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/exposure-asset-search/ivre--0c06c61fbc4e",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 47449,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/exposure-asset-search/leakix--5bfdd1c5f0be",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 16115,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/exposure-asset-search/masscan--d2adf226d331",
+      "category": "unused_research_resource",
+      "baseline_files": 289,
+      "baseline_logical_bytes": 2993679,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/exposure-asset-search/netlas--2ba3c8bece5f",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 605,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/exposure-asset-search/nmap--7b58cd8687f8",
+      "category": "unused_research_resource",
+      "baseline_files": 3,
+      "baseline_logical_bytes": 21660,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/exposure-asset-search/onyphe--7a10f1c21eaf",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 610,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/exposure-asset-search/shodan--cf863db67f1e",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 609,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/exposure-asset-search/shodan-internetdb--09713bb08e0d",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 630,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/exposure-asset-search/uncover--6f9a7bfa1acd",
+      "category": "unused_research_resource",
+      "baseline_files": 126,
+      "baseline_logical_bytes": 1925196,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/exposure-asset-search/zmap--f0fe2278598a",
+      "category": "unused_research_resource",
+      "baseline_files": 3,
+      "baseline_logical_bytes": 11341,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/exposure-asset-search/zoomeye--377c6c40a184",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 612,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/forensic-acquisition-tools-artifacts/aleapp--5611b5c68ec1",
+      "category": "unused_research_resource",
+      "baseline_files": 886,
+      "baseline_logical_bytes": 46202193,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/forensic-acquisition-tools-artifacts/avml--30bbffd7c697",
+      "category": "unused_research_resource",
+      "baseline_files": 89,
+      "baseline_logical_bytes": 1078081,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/forensic-acquisition-tools-artifacts/dfir-orc--92cbc786b11d",
+      "category": "unused_research_resource",
+      "baseline_files": 1476,
+      "baseline_logical_bytes": 44844099,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/forensic-acquisition-tools-artifacts/dftimewolf--956f0003292d",
+      "category": "unused_research_resource",
+      "baseline_files": 345,
+      "baseline_logical_bytes": 19960093,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/forensic-acquisition-tools-artifacts/docker-explorer--e24a56dd07f7",
+      "category": "unused_research_resource",
+      "baseline_files": 59,
+      "baseline_logical_bytes": 16738387,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/forensic-acquisition-tools-artifacts/forensicartifacts--39fd3961bf7f",
+      "category": "unused_research_resource",
+      "baseline_files": 133,
+      "baseline_logical_bytes": 1412618,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/forensic-acquisition-tools-artifacts/grr--148380e855fa",
+      "category": "unused_research_resource",
+      "baseline_files": 2288,
+      "baseline_logical_bytes": 55233448,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/forensic-acquisition-tools-artifacts/ileapp--d4a1c20c099f",
+      "category": "unused_research_resource",
+      "baseline_files": 1163,
+      "baseline_logical_bytes": 877016411,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/forensic-acquisition-tools-artifacts/kape-files--972907cc2a38",
+      "category": "unused_research_resource",
+      "baseline_files": 895,
+      "baseline_logical_bytes": 2377823,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/forensic-acquisition-tools-artifacts/lime--fe082b3625f7",
+      "category": "unused_research_resource",
+      "baseline_files": 60,
+      "baseline_logical_bytes": 828481,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/forensic-acquisition-tools-artifacts/mac-apt--8ab10c41dfe4",
+      "category": "unused_research_resource",
+      "baseline_files": 166,
+      "baseline_logical_bytes": 3400843,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/forensic-acquisition-tools-artifacts/memprocfs--b0a86a63fd69",
+      "category": "unused_research_resource",
+      "baseline_files": 394,
+      "baseline_logical_bytes": 23084268,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/forensic-acquisition-tools-artifacts/plaso--462efcc7bb3b",
+      "category": "unused_research_resource",
+      "baseline_files": 1944,
+      "baseline_logical_bytes": 975166488,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/forensic-acquisition-tools-artifacts/regripper-3--d58f68f239c1",
+      "category": "unused_research_resource",
+      "baseline_files": 314,
+      "baseline_logical_bytes": 12217553,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/forensic-acquisition-tools-artifacts/regrippy--7de509858807",
+      "category": "unused_research_resource",
+      "baseline_files": 126,
+      "baseline_logical_bytes": 922561,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/forensic-acquisition-tools-artifacts/sleuth-kit--f32b04a160fd",
+      "category": "unused_research_resource",
+      "baseline_files": 979,
+      "baseline_logical_bytes": 22050338,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/forensic-acquisition-tools-artifacts/timesketch--69ec3cdc2a34",
+      "category": "unused_research_resource",
+      "baseline_files": 1205,
+      "baseline_logical_bytes": 133596885,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/forensic-acquisition-tools-artifacts/turbinia--7ad2dc68a160",
+      "category": "unused_research_resource",
+      "baseline_files": 584,
+      "baseline_logical_bytes": 259956719,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/forensic-acquisition-tools-artifacts/velociraptor--f881fc264ee4",
+      "category": "unused_research_resource",
+      "baseline_files": 3090,
+      "baseline_logical_bytes": 52454884,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/forensic-acquisition-tools-artifacts/velociraptor-artifact-exchange--0b09a489ece2",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 924,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/forensic-acquisition-tools-artifacts/volatility-3--3ee7429e5616",
+      "category": "unused_research_resource",
+      "baseline_files": 630,
+      "baseline_logical_bytes": 12825949,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/forensic-corpora-training-labs/cfreds-archive--c2f47578c240",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 38615,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/forensic-corpora-training-labs/comidds--1f3918c3e96a",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 77102,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/forensic-corpora-training-labs/dfrws-challenges--959f4db6aed3",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 381613,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/forensic-corpora-training-labs/digital-corpora--93a53ae5d116",
+      "category": "unused_research_resource",
+      "baseline_files": 5,
+      "baseline_logical_bytes": 187177,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/forensic-corpora-training-labs/govdocs1--434f7f043c65",
+      "category": "unused_research_resource",
+      "baseline_files": 3,
+      "baseline_logical_bytes": 94874,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/forensic-corpora-training-labs/honeynet-forensic-challenges--bf67bf8d673f",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 50132,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/forensic-corpora-training-labs/malware-capture-facility--79ca5be9a274",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 688,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/forensic-corpora-training-labs/netresec-pcap-index--292dd8be13a7",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 68844,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/forensic-corpora-training-labs/nist-cfreds--4ce12686e2bf",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 5667,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/forensic-corpora-training-labs/nist-mirror-at-digital-corpora--d729081d463c",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 990,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/forensic-corpora-training-labs/nps-test-disk-images--130d599ed1ca",
+      "category": "unused_research_resource",
+      "baseline_files": 3,
+      "baseline_logical_bytes": 64911,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/forensic-corpora-training-labs/nsrl--8a853aeefd81",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 181447,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/forensic-corpora-training-labs/security-datasets-catalog--20fdca2c3d75",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 3337,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/forensic-corpora-training-labs/security-onion-resources--3a9bb7a7843c",
+      "category": "unused_research_resource",
+      "baseline_files": 613,
+      "baseline_logical_bytes": 1032426,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/forensic-corpora-training-labs/socbed--4a303e470f78",
+      "category": "unused_research_resource",
+      "baseline_files": 535,
+      "baseline_logical_bytes": 44142159,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/forensic-corpora-training-labs/stratosphere-datasets--d91fd039c666",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 262009,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/forensic-corpora-training-labs/unb-cic-catalog--c8bd4f428747",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 220787,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/forensic-corpora-training-labs/volatility-memory-samples--a9697d10019b",
+      "category": "unused_research_resource",
+      "baseline_files": 492,
+      "baseline_logical_bytes": 38459113,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/ir-playbooks-frameworks-cloud-collection/aws-ir-evaluation--d321f0e27988",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 5911,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/ir-playbooks-frameworks-cloud-collection/aws-ir-playbook-samples--14386b3b4a47",
+      "category": "unused_research_resource",
+      "baseline_files": 79,
+      "baseline_logical_bytes": 2161833,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/ir-playbooks-frameworks-cloud-collection/cisa-playbooks-repository--daf47d7f60bb",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 2090,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/ir-playbooks-frameworks-cloud-collection/cisa-response-playbooks--30f81ef0db9b",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 1119,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/ir-playbooks-frameworks-cloud-collection/first-csirt-services-framework--7ff5910365cc",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 423354,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/ir-playbooks-frameworks-cloud-collection/incident-response-methodologies--bb232b1711a1",
+      "category": "unused_research_resource",
+      "baseline_files": 60,
+      "baseline_logical_bytes": 9869949,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/ir-playbooks-frameworks-cloud-collection/microsoft-ir-playbooks--13517d576fa7",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 104123,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/ir-playbooks-frameworks-cloud-collection/mitre-att-ck--4c2168269b12",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 3024243,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/ir-playbooks-frameworks-cloud-collection/mitre-car--b5967c81a118",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 18832,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/ir-playbooks-frameworks-cloud-collection/mitre-d3fend--88dd19746c47",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 3966013,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/ir-playbooks-frameworks-cloud-collection/nist-csf-2-0--209a744648b9",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 182513,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/ir-playbooks-frameworks-cloud-collection/nist-sp-800-184--acd9a59b55a1",
+      "category": "unused_research_resource",
+      "baseline_files": 5,
+      "baseline_logical_bytes": 149089,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/ir-playbooks-frameworks-cloud-collection/nist-sp-800-61r3--f53ed62dd159",
+      "category": "unused_research_resource",
+      "baseline_files": 5,
+      "baseline_logical_bytes": 136971,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/ir-playbooks-frameworks-cloud-collection/re-ct--90d7f8dc1929",
+      "category": "unused_research_resource",
+      "baseline_files": 582,
+      "baseline_logical_bytes": 19094796,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/ir-playbooks-frameworks-cloud-collection/scubagear--c1538e5cfff7",
+      "category": "unused_research_resource",
+      "baseline_files": 560,
+      "baseline_logical_bytes": 32795064,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/ir-playbooks-frameworks-cloud-collection/sparrow--f0adc8abd52e",
+      "category": "unused_research_resource",
+      "baseline_files": 36,
+      "baseline_logical_bytes": 660108,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/ir-playbooks-frameworks-cloud-collection/untitled-goose-tool--01a66c502438",
+      "category": "unused_research_resource",
+      "baseline_files": 59,
+      "baseline_logical_bytes": 2194342,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/malware-reputation-sandboxes/any-run--dabe4c5b2a89",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 622,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/malware-reputation-sandboxes/bodmas--e3123c3b090f",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 38047,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/malware-reputation-sandboxes/cape-sandbox--d7fcca6c435f",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 129640,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/malware-reputation-sandboxes/cert-polska-mwdb--d01e653dfee0",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 640,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/malware-reputation-sandboxes/cuckoo-sandbox--a6365a8c6918",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 91958,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/malware-reputation-sandboxes/ember--59f9a8ef82e7",
+      "category": "unused_research_resource",
+      "baseline_files": 52,
+      "baseline_logical_bytes": 25346406,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/malware-reputation-sandboxes/filescan-io--82f4bda94ae6",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 638,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/malware-reputation-sandboxes/hatching-triage--fa9baf1755ee",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 643,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/malware-reputation-sandboxes/hybrid-analysis--51143abaf910",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 665,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/malware-reputation-sandboxes/intezer-analyze--16bd2958c399",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 650,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/malware-reputation-sandboxes/joe-sandbox--995a0e97df27",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 642,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/malware-reputation-sandboxes/malpedia--0e71df3ad78f",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 644,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/malware-reputation-sandboxes/malshare--1e6e34c2c40b",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 628,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/malware-reputation-sandboxes/malwarebazaar-api--09c8120fe1d7",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 658,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/malware-reputation-sandboxes/malwarebazaar-data-lake--998c0a655554",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 683,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/malware-reputation-sandboxes/metadefender-cloud--8dfdf86f31ab",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 660,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/malware-reputation-sandboxes/mwdb-core--680c5904d97d",
+      "category": "unused_research_resource",
+      "baseline_files": 695,
+      "baseline_logical_bytes": 20748700,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/malware-reputation-sandboxes/sorel-20m--377acd7060c9",
+      "category": "unused_research_resource",
+      "baseline_files": 47,
+      "baseline_logical_bytes": 36215777,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/malware-reputation-sandboxes/thezoo--015618b849a2",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 627,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/malware-reputation-sandboxes/virusshare--9a5af9f5a907",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 630,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/malware-reputation-sandboxes/virustotal-api-v3--a54f7ecdccb6",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 672,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/malware-reputation-sandboxes/vx-underground-samples--61f66d59a4df",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 668,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/malware-reputation-sandboxes/yaraify--9d70287ccf66",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 623,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/network-dns-bgp-rdap-certificates-geolocation-enrichment/afrinic-rdap--edc91cae4fd8",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 968,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/network-dns-bgp-rdap-certificates-geolocation-enrichment/apnic-rdap--8b2268f857aa",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 152221,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/network-dns-bgp-rdap-certificates-geolocation-enrichment/arin-rdap--e45fdb9ecc6c",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 7372461,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/network-dns-bgp-rdap-certificates-geolocation-enrichment/bgp-tools--e195c74fc7ec",
+      "category": "unused_research_resource",
+      "baseline_files": 5,
+      "baseline_logical_bytes": 44995,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/network-dns-bgp-rdap-certificates-geolocation-enrichment/bgpkit-broker--d4f7fe69f58e",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 972,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/network-dns-bgp-rdap-certificates-geolocation-enrichment/bgpstream--d30c4ab23d8b",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 19150,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/network-dns-bgp-rdap-certificates-geolocation-enrichment/caida-as-rank--305f69025bf1",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 26383,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/network-dns-bgp-rdap-certificates-geolocation-enrichment/caida-internet-data--8fee4764d0c3",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 8685,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/network-dns-bgp-rdap-certificates-geolocation-enrichment/censys-certificates--1f197b664cc6",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 729,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/network-dns-bgp-rdap-certificates-geolocation-enrichment/cert-spotter--72cf3ebdb3be",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 43582,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/network-dns-bgp-rdap-certificates-geolocation-enrichment/certificate-transparency--45aed3e6bba5",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 30382,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/network-dns-bgp-rdap-certificates-geolocation-enrichment/circl-hashlookup--5816ebb28aa4",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 167833,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/network-dns-bgp-rdap-certificates-geolocation-enrichment/circl-passive-dns--07d6140647cf",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 725,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/network-dns-bgp-rdap-certificates-geolocation-enrichment/circl-passive-ssl--e0a65db9c2cb",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 725,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/network-dns-bgp-rdap-certificates-geolocation-enrichment/cloudflare-rpki--a72846746ece",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 711,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/network-dns-bgp-rdap-certificates-geolocation-enrichment/common-crawl--b323e64961c2",
+      "category": "unused_research_resource",
+      "baseline_files": 3,
+      "baseline_logical_bytes": 29047,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/network-dns-bgp-rdap-certificates-geolocation-enrichment/crt-sh--698840e90b2f",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 881,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/network-dns-bgp-rdap-certificates-geolocation-enrichment/db-ip-lite--7ceebfae0d62",
+      "category": "unused_research_resource",
+      "baseline_files": 5,
+      "baseline_logical_bytes": 74432,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/network-dns-bgp-rdap-certificates-geolocation-enrichment/dns-oarc--d914ba9683eb",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 128089,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/network-dns-bgp-rdap-certificates-geolocation-enrichment/domaintools-iris-enrich--2c5f36ac1ce6",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 739,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/network-dns-bgp-rdap-certificates-geolocation-enrichment/farsight-dnsdb--0cc81f2eb672",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 715,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/network-dns-bgp-rdap-certificates-geolocation-enrichment/iana-rdap-bootstrap--5c38135f6fcc",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 9108,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/network-dns-bgp-rdap-certificates-geolocation-enrichment/icann-rdap--f0888e270663",
+      "category": "unused_research_resource",
+      "baseline_files": 5,
+      "baseline_logical_bytes": 845527,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/network-dns-bgp-rdap-certificates-geolocation-enrichment/ipinfo-lite--5e4f7645c984",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 1472369,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/network-dns-bgp-rdap-certificates-geolocation-enrichment/iptoasn--a46cb43cd873",
+      "category": "unused_research_resource",
+      "baseline_files": 6,
+      "baseline_logical_bytes": 8957968,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/network-dns-bgp-rdap-certificates-geolocation-enrichment/irr-explorer--e7ae4e99c296",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 4530,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/network-dns-bgp-rdap-certificates-geolocation-enrichment/lacnic-rdap--059ace45d6e9",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 17286,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/network-dns-bgp-rdap-certificates-geolocation-enrichment/maxmind-geolite--a9d3952f0a26",
+      "category": "unused_research_resource",
+      "baseline_files": 5,
+      "baseline_logical_bytes": 390504,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/network-dns-bgp-rdap-certificates-geolocation-enrichment/nist-rpki-monitor--51be2aefae21",
+      "category": "unused_research_resource",
+      "baseline_files": 5,
+      "baseline_logical_bytes": 8631437,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/network-dns-bgp-rdap-certificates-geolocation-enrichment/peeringdb-api--5e6ed2d86da8",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 45109,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/network-dns-bgp-rdap-certificates-geolocation-enrichment/public-suffix-list--5ee8ae6e949b",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 339678,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/network-dns-bgp-rdap-certificates-geolocation-enrichment/radb--2d2304fe91b3",
+      "category": "unused_research_resource",
+      "baseline_files": 5,
+      "baseline_logical_bytes": 60148,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/network-dns-bgp-rdap-certificates-geolocation-enrichment/radb-rest-api--3527658dd5fa",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 916,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/network-dns-bgp-rdap-certificates-geolocation-enrichment/rapid7-open-data--42ceaf679ad1",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 45724,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/network-dns-bgp-rdap-certificates-geolocation-enrichment/ripe-database--a16d7f083104",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 181138,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/network-dns-bgp-rdap-certificates-geolocation-enrichment/ripe-ris--7477d4c240e5",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 256532,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/network-dns-bgp-rdap-certificates-geolocation-enrichment/ripestat--69ab0078d6d6",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 109960,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/network-dns-bgp-rdap-certificates-geolocation-enrichment/routeviews--8dd56f2a370b",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 121448,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/network-dns-bgp-rdap-certificates-geolocation-enrichment/routinator--edabe8af6246",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 24813,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/network-dns-bgp-rdap-certificates-geolocation-enrichment/rpki-client--0f0be645cfb1",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 9434,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/network-dns-bgp-rdap-certificates-geolocation-enrichment/securitytrails--174c5d0c31b2",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 727,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/network-dns-bgp-rdap-certificates-geolocation-enrichment/team-cymru-ip-to-asn--c86ab2651b78",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 730,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/network-dns-bgp-rdap-certificates-geolocation-enrichment/whoisxml-api--d386d043d8e6",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 704,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/schemas-ontologies-standards/att-ck-data-model--800aab9e6228",
+      "category": "unused_research_resource",
+      "baseline_files": 257,
+      "baseline_logical_bytes": 4172964,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/schemas-ontologies-standards/att-ck-taxii--5559118c9d32",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 924,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/schemas-ontologies-standards/cacao-2-0--d0c88d910388",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 2343687,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/schemas-ontologies-standards/capec-downloads--1f825c5a7a28",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 44618,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/schemas-ontologies-standards/case--7812b71daf5c",
+      "category": "unused_research_resource",
+      "baseline_files": 71,
+      "baseline_logical_bytes": 734184,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/schemas-ontologies-standards/csaf-2-0--7e19469a3cf6",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 55567,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/schemas-ontologies-standards/csaf-distribution-tooling--24b5702ead2d",
+      "category": "unused_research_resource",
+      "baseline_files": 243,
+      "baseline_logical_bytes": 1897552,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/schemas-ontologies-standards/cvss--cbd97012b8fd",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 61681,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/schemas-ontologies-standards/cwe-downloads--3f02e5511d0b",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 94884,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/schemas-ontologies-standards/cyclonedx--bfc4ae557a9e",
+      "category": "unused_research_resource",
+      "baseline_files": 1111,
+      "baseline_logical_bytes": 9579706,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/schemas-ontologies-standards/d3fend-ontology--f82c8b144115",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 417014,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/schemas-ontologies-standards/first-tlp-2-0--4ddd9704e245",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 83335,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/schemas-ontologies-standards/iodef--f30c5fa1c5a3",
+      "category": "unused_research_resource",
+      "baseline_files": 5,
+      "baseline_logical_bytes": 1484610,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/schemas-ontologies-standards/maec--31dfa87f7387",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 1872,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/schemas-ontologies-standards/misp-galaxies--e4fc7e0ca8fe",
+      "category": "unused_research_resource",
+      "baseline_files": 499,
+      "baseline_logical_bytes": 70017160,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/schemas-ontologies-standards/misp-objects--fada58db04e1",
+      "category": "unused_research_resource",
+      "baseline_files": 709,
+      "baseline_logical_bytes": 5166936,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/schemas-ontologies-standards/misp-standard--9c21e0bc8080",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 25327,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/schemas-ontologies-standards/misp-stix-converter--152c9006f5a8",
+      "category": "unused_research_resource",
+      "baseline_files": 267,
+      "baseline_logical_bytes": 17627354,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/schemas-ontologies-standards/misp-taxonomies--18220e5b3606",
+      "category": "unused_research_resource",
+      "baseline_files": 259,
+      "baseline_logical_bytes": 7902696,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/schemas-ontologies-standards/misp-warning-lists--43deb2c9638c",
+      "category": "unused_research_resource",
+      "baseline_files": 251,
+      "baseline_logical_bytes": 224298120,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/schemas-ontologies-standards/ocsf--5b94367fee15",
+      "category": "unused_research_resource",
+      "baseline_files": 390,
+      "baseline_logical_bytes": 2762959,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/schemas-ontologies-standards/openc2--973eefc56f73",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 1911,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/schemas-ontologies-standards/openioc--7f915bdeecf1",
+      "category": "unused_research_resource",
+      "baseline_files": 40,
+      "baseline_logical_bytes": 1003728,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/schemas-ontologies-standards/openvex--e6ec3867d2a1",
+      "category": "unused_research_resource",
+      "baseline_files": 50,
+      "baseline_logical_bytes": 808936,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/schemas-ontologies-standards/osv-schema--31b3742a239e",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 445469,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/schemas-ontologies-standards/package-url--74241f20283f",
+      "category": "unused_research_resource",
+      "baseline_files": 225,
+      "baseline_logical_bytes": 1516324,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/schemas-ontologies-standards/sigma-specification--2411e68988f1",
+      "category": "unused_research_resource",
+      "baseline_files": 65,
+      "baseline_logical_bytes": 1153154,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/schemas-ontologies-standards/spdx--eca84a52061b",
+      "category": "unused_research_resource",
+      "baseline_files": 124,
+      "baseline_logical_bytes": 31043598,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/schemas-ontologies-standards/stix-2-1-specification--beff90acdfd2",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 2622970,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/schemas-ontologies-standards/stix-json-schemas--9dbce954dd1d",
+      "category": "unused_research_resource",
+      "baseline_files": 124,
+      "baseline_logical_bytes": 1086973,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/schemas-ontologies-standards/stix-taxii-documentation--12a90cb141a4",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 23346,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/schemas-ontologies-standards/taxii-2-1-specification--5043b91f097b",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 1186110,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/schemas-ontologies-standards/unified-cyber-ontology--302e52c4d534",
+      "category": "unused_research_resource",
+      "baseline_files": 222,
+      "baseline_logical_bytes": 1810157,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/schemas-ontologies-standards/yara--68d713edd9f1",
+      "category": "unused_research_resource",
+      "baseline_files": 415,
+      "baseline_logical_bytes": 16246461,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/supply-chain-sbom/clearlydefined--68d4e085de4d",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 8560,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/supply-chain-sbom/dependency-track--556f24d5b937",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 133167,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/supply-chain-sbom/deps-dev--b38625fc3d22",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 5446,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/supply-chain-sbom/github-advisories-search--d4db7b259e50",
+      "category": "unused_research_resource",
+      "baseline_files": 5,
+      "baseline_logical_bytes": 804290,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/supply-chain-sbom/grype--8560986eb81c",
+      "category": "unused_research_resource",
+      "baseline_files": 1637,
+      "baseline_logical_bytes": 11848520,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/supply-chain-sbom/guac--78faec17b28d",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 24451,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/supply-chain-sbom/in-toto--f03e667940f8",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 36440,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/supply-chain-sbom/libraries-io-api--a4a32ca726ec",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 624,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/supply-chain-sbom/oci-distribution--b20297126600",
+      "category": "unused_research_resource",
+      "baseline_files": 79,
+      "baseline_logical_bytes": 1153968,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/supply-chain-sbom/openssf-malicious-packages--74dee4d62cf9",
+      "category": "unused_research_resource",
+      "baseline_files": 237319,
+      "baseline_logical_bytes": 576544976,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/supply-chain-sbom/openssf-scorecard--253812f1e5c2",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 81279,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/supply-chain-sbom/osv-scanner--4d2d8af5659e",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 31975,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/supply-chain-sbom/sigstore--e4f7dec576c1",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 11387,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/supply-chain-sbom/slsa--525c09735960",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 61832,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/supply-chain-sbom/syft--ffdc07203ba7",
+      "category": "unused_research_resource",
+      "baseline_files": 2966,
+      "baseline_logical_bytes": 42362963,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/supply-chain-sbom/trivy--230361631469",
+      "category": "unused_research_resource",
+      "baseline_files": 3412,
+      "baseline_logical_bytes": 149145784,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/telemetry-network-host-cloud-email-web-datasets/adfa-ids-datasets--811948c7741a",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 724,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/telemetry-network-host-cloud-email-web-datasets/apache-spamassassin-corpus--6882a172eac6",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 9437,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/telemetry-network-host-cloud-email-web-datasets/boss-of-the-soc-v3--01e53cb1fdc0",
+      "category": "unused_research_resource",
+      "baseline_files": 34,
+      "baseline_logical_bytes": 603602,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/telemetry-network-host-cloud-email-web-datasets/bot-iot--6b5d54de1ce3",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 702,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/telemetry-network-host-cloud-email-web-datasets/caida-passive-traces--c48b67c911ab",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 730,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/telemetry-network-host-cloud-email-web-datasets/cert-insider-threat--efb38910cc0b",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 3211,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/telemetry-network-host-cloud-email-web-datasets/cic-ids2017--bee78d23fcf0",
+      "category": "unused_research_resource",
+      "baseline_files": 3,
+      "baseline_logical_bytes": 78509,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/telemetry-network-host-cloud-email-web-datasets/csic-2010-http--d84a6001a4cd",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 926,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/telemetry-network-host-cloud-email-web-datasets/curated-phishing-email-datasets--6452099b25f8",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 191880,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/telemetry-network-host-cloud-email-web-datasets/enron-email-dataset--499658dd33d4",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 17047,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/telemetry-network-host-cloud-email-web-datasets/evtx-attack-samples--f072eb8a27b0",
+      "category": "unused_research_resource",
+      "baseline_files": 348,
+      "baseline_logical_bytes": 69163481,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/telemetry-network-host-cloud-email-web-datasets/lanl-authentication-associations--7cf1263da8a8",
+      "category": "unused_research_resource",
+      "baseline_files": 3,
+      "baseline_logical_bytes": 11590,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/telemetry-network-host-cloud-email-web-datasets/lanl-multi-source-events--b650f6b0fc25",
+      "category": "unused_research_resource",
+      "baseline_files": 3,
+      "baseline_logical_bytes": 14022,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/telemetry-network-host-cloud-email-web-datasets/lanl-unified-host-network--8419bfde5a00",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 39080,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/telemetry-network-host-cloud-email-web-datasets/malware-traffic-analysis-net--715226e030e8",
+      "category": "unused_research_resource",
+      "baseline_files": 3,
+      "baseline_logical_bytes": 6273,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/telemetry-network-host-cloud-email-web-datasets/mawi-archive--0fb36f36f873",
+      "category": "unused_research_resource",
+      "baseline_files": 3,
+      "baseline_logical_bytes": 15645,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/telemetry-network-host-cloud-email-web-datasets/microsoft-sentinel-sample-data--c401f408849d",
+      "category": "unused_research_resource",
+      "baseline_files": 33930,
+      "baseline_logical_bytes": 7227080577,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/telemetry-network-host-cloud-email-web-datasets/otrf-security-datasets--afcf94b92144",
+      "category": "unused_research_resource",
+      "baseline_files": 765,
+      "baseline_logical_bytes": 1180420713,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/telemetry-network-host-cloud-email-web-datasets/owasp-benchmark-java--e91bcf7b6a62",
+      "category": "unused_research_resource",
+      "baseline_files": 5757,
+      "baseline_logical_bytes": 237198612,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/telemetry-network-host-cloud-email-web-datasets/owasp-crs-regression-tests--0b2842792d8b",
+      "category": "unused_research_resource",
+      "baseline_files": 705,
+      "baseline_logical_bytes": 6519217,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/telemetry-network-host-cloud-email-web-datasets/phiusiil--1c969d0df4de",
+      "category": "unused_research_resource",
+      "baseline_files": 5,
+      "baseline_logical_bytes": 701497,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/telemetry-network-host-cloud-email-web-datasets/secrepo--c5e21d0a322a",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 53510,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/telemetry-network-host-cloud-email-web-datasets/ton-iot--60451ba39c10",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 702,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/telemetry-network-host-cloud-email-web-datasets/tranco--f4a15712384d",
+      "category": "unused_research_resource",
+      "baseline_files": 5,
+      "baseline_logical_bytes": 80236,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/telemetry-network-host-cloud-email-web-datasets/trec-spam-corpora--e33a2a75d229",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 1014,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/telemetry-network-host-cloud-email-web-datasets/unsw-nb15--e157f5a3da53",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 708,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/threat-intelligence-iocs/apnic-community-honeynet--4cd643155f90",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 863,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/threat-intelligence-iocs/blocklist-de--bab90e9f6ced",
+      "category": "unused_research_resource",
+      "baseline_files": 5,
+      "baseline_logical_bytes": 84767,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/threat-intelligence-iocs/cert-polska-warning-list--7d7c608a5d74",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 5675020,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/threat-intelligence-iocs/digitalside-osint-misp-feed--6a33b78edac4",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 958,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/threat-intelligence-iocs/dshield-api--fcd4bd3b8c5c",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 626,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/threat-intelligence-iocs/dshield-bulk-feeds--6149369dc520",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 650,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/threat-intelligence-iocs/feodo-tracker-downloads--97716eced77f",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 1373,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/threat-intelligence-iocs/firehol-ip-lists--2338b40d03d0",
+      "category": "unused_research_resource",
+      "baseline_files": 1223,
+      "baseline_logical_bytes": 206736638,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/threat-intelligence-iocs/greynoise-community-api--d4b19e79c7be",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 675,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/threat-intelligence-iocs/infoblox-threat-intelligence--d561fd967d35",
+      "category": "unused_research_resource",
+      "baseline_files": 148,
+      "baseline_logical_bytes": 98983732,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/threat-intelligence-iocs/ipsum--9c7af1c54368",
+      "category": "unused_research_resource",
+      "baseline_files": 43,
+      "baseline_logical_bytes": 6551449,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/threat-intelligence-iocs/misp--a09a83dbaaec",
+      "category": "unused_research_resource",
+      "baseline_files": 3144,
+      "baseline_logical_bytes": 240131472,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/threat-intelligence-iocs/misp-default-feeds--db6a39fade00",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 127436,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/threat-intelligence-iocs/opencti--a65fa6c247fb",
+      "category": "unused_research_resource",
+      "baseline_files": 6312,
+      "baseline_logical_bytes": 346078241,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/threat-intelligence-iocs/openphish-public-feed--4b937a8bfef7",
+      "category": "unused_research_resource",
+      "baseline_files": 34,
+      "baseline_logical_bytes": 503545,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/threat-intelligence-iocs/otx-directconnect-api--92e3860edf08",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 646,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/threat-intelligence-iocs/phishing-database--e51628903769",
+      "category": "unused_research_resource",
+      "baseline_files": 95,
+      "baseline_logical_bytes": 160453389,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/threat-intelligence-iocs/phishtank-api--475baa6a67ce",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 640,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/threat-intelligence-iocs/shadowserver-network-reporting--58c6d3116077",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 692,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/threat-intelligence-iocs/spamhaus-drop--3ac0042fd44b",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 1101347,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/threat-intelligence-iocs/sslbl--4711e0c5cb80",
+      "category": "unused_research_resource",
+      "baseline_files": 6,
+      "baseline_logical_bytes": 829840,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/threat-intelligence-iocs/threatfox--7375d86ae614",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 635,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/threat-intelligence-iocs/urlhaus--fcee88d0f104",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 629,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/threat-intelligence-iocs/urlscan-io-api--651d623deebd",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 630,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/vulnerabilities-exploits-advisories/alpine-secdb--745625d32b5a",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 8222,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/vulnerabilities-exploits-advisories/cert-cc-ssvc--00b632f73ed3",
+      "category": "unused_research_resource",
+      "baseline_files": 731,
+      "baseline_logical_bytes": 12669899,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/vulnerabilities-exploits-advisories/circl-vulnerability-lookup--8aca96d9964f",
+      "category": "unused_research_resource",
+      "baseline_files": 973,
+      "baseline_logical_bytes": 19147598,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/vulnerabilities-exploits-advisories/cisa-cybersecurity-advisories--5bec1392b066",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 339064,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/vulnerabilities-exploits-advisories/cisa-ics-advisories--f8e28bbc4aef",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 716354,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/vulnerabilities-exploits-advisories/cisa-kev-json--16519bf46eaf",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 3239939,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/vulnerabilities-exploits-advisories/cisa-vulnrichment--dfd3834ce633",
+      "category": "unused_research_resource",
+      "baseline_files": 177456,
+      "baseline_logical_bytes": 1286462105,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/vulnerabilities-exploits-advisories/cve-list-v5--61ccf4534179",
+      "category": "unused_research_resource",
+      "baseline_files": 384657,
+      "baseline_logical_bytes": 3576351753,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/vulnerabilities-exploits-advisories/cve-schema--2f9cf4609719",
+      "category": "unused_research_resource",
+      "baseline_files": 145,
+      "baseline_logical_bytes": 5929798,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/vulnerabilities-exploits-advisories/debian-security-tracker-git--f1aa0ed62515",
+      "category": "unused_research_resource",
+      "baseline_files": 5,
+      "baseline_logical_bytes": 127080,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/vulnerabilities-exploits-advisories/debian-security-tracker-json--ee3809c240f0",
+      "category": "unused_research_resource",
+      "baseline_files": 3,
+      "baseline_logical_bytes": 87538146,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/vulnerabilities-exploits-advisories/exploit-database--a0cb2eff42e6",
+      "category": "unused_research_resource",
+      "baseline_files": 47770,
+      "baseline_logical_bytes": 503014500,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/vulnerabilities-exploits-advisories/first-epss--bd9cf0a124a3",
+      "category": "unused_research_resource",
+      "baseline_files": 3,
+      "baseline_logical_bytes": 2585013,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/vulnerabilities-exploits-advisories/friendsofphp-advisories--766ff8314d0e",
+      "category": "unused_research_resource",
+      "baseline_files": 1683,
+      "baseline_logical_bytes": 2480006,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/vulnerabilities-exploits-advisories/github-advisory-database--b78f1d41aa1c",
+      "category": "unused_research_resource",
+      "baseline_files": 364735,
+      "baseline_logical_bytes": 863287407,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/vulnerabilities-exploits-advisories/github-advisory-graphql--066ba415a4e5",
+      "category": "unused_research_resource",
+      "baseline_files": 1,
+      "baseline_logical_bytes": 715,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/vulnerabilities-exploits-advisories/go-vulnerability-database--406211201b5d",
+      "category": "unused_research_resource",
+      "baseline_files": 10604,
+      "baseline_logical_bytes": 56980384,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/vulnerabilities-exploits-advisories/metasploit-framework--bcd16f553c8e",
+      "category": "unused_research_resource",
+      "baseline_files": 14928,
+      "baseline_logical_bytes": 275761551,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/vulnerabilities-exploits-advisories/nvd-bulk-feeds--e2c5e4158c05",
+      "category": "unused_research_resource",
+      "baseline_files": 5,
+      "baseline_logical_bytes": 5557723,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/vulnerabilities-exploits-advisories/nvd-cve-api-2-0--f463a848236c",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 7248,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/vulnerabilities-exploits-advisories/oss-fuzz-vulnerabilities--1605098650db",
+      "category": "unused_research_resource",
+      "baseline_files": 4074,
+      "baseline_logical_bytes": 7497006,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/vulnerabilities-exploits-advisories/osv-data-dumps--043b0948e101",
+      "category": "unused_research_resource",
+      "baseline_files": 3,
+      "baseline_logical_bytes": 28061,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/vulnerabilities-exploits-advisories/osv-dev--ed0f312eed4a",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 86324,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/vulnerabilities-exploits-advisories/packet-storm-files--43d0c00227fd",
+      "category": "unused_research_resource",
+      "baseline_files": 3,
+      "baseline_logical_bytes": 37503,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/vulnerabilities-exploits-advisories/pypa-advisory-database--73656ae53438",
+      "category": "unused_research_resource",
+      "baseline_files": 7307,
+      "baseline_logical_bytes": 31871441,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/vulnerabilities-exploits-advisories/red-hat-security-data-api--8d4db12d48cc",
+      "category": "unused_research_resource",
+      "baseline_files": 4,
+      "baseline_logical_bytes": 645891,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/vulnerabilities-exploits-advisories/ruby-advisory-db--5e9ebd857af2",
+      "category": "unused_research_resource",
+      "baseline_files": 1449,
+      "baseline_logical_bytes": 3855634,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/vulnerabilities-exploits-advisories/rustsec--2adcee0d2b9d",
+      "category": "unused_research_resource",
+      "baseline_files": 1277,
+      "baseline_logical_bytes": 3005334,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/vulnerabilities-exploits-advisories/ubuntu-oval--c3301048f4d3",
+      "category": "unused_research_resource",
+      "baseline_files": 5,
+      "baseline_logical_bytes": 219757,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    },
+    {
+      "path": "cyber_kb/raw/sources/vulnerabilities-exploits-advisories/ubuntu-security-notices--f1577d24b7d7",
+      "category": "unused_research_resource",
+      "baseline_files": 147496,
+      "baseline_logical_bytes": 34733049025,
+      "reason": "Unconsumed research mirror; absent from corpus source selectors, AIT input and app/deploy runtime paths",
+      "removal_confirmed_by": "research-deletion.json"
+    }
+  ],
+  "research_sections": {
+    "abuse-phishing-ransomware-leak-fraud": {
+      "resources": 15,
+      "files": 115,
+      "logical_bytes": 12972416
+    },
+    "detection-hunting-rules": {
+      "resources": 32,
+      "files": 37437,
+      "logical_bytes": 2517416647
+    },
+    "discovery-catalogs": {
+      "resources": 7,
+      "files": 2710,
+      "logical_bytes": 122138194
+    },
+    "exposure-asset-search": {
+      "resources": 14,
+      "files": 437,
+      "logical_bytes": 5020356
+    },
+    "forensic-acquisition-tools-artifacts": {
+      "resources": 21,
+      "files": 16827,
+      "logical_bytes": 2561369046
+    },
+    "forensic-corpora-training-labs": {
+      "resources": 18,
+      "files": 1693,
+      "logical_bytes": 85271891
+    },
+    "ir-playbooks-frameworks-cloud-collection": {
+      "resources": 17,
+      "files": 1416,
+      "logical_bytes": 74790350
+    },
+    "malware-reputation-sandboxes": {
+      "resources": 23,
+      "files": 823,
+      "logical_bytes": 82581521
+    },
+    "network-dns-bgp-rdap-certificates-geolocation-enrichment": {
+      "resources": 43,
+      "files": 140,
+      "logical_bytes": 29630215
+    },
+    "schemas-ontologies-standards": {
+      "resources": 34,
+      "files": 5378,
+      "logical_bytes": 407722287
+    },
+    "supply-chain-sbom": {
+      "resources": 16,
+      "files": 245455,
+      "logical_bytes": 782255662
+    },
+    "telemetry-network-host-cloud-email-web-datasets": {
+      "resources": 26,
+      "files": 41595,
+      "logical_bytes": 8722213645
+    },
+    "threat-intelligence-iocs": {
+      "resources": 24,
+      "files": 11034,
+      "logical_bytes": 1067265893
+    },
+    "vulnerabilities-exploits-advisories": {
+      "resources": 30,
+      "files": 1165341,
+      "logical_bytes": 41482500481
+    }
+  },
+  "retained": [
+    {
+      "path": "cyber_kb/raw/sources/detection-hunting-rules/atomic-red-team--d19a9a68ec4a",
+      "reason": "Pinned corpus input or acquired raw telemetry",
+      "baseline_files": 1400,
+      "baseline_logical_bytes": 433770416
+    },
+    {
+      "path": "cyber_kb/raw/sources/detection-hunting-rules/sigmahq-rules--006d8a4d6e3e",
+      "reason": "Pinned corpus input or acquired raw telemetry",
+      "baseline_files": 4801,
+      "baseline_logical_bytes": 37275832
+    },
+    {
+      "path": "cyber_kb/raw/sources/ir-playbooks-frameworks-cloud-collection/azure-sentinel-content--9252bd1e38fc",
+      "reason": "Pinned corpus input or acquired raw telemetry",
+      "baseline_files": 33941,
+      "baseline_logical_bytes": 7226904894
+    },
+    {
+      "path": "cyber_kb/raw/sources/ir-playbooks-frameworks-cloud-collection/guardsight-battle-cards--f646f0965ec4",
+      "reason": "Pinned corpus input or acquired raw telemetry",
+      "baseline_files": 262,
+      "baseline_logical_bytes": 25264111
+    },
+    {
+      "path": "cyber_kb/raw/sources/schemas-ontologies-standards/att-ck-stix-data--f32b7fe344d3",
+      "reason": "Pinned corpus input or acquired raw telemetry",
+      "baseline_files": 157,
+      "baseline_logical_bytes": 1563348862
+    },
+    {
+      "path": "cyber_kb/raw/sources/schemas-ontologies-standards/veris--1fd7ae0961ce",
+      "reason": "Pinned corpus input or acquired raw telemetry",
+      "baseline_files": 425,
+      "baseline_logical_bytes": 71671130
+    },
+    {
+      "path": "cyber_kb/raw/sources/telemetry-network-host-cloud-email-web-datasets/ait-alert-data-set--6967c45351dd",
+      "reason": "Immutable acquired dataset",
+      "baseline_files": 5,
+      "baseline_logical_bytes": 96210653
+    },
+    {
+      "path": "cyber_kb/raw/sources/telemetry-network-host-cloud-email-web-datasets/ait-log-data-set-v2-1--9401e3784b70",
+      "reason": "Immutable acquired dataset",
+      "baseline_files": 17,
+      "baseline_logical_bytes": 6444205240
+    },
+    {
+      "path": "cyber_kb/raw/sources/telemetry-network-host-cloud-email-web-datasets/cse-cic-ids2018--53cd88f7bcd7",
+      "reason": "Immutable acquired dataset",
+      "baseline_files": 43,
+      "baseline_logical_bytes": 8819130746
+    },
+    {
+      "path": "cyber_kb/raw/sources/telemetry-network-host-cloud-email-web-datasets/ctu-13--8c182099e22a",
+      "reason": "Immutable acquired dataset",
+      "baseline_files": 7,
+      "baseline_logical_bytes": 1997906089
+    },
+    {
+      "path": "cyber_kb/raw/sources/telemetry-network-host-cloud-email-web-datasets/iot-23--4420fa5bb6a7",
+      "reason": "Immutable acquired dataset",
+      "baseline_files": 7,
+      "baseline_logical_bytes": 9374704619
+    },
+    {
+      "path": "cyber_kb/raw/sources/telemetry-network-host-cloud-email-web-datasets/loghub-thunderbird--9c4ac651f102",
+      "reason": "Immutable acquired dataset",
+      "baseline_files": 5,
+      "baseline_logical_bytes": 2073593302
+    },
+    {
+      "path": "cyber_kb/raw/sources/telemetry-network-host-cloud-email-web-datasets/miningbeat-host-telemetry--19d5bd4016ad",
+      "reason": "Immutable acquired dataset",
+      "baseline_files": 3,
+      "baseline_logical_bytes": 14961494
+    },
+    {
+      "path": "cyber_kb/raw/sources/telemetry-network-host-cloud-email-web-datasets/splunk-attack-data--cf0c0c204420",
+      "reason": "Pinned corpus input or acquired raw telemetry",
+      "baseline_files": 3746,
+      "baseline_logical_bytes": 12179364501
+    },
+    {
+      "path": "cyber_kb/raw/sources/telemetry-network-host-cloud-email-web-datasets/vantage-nids--cc36bb9acbaf",
+      "reason": "Immutable acquired dataset",
+      "baseline_files": 7,
+      "baseline_logical_bytes": 256854830
+    },
+    {
+      "path": "cyber_kb/raw/sources/telemetry-network-host-cloud-email-web-datasets/winlolbin-gt--3487f60eeb02",
+      "reason": "Immutable acquired dataset",
+      "baseline_files": 7,
+      "baseline_logical_bytes": 6209806596
+    },
+    {
+      "path": "cyber_kb/raw/sources/malware-reputation-sandboxes/motif--4c98603f0043",
+      "reason": "Nested repository has local modifications or untracked files",
+      "baseline_files": null,
+      "baseline_logical_bytes": null
+    }
+  ],
+  "protected": [
+    "app/data/raws",
+    "app/data/output",
+    "cyber_kb/normalized",
+    "app/security-review/.local/optimization/discovery-preview/experiments",
+    "app/security-review/.local/optimization/experiments",
+    "app/security-review/.local/optimization/proofs",
+    "app/security-review/.local/optimization/bundles/accepted-campaign.tar.gz",
+    "app/security-review/frontend/node_modules",
+    ".python_packages",
+    "docs/notebook",
+    ".github",
+    ".git"
+  ],
+  "unproven_kept": [
+    ".venv: no live dependency established, but selected editor interpreter not inspected",
+    "Canonical acquired dataset bytes, including unused comparison datasets"
+  ],
+  "nested_git_check": {
+    "checked": 118,
+    "retained": [
+      {
+        "path": "cyber_kb/raw/sources/malware-reputation-sandboxes/motif--4c98603f0043",
+        "reason": "Nested repository has local modifications or untracked files"
+      }
+    ]
+  },
+  "recurrence_and_reference_edits": [
+    {
+      "path": ".github/copilot-instructions.md",
+      "change": "Route active notebook lookups to docs/notebook."
+    },
+    {
+      "path": ".gitignore",
+      "change": "Ignore regenerated screenshots; retain versionable workspace settings."
+    },
+    {
+      "path": ".vscode/settings.json",
+      "change": "Exclude raw data, generated state and installed dependencies from editor watching and broad search."
+    },
+    {
+      "path": ".agent-harness.json",
+      "change": "Exclude generated local/artifact trees from harness search."
+    },
+    {
+      "path": "pytest.ini",
+      "change": "Remove dead paths and exclude generated local/package trees from test discovery."
+    },
+    {
+      "path": ".dockerignore",
+      "change": "Remove retired legacy notebook entry."
+    },
+    {
+      "path": "architecture.json",
+      "change": "Retire removed reference/notebook ownership paths; describe retained inputs."
+    },
+    {
+      "path": "docs/ARCHITECTURE_OVERVIEW.md",
+      "change": "Update active paths and measured post-cull scanning limits."
+    },
+    {
+      "path": "docs/FINDINGS.md",
+      "change": "Mark legacy notes archived, not an active second notebook."
+    },
+    {
+      "path": "app/security-review/README.md",
+      "change": "Document screenshot output outside the repository."
+    },
+    {
+      "path": "app/components/README.md",
+      "change": "Replace reference-checkout dependency wording with maintained local contracts."
+    },
+    {
+      "path": "app/components/azure_search/__init__.py",
+      "change": "Docstring only: mark retired source reference historical."
+    },
+    {
+      "path": "app/data/ontology/extract.py",
+      "change": "Docstring only: retain archived profiling provenance."
+    },
+    {
+      "path": "deploy/OPTIMIZATION_REPRODUCIBILITY.md",
+      "change": "Default scratch restore destination outside the indexed workspace."
+    },
+    {
+      "path": "cyber_kb/README.md",
+      "change": "Document retained source selectors and pruned optional mirrors."
+    },
+    {
+      "path": "app/components/entra_auth/PROVENANCE.md",
+      "change": "Mark expanded reference copy retired, preserving origin and license."
+    },
+    {
+      "path": "app/components/signed_dev_access/PROVENANCE.md",
+      "change": "Mark expanded reference copy retired, preserving origin and license."
+    },
+    {
+      "path": "README.md",
+      "change": "Summarize cleanup and retained source/data/results."
+    },
+    {
+      "path": "app/security-review/frontend/tests/browser/verify_chat_tabs.mjs",
+      "change": "Change only default screenshot output to /tmp/security-review-tabs-proof."
+    }
+  ],
+  "verification": {
+    "campaign_audit": {
+      "status": "passed",
+      "retained_completed_attempts": 28,
+      "outcomes": 100212,
+      "exemplars": 56,
+      "original_baseline_pins": 5
+    },
+    "corpus_dry_run": {
+      "documents": 9471,
+      "situation_types": 959
+    },
+    "cache_regeneration": {
+      "status": "byte-identical",
+      "evidence_rows": 7,
+      "label_table_exposed": false
+    },
+    "focused_tests": {
+      "passed": 6,
+      "subtests_passed": 5,
+      "warning": "Existing anyio deprecation warning"
+    },
+    "frontend_build": {
+      "status": "passed",
+      "warning": "Existing Vite large-chunk warning"
+    },
+    "browser": {
+      "checks": 28,
+      "errors": []
+    },
+    "architecture": {
+      "files_scanned": 1833,
+      "edges_resolved": 2459,
+      "violations": [],
+      "unresolved_imports": 11,
+      "unowned_files": 55
+    },
+    "documentation": {
+      "documents_checked": 81,
+      "broken_links": [],
+      "scope": "Maintained first-party documents; historical inline path mentions are not treated as current runtime dependencies."
+    },
+    "ram_benchmark": "not performed"
+  },
+  "recovery": {
+    "legacy_reference_archive": {
+      "outside_workspace": true,
+      "name": "retired-legacy-reference.tar.gz",
+      "verified_against_source": true
+    },
+    "accepted_bundle": {
+      "path": "app/security-review/.local/optimization/bundles/accepted-campaign.tar.gz",
+      "retained_and_verified": true
+    },
+    "research_payloads": "Not backed up by the catalogue. Retained provenance only; reacquisition may not reproduce identical content.",
+    "tracked_files": "Git history retained; no Git object cleanup or commit was made by the cleanup agent."
+  },
+  "limitations": [
+    "This is an allowlisted projection of local receipts, not raw downloaded metadata.",
+    "The full million-file name list was not captured; all335 removal groups are recorded.",
+    "Existing user changes, canonical inputs and unproven environment usage stayed protected.",
+    "No cloud mutation, authentication change, model rerun or RAM benchmark."
+  ],
+  "anonymized": true,
+  "anonymization": {
+    "names_and_paths": "generalized",
+    "source_revisions_and_receipt_fingerprints": "omitted",
+    "measurements": "historical and unchanged; not reproduced by this package"
+  }
+}

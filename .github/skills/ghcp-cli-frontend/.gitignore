@@ -1,0 +1,8 @@
+node_modules/
+build/
+*.egg-info/
+__pycache__/
+.artifacts/
+.pytest_cache/
+.venv/
+dist/

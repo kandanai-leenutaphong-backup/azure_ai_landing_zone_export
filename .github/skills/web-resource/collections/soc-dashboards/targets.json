@@ -1,0 +1,68 @@
+[
+  {
+    "url": "https://learn.microsoft.com/en-us/azure/sentinel/investigate-cases",
+    "name": "sentinel-investigation-graph",
+    "subject": "soc-dashboards",
+    "notes": "Entity-centric investigation graph; expandable nodes, timeline scrubber"
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/azure/sentinel/investigate-incidents",
+    "name": "sentinel-incident-investigation",
+    "subject": "soc-dashboards",
+    "notes": "Incident detail: severity, owner, status, entity list, activity log"
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/azure/sentinel/entity-pages",
+    "name": "sentinel-entity-pages",
+    "subject": "soc-dashboards",
+    "notes": "Per-entity view combining timeline, insights, and related alerts"
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-overview",
+    "name": "defender-advanced-hunting",
+    "subject": "soc-dashboards",
+    "notes": "KQL query surface with schema browser and result grid"
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/copilot/security/microsoft-security-copilot",
+    "name": "security-copilot",
+    "subject": "agentic-soc",
+    "notes": "Prompt-driven investigation with promptbooks and pinboard"
+  },
+  {
+    "url": "https://www.elastic.co/docs/solutions/security/investigate/timeline",
+    "name": "elastic-timeline",
+    "subject": "soc-dashboards",
+    "notes": "Timeline as an explicit investigation workspace; drag fields to pin"
+  },
+  {
+    "url": "https://www.elastic.co/docs/solutions/security/detect-and-alert",
+    "name": "elastic-alert-details",
+    "subject": "soc-dashboards",
+    "notes": "Detection rules and alert triage flow"
+  },
+  {
+    "url": "https://cloud.google.com/chronicle/docs/investigation/udm-search",
+    "name": "chronicle-investigate",
+    "subject": "soc-dashboards",
+    "notes": "UDM search over normalised telemetry with prevalence context"
+  },
+  {
+    "url": "https://docs.datadoghq.com/security/cloud_siem/investigate_security_signals/",
+    "name": "datadog-investigate-signals",
+    "subject": "soc-dashboards",
+    "notes": "Signal triage panel with correlated logs and suggested next steps"
+  },
+  {
+    "url": "https://docs.datadoghq.com/bits_ai/",
+    "name": "datadog-bits-analyst",
+    "subject": "agentic-soc",
+    "notes": "Conversational analyst over telemetry; tool-shaped responses"
+  },
+  {
+    "url": "https://grafana.com/docs/grafana/latest/explore/",
+    "name": "grafana-explore",
+    "subject": "observability",
+    "notes": "Ad-hoc query and split-pane comparison; the exploratory counterpart to a dashboard"
+  }
+]

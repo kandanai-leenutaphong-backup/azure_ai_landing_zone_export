@@ -1,0 +1,32 @@
+[
+  {
+    "name": "cli-command-reference",
+    "url": "https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-command-reference",
+    "subject": "ghcp-cli-frontend",
+    "notes": "Official flag, interactive command, environment and configuration reference; retrieved 2026-09-09 and compared with local CLI 1.0.83 help."
+  },
+  {
+    "name": "bring-your-own-key",
+    "url": "https://docs.github.com/en/copilot/concepts/models/bring-your-own-key",
+    "subject": "ghcp-cli-frontend",
+    "notes": "Distinguishes local custom-provider access from enterprise-hosted model routing and licensing."
+  },
+  {
+    "name": "autopilot",
+    "url": "https://docs.github.com/en/copilot/concepts/agents/copilot-cli/autopilot",
+    "subject": "ghcp-cli-frontend",
+    "notes": "Continuation default, limited-permission behavior, costs and differences from allow-all/no-ask-user."
+  },
+  {
+    "name": "sandbox-policy",
+    "url": "https://docs.github.com/en/copilot/concepts/agents/copilot-cli/understanding-local-sandboxing",
+    "subject": "ghcp-cli-frontend",
+    "notes": "Preview status, policy read-back, filesystem/network scope and limits of in-process versus OS controls."
+  },
+  {
+    "name": "agent-skills-naming",
+    "url": "https://agentskills.io/specification",
+    "subject": "ghcp-cli-frontend",
+    "notes": "Skill name matches directory and uses lowercase alphanumerics/hyphens; requested underscore spelling is a lookup alias."
+  }
+]

@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "recipe_sha256": "8f123b73b5807171ba2669a6ded85cb355553a2699a500623decc9a2940d4d44",
+  "generator_sha256": "f632215d7aed9bc8bfada3e59615757eed040d61ca6a4ff21772a3aef24fefb9",
+  "masks": [
+    {
+      "id": "legeay-temple",
+      "filename": "legeay-temple.webp",
+      "object_id": 343077,
+      "artist": "Jean Laurent Legeay",
+      "title": "Architectural Fantasy",
+      "source_url": "https://images.metmuseum.org/CRDImages/dp/original/DP811619.jpg",
+      "source_sha256": "87445f67ac34ca333780b64bf555a9f772422725e570f743fc494f083fca6bbf",
+      "source_dimensions": [
+        3294,
+        3320
+      ],
+      "width": 347,
+      "height": 439,
+      "bytes": 59134,
+      "sha256": "2b6cc50408223a61c478dca2a943ed68d95fccaad6d084bced2e5eb3883a9769",
+      "alpha_levels": 231,
+      "visible_pixels": 71984,
+      "paper": 205.918,
+      "ink": 166.78659999999996,
+      "rights": "Derivative of a public-domain Met image; cropped, desaturated to alpha, feathered; source artist credited, no endorsement"
+    },
+    {
+      "id": "challe-crowned-hall",
+      "filename": "challe-crowned-hall.webp",
+      "object_id": 343439,
+      "artist": "Charles Michel Ange Challe",
+      "title": "Architectural Fantasy",
+      "source_url": "https://images.metmuseum.org/CRDImages/dp/original/DT9549.jpg",
+      "source_sha256": "ef8f959311c4e448869a1d19cad8c9c86b0f289c34b1c7fa657fcd8dbad3f40f",
+      "source_dimensions": [
+        3811,
+        2455
+      ],
+      "width": 740,
+      "height": 960,
+      "bytes": 324996,
+      "sha256": "d537200fc24e555e9e5feab232251ac0394dbe054d58203c10e74644140ac0e8",
+      "alpha_levels": 225,
+      "visible_pixels": 409447,
+      "paper": 201.1204,
+      "ink": 96.87899999999999,
+      "rights": "Derivative of a public-domain Met image; cropped, desaturated to alpha, feathered; source artist credited, no endorsement"
+    },
+    {
+      "id": "challe-arcade",
+      "filename": "challe-arcade.webp",
+      "object_id": 343439,
+      "artist": "Charles Michel Ange Challe",
+      "title": "Architectural Fantasy",
+      "source_url": "https://images.metmuseum.org/CRDImages/dp/original/DT9549.jpg",
+      "source_sha256": "ef8f959311c4e448869a1d19cad8c9c86b0f289c34b1c7fa657fcd8dbad3f40f",
+      "source_dimensions": [
+        3811,
+        2455
+      ],
+      "width": 768,
+      "height": 305,
+      "bytes": 117732,
+      "sha256": "849cbd384f9dfb2285d8756d531dd55c0effec265e44c2969dd15dfa378cfdb2",
+      "alpha_levels": 220,
+      "visible_pixels": 132000,
+      "paper": 199.1164,
+      "ink": 94.526,
+      "rights": "Derivative of a public-domain Met image; cropped, desaturated to alpha, feathered; source artist credited, no endorsement"
+    }
+  ]
+}

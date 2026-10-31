@@ -4,6 +4,7 @@ set -euo pipefail
 HUB_SUBSCRIPTION_ID="1b00124c-ed9b-4d33-9bd6-4d14c09c9857"
 SPOKE_SUBSCRIPTION_ID="d88c020a-2180-43da-91a2-f6cc01f25946"
 AI_GATEWAY_SUBSCRIPTION_ID="0d04b43f-7d15-40fd-8aa5-830f71ab0d80"
+AGENT_SPOKE_SUBSCRIPTION_ID="6bacd437-5d04-4afd-850e-51bdc4041496"
 
 if ! command -v az >/dev/null 2>&1; then
   printf 'Azure CLI is required. Install az, sign in, and run this script again.\n' >&2
@@ -78,4 +79,4 @@ printf 'Generated: `%s`\n' "$(date -u '+%Y-%m-%dT%H:%M:%SZ')"
 print_scope "Connectivity hub" "$HUB_SUBSCRIPTION_ID" "rg-hub-sea"
 print_scope "Workload spoke" "$SPOKE_SUBSCRIPTION_ID" "rg-ai-dev-sea"
 print_scope "AI Gateway hub" "$AI_GATEWAY_SUBSCRIPTION_ID" "rg-ai-gateway-sea"
-
+print_scope "West US 3 agent spoke" "$AGENT_SPOKE_SUBSCRIPTION_ID" "rg-ai-dev-wus3"

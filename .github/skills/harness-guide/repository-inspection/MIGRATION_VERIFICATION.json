@@ -1,0 +1,275 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-09-16T06:32:12.923Z",
+  "status": "local bounded migration verified; parent integration pending",
+  "receipts": {
+    "wheels": {
+      "status": "passed",
+      "wheels": [
+        {
+          "distribution": "portable-app-composition",
+          "version": "1.1.0",
+          "wheel": "/tmp/agentcraft-migration.fTQyVn/wheels/portable_app_composition-1.1.0-py3-none-any.whl",
+          "sha256": "a1a67f4d336dd328ac51eaa8b6c9fc2fa2a3411200f2ddb66d96ceca3e66ddf9",
+          "license_files": [
+            "portable_app_composition-1.1.0.dist-info/licenses/LICENSE"
+          ],
+          "user_state_or_skill_source": false
+        },
+        {
+          "distribution": "recoverable-jobs",
+          "version": "1.0.0",
+          "wheel": "/tmp/agentcraft-migration.fTQyVn/wheels/recoverable_jobs-1.0.0-py3-none-any.whl",
+          "sha256": "73bd7e902307d71ee0aee4ccae1d422f4b883bf534332173b0649070241012c5",
+          "license_files": [
+            "recoverable_jobs-1.0.0.dist-info/licenses/LICENSE"
+          ],
+          "user_state_or_skill_source": false
+        },
+        {
+          "distribution": "investigation-notebook",
+          "version": "0.1.0",
+          "wheel": "/tmp/agentcraft-migration.fTQyVn/wheels/investigation_notebook-0.1.0-py3-none-any.whl",
+          "sha256": "903b3138c4620f0bd7c4f05e9a414be0cd06bafe139bc76f2152ffb2b184f8fb",
+          "license_files": [
+            "investigation_notebook-0.1.0.dist-info/licenses/LICENSE"
+          ],
+          "user_state_or_skill_source": false
+        },
+        {
+          "distribution": "repository-inspection",
+          "version": "0.1.0",
+          "wheel": "/tmp/agentcraft-migration.fTQyVn/wheels/repository_inspection-0.1.0-py3-none-any.whl",
+          "sha256": "cfa44e1618866bc162b7755085b51ba6cc49ffe9fa4f263211f504e77906ece8",
+          "license_files": [
+            "repository_inspection-0.1.0.dist-info/licenses/guides/architecture/LICENSE",
+            "repository_inspection-0.1.0.dist-info/licenses/guides/catalogue/LICENSE",
+            "repository_inspection-0.1.0.dist-info/licenses/guides/filesystem/LICENSE"
+          ],
+          "user_state_or_skill_source": false
+        }
+      ]
+    },
+    "imports": {
+      "status": "passed",
+      "checks": [
+        "composition lifecycle, allowlist refusal, packaged demo resource",
+        "recovery restart/read-back, traversal and no-grant refusals",
+        "notebook persistence, packaged schema, duplicate refusal without data copies",
+        "inspection graph, inventory, catalogue and matching scope refusals"
+      ],
+      "distributions": {
+        "portable-app-composition": "1.1.0",
+        "recoverable-jobs": "1.0.0",
+        "investigation-notebook": "0.1.0",
+        "repository-inspection": "0.1.0"
+      },
+      "checkout_runtime_accesses": 0,
+      "network_attempts": 0,
+      "module_origins": {
+        "appcompose.errors": "/tmp/agentcraft-migration.fTQyVn/portable/lib/python3.11/site-packages/appcompose/errors.py",
+        "appcompose.document": "/tmp/agentcraft-migration.fTQyVn/portable/lib/python3.11/site-packages/appcompose/document.py",
+        "appcompose.compose": "/tmp/agentcraft-migration.fTQyVn/portable/lib/python3.11/site-packages/appcompose/compose.py",
+        "appcompose.asgi": "/tmp/agentcraft-migration.fTQyVn/portable/lib/python3.11/site-packages/appcompose/asgi.py",
+        "appcompose.serialisation": "/tmp/agentcraft-migration.fTQyVn/portable/lib/python3.11/site-packages/appcompose/serialisation.py",
+        "appcompose": "/tmp/agentcraft-migration.fTQyVn/portable/lib/python3.11/site-packages/appcompose/__init__.py",
+        "appcompose.demo": "/tmp/agentcraft-migration.fTQyVn/portable/lib/python3.11/site-packages/appcompose/demo/__init__.py",
+        "appcompose.demo.digest": "/tmp/agentcraft-migration.fTQyVn/portable/lib/python3.11/site-packages/appcompose/demo/digest.py",
+        "appcompose.demo.notes": "/tmp/agentcraft-migration.fTQyVn/portable/lib/python3.11/site-packages/appcompose/demo/notes.py",
+        "appcompose.mcp": "/tmp/agentcraft-migration.fTQyVn/portable/lib/python3.11/site-packages/appcompose/mcp.py",
+        "investigation_notebook.notebook": "/tmp/agentcraft-migration.fTQyVn/portable/lib/python3.11/site-packages/investigation_notebook/notebook.py",
+        "investigation_notebook": "/tmp/agentcraft-migration.fTQyVn/portable/lib/python3.11/site-packages/investigation_notebook/__init__.py",
+        "repository_inspection": "/tmp/agentcraft-migration.fTQyVn/portable/lib/python3.11/site-packages/repository_inspection/__init__.py",
+        "repository_inspection.architecture": "/tmp/agentcraft-migration.fTQyVn/portable/lib/python3.11/site-packages/repository_inspection/architecture.py",
+        "repository_inspection.catalogue": "/tmp/agentcraft-migration.fTQyVn/portable/lib/python3.11/site-packages/repository_inspection/catalogue.py",
+        "repository_inspection.filesystem": "/tmp/agentcraft-migration.fTQyVn/portable/lib/python3.11/site-packages/repository_inspection/filesystem.py",
+        "workrecovery.clock": "/tmp/agentcraft-migration.fTQyVn/portable/lib/python3.11/site-packages/workrecovery/clock.py",
+        "workrecovery.errors": "/tmp/agentcraft-migration.fTQyVn/portable/lib/python3.11/site-packages/workrecovery/errors.py",
+        "workrecovery.payload": "/tmp/agentcraft-migration.fTQyVn/portable/lib/python3.11/site-packages/workrecovery/payload.py",
+        "workrecovery.artifacts": "/tmp/agentcraft-migration.fTQyVn/portable/lib/python3.11/site-packages/workrecovery/artifacts.py",
+        "workrecovery.store": "/tmp/agentcraft-migration.fTQyVn/portable/lib/python3.11/site-packages/workrecovery/store.py",
+        "workrecovery.commit": "/tmp/agentcraft-migration.fTQyVn/portable/lib/python3.11/site-packages/workrecovery/commit.py",
+        "workrecovery": "/tmp/agentcraft-migration.fTQyVn/portable/lib/python3.11/site-packages/workrecovery/__init__.py",
+        "workrecovery.mcp": "/tmp/agentcraft-migration.fTQyVn/portable/lib/python3.11/site-packages/workrecovery/mcp.py"
+      }
+    },
+    "examples": {
+      "status": "passed",
+      "standalone_examples": 9,
+      "readme_examples": 4,
+      "results": [
+        {
+          "path": "libraries/app-composition/examples/asgi_headless_app.py",
+          "result": "passed"
+        },
+        {
+          "path": "libraries/app-composition/examples/compose_two_capabilities.py",
+          "result": "passed"
+        },
+        {
+          "path": "libraries/app-composition/examples/refusals.py",
+          "result": "passed"
+        },
+        {
+          "path": "libraries/recoverable-jobs/examples/01_generic_export.py",
+          "result": "passed"
+        },
+        {
+          "path": "libraries/recoverable-jobs/examples/02_commit_then_timeout.py",
+          "result": "passed"
+        },
+        {
+          "path": "libraries/recoverable-jobs/examples/03_absent_unknown.py",
+          "result": "passed"
+        },
+        {
+          "path": "libraries/recoverable-jobs/examples/04_restart_and_recommit.py",
+          "result": "passed"
+        },
+        {
+          "path": "libraries/recoverable-jobs/examples/05_wrong_content_preserved.py",
+          "result": "passed"
+        },
+        {
+          "path": "libraries/recoverable-jobs/examples/06_capped_payload.py",
+          "result": "passed"
+        },
+        {
+          "path": "libraries/app-composition/README.md",
+          "example": "first Python block",
+          "result": "passed"
+        },
+        {
+          "path": "libraries/recoverable-jobs/README.md",
+          "example": "first Python block",
+          "result": "passed"
+        },
+        {
+          "path": "libraries/investigation-notebook/README.md",
+          "example": "first Python block",
+          "result": "passed"
+        },
+        {
+          "path": "libraries/repository-inspection/README.md",
+          "example": "first Python block",
+          "result": "passed"
+        }
+      ]
+    },
+    "ownership": {
+      "status": "passed",
+      "source_records": 91,
+      "moved_sources": 89,
+      "retired_sources": [
+        ".github/skills/portable-app-composition/scripts/serve_mcp.py",
+        ".github/skills/recoverable-jobs/scripts/serve_mcp.py"
+      ],
+      "thin_skills": [
+        "portable-app-composition",
+        "recoverable-jobs",
+        "investigation-notebook",
+        "architecture-placement",
+        "codebase-cleanup",
+        "harness-guide"
+      ],
+      "preserved_licenses": [
+        "libraries/app-composition/LICENSE",
+        "libraries/recoverable-jobs/LICENSE",
+        "libraries/investigation-notebook/LICENSE",
+        "libraries/repository-inspection/guides/architecture/LICENSE",
+        "libraries/repository-inspection/guides/filesystem/LICENSE",
+        "libraries/repository-inspection/guides/catalogue/LICENSE"
+      ],
+      "runtime_files_checked": [
+        "libraries/app-composition/appcompose/__init__.py",
+        "libraries/app-composition/appcompose/asgi.py",
+        "libraries/app-composition/appcompose/cli.py",
+        "libraries/app-composition/appcompose/compose.py",
+        "libraries/app-composition/appcompose/demo/__init__.py",
+        "libraries/app-composition/appcompose/demo/digest.py",
+        "libraries/app-composition/appcompose/demo/notes.py",
+        "libraries/app-composition/appcompose/document.py",
+        "libraries/app-composition/appcompose/errors.py",
+        "libraries/app-composition/appcompose/mcp.py",
+        "libraries/app-composition/appcompose/serialisation.py",
+        "libraries/recoverable-jobs/workrecovery/__init__.py",
+        "libraries/recoverable-jobs/workrecovery/artifacts.py",
+        "libraries/recoverable-jobs/workrecovery/cli.py",
+        "libraries/recoverable-jobs/workrecovery/clock.py",
+        "libraries/recoverable-jobs/workrecovery/commit.py",
+        "libraries/recoverable-jobs/workrecovery/errors.py",
+        "libraries/recoverable-jobs/workrecovery/mcp.py",
+        "libraries/recoverable-jobs/workrecovery/payload.py",
+        "libraries/recoverable-jobs/workrecovery/store.py",
+        "libraries/investigation-notebook/mechanism/__init__.py",
+        "libraries/investigation-notebook/mechanism/__main__.py",
+        "libraries/investigation-notebook/mechanism/notebook.py",
+        "libraries/repository-inspection/src/repository_inspection/__init__.py",
+        "libraries/repository-inspection/src/repository_inspection/architecture.py",
+        "libraries/repository-inspection/src/repository_inspection/catalogue.py",
+        "libraries/repository-inspection/src/repository_inspection/filesystem.py"
+      ],
+      "duplicate_tool_engine_functions": [
+        "boundaries_of",
+        "check",
+        "edges",
+        "find_cycles",
+        "hotspots",
+        "load_manifest",
+        "matches",
+        "owners",
+        "render",
+        "resolve_python",
+        "resolve_ts",
+        "source_files"
+      ]
+    },
+    "cli_and_mcp": {
+      "status": "passed",
+      "results": [
+        {
+          "test": "composition_mcp_smoke.py",
+          "result": "passed",
+          "output": "MCP selftest: PASS (composition canonical round trip, fixed demo lifecycle, validation refusals)"
+        },
+        {
+          "test": "recovery_mcp_smoke.py",
+          "result": "passed",
+          "output": "MCP selftest: PASS (recovery grants, stage/restart/read, no-clobber, bounds, integrity, no deletion)"
+        },
+        {
+          "entrypoint": "appcompose-inspect",
+          "result": "passed"
+        },
+        {
+          "entrypoint": "appcompose-mcp",
+          "result": "passed"
+        },
+        {
+          "entrypoint": "workrecovery",
+          "result": "passed"
+        },
+        {
+          "entrypoint": "workrecovery-mcp",
+          "result": "passed"
+        },
+        {
+          "entrypoint": "investigation-notebook",
+          "result": "passed"
+        },
+        {
+          "entrypoint": "repository-architecture",
+          "result": "passed"
+        },
+        {
+          "entrypoint": "repository-catalogue",
+          "result": "passed"
+        },
+        {
+          "entrypoint": "repository-inventory",
+          "result": "passed"
+        }
+      ]
+    }
+  }
+}

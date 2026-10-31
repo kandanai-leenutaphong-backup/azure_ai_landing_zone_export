@@ -1,0 +1,12 @@
+{
+  "package": "@azure/msal-browser",
+  "version": "4.30.0",
+  "license": "MIT",
+  "publisher": "Microsoft",
+  "source": "https://ms-feed-25.pkgs.visualstudio.com/1es-public/_packaging/npm-public/npm/registry/@azure/msal-browser/-/msal-browser-4.30.0.tgz",
+  "integrity": "sha512-HBBKfbZkMVzzF5bofvS1cXuNHFVc+gt4/HOnCmG/0hsHuZRJvJvDg/+7nTwIpoqvJc8BQp5o23rBUfisOLxR+w==",
+  "files": {
+    "msal-browser.min.js": "2b580165064a6a4ec041ebd44832299172688a23a42c3b81d65314799dba04eb",
+    "MSAL-LICENSE.txt": "c544adf8f0d43453d9fdf6c11da19605d12d89806a7870653169b8cc97f5bb53"
+  }
+}

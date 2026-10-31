@@ -1,0 +1,12 @@
+{
+  "synthetic": true,
+  "version": 0,
+  "name": "Example baseline",
+  "role": "baseline",
+  "parent_version": null,
+  "system_prompt": "Read the supplied observations and return a grade with a rationale.",
+  "tools": ["tool_event_counts"],
+  "situation_detector": "detectors/1.json",
+  "published_at": "2026-01-01T00:00:00+00:00",
+  "note": "Hand-authored shape illustration. No probe receipt exists for this record."
+}

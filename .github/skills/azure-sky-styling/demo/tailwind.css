@@ -1,0 +1,8 @@
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+@source "../frontend";
+
+html { scroll-behavior: smooth; }
+body { margin: 0; background: #123f91; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

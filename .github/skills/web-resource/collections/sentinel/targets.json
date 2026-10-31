@@ -1,0 +1,68 @@
+[
+  {
+    "url": "https://learn.microsoft.com/en-us/azure/sentinel/overview",
+    "name": "sentinel-overview",
+    "subject": "sentinel",
+    "notes": "What Sentinel is and the surfaces it presents"
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/azure/sentinel/investigate-cases",
+    "name": "sentinel-investigate-cases",
+    "subject": "sentinel",
+    "notes": "Entity-centric investigation graph with expandable nodes"
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/azure/sentinel/hunting",
+    "name": "sentinel-hunting",
+    "subject": "sentinel",
+    "notes": "Saved hunting queries and their result surface"
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/azure/sentinel/bookmarks",
+    "name": "sentinel-bookmarks",
+    "subject": "sentinel",
+    "notes": "Preserving a query result as durable evidence"
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/azure/sentinel/entity-pages",
+    "name": "sentinel-entity-pages",
+    "subject": "sentinel",
+    "notes": "Per-entity page: timeline, insights, related alerts"
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/azure/sentinel/identify-threats-with-entity-behavior-analytics",
+    "name": "sentinel-identify-threats-with-entity-behavior-analytics",
+    "subject": "sentinel",
+    "notes": "Behavioural baselining and anomaly presentation"
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/azure/sentinel/monitor-your-security-with-workbooks",
+    "name": "sentinel-monitor-your-security-with-workbooks",
+    "subject": "sentinel",
+    "notes": "Workbook composition over log data"
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/azure/sentinel/mitre-coverage",
+    "name": "sentinel-mitre-coverage",
+    "subject": "sentinel",
+    "notes": "ATT&CK technique coverage view"
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/azure/sentinel/watchlists",
+    "name": "sentinel-watchlists",
+    "subject": "sentinel",
+    "notes": "Correlation and enrichment lists"
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/azure/sentinel/investigate-large-datasets",
+    "name": "sentinel-investigate-large-datasets",
+    "subject": "sentinel",
+    "notes": "Search across large datasets"
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/azure/sentinel/incident-investigation",
+    "name": "sentinel-incident-investigation",
+    "subject": "sentinel",
+    "notes": "Sentinel feature surface reference"
+  }
+]

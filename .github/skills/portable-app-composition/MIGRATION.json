@@ -1,0 +1,147 @@
+{
+  "source": ".github/skills/portable-app-composition",
+  "destination": "libraries/app-composition",
+  "files": [
+    {
+      "from": ".github/skills/portable-app-composition/CONTRACT.md",
+      "to": "libraries/app-composition/CONTRACT.md",
+      "sha256": "d2ec3a95847ce46c5f87efbdaf7180dc92446873684d5fed9622017b746ab4aa"
+    },
+    {
+      "from": ".github/skills/portable-app-composition/GOTCHAS.md",
+      "to": "libraries/app-composition/GOTCHAS.md",
+      "sha256": "8fd0cda7f482e2d7e1ed857c1c264f1440ef37609bb7088ef288b9401e31645d"
+    },
+    {
+      "from": ".github/skills/portable-app-composition/LICENSE",
+      "to": "libraries/app-composition/LICENSE",
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+    },
+    {
+      "from": ".github/skills/portable-app-composition/README.md",
+      "to": "libraries/app-composition/README.md",
+      "sha256": "d933279ac95e2e059ca9d11926598c77cea0f6ec00b31d4c38043003781e1d58"
+    },
+    {
+      "from": ".github/skills/portable-app-composition/SKILL.md",
+      "to": "libraries/app-composition/GUIDE.md",
+      "sha256": "2be7fed236c043f32780b1190bf6dc58ada2af578b6ce745e770a71da2cc1a09"
+    },
+    {
+      "from": ".github/skills/portable-app-composition/appcompose/__init__.py",
+      "to": "libraries/app-composition/appcompose/__init__.py",
+      "sha256": "dfe70ab2012f2ab1bf52365424d9af38009d34461bcf44eb597bc511fd797e90"
+    },
+    {
+      "from": ".github/skills/portable-app-composition/appcompose/asgi.py",
+      "to": "libraries/app-composition/appcompose/asgi.py",
+      "sha256": "337af2eb3f002172d32fd69c2a6ca03808b9bd500a9991305c1d091432cc2c0a"
+    },
+    {
+      "from": ".github/skills/portable-app-composition/appcompose/compose.py",
+      "to": "libraries/app-composition/appcompose/compose.py",
+      "sha256": "dfe3dc5eaecbd104b749d2c9da89a1c0cf7c853c56407d1b37a64d40c3de5266"
+    },
+    {
+      "from": ".github/skills/portable-app-composition/appcompose/demo/__init__.py",
+      "to": "libraries/app-composition/appcompose/demo/__init__.py",
+      "sha256": "c64e076daef80d35683ea34e924abdb23cbf99fb476ac12e80251e206d640e1a"
+    },
+    {
+      "from": ".github/skills/portable-app-composition/appcompose/demo/digest.py",
+      "to": "libraries/app-composition/appcompose/demo/digest.py",
+      "sha256": "1048ab0db3b533881d7d566e2d253c4acbf9835ee25abda5588051b74bb5fa7e"
+    },
+    {
+      "from": ".github/skills/portable-app-composition/appcompose/demo/notes.py",
+      "to": "libraries/app-composition/appcompose/demo/notes.py",
+      "sha256": "99c25ed5776037c05110344a61e0039f5549dd0e2b2b42aeed694c29dd609948"
+    },
+    {
+      "from": ".github/skills/portable-app-composition/appcompose/document.py",
+      "to": "libraries/app-composition/appcompose/document.py",
+      "sha256": "0ced27fd7334db810944a7ea3d59eae37e4c7563731e6cd53273453e02bd2648"
+    },
+    {
+      "from": ".github/skills/portable-app-composition/appcompose/errors.py",
+      "to": "libraries/app-composition/appcompose/errors.py",
+      "sha256": "c34cb06449776883686e099e54c0f24c7d9b13e6f3519dd6ffe34b1d4b37df61"
+    },
+    {
+      "from": ".github/skills/portable-app-composition/appcompose/serialisation.py",
+      "to": "libraries/app-composition/appcompose/serialisation.py",
+      "sha256": "e1580b1c8a6caf5b79ca4528a9e2855b88d4dbc54454594edca260de02afe36c"
+    },
+    {
+      "from": ".github/skills/portable-app-composition/examples/asgi_headless_app.py",
+      "to": "libraries/app-composition/examples/asgi_headless_app.py",
+      "sha256": "2393b51ed89f389f1d3b3d84068c6770839345cb929e0d0d19978346dc8f49fe"
+    },
+    {
+      "from": ".github/skills/portable-app-composition/examples/compose_two_capabilities.py",
+      "to": "libraries/app-composition/examples/compose_two_capabilities.py",
+      "sha256": "5473ad5af5e89b2f1260b91f08ea96d7bbac9f24a6154e72140a7140acf73952"
+    },
+    {
+      "from": ".github/skills/portable-app-composition/examples/field-notes.yaml",
+      "to": "libraries/app-composition/appcompose/demo/field-notes.yaml",
+      "sha256": "b18509489c5fcb8007fbdd99f64e85359937c687536c400d24034d678e59b982"
+    },
+    {
+      "from": ".github/skills/portable-app-composition/examples/refusals.py",
+      "to": "libraries/app-composition/examples/refusals.py",
+      "sha256": "aafe88a0ba81c9d8de3e1eab0021f20060fb6649b20f18593750c0d683ce5ed1"
+    },
+    {
+      "from": ".github/skills/portable-app-composition/pyproject.toml",
+      "to": "libraries/app-composition/pyproject.toml",
+      "sha256": "0157a139134f21e4de2c3338953da3ccd79f0e7b69ac08aac8a78f4cb9db5445"
+    },
+    {
+      "from": ".github/skills/portable-app-composition/requirements.txt",
+      "to": "libraries/app-composition/requirements.txt",
+      "sha256": "4ec4bf6bf581e267923ef46f21251f5f8fdbadd33dc43661bf2db926086f5407"
+    },
+    {
+      "from": ".github/skills/portable-app-composition/scripts/inspect_document.py",
+      "to": "libraries/app-composition/appcompose/cli.py",
+      "sha256": "a939866f6125cb5b534ae97fe893506f61c91de4a260808e9e04365d2f27a3e0"
+    },
+    {
+      "from": ".github/skills/portable-app-composition/scripts/mcp_server.py",
+      "to": "libraries/app-composition/appcompose/mcp.py",
+      "sha256": "ca3ca0391b49a114e091c3614073b17ae4782f3cabc469dae346d54bea462fcc"
+    },
+    {
+      "from": ".github/skills/portable-app-composition/scripts/serve_mcp.py",
+      "disposition": "retired automatic environment installer",
+      "replacement": "appcompose.mcp:main",
+      "sha256": "f44e89220dbd8be32d9ea64af75d63ff0591de1770a03790fe14f27e0357a69e"
+    },
+    {
+      "from": ".github/skills/portable-app-composition/tests/loopback_check.py",
+      "to": "libraries/app-composition/tests/loopback_check.py",
+      "sha256": "87a580b84bb92e8a5a783ceea9bf877b72c64c66b38d235e3e63619491e1bc05"
+    },
+    {
+      "from": ".github/skills/portable-app-composition/tests/mcp_smoke.py",
+      "to": "libraries/app-composition/tests/mcp_smoke.py",
+      "sha256": "9120aa2bec3b5a9b38ebad29db8ec569bfd616ea8fced094dd200be544aa1e08"
+    },
+    {
+      "from": ".github/skills/portable-app-composition/tests/selftest.py",
+      "to": "libraries/app-composition/tests/selftest.py",
+      "sha256": "8775708d3dea217b961f9681f370b0e709e700ce83a8814de512030112317f61"
+    },
+    {
+      "from": ".github/skills/portable-app-composition/uv.lock",
+      "to": "libraries/app-composition/uv.lock",
+      "sha256": "5351a551754a94f95fca1ed63b874a4b034d9888b4ae028a550590132099c321"
+    }
+  ],
+  "retired_library_launchers": [
+    "libraries/app-composition/scripts/inspect_document.py",
+    "libraries/app-composition/scripts/mcp_server.py",
+    "libraries/app-composition/scripts/serve_mcp.py"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "dataset_id": "customer-service-multi-agent-synthetic-v1",
+  "canary": [
+    "damaged-return-01",
+    "duplicate-charge-01",
+    "missing-shipment-01",
+    "out-of-policy-01"
+  ],
+  "full": "all_20_frozen_cases",
+  "historical": [
+    {"case_id": "damaged-return-05", "origin": "authored_safeguard"},
+    {"case_id": "duplicate-charge-05", "origin": "authored_safeguard"},
+    {"case_id": "missing-shipment-05", "origin": "authored_safeguard"},
+    {"case_id": "out-of-policy-05", "origin": "authored_safeguard"}
+  ],
+  "observed_historical_failures": [],
+  "gold_baseline": "not_established"
+}

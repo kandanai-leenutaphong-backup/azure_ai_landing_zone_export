@@ -1,0 +1,94 @@
+#!/usr/bin/env python3
+"""Extract one ZIP using the exact argv shape required by Puppeteer browsers."""
+
+from __future__ import annotations
+
+import shutil
+import stat
+import sys
+import zipfile
+from pathlib import Path
+
+
+def fail(message: str) -> "NoReturn":
+    """Exit with a concise extraction error.
+
+    Args:
+        message: Human-readable refusal or extraction failure.
+
+    Returns:
+        This function does not return.
+
+    Raises:
+        SystemExit: Always, with exit status 2.
+    """
+    print(f"unzip-shim: {message}", file=sys.stderr)
+    raise SystemExit(2)
+
+
+def safe_target(destination: Path, member_name: str) -> Path:
+    """Resolve a ZIP member beneath the destination directory.
+
+    Args:
+        destination: Resolved extraction root.
+        member_name: Archive member path.
+
+    Returns:
+        Resolved path guaranteed to remain beneath ``destination``.
+
+    Raises:
+        SystemExit: If the member is absolute or traverses outside the root.
+    """
+    if not member_name or member_name.startswith(("/", "\\")):
+        fail(f"unsafe archive member: {member_name!r}")
+    target = (destination / member_name).resolve()
+    if target != destination and destination not in target.parents:
+        fail(f"archive member escapes destination: {member_name!r}")
+    return target
+
+
+def main(argv: list[str]) -> int:
+    """Extract a ZIP for ``@puppeteer/browsers``.
+
+    Args:
+        argv: Command arguments, exactly ``-o ARCHIVE -d DESTINATION``.
+
+    Returns:
+        Zero after every regular file and directory is extracted.
+
+    Raises:
+        SystemExit: For unsupported arguments, unsafe members, symlinks, or
+            invalid archives.
+    """
+    if len(argv) != 4 or argv[0] != "-o" or argv[2] != "-d":
+        fail("accepted syntax is: unzip -o ARCHIVE -d DESTINATION")
+
+    archive = Path(argv[1]).resolve()
+    destination = Path(argv[3]).resolve()
+    if not archive.is_file():
+        fail(f"archive not found: {archive.name}")
+    destination.mkdir(parents=True, exist_ok=True)
+
+    try:
+        with zipfile.ZipFile(archive) as source:
+            for member in source.infolist():
+                target = safe_target(destination, member.filename)
+                mode = (member.external_attr >> 16) & 0xFFFF
+                if stat.S_ISLNK(mode):
+                    fail(f"symbolic links are not supported: {member.filename!r}")
+                if member.is_dir():
+                    target.mkdir(parents=True, exist_ok=True)
+                    continue
+                target.parent.mkdir(parents=True, exist_ok=True)
+                with source.open(member) as input_file, target.open("wb") as output_file:
+                    shutil.copyfileobj(input_file, output_file)
+                permissions = stat.S_IMODE(mode)
+                if permissions:
+                    target.chmod(permissions)
+    except (OSError, zipfile.BadZipFile) as error:
+        fail(str(error))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main(sys.argv[1:]))

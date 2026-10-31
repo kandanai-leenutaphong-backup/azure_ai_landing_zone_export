@@ -21,6 +21,9 @@ param privateEndpointsSubnetPrefix string = '10.20.1.0/24'
 @description('Logic Apps Standard (WS1) VNet-integration subnet prefix. Must be delegated to Microsoft.Web/serverFarms and be distinct from the APIM outbound subnet.')
 param logicAppSubnetPrefix string = '10.20.2.0/26'
 
+@description('Route table (0.0.0.0/0 and inter-VNet via hub firewall) for the APIM outbound and Logic Apps subnets. Leave empty for none.')
+param firewallRouteTableId string = ''
+
 param tags object = {}
 
 resource apimOutboundNsg 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
@@ -65,6 +68,9 @@ resource vnet 'Microsoft.Network/virtualNetworks@2023-11-01' = {
         name: 'snet-apim-outbound'
         properties: {
           addressPrefix: apimOutboundSubnetPrefix
+          routeTable: empty(firewallRouteTableId) ? null : {
+            id: firewallRouteTableId
+          }
           networkSecurityGroup: {
             id: apimOutboundNsg.id
           }
@@ -97,6 +103,9 @@ resource vnet 'Microsoft.Network/virtualNetworks@2023-11-01' = {
         name: 'snet-logicapp'
         properties: {
           addressPrefix: logicAppSubnetPrefix
+          routeTable: empty(firewallRouteTableId) ? null : {
+            id: firewallRouteTableId
+          }
           networkSecurityGroup: {
             id: logicAppNsg.id
           }

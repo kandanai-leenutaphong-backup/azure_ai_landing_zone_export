@@ -1,0 +1,12 @@
+# Microsoft Sentinel feature surface — for choosing what to replicate
+https://learn.microsoft.com/en-us/azure/sentinel/overview
+https://learn.microsoft.com/en-us/azure/sentinel/investigate-cases
+https://learn.microsoft.com/en-us/azure/sentinel/hunting
+https://learn.microsoft.com/en-us/azure/sentinel/bookmarks
+https://learn.microsoft.com/en-us/azure/sentinel/entity-pages
+https://learn.microsoft.com/en-us/azure/sentinel/identify-threats-with-entity-behavior-analytics
+https://learn.microsoft.com/en-us/azure/sentinel/monitor-your-security-with-workbooks
+https://learn.microsoft.com/en-us/azure/sentinel/mitre-coverage
+https://learn.microsoft.com/en-us/azure/sentinel/watchlists
+https://learn.microsoft.com/en-us/azure/sentinel/investigate-large-datasets
+https://learn.microsoft.com/en-us/azure/sentinel/incident-investigation

@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agent-optimization"
+version = "0.1.0a1"
+description = "Immutable agent generations, frozen-cohort evaluation, evidence tools and replay"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "situation-detector>=0.1.0a1,<0.2",
+    "copilot-terminal-runtime>=0.2.0,<0.3",
+    "recoverable-jobs>=1.0.0,<2",
+]
+
+[project.optional-dependencies]
+execution = ["llm-interface>=0.1.0a1,<0.2"]
+test = ["pytest>=8,<10"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+agent_optimization = ["py.typed", "skills/*/SKILL.md", "skills/*/LICENSE", "*.md", "scripts/*.mjs"]
+
+[tool.setuptools.data-files]
+"share/agent-optimization" = ["README.md", "CONTRACT.md", "PROVENANCE.md", "LICENSE"]
+"share/agent-optimization/examples" = ["examples/offline.py"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.uv.sources]
+situation-detector = { path = "../../../libraries/situation-detector" }
+copilot-terminal-runtime = { path = "../ghcp-cli-frontend" }
+recoverable-jobs = { path = "../recoverable-jobs" }
+llm-interface = { path = "../../../libraries/llm-interface" }

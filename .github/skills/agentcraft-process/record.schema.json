@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AgentCraft archival record v2",
+  "type": "object",
+  "required": ["schema_version", "record_type", "id", "project_id", "stage", "series_id", "run_id", "parent_run_id", "iteration", "recorded_at", "occurred_at", "actor", "constitution", "evidence", "record_refs", "artifacts"],
+  "properties": {
+    "schema_version": {"const": 2},
+    "record_type": {"enum": ["decision", "event", "result", "checkpoint"]},
+    "id": {"$ref": "#/$defs/id"},
+    "project_id": {"$ref": "#/$defs/id"},
+    "stage": {"enum": ["data-understanding", "optimization"]},
+    "series_id": {"$ref": "#/$defs/optionalId"},
+    "run_id": {"$ref": "#/$defs/optionalId"},
+    "parent_run_id": {"$ref": "#/$defs/optionalId"},
+    "iteration": {"type": ["integer", "null"], "minimum": 1},
+    "recorded_at": {"type": "string", "format": "date-time"},
+    "occurred_at": {"type": ["string", "null"], "format": "date-time"},
+    "actor": {"type": "string", "minLength": 1},
+    "constitution": {
+      "type": "object", "required": ["revision", "path", "sha256", "snapshot"],
+      "properties": {"revision": {"type": "integer", "minimum": 1}, "path": {"type": "string"}, "sha256": {"$ref": "#/$defs/digest"}, "snapshot": {"type": "string"}}
+    },
+    "evidence": {"type": "array", "items": {"type": "object"}},
+    "record_refs": {"type": "array", "items": {"$ref": "#/$defs/reference"}},
+    "artifacts": {"type": "array", "items": {
+      "type": "object", "required": ["path", "source_path", "sha256", "bytes"],
+      "properties": {"path": {"type": "string"}, "source_path": {"type": "string"}, "sha256": {"$ref": "#/$defs/digest"}, "bytes": {"type": "integer", "minimum": 0}}
+    }},
+    "decision_ids": {"type": "array", "items": {"$ref": "#/$defs/id"}},
+    "metrics": {"type": "array", "items": {"type": "object"}},
+    "changes": {"type": "array", "items": {
+      "type": "object", "required": ["path", "action", "before", "after"],
+      "properties": {"path": {"type": "string"}, "action": {"enum": ["added", "modified", "deleted", "unchanged", "unknown"]}, "before": {"type": ["object", "null"]}, "after": {"type": ["object", "null"]}}
+    }},
+    "coverage": {
+      "type": "object", "required": ["status", "observed", "gaps"],
+      "properties": {"status": {"enum": ["complete-for-declared-scope", "partial", "unknown"]}, "observed": {"type": "array", "items": {"type": "string"}}, "gaps": {"type": "array", "items": {"type": "string"}}}
+    },
+    "reversion": {"type": "object", "required": ["status", "plan"], "properties": {"status": {"enum": ["not_verified", "unavailable", "verified"]}, "plan": {"type": "string"}}}
+  },
+  "allOf": [
+    {"if": {"properties": {"record_type": {"const": "decision"}}}, "then": {"required": ["observation", "hypothesis", "decision", "changed_levers", "rationale", "approval", "expected_outcome", "acceptance_refs", "authority_source", "supersedes"]}},
+    {"if": {"properties": {"record_type": {"const": "event"}}}, "then": {"required": ["sequence", "phase", "status", "decision_ids"]}},
+    {"if": {"properties": {"record_type": {"const": "result"}}}, "then": {"required": ["status", "decision_ids", "metrics", "verdict", "limitations", "next_decision", "settlement"]}},
+    {"if": {"properties": {"record_type": {"const": "checkpoint"}}}, "then": {"required": ["status", "decision_ids", "changes", "metrics", "coverage", "reversion", "rationale", "supersedes"]}}
+  ],
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$"},
+    "optionalId": {"anyOf": [{"$ref": "#/$defs/id"}, {"type": "null"}]},
+    "digest": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "reference": {"type": "object", "required": ["path", "sha256", "relation"], "properties": {"path": {"type": "string"}, "sha256": {"$ref": "#/$defs/digest"}, "relation": {"type": "string", "minLength": 1}}}
+  }
+}

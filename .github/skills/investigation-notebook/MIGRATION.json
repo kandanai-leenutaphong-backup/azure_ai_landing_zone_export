@@ -1,0 +1,36 @@
+{
+  "source": ".github/skills/investigation-notebook",
+  "destination": "libraries/investigation-notebook",
+  "files": [
+    {
+      "from": ".github/skills/investigation-notebook/LICENSE",
+      "to": "libraries/investigation-notebook/LICENSE",
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+    },
+    {
+      "from": ".github/skills/investigation-notebook/SKILL.md",
+      "to": "libraries/investigation-notebook/GUIDE.md",
+      "sha256": "19584e74ee8b2b687dedabb9fd17d53e04c618fbe74ab53dfe13f2228faec5fa"
+    },
+    {
+      "from": ".github/skills/investigation-notebook/mechanism/note.schema.json",
+      "to": "libraries/investigation-notebook/mechanism/note.schema.json",
+      "sha256": "db3bb5b26eb429535bd1cf515106c0f430c7a58423d8dd6894624f706fdd6d23"
+    },
+    {
+      "from": ".github/skills/investigation-notebook/mechanism/notebook.py",
+      "to": "libraries/investigation-notebook/mechanism/notebook.py",
+      "sha256": "068520099a302180ef3ad07dd966cf1baebd5ca6f05273fd00ff21ed448defde"
+    },
+    {
+      "from": ".github/skills/investigation-notebook/references/agent-stanza.md",
+      "to": "libraries/investigation-notebook/references/agent-stanza.md",
+      "sha256": "5120335e5a485b2721c976c4a992fa5f387d33f92365e5955f33334e18d8476f"
+    },
+    {
+      "from": ".github/skills/investigation-notebook/tests/selftest.py",
+      "to": "libraries/investigation-notebook/tests/selftest.py",
+      "sha256": "cbe40b79406d36511b82ba9a692139d05f5566a79ae6debf56f709b20ae3800e"
+    }
+  ]
+}

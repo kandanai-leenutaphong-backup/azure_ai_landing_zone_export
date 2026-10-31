@@ -1,0 +1,189 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "increment_status": "complete",
+  "recorded_at_utc": "2026-09-16T15:22:30.935368+00:00",
+  "scope": "One independent cold documentation-consumer CO2/CO3/AC14 usability check against the final local artifacts. PASS applies only to the three agreed offline tasks, not the full core objectives, migration, publication, live services or native plugin-client acceptance.",
+  "findings": [
+    {
+      "id": "READER-01",
+      "severity": "minor",
+      "status": "RECOVERED_WITH_ALLOWED_PUBLIC_SDK_HELP",
+      "documentation": "libraries/README.md",
+      "line": 72,
+      "related_documentation": "libraries/app-composition/README.md#L179",
+      "prompt": "TASK3 explicit offline composition MCP client lifecycle, tool read-back, known-example validation and owned-session cleanup from public documentation.",
+      "fact": "First-party launch guidance and adapter guide name the host and tools but contain no client lifecycle example. CLI help supplies only the required --offline flag.",
+      "command": "/tmp/agentcraft-cold-reader.SMcxCtQ8/env/bin/agentcraft mcp --help",
+      "observed_output": "usage: agentcraft mcp [-h] --offline\n\noptions:\n  -h, --help  show this help message and exit\n  --offline",
+      "exit_code": 0,
+      "error": null,
+      "recovery": "One permitted SDK-help disambiguation: public ClientSession async-context documentation, StdioServerParameters, stdio_client, initialize, list_tools and call_tool signatures/docstrings. Then inspect real advertised schemas; no private tests or implementation read.",
+      "recovery_attempts": 1,
+      "evidence": ["12-mcp-help.txt", "13-mcp-public-help.txt", "14-sdk-client-help.txt", "15-mcp-discovery.json", "16-mcp-exercise.json"],
+      "recommendation": "Owner may add a minimal first-party async SDK client lifecycle example. No documentation was repaired during this check."
+    }
+  ],
+  "authority": {
+    "repository_write_allowlist": ["libraries/framework/distribution/independent-reader.json"],
+    "external_write_root": "/tmp/agentcraft-cold-reader.SMcxCtQ8",
+    "implementation_or_documentation_edits": false,
+    "private_runtime_or_test_internals_read": false,
+    "parent_conversation_or_execution_ledger_used": false,
+    "subagents": 0,
+    "live_services_models_credentials_grants": false,
+    "publication_commits_or_user_mcp_activation": false,
+    "user_data_deletion": false
+  },
+  "identity": {
+    "source_head": "65ae1587a7b4d8815964a9d01c93b49bb8c449b4",
+    "source_identity_limit": "Dirty-worktree identity remains owned by the supplied release receipt. HEAD and unchanged release receipt were verified; runtime source was not reread or audited.",
+    "release_receipt": "libraries/framework/distribution/release-candidate.json",
+    "release_receipt_sha256": "9f124e7bd1c15ed9ccceac8c17ab283f745bfc6ff8140839db2458ac29576c4e",
+    "wheelhouse": "/tmp/agentcraft-release-final/wheels",
+    "wheels_hashed": 88,
+    "first_party_wheel_hashes_matched_to_release": 16,
+    "third_party_wheels": 72,
+    "wheelhouse_manifest_sha256": "f09859a4f37d9573f166cdcb3e8f5e5860c18687ce14b4c70456bc5e2dcdff5e",
+    "framework_wheel": "agentcraft-0.1.0-py3-none-any.whl",
+    "framework_wheel_sha256": "fe8ac1f1db64a9fb38774b9ca6a623ef982ae3613eb584480be767b2857e0306",
+    "public_import_roots_verified": ["agentcraft", "agentcraft_core", "appcompose", "azdata", "llm_interface", "situation_detector", "workrecovery"],
+    "import_origin_evidence": "03-artifact-origin.json: seven public import files resolve inside the fresh environment, equal their wheel bytes, and have non-editable wheelhouse direct_url metadata. All 88 wheel hashes retained; not a rerun of all installed-file conformance."
+  },
+  "setup": {
+    "status": "PASS",
+    "os": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "uv": "0.9.30",
+    "environment": "/tmp/agentcraft-cold-reader.SMcxCtQ8/env",
+    "cwd": "/tmp/agentcraft-cold-reader.SMcxCtQ8",
+    "profile": "agentcraft[data,models,recovery,optimization,tooling,mcp]==0.1.0",
+    "installed_distributions": 84,
+    "fresh_noneditable_install": true,
+    "existing_release_environment_used": false,
+    "isolation": "env -i with fresh empty HOME, owned TMPDIR/cache, PYTHONPATH/PYTHONHOME/VIRTUAL_ENV absent; Python -I -B; uv --offline --no-index --find-links; no registry fallback or assumed sibling.",
+    "commands": [
+      "uv venv --offline --python 3.12 /tmp/agentcraft-cold-reader.SMcxCtQ8/env",
+      "uv pip install --python /tmp/agentcraft-cold-reader.SMcxCtQ8/env/bin/python --offline --no-index --find-links /tmp/agentcraft-release-final/wheels 'agentcraft[data,models,recovery,optimization,tooling,mcp]==0.1.0'"
+    ],
+    "command_wrapper_and_complete_transcript": "commands.json"
+  },
+  "navigation": {
+    "start_order": ["README.md", "docs/README.md"],
+    "routes": [
+      {"purpose": "Task 1 installed workflow and inspection", "steps": ["README.md -> docs/README.md (documentation)", "docs/README.md#offline-data-rules-and-recovery -> libraries/framework/README.md (framework example)"], "markdown_link_depth": 2},
+      {"purpose": "Installation and Task 2 discovery commands", "steps": ["README.md -> docs/README.md (documentation)", "docs/README.md#start -> libraries/README.md#installation (workspace installation)"], "markdown_link_depth": 2},
+      {"purpose": "Task 2 canonical names and aliases", "steps": ["README.md -> docs/README.md", "docs/README.md -> libraries/README.md", "libraries/README.md -> libraries/capabilities.json (canonical catalogue)"], "markdown_link_depth": 3},
+      {"purpose": "Task 2 installed canonical recovery guide", "steps": ["libraries/README.md#discovery-and-mcp -> documented catalogue --find recovery", "catalogue --show recoverable-jobs --kind skill -> installed skills/recoverable-jobs/SKILL.md", "stub canonical guidance link -> installed references/libraries/recoverable-jobs/GUIDE.md"], "additional_markdown_links_after_cli": 1, "cli_actions_before_guide": 2},
+      {"purpose": "Task 3 offline host launch", "steps": ["README.md -> docs/README.md", "docs/README.md#tasks -> libraries/README.md#discovery-and-mcp"], "markdown_link_depth": 2, "additional_help": "commands 12-14, then live SDK tool schemas from command 15"},
+      {"purpose": "Task 3 known document and plain composition example", "steps": ["README.md -> docs/README.md", "docs/README.md#tasks -> libraries/app-composition/GUIDE.md", "libraries/app-composition/GUIDE.md#mcp-integration -> libraries/app-composition/README.md#mcp-adapter; same page minimal example"], "markdown_link_depth": 3}
+    ],
+    "user_clarifications": 0,
+    "public_sdk_help_disambiguations": 1,
+    "numbered_replay_command_steps": 17,
+    "measurement_scope": "17 exact numbered steps in commands.json; excludes allocation, environment preparation, file reads, diagnostics and evidence bookkeeping. No duration, comparative effort, memory, latency or quality gains measured."
+  },
+  "tasks": {
+    "task1_compose_query_rules_model_recovery": {
+      "status": "PASS",
+      "command": "/tmp/agentcraft-cold-reader.SMcxCtQ8/env/bin/python -I -B -m agentcraft.examples",
+      "label": "SYNTHETIC ONLY: real native public operations/SDK parsing and filesystem writes, fixture HTTP/identity/model responses, no external services.",
+      "requests": {"data": 2, "model": 1},
+      "rule_ids": ["all_readings", "high_readings"],
+      "matched_sequences": [[1, 2], [2]],
+      "model_matched_counts": [2, 1],
+      "model_terminal": "completed",
+      "configuration_digest": "d25d87e59ea2947925a1f084b9942630aa0d6d8a874083aa205d5c20257e1abc",
+      "budget_reserved": {"data_calls": 2, "model_calls": 1, "store_calls": 5},
+      "unknown_store_attempts": 2,
+      "recovery": {"initial": "unknown", "recovered": "saved", "repeated": "saved", "destination_writes": 1, "verified": true, "pending": 0},
+      "negative_readback": ["operation_not_granted", "model_calls_denied", "budget_exhausted", "ArtifactExists"],
+      "additional_public_callable_calls": 1,
+      "full_repeated_result_equal": true,
+      "owned_resources_closed": {"framework": true, "data": "connector_closed", "model": true, "identity": 1, "http": 1, "model_http": 1},
+      "temporary_files_removed": true,
+      "evidence": ["04-workflow.json", "05-workflow-repeat.json", "repeat_workflow.py"]
+    },
+    "task2_capability_alias_discovery": {
+      "status": "PASS",
+      "described_capabilities": 23,
+      "readiness": "unverified",
+      "canonical_read": "catalogue --find recovery -> recoverable-jobs; --show returned bundled entry; followed installed canonical guide link successfully",
+      "alias_read": "catalogue --show codebase_cleanup --kind skill -> codebase-cleanup",
+      "failure_command": "agentcraft describe cold-reader-invalid-id",
+      "failure_exit": 2,
+      "failure_stderr": "Catalogue request refused; check the name and installed tooling/guidance artifacts.\n",
+      "documented_recovery": "Select an id from describe/canonical catalogue: agentcraft describe recoverable-jobs",
+      "recovery_attempts": 1,
+      "recovery_exit": 0,
+      "evidence": ["06-describe.json", "07-invalid.json", "07-invalid.stderr", "08-valid-recovery.json", "09-find-recovery.json", "10-show-recovery.json", "11-alias.json"]
+    },
+    "task3_offline_mcp_client": {
+      "status": "PASS_WITH_DOCUMENTATION_GAP",
+      "sdk": "mcp==1.30.0",
+      "actual_child_command": "/tmp/agentcraft-cold-reader.SMcxCtQ8/env/bin/agentcraft mcp --offline",
+      "tools_read_back": ["composition_status", "composition_validate", "composition_demo"],
+      "status_readback": {"configured": true, "max_document_bytes": 131072, "arbitrary_execution": false, "network": false},
+      "known_document": "Exact minimal health.read document from libraries/app-composition/README.md; validation only, no arbitrary resolver execution",
+      "canonical_document_sha256": "e340c56f179cca1758b510beaa392df0e47630a176c90b4fd18db458d97596c3",
+      "dependency_order": ["health"],
+      "demo": {"started": ["store", "digest"], "digest_count": 2, "stopped": ["digest", "store"], "second_shutdown": []},
+      "deliberate_failure": {"change": "schemaVersion: 1 -> 2", "isError": true, "code": "unsupported_version", "field": "schemaVersion", "effect": "none", "action": "Use a supported document version."},
+      "recovery_attempts": 1,
+      "valid_recovery_result_equal": true,
+      "sdk_sessions": 2,
+      "tool_calls": 5,
+      "owned_child_pids": [491931, 492472],
+      "owned_children_remaining": [],
+      "stderr_bytes": [0, 0],
+      "evidence": ["mcp_client.py", "15-mcp-discovery.json", "16-mcp-exercise.json", "18-final-readback.json"]
+    },
+    "plain_public_composition_example": {
+      "status": "PASS",
+      "documentation": "libraries/app-composition/README.md#L11",
+      "body": "ok",
+      "repeated_body_equal": true,
+      "post_shutdown_status": 503,
+      "evidence": "17-plain-composition.json",
+      "limit": "This is the linked public appcompose example. No separate plain Framework executable snippet was present in the read framework guide; none was invented."
+    }
+  },
+  "native_plugin_client": {
+    "status": "NOT_RUN",
+    "reason": "Available tools do not provide a clean native VS Code/Copilot plugin-client installation workflow. No user MCP configuration activation authorized or performed.",
+    "not_substituted_by": "Installed guidance folder conformance or successful Python SDK MCP exchange"
+  },
+  "network": {
+    "status": "INACTIVE_FOR_SCOPED_OFFLINE_TASKS",
+    "credential_environment": "Sanitized env -i; fresh HOME read back empty; no inherited cloud/model credentials",
+    "installation": "Offline local wheelhouse only",
+    "workflow": "Documented socket/DNS refusal mocks; repeated callable additionally guarded by a CPython audit hook, zero observed connect/DNS events",
+    "mcp": "Stdio-only actual offline CLI; composition_status network:false; SDK client audit hook observed zero connect/DNS events",
+    "limit": "No OS-level packet capture or child network-namespace isolation. Synthetic HTTP requests are not live network requests."
+  },
+  "evidence": {
+    "root": "/tmp/agentcraft-cold-reader.SMcxCtQ8",
+    "commands": "commands.json",
+    "commands_sha256": "6d55f0e94d1c848a9190a5fa8a2161963ddd3f47b008233df40a08a40a768db5",
+    "final_readback": "18-final-readback.json",
+    "final_readback_sha256": "41b37914db7fe2f6a213b23d49a3905bf34249d4d037bb0e7f059ec7a57f9b2f",
+    "artifact_origins_sha256": "c82b128fb58857a70476a9a20ebdae9eccf9081543cf8aa4d4076ee81afab78d",
+    "hash_rule": "Final read-back contains SHA-256 for exact commands, replay scripts, outputs, public guides and installed guidance read. Artifact-origin evidence includes all wheel hashes and seven exact public import origins.",
+    "full_suites_rerun": false,
+    "diagnostics": "No editor errors in external replay scripts or command manifest"
+  },
+  "retained_state_and_cleanup": {
+    "environment_retained": "/tmp/agentcraft-cold-reader.SMcxCtQ8/env",
+    "evidence_and_owned_install_cache_retained": "/tmp/agentcraft-cold-reader.SMcxCtQ8",
+    "fixture_root": "/tmp/agentcraft-cold-reader.SMcxCtQ8/tmp.ucDb4EPj",
+    "fixture_root_entries_after": [],
+    "empty_home_entries_after": [],
+    "owned_processes_remaining": [],
+    "source_runtime_docs_release_receipt_and_publication": "Unchanged by this check; only independent-reader.json added in the repository",
+    "cleanup": "Only the public example removed its own synthetic fixtures. No manual data deletion, environment removal or shared cleanup. MCP async context exits settled both owned children.",
+    "durability": "External /tmp environment/evidence retained for reproduction, not published or guaranteed permanent",
+    "notebook": "No notebook: this requested receipt and hashed evidence own the bounded result"
+  },
+  "unverified": ["Clean native plugin-client installation", "Live service/model/identity/grant behavior", "Publication", "Full core-objective or migration acceptance", "Whole-source immutability census", "Comparative effort, memory, latency or model-quality improvements"],
+  "smallest_next_decision": "Parent may link this receipt as the bounded independent-reader result. Native plugin-client and existing live/full-migration gates remain separate; no regeneration, implementation change or release-receipt rewrite performed."
+}

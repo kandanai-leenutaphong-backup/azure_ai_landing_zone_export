@@ -1,0 +1,12 @@
+{
+  "synthetic": true,
+  "name": "tool_event_counts",
+  "source": "tool_event_counts.py",
+  "description": "Counts evidence rows per category inside the case window.",
+  "queries": "One grouped read of the case's evidence rows.",
+  "returns": "Up to ten categories with their counts, plus the distinct category count.",
+  "logic": "Groups and orders by count; truncates to a bounded list the investigator can read.",
+  "family": "concentration",
+  "parent_tool": null,
+  "note": "Digests are omitted deliberately: this record was authored, not produced by the service."
+}

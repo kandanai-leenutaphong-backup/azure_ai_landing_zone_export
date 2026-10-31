@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "dataset_id": "customer-service-multi-agent-synthetic-v1",
+  "synthetic": true,
+  "case_count": 20,
+  "dataset_sha256": "cef53335cf0e410b705cb5521fabb46e981e2d0fbedd1fceb5146567d8a30af1",
+  "fixture_catalog_sha256": "053fbfbd497d06254b1152a7afaba59a61fb52f0d7bc77703b5e837ab1c5f23a",
+  "policy_sha256": "5272a1641d0680dad9dedd0f89110214810d49398c71a292042310b7b5201f94",
+  "agent_pins_sha256": "417839d274dd3e930fd9c2315b40cf6997e6668f8b71b002fc07332bcd41a758",
+  "generator_prompt_sha256": "a0a91920a106872498dfcfc1e35c34805aeccf85100d7b340301effc74e5b51d",
+  "generator_model": {
+    "deployment": "gpt-4.1-mini",
+    "model_name": "gpt-4.1-mini",
+    "model_version": "2025-04-14",
+    "sku": "Standard"
+  },
+  "created_at": "2026-10-17T05:53:03.962666+00:00",
+  "review_due": "2027-01-15",
+  "review_triggers": [
+    "catalog_change",
+    "policy_change",
+    "agent_capability_change"
+  ],
+  "human_quality_review": "not_performed",
+  "calibration": "not_established",
+  "generation_runs": [
+    {
+      "fixture_id": "damaged-return",
+      "response_id": "resp_0d6a5cb45f0f2b6a016ad30cebcd648190a1ca3cd119ae8591",
+      "input_tokens": 1118,
+      "output_tokens": 786
+    },
+    {
+      "fixture_id": "duplicate-charge",
+      "response_id": "resp_009ddb94f79d2b9d016ad30d068ea0819687c66e71f39d103b",
+      "input_tokens": 1073,
+      "output_tokens": 711
+    },
+    {
+      "fixture_id": "missing-shipment",
+      "response_id": "resp_0b1ee79c01fc1a12016ad30d20307c819583588415bd92057a",
+      "input_tokens": 1108,
+      "output_tokens": 799
+    },
+    {
+      "fixture_id": "out-of-policy",
+      "response_id": "resp_08cc7a3eacb24dec016ad30d3a3a648190b275c77514bd98bc",
+      "input_tokens": 1128,
+      "output_tokens": 831
+    }
+  ],
+  "coverage": {
+    "interaction_categories": [
+      "billing",
+      "exception",
+      "return",
+      "shipping"
+    ],
+    "complexity_variants": [
+      "simple_single_item",
+      "with_constraints",
+      "multi_step",
+      "policy_boundary",
+      "cross_agent_handoff"
+    ],
+    "personas": [
+      "first_time_buyer",
+      "international_customer",
+      "repeat_customer"
+    ],
+    "tiers": [
+      "regular",
+      "premium"
+    ],
+    "adversarial_conditions": [
+      "straightforward",
+      "impatient_customer",
+      "vague_request",
+      "policy_edge_case",
+      "contradictory_information"
+    ],
+    "unsupported_categories": [
+      "product_search",
+      "order_placement",
+      "account_management"
+    ]
+  },
+  "limitations": [
+    "20 stratified cases, not the example's 400-case Cartesian expansion.",
+    "Follow-ups are generated expectations; current evaluator uses the opening request, not a multi-turn customer simulator.",
+    "Persona/tier metadata describes wording; the current service's authoritative tier remains fixture-bound.",
+    "Synthetic language has structural/PII-pattern validation, not a genuine human expert quality review.",
+    "Out-of-policy escalation can complete the support task without pretending the requested refund was granted."
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "composition": "pulse",
+  "duration": 2,
+  "maxStaticSec": 0.25,
+  "beats": [{"name": "travel", "startSec": 0, "endSec": 2}],
+  "sampleTimes": [0.25, 1, 1.75]
+}

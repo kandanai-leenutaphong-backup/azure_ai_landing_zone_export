@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agentcraft"
+version = "0.1.0"
+description = "One explicit composition and discovery surface for Agentcraft capabilities."
+requires-python = ">=3.12"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+dependencies = ["agentcraft-core==0.1.0", "portable-app-composition==1.1.0"]
+
+[project.optional-dependencies]
+data = ["azdata[kusto,search,gremlin,identity]==4.0.0a4"]
+models = ["llm-interface[openai]==0.1.0a1", "httpx>=0.28,<0.29", "pydantic>=2,<3"]
+identity = ["entra-auth[table]==1.0.0", "signed-dev-access[table]==1.0.0"]
+inventory = ["resource-explorer[azure]==0.1.0a1"]
+agents = ["modular-agents==0.2.0"]
+optimization = ["agent-optimization==0.1.0a1", "situation-detector==0.1.0a1"]
+recovery = ["recoverable-jobs==1.0.0"]
+tooling = ["repository-inspection==0.1.0", "investigation-notebook==0.1.0", "harness-web-resource==1.1.0", "copilot-terminal-runtime==0.2.0"]
+mcp = ["mcp>=1.27.1,<2", "anyio>=4.5,<5", "jsonschema>=4.23,<5", "llm-interface[openai,mcp]==0.1.0a1", "azdata[kusto,search,gremlin,identity,mcp]==4.0.0a4", "resource-explorer[azure,mcp]==0.1.0a1", "recoverable-jobs[mcp]==1.0.0", "portable-app-composition[mcp]==1.1.0"]
+
+[project.scripts]
+agentcraft = "agentcraft.cli:main"
+
+[tool.uv.sources]
+agentcraft-core = { path = "../../../../libraries/framework-core" }
+portable-app-composition = { path = "../../portable-app-composition" }
+azdata = { path = "../../../../libraries/azure-data-connectors" }
+llm-interface = { path = "../../../../libraries/llm-interface" }
+entra-auth = { path = "../../../../libraries/entra-auth" }
+signed-dev-access = { path = "../../../../libraries/signed-dev-access" }
+resource-explorer = { path = "../../../../libraries/resource-explorer" }
+modular-agents = { path = "../../../../libraries/modular-agents" }
+agent-optimization = { path = "../../agent-optimization" }
+situation-detector = { path = "../../../../libraries/situation-detector" }
+recoverable-jobs = { path = "../../recoverable-jobs" }
+repository-inspection = { path = "../repository-inspection" }
+investigation-notebook = { path = "../../investigation-notebook" }
+harness-web-resource = { path = "../../web-resource" }
+copilot-terminal-runtime = { path = "../../ghcp-cli-frontend" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+agentcraft = ["py.typed", "*.json", "guidance/**/*"]

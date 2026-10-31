@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "protocols": [
+    {
+      "name": "capability-modularization",
+      "path": "protocol-capability-modularization/SKILL.md",
+      "summary": "Catalogue functional capabilities, reuse shared foundations, and migrate vertical workflows in verified batches.",
+      "access": "protocol",
+      "keywords": ["modularize", "refactor", "duplication", "shared components", "backend", "frontend", "capability catalogue"]
+    },
+    {
+      "name": "protocol-demonstrate",
+      "path": "protocol-demonstrate/SKILL.md",
+      "summary": "Turn a requested demonstration into observable requirements, a real user walk, and a reproducible handover.",
+      "access": "protocol",
+      "keywords": ["demo", "demonstration", "walkthrough", "handover", "user journey"]
+    },
+    {
+      "name": "protocol-document",
+      "path": "protocol-document/SKILL.md",
+      "summary": "Run an explicitly requested documentation sweep: inventory coverage, reverify claims, and fill gaps at their owning source.",
+      "access": "protocol",
+      "keywords": ["documentation", "docs", "documentation sweep", "stale claims", "onboarding", "handover"]
+    },
+    {
+      "name": "protocol-foundry-agent-lifecycle",
+      "path": "protocol-foundry-agent-lifecycle/SKILL.md",
+      "summary": "Take an agent package to a native Foundry Hosted Agent and through verify, evaluate, optimize, redeploy and re-verify with the template deploy.sh, authoring only the package and pinned caller files.",
+      "access": "protocol",
+      "keywords": ["foundry", "hosted agent", "agent package", "evaluate", "optimize", "redeploy", "promotion", "deploy.sh"]
+    },
+    {
+      "name": "protocol-garbage-collect",
+      "path": "protocol-garbage-collect/SKILL.md",
+      "summary": "Prove dead code and abandoned files unreachable in a named area before deleting the authorized set.",
+      "access": "protocol",
+      "keywords": ["dead code", "delete", "unused files", "reachability", "garbage collection", "cleanup"]
+    },
+    {
+      "name": "protocol-lean",
+      "path": "protocol-lean/SKILL.md",
+      "summary": "Survey repository weight across documentation, dependencies, code, CI and infrastructure; measure authorized cleanup.",
+      "access": "protocol",
+      "keywords": ["cleanup", "bloat", "unused dependencies", "stale docs", "cost", "repository weight"]
+    },
+    {
+      "name": "protocol-regression-loop",
+      "path": "protocol-regression-loop/SKILL.md",
+      "summary": "Fix acceptance before editing, validate the actual changed artifact, and repeat focused checks until green or blocked.",
+      "access": "protocol",
+      "keywords": ["regression", "tests", "verification", "acceptance", "bug fix", "prove a change"]
+    },
+    {
+      "name": "protocol-restructure",
+      "path": "protocol-restructure/SKILL.md",
+      "summary": "Salvage a working legacy area, declare a target shape, migrate reversible batches, and verify before retiring the old tree.",
+      "access": "protocol",
+      "keywords": ["migration", "legacy", "restructure", "move files", "consolidate", "reorganize"]
+    },
+    {
+      "name": "protocol-template-app",
+      "path": "protocol-template-app/SKILL.md",
+      "summary": "Migrate a customer-specific application into a reusable accelerator, preserving approved public data and workflows while excluding private data, historical state and deployment identity.",
+      "access": "protocol",
+      "keywords": ["migrate app", "generic application", "template", "accelerator", "generalize", "customer data", "public datasets", "sanitization", "clean copy"]
+    }
+  ]
+}

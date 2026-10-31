@@ -1,0 +1,7 @@
+# No runtime dependencies. The mechanism is standard library only, on purpose:
+# a recovery path that needs a package installed is a recovery path that fails
+# in the environment where it is needed most. pyproject.toml says the same
+# thing in the form pip reads: `dependencies = []`.
+#
+# The store is injected, so no cloud SDK, database driver or serialisation
+# library is imported here — not even optionally.

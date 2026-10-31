@@ -1,0 +1,6 @@
+# Surface/material depth without new content, containers, or scenery.
+https://www.joshwcomeau.com/css/designing-shadows/
+https://fluent2.microsoft.design/elevation
+https://learn.microsoft.com/en-us/windows/apps/design/style/acrylic
+https://css-tricks.com/grainy-gradients/
+https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient

@@ -19,6 +19,18 @@ param gatewaySubnetPrefix string = '10.0.1.0/27'
 @description('DNS Resolver inbound endpoint subnet prefix (min /28, delegated to Microsoft.Network/dnsResolvers).')
 param dnsResolverInboundSubnetPrefix string = '10.0.2.0/28'
 
+@description('AzureFirewallSubnet prefix (name is mandatory, min /26).')
+param firewallSubnetPrefix string = '10.0.3.0/26'
+
+@description('AzureFirewallManagementSubnet prefix (name is mandatory, min /26, required by Firewall Basic).')
+param firewallManagementSubnetPrefix string = '10.0.4.0/26'
+
+@description('Hub Application Gateway subnet prefix.')
+param applicationGatewaySubnetPrefix string = '10.0.5.0/24'
+
+@description('Route table applied to the Application Gateway subnet. Leave empty for none.')
+param applicationGatewayRouteTableId string = ''
+
 @description('Static private IP assigned to the DNS Resolver inbound endpoint and advertised as the hub VNet DNS server.')
 param dnsResolverInboundIp string = '10.0.2.4'
 
@@ -60,6 +72,55 @@ resource dnsResolverInboundNsg 'Microsoft.Network/networkSecurityGroups@2023-11-
   tags: tags
   properties: {
     securityRules: []
+  }
+}
+
+resource applicationGatewayNsg 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
+  name: '${vnetName}-appgw-nsg-sea'
+  location: location
+  tags: tags
+  properties: {
+    securityRules: [
+      {
+        name: 'AllowInternetHttp'
+        properties: {
+          priority: 100
+          direction: 'Inbound'
+          access: 'Allow'
+          protocol: 'Tcp'
+          sourceAddressPrefix: 'Internet'
+          sourcePortRange: '*'
+          destinationAddressPrefix: '*'
+          destinationPortRange: '80'
+        }
+      }
+      {
+        name: 'AllowGatewayManager'
+        properties: {
+          priority: 110
+          direction: 'Inbound'
+          access: 'Allow'
+          protocol: 'Tcp'
+          sourceAddressPrefix: 'GatewayManager'
+          sourcePortRange: '*'
+          destinationAddressPrefix: '*'
+          destinationPortRange: '65200-65535'
+        }
+      }
+      {
+        name: 'AllowAzureLoadBalancer'
+        properties: {
+          priority: 120
+          direction: 'Inbound'
+          access: 'Allow'
+          protocol: '*'
+          sourceAddressPrefix: 'AzureLoadBalancer'
+          sourcePortRange: '*'
+          destinationAddressPrefix: '*'
+          destinationPortRange: '*'
+        }
+      }
+    ]
   }
 }
 
@@ -109,6 +170,30 @@ resource vnet 'Microsoft.Network/virtualNetworks@2023-11-01' = {
               }
             }
           ]
+        }
+      }
+      {
+        name: 'AzureFirewallSubnet'
+        properties: {
+          addressPrefix: firewallSubnetPrefix
+        }
+      }
+      {
+        name: 'AzureFirewallManagementSubnet'
+        properties: {
+          addressPrefix: firewallManagementSubnetPrefix
+        }
+      }
+      {
+        name: 'snet-appgw'
+        properties: {
+          addressPrefix: applicationGatewaySubnetPrefix
+          networkSecurityGroup: {
+            id: applicationGatewayNsg.id
+          }
+          routeTable: empty(applicationGatewayRouteTableId) ? null : {
+            id: applicationGatewayRouteTableId
+          }
         }
       }
     ]
@@ -267,3 +352,6 @@ resource dnsResolverInboundEndpoint 'Microsoft.Network/dnsResolvers/inboundEndpo
 output vnetId string = vnet.id
 output vnetName string = vnet.name
 output vpnGatewayName string = vpnGateway.name
+output firewallSubnetId string = '${vnet.id}/subnets/AzureFirewallSubnet'
+output firewallManagementSubnetId string = '${vnet.id}/subnets/AzureFirewallManagementSubnet'
+output applicationGatewaySubnetId string = '${vnet.id}/subnets/snet-appgw'

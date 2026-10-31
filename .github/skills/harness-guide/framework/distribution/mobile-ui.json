@@ -1,0 +1,195 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "scope": "Bounded final mobile target repair for source viewer, declared inventory and modular result controls; affected npm artifacts and template-app dependency adoption",
+  "observed_through_utc": "2026-09-16T13:56:10.445Z",
+  "completion_claim": "Requested mobile controls meet the measured 44x44 CSS-pixel floor at 390px. Final installed tarballs pass 107 browser checks with zero gaps, strict consumer checks, and both affected app unit/build gates. No full framework, live backend, authentication, provider, cloud or physical-device signoff.",
+  "repository_changes": [
+    "libraries/source-code/frontend/source-code.css",
+    "libraries/resource-explorer/frontend/inventory.css",
+    "libraries/resource-explorer/frontend/explorer.css",
+    "libraries/modular-agents/modules/purpose-built-tools/renderers/ResultTable.tsx",
+    "libraries/azure-sky-styling/package-lock.json",
+    "template_apps/investigation_app/app/cybereye/frontend/package.json",
+    "template_apps/investigation_app/app/cybereye/frontend/package-lock.json",
+    "template_apps/custom_optimizer/frontend/package.json",
+    "template_apps/custom_optimizer/frontend/package-lock.json",
+    "template_apps/investigation_app/app/cybereye/frontend/tests/browser/verify-local-ui-acquisition.mjs",
+    "template_apps/investigation_app/app/cybereye/frontend/tests/support/local-ui-acquisition.mjs",
+    "libraries/framework/distribution/mobile-ui.json"
+  ],
+  "implementation": {
+    "source": "Add 44x44 button dimensions inside the existing max-width:600px toolbar rule.",
+    "inventory": "At max-width:700px, size twisties, selection labels, buttons, metadata retry and sort headers; extend existing explorer rule for refresh, catalogue Retry and Parameters.",
+    "modular": "Add max-[700px]:min-h-[44px] and max-[700px]:min-w-[44px] to existing metadata and row-cap controls under the public Tailwind styling contract.",
+    "tests": "Existing runner now asserts mobile geometry explicitly. Existing fixture optionally consumes installed packages and peers through LOCAL_UI_CONSUMER.",
+    "unchanged": "Control names, icons, event handlers, content logic, card dimensions and desktop rules. ResourceExplorer.tsx and modular public stylesheet required no edit.",
+    "parent_repair_consumed": "Read-only inventory state.ts row/byte announcement repair included in rebuilt resource-explorer artifact; browser row-announcement checks pass at both widths.",
+    "runtime_repair_rounds_per_defect": 1,
+    "failed_runtime_corrections": 0
+  },
+  "environment": {
+    "node": "v22.23.2",
+    "node_executable": "/tmp/agentcraft-recovery-native-evidence.4BDirv/hyperframes-runtime.NN7mGE/node_modules/node/bin/node",
+    "npm": "10.8.2",
+    "playwright": "1.62.1",
+    "chromium": "151.0.7922.34",
+    "tailwind": "4.1.15",
+    "command_environment": "Node directory prepended to quoted PATH per command; no global Node switch. Browser uses env -i with HOME and LANG and only declared loopback fixture assets."
+  },
+  "browser": {
+    "status": "PASS",
+    "command": "env -i PATH=/usr/bin:/bin HOME=/home/hanchoong LANG=C.UTF-8 ARTIFACT_DIR=\"$(mktemp -d /tmp/agentcraft-mobile-ui-final.XXXXXX)\" LOCAL_UI_CONSUMER=/tmp/agentcraft-recovery-npm/mobile-ui/host /tmp/agentcraft-recovery-native-evidence.4BDirv/hyperframes-runtime.NN7mGE/node_modules/node/bin/node template_apps/investigation_app/app/cybereye/frontend/tests/browser/verify-local-ui-acquisition.mjs",
+    "cwd": "/home/hanchoong/agentcraft",
+    "exit_code": 0,
+    "checks": 107,
+    "passed": 107,
+    "failed": 0,
+    "errors": 0,
+    "gap_observations": 0,
+    "screenshots": 24,
+    "viewports": [[1440, 900], [390, 844]],
+    "result": "/tmp/agentcraft-mobile-ui-final.OSVl8a/result.json",
+    "result_sha256": "b70e182ebc22efea861cb3e703fe619d3dbfb80ea425522bd676feb95e6c715b",
+    "runtime": "/tmp/agentcraft-mobile-ui-final.OSVl8a/runtime-OgxQUi",
+    "javascript_sha256": "051bbd101002b6c9d4252080acb1612dbc8a2021c54481fb8fcb804529bfaf95",
+    "css_sha256": "85361382df98d1b9417ea08ef7fcd8bb893a84fc2b1955cf2d3572c96bbeefab",
+    "artifact_identity": "Bare public package exports copied from the clean tarball consumer, hash-matched to installed entries. Runtime peers resolve only from that consumer; host supplies browser/esbuild/Tailwind tooling.",
+    "all_captured_states_without_page_horizontal_overflow": true,
+    "mobile_minimum_effective_target_css_px": [44, 44],
+    "mobile_touch_points_observed": [1, 0],
+    "touch_caveat": "Some modular snapshots still report maxTouchPoints=0. All mobile geometry assertions pass because repairs depend on viewport width, not touch media; no physical-device claim.",
+    "positive_negative_paths": [
+      "Wrap, native clipboard byte read-back, synthetic clipboard refusal and retry",
+      "Safe source/cell text, unknown-language fallback and source replacement",
+      "Catalogue Retry, tree expansion, row preview and exact row announcement",
+      "Sort read-back, disabled source makes no content request, selection survives component remount",
+      "Metadata Retry, Parameters disclosure and replacement tool source",
+      "Metadata show/hide, 5-to-12 row expansion, last row inside bounded scroller, collapse",
+      "Explicit error, distinct refusal, empty state and controlled recovery"
+    ],
+    "network": "Only owned loopback GET /, /fixture.js and /fixture.css; zero blocked requests, sentinel execution or external reads. Synthetic constructor-injected data, WebSockets and service workers blocked."
+  },
+  "mobile_dimensions_css_px": [
+    { "control": "Source Wrap and Copy, standalone and inventory", "width": 44, "height": 44 },
+    { "control": "Inventory expand/collapse twisties", "width": 44, "height": 44 },
+    { "control": "Refresh agents", "width": 44, "height": 44 },
+    { "control": "Catalogue Retry", "width": 72.84375, "height": 44 },
+    { "control": "Source selection labels", "width": 45.59375, "height": 44 },
+    { "control": "Sort source_time", "width": 128.53125, "height": 44 },
+    { "control": "Sort value", "width": 52.5625, "height": 44 },
+    { "control": "Sort description", "width": 318, "height": 44 },
+    { "control": "Metadata Retry", "width": 48.28125, "height": 44 },
+    { "control": "Parameters, populated and empty", "width": 342, "height": 44 },
+    { "control": "Show metadata", "width": 126.40625, "height": 44 },
+    { "control": "Hide metadata", "width": 100.484375, "height": 44 },
+    { "control": "Show all", "width": 108.046875, "height": 44 },
+    { "control": "Collapse", "width": 60.03125, "height": 44 }
+  ],
+  "desktop": {
+    "baseline": "/tmp/agentcraft-local-ui-announcement-fixed/result.json",
+    "controls_compared": 97,
+    "target_dimension_changes": 0,
+    "comparison": "/tmp/agentcraft-recovery-npm/mobile-ui/desktop-comparison.json",
+    "comparison_sha256": "1b41f928a5a862213c00c71f7b5422c0eba0e0cc2f72337b756fd5588153ad21"
+  },
+  "screenshots_reviewed": [
+    { "path": "/tmp/agentcraft-mobile-ui-final.OSVl8a/source-wrapped-keyboard-1440x900.png", "observation": "Dense source toolbar unchanged; highlighted wrapped text and focus outline visible." },
+    { "path": "/tmp/agentcraft-mobile-ui-final.OSVl8a/source-wrapped-keyboard-390x844.png", "observation": "44px icon buttons fit wrapped toolbar; source remains in capped internal scroller." },
+    { "path": "/tmp/agentcraft-mobile-ui-final.OSVl8a/inventory-preview-1440x900.png", "observation": "Original three-pane density and compact sort headers preserved." },
+    { "path": "/tmp/agentcraft-mobile-ui-final.OSVl8a/inventory-preview-390x844.png", "observation": "Stacked panes retain bounded horizontal content; taller targets, no page overflow. Full-page image exceeds viewport height." },
+    { "path": "/tmp/agentcraft-mobile-ui-final.OSVl8a/modular-all-rows-1440x900.png", "observation": "Compact controls and existing table height preserved; row 12 reachable in native scroller." },
+    { "path": "/tmp/agentcraft-mobile-ui-final.OSVl8a/modular-all-rows-390x844.png", "observation": "Metadata and collapse controls 44px high; rows remain inside original capped table." },
+    { "path": "/tmp/agentcraft-mobile-ui-final.OSVl8a/inventory-source-parameters-390x844.png", "observation": "Parameters focus target is 44px high; source toolbar controls fit and descriptions remain readable." },
+    { "path": "/tmp/agentcraft-mobile-ui-final.OSVl8a/inventory-catalogue-failure-390x844.png", "observation": "Refresh, Retry and tree disclosure targets enlarged without page or card inflation." }
+  ],
+  "npm": {
+    "status": "PASS_ARTIFACT",
+    "evidence_root": "/tmp/agentcraft-recovery-npm/mobile-ui",
+    "driver": "/tmp/agentcraft-recovery-npm/mobile-ui/pack.mjs",
+    "driver_command": "env -i PATH=\"/tmp/agentcraft-recovery-native-evidence.4BDirv/hyperframes-runtime.NN7mGE/node_modules/node/bin:$PATH\" HOME=/home/hanchoong LANG=C.UTF-8 /tmp/agentcraft-recovery-native-evidence.4BDirv/hyperframes-runtime.NN7mGE/node_modules/node/bin/node /tmp/agentcraft-recovery-npm/mobile-ui/pack.mjs",
+    "builds": "Fresh outside-checkout snapshots; existing build-tool versions pinned, npm pack runs prepack. No package version bump or npm publication.",
+    "consumer": "/tmp/agentcraft-recovery-npm/mobile-ui/host",
+    "consumer_install": "npm install --ignore-scripts --install-links --no-audit --no-fund --offline",
+    "consumer_typecheck": "npm exec -- tsc --noEmit -p tsconfig.json",
+    "consumer_build": "npm exec -- vite build",
+    "consumer_peer_check": "npm ls --all",
+    "commands_exit_code": 0,
+    "strict_profile": "strict=true, skipLibCheck=false, noUncheckedSideEffectImports=true, moduleResolution=Bundler; no source aliases, NODE_PATH, NODE_OPTIONS or package symlinks",
+    "consumer_versions": { "react": "19.3.0", "react-dom": "19.3.0", "lucide-react": "1.42.0", "shiki": "4.4.3", "@types/react": "19.3.0", "@types/react-dom": "19.3.0", "@types/node": "22.20.3", "typescript": "6.0.2", "vite": "7.3.0" },
+    "consumer_lock_sha256": "6a7928476385c9a879058fc08ad7ccaf5352d84d0f876724732ed0e9d668bbc5",
+    "installed_files_verified": 98,
+    "artifacts": [
+      { "name": "@agentcraft/source-code", "version": "0.1.0", "tarball": "/tmp/agentcraft-recovery-npm/mobile-ui/artifacts/agentcraft-source-code-0.1.0.tgz", "sha256": "b1dc413994aa1f812a42c0172efcf9288c84d7f5360a32aef918074953acc058", "origin": "/tmp/agentcraft-recovery-npm/mobile-ui/host/node_modules/@agentcraft/source-code/dist/index.js", "installed_files_verified": 9 },
+      { "name": "@agentcraft/resource-explorer", "version": "0.1.0", "tarball": "/tmp/agentcraft-recovery-npm/mobile-ui/artifacts/agentcraft-resource-explorer-0.1.0.tgz", "sha256": "0001984f4c40d7ade30574ffdd7ff1518da19c45556768aaaeda18e3d655a460", "origin": "/tmp/agentcraft-recovery-npm/mobile-ui/host/node_modules/@agentcraft/resource-explorer/dist/index.js", "installed_files_verified": 42 },
+      { "name": "@agentcraft/modular-agents", "version": "0.2.0", "tarball": "/tmp/agentcraft-recovery-npm/mobile-ui/artifacts/agentcraft-modular-agents-0.2.0.tgz", "sha256": "5effb837357435d514ade96281eaa7e614dad613a39e10534cf6998ea0ce1ec3", "origin": "/tmp/agentcraft-recovery-npm/mobile-ui/host/node_modules/@agentcraft/modular-agents/dist/modular-agents.js", "installed_files_verified": 47 }
+    ],
+    "peer_origins": {
+      "react": "/tmp/agentcraft-recovery-npm/mobile-ui/host/node_modules/react/index.js",
+      "react-dom": "/tmp/agentcraft-recovery-npm/mobile-ui/host/node_modules/react-dom/index.js",
+      "lucide-react": "/tmp/agentcraft-recovery-npm/mobile-ui/host/node_modules/lucide-react/dist/cjs/lucide-react.js",
+      "shiki": "/tmp/agentcraft-recovery-npm/mobile-ui/host/node_modules/shiki/dist/index.mjs"
+    },
+    "package_checks": [
+      { "command": "npm --prefix libraries/source-code test", "result": "PASS", "passed": 2, "failed": 0, "includes": "tsc build and byte-identical distribution CSS check", "log": "/tmp/agentcraft-recovery-npm/mobile-ui/source-final-test.log" },
+      { "command": "npm --prefix libraries/resource-explorer test", "result": "PASS", "passed": 3, "failed": 0, "includes": "tsc build, client refusals and distribution CSS check", "log": "/tmp/agentcraft-recovery-npm/mobile-ui/resource-final-test.log" },
+      { "command": "npm --prefix libraries/modular-agents run typecheck && npm --prefix libraries/modular-agents run build", "result": "PASS", "includes": "TypeScript and Vite build; repeated in isolated prepack" }
+    ]
+  },
+  "dependency_adoption": {
+    "install_command_pattern": "npm --prefix <app> install --ignore-scripts --no-audit --no-fund --offline --save-prefix='^' lucide-react@1.42.0",
+    "linked_source_resource_install_pattern": "npm --prefix libraries/<owner> install --ignore-scripts --no-save --package-lock=false --offline --no-audit --no-fund lucide-react@1.42.0",
+    "linked_source_resource_install_result": "Each changed one installed package; both now resolve Lucide 1.42.0 with React 19.3.0. No new library lockfile.",
+    "unrelated_locked_version_changes": 0,
+    "package_sets_unchanged": true,
+    "investigation": { "manifest": "template_apps/investigation_app/app/cybereye/frontend/package.json", "lock": "template_apps/investigation_app/app/cybereye/frontend/package-lock.json", "lucide": "1.42.0", "react": "19.2.8", "lock_packages_before": 245, "lock_packages_after": 245, "lock_sha256": "dc1b8a09e6d738ca0bb2184c410cd37986a2916ee25316c5da99a7acebf5effc", "metadata": "Source/resource linked peer ranges now ^1.42.0; npm refreshed existing linked devDependency metadata." },
+    "optimizer": { "manifest": "template_apps/custom_optimizer/frontend/package.json", "lock": "template_apps/custom_optimizer/frontend/package-lock.json", "lucide": "1.42.0", "react": "19.3.0", "lock_packages_before": 177, "lock_packages_after": 177, "lock_sha256": "7bdef0fb7aac65b71d8be73338039e87ed919a1466016041767d9c8b542b71f2", "metadata": "Source linked peer range now ^1.42.0; existing terminal ^1.42.0 dependency preserved; npm refreshed existing linked devDependency metadata." },
+    "styling": { "lock": "libraries/azure-sky-styling/package-lock.json", "lucide": "1.42.0", "lock_packages_before": 248, "lock_packages_after": 248, "lock_sha256": "cba3e875c1675dc6c2b75a87e115cf8476cf0bb44cec7f348dbb8933c0ff7c82", "changes": "Only root Lucide constraint and Lucide entry; parent manifest bytes restored unchanged.", "check": "npm --prefix libraries/azure-sky-styling ci --dry-run --ignore-scripts --no-audit --no-fund --offline", "exit_code": 0, "installed_runtime": "Not changed; lock-only adoption, no styling rebuild required." },
+    "terminal": { "lock": "libraries/copilot-terminal/package-lock.json", "lucide": "1.43.0", "result": "Already satisfies ^1.42.0; manifest and lock unchanged, declaration export repair preserved.", "lock_sha256": "1d1e58338e0597c60495860d57a8b555e6f0633219137c797f4e8c2c29672f23" }
+  },
+  "app_checks": [
+    { "command": "npm --prefix template_apps/investigation_app/app/cybereye/frontend test", "exit_code": 0, "passed": 23, "failed": 0, "skipped": 0, "log": "/tmp/agentcraft-recovery-npm/mobile-ui/investigation-final-test.log" },
+    { "command": "npm --prefix template_apps/investigation_app/app/cybereye/frontend run build", "exit_code": 0, "result": "PASS tsc -b and Vite 6.4.3", "log": "/tmp/agentcraft-recovery-npm/mobile-ui/investigation-final-build.log" },
+    { "command": "npm --prefix template_apps/custom_optimizer/frontend test", "exit_code": 0, "passed": 21, "failed": 0, "skipped": 0, "log": "/tmp/agentcraft-recovery-npm/mobile-ui/optimizer-final-test.log" },
+    { "command": "npm --prefix template_apps/custom_optimizer/frontend run build", "exit_code": 0, "result": "PASS tsc --noEmit and Vite 6.4.3", "log": "/tmp/agentcraft-recovery-npm/mobile-ui/optimizer-final-build.log" }
+  ],
+  "static_checks": "get_errors reports no diagnostics on changed runtime/test/manifest files. Scoped git diff --check passes.",
+  "evidence": {
+    "artifact_commands_and_manifests": "/tmp/agentcraft-recovery-npm/mobile-ui/artifacts.json",
+    "artifact_commands_sha256": "b2ade14d494d75e668fd961336e97cbce697d010422c81782d4a5362ae8aff2b",
+    "geometry_and_screenshot_hashes": "/tmp/agentcraft-recovery-npm/mobile-ui/final-browser-facts.json",
+    "geometry_facts_sha256": "c8494d8cc0cb4b57e33a8cf285961222ce37dc50b96004e0555a41c1cb835992",
+    "final_file_hashes_test_logs_and_peer_origins": "/tmp/agentcraft-recovery-npm/mobile-ui/completed-readback.json",
+    "completed_readback_sha256": "a4abc7b2efa3ba95897e756f5e2df9f565691cc5c2cb8ef25e24165b9c9133cf",
+    "lock_delta": "/tmp/agentcraft-recovery-npm/mobile-ui/lock-diff-final.json",
+    "working_browser_pass": "/tmp/agentcraft-mobile-ui-working.KPRz53/result.json",
+    "historical_receipts_preserved": [
+      { "path": "libraries/framework/distribution/npm-artifacts.json", "sha256": "089ec1b21c0b0e8e84b0fbdae6caf950950ff8d0fedffa8b20eb3fa32e01301a" },
+      { "path": "libraries/framework/distribution/local-ui-acquisition.json", "sha256": "78000482eb4c30ad521d94c34ddeaa22589798b160f1a911f0b987400eee6612" }
+    ]
+  },
+  "attempts": [
+    "All runtime fixes passed first package/build validation and first browser geometry run; no second runtime correction.",
+    "Initial dependency-delta check rejected six npm-added optional bundled-WASM lock records. Removed only this run's additions; repeated exact version/package-set check and npm ci dry-run passed.",
+    "One batch of four gate commands stopped at env before execution because inherited PATH contained spaces. Quoted PATH and repeated successfully; failed invocation logs retained.",
+    "Installed-peer read-back found linked source/resource development copies still resolving Lucide 0.460.0. Targeted one-package updates applied; package and both app tests/builds rerun successfully. Clean tarballs and their browser gate were unaffected."
+  ],
+  "unverified_or_out_of_scope": [
+    "No live backend, auth, model, provider, native terminal, cloud, deployment, publication or commit.",
+    "No further UI audit, physical mobile hardware test, full contrast audit or app-auth browser journey.",
+    "Both app builds retain their existing large-chunk warnings; no unrelated bundling optimization.",
+    "Only three affected npm packages repacked; historical terminal/styling strict-consumer repair evidence not overwritten or blanket-rerun.",
+    "Parent owns Python root rebuild, central framework/catalogue/docs/EXECUTION and runtime data. None changed here."
+  ],
+  "cleanup": {
+    "retained_servers": 0,
+    "browser_closed": true,
+    "owned_commands_finished": true,
+    "retained_artifacts": ["/tmp/agentcraft-recovery-npm/mobile-ui", "/tmp/agentcraft-mobile-ui-working.KPRz53", "/tmp/agentcraft-mobile-ui-final.OSVl8a"],
+    "preserved_prior_evidence": ["/tmp/agentcraft-local-ui-announcement-fixed", "/tmp/agentcraft-local-ui-acceptance-20260916", "/tmp/agentcraft-recovery-npm/baseline", "/tmp/agentcraft-recovery-npm/repair-1"],
+    "generated_local_state": "Affected library dist and both app dist refreshed by declared builds; app/source/resource node_modules adopt peers. All temporary snapshots, tarballs and clean host retained for parent read-back.",
+    "user_or_runtime_data_deleted": false,
+    "notebook": "Not published: bounded measurements and commands are retained in this authorized receipt; no new reusable investigation required."
+  },
+  "smallest_next_decision": "Parent may consume this bounded frontend acceptance and these three final npm artifacts for its independently owned root rebuild. No frontend follow-up required."
+}

@@ -1,0 +1,8 @@
+# Development and test dependencies. NOT required to use this box, and NOT
+# required by tests/selftest.py, which runs on a bare interpreter. Mirrored
+# into pyproject.toml as the `dev` extra.
+#
+# Install these only to run the pytest suite:
+#     pip install -r requirements-dev.txt
+#     python3 -m pytest tests
+pytest>=8

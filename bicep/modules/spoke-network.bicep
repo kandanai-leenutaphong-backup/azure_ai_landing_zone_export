@@ -21,8 +21,13 @@ param containerAppsSubnetPrefix string = '10.10.2.0/23'
 param functionAppSubnetPrefix string = '10.10.4.0/24'
 param agentSubnetPrefix string = '10.10.5.0/24'
 param privateEndpointsSubnetPrefix string = '10.10.6.0/24'
-param applicationGatewaySubnetPrefix string = '10.10.7.0/24'
 param claimpilotContainerAppsSubnetPrefix string = '10.10.8.0/23'
+
+@description('Route table (0.0.0.0/0 and inter-VNet via hub firewall) for VM, Function App, and agent subnets. Leave empty for none.')
+param firewallRouteTableId string = ''
+
+@description('Route table applied to the Container Apps subnets. Requires a workload-profiles environment; leave empty for consumption-only environments, which do not support UDRs.')
+param containerAppsRouteTableId string = ''
 
 @description('Tags applied to all resources.')
 param tags object = {}
@@ -78,55 +83,6 @@ resource peSubnetNsg 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
   tags: tags
   properties: {
     securityRules: []
-  }
-}
-
-resource applicationGatewayNsg 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
-  name: '${vnetName}-appgw-nsg-sea'
-  location: location
-  tags: tags
-  properties: {
-    securityRules: [
-      {
-        name: 'AllowInternetHttp'
-        properties: {
-          priority: 100
-          direction: 'Inbound'
-          access: 'Allow'
-          protocol: 'Tcp'
-          sourceAddressPrefix: 'Internet'
-          sourcePortRange: '*'
-          destinationAddressPrefix: '*'
-          destinationPortRange: '80'
-        }
-      }
-      {
-        name: 'AllowGatewayManager'
-        properties: {
-          priority: 110
-          direction: 'Inbound'
-          access: 'Allow'
-          protocol: 'Tcp'
-          sourceAddressPrefix: 'GatewayManager'
-          sourcePortRange: '*'
-          destinationAddressPrefix: '*'
-          destinationPortRange: '65200-65535'
-        }
-      }
-      {
-        name: 'AllowAzureLoadBalancer'
-        properties: {
-          priority: 120
-          direction: 'Inbound'
-          access: 'Allow'
-          protocol: '*'
-          sourceAddressPrefix: 'AzureLoadBalancer'
-          sourcePortRange: '*'
-          destinationAddressPrefix: '*'
-          destinationPortRange: '*'
-        }
-      }
-    ]
   }
 }
 
@@ -315,12 +271,18 @@ resource vnet 'Microsoft.Network/virtualNetworks@2023-11-01' = {
         name: 'snet-vm'
         properties: {
           addressPrefix: vmSubnetPrefix
+          routeTable: empty(firewallRouteTableId) ? null : {
+            id: firewallRouteTableId
+          }
         }
       }
       {
         name: 'snet-containerapps'
         properties: {
           addressPrefix: containerAppsSubnetPrefix
+          routeTable: empty(containerAppsRouteTableId) ? null : {
+            id: containerAppsRouteTableId
+          }
           networkSecurityGroup: {
             id: containerAppsNsg.id
           }
@@ -338,6 +300,9 @@ resource vnet 'Microsoft.Network/virtualNetworks@2023-11-01' = {
         name: 'snet-functionapp'
         properties: {
           addressPrefix: functionAppSubnetPrefix
+          routeTable: empty(firewallRouteTableId) ? null : {
+            id: firewallRouteTableId
+          }
           networkSecurityGroup: {
             id: functionAppNsg.id
           }
@@ -355,6 +320,9 @@ resource vnet 'Microsoft.Network/virtualNetworks@2023-11-01' = {
         name: 'snet-agent'
         properties: {
           addressPrefix: agentSubnetPrefix
+          routeTable: empty(firewallRouteTableId) ? null : {
+            id: firewallRouteTableId
+          }
           networkSecurityGroup: {
             id: agentSubnetNsg.id
           }
@@ -382,18 +350,12 @@ resource vnet 'Microsoft.Network/virtualNetworks@2023-11-01' = {
         }
       }
       {
-        name: 'snet-appgw'
-        properties: {
-          addressPrefix: applicationGatewaySubnetPrefix
-          networkSecurityGroup: {
-            id: applicationGatewayNsg.id
-          }
-        }
-      }
-      {
         name: 'snet-claimpilot-aca'
         properties: {
           addressPrefix: claimpilotContainerAppsSubnetPrefix
+          routeTable: empty(containerAppsRouteTableId) ? null : {
+            id: containerAppsRouteTableId
+          }
           networkSecurityGroup: {
             id: claimpilotContainerAppsNsg.id
           }
@@ -451,7 +413,6 @@ output containerAppsSubnetId string = '${vnet.id}/subnets/snet-containerapps'
 output functionAppSubnetId string = '${vnet.id}/subnets/snet-functionapp'
 output agentSubnetId string = '${vnet.id}/subnets/snet-agent'
 output privateEndpointsSubnetId string = '${vnet.id}/subnets/snet-pe'
-output applicationGatewaySubnetId string = '${vnet.id}/subnets/snet-appgw'
 output claimpilotContainerAppsSubnetId string = '${vnet.id}/subnets/snet-claimpilot-aca'
 output vmNsg1Id string = vmNsg1.id
 output vmNsg2Id string = vmNsg2.id

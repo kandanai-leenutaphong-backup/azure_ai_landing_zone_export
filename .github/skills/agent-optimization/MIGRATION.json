@@ -1,0 +1,1025 @@
+{
+  "schema_version": 1,
+  "skill_baseline": {
+    "exclusions": [
+      ".venv",
+      "node_modules",
+      "__pycache__",
+      ".pytest_cache",
+      ".mypy_cache",
+      ".ruff_cache",
+      ".local",
+      "*.pyc"
+    ],
+    "files": 65,
+    "bytes": 617089,
+    "inventory": [
+      {
+        "path": ".github/skills/agent-optimization/.gitignore",
+        "bytes": 73,
+        "sha256": "ab25eddefe9ef5c5e8772c4836be13ae540f09e9ba7b98a0f3061f2e7d498a3c"
+      },
+      {
+        "path": ".github/skills/agent-optimization/LICENSE",
+        "bytes": 1141,
+        "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+      },
+      {
+        "path": ".github/skills/agent-optimization/README.md",
+        "bytes": 4023,
+        "sha256": "8be8cd87452cf292a4249eea9d6c43ca2a8219ef571d562e141a9ccd52206063"
+      },
+      {
+        "path": ".github/skills/agent-optimization/SKILL.md",
+        "bytes": 4919,
+        "sha256": "07ba855898f855dacb1be94fe4232d809a7874d349e963a099e6cbb4d0f86686"
+      },
+      {
+        "path": ".github/skills/agent-optimization/assets/example/README.md",
+        "bytes": 956,
+        "sha256": "c0c54b9ba70d41e0c2594b3aa1c1496b7b236a01947c98a718d97cd07da7d6e6"
+      },
+      {
+        "path": ".github/skills/agent-optimization/assets/example/campaign-summary.json",
+        "bytes": 820,
+        "sha256": "4cea2f35758bd22247478a5e9e5e6d1104b4043ea6063b2a39202b8d5b8574de"
+      },
+      {
+        "path": ".github/skills/agent-optimization/assets/example/detectors/1.json",
+        "bytes": 1146,
+        "sha256": "2ed19f19113f90e23c0a3356a9bd424b56bff7e3fe2caa6c742a3b9e1a75b1c8"
+      },
+      {
+        "path": ".github/skills/agent-optimization/assets/example/tools/tool_event_counts.json",
+        "bytes": 572,
+        "sha256": "5c2d81a3385f106bc2bc1cdfbb0a956faf1fbdb0882fa1fc527644bf79e8edc9"
+      },
+      {
+        "path": ".github/skills/agent-optimization/assets/example/tools/tool_event_counts.py",
+        "bytes": 465,
+        "sha256": "5bc6d78ba8990f988ff52cb95fe0dc8028be15b88df906b3bc47cacaecbe0f55"
+      },
+      {
+        "path": ".github/skills/agent-optimization/assets/example/trajectory.csv",
+        "bytes": 160,
+        "sha256": "39cb067d49d1f8803eb80a3083c019dd8c128d33352ff2ff44161a1eb20fc9b1"
+      },
+      {
+        "path": ".github/skills/agent-optimization/assets/example/versions/0.json",
+        "bytes": 421,
+        "sha256": "5b0e37dfc382d84657a08401d2b4206133ddae0f509a868b84d30d4f4b0690ce"
+      },
+      {
+        "path": ".github/skills/agent-optimization/assets/example/versions/1.json",
+        "bytes": 1270,
+        "sha256": "6769b7d8c1b6539798af2c5f58fb6834f1cad61df55c4401d685a82295e32b05"
+      },
+      {
+        "path": ".github/skills/agent-optimization/assets/example/versions/2.json",
+        "bytes": 1321,
+        "sha256": "34fa5f848374e0454947942943bca72d297cb39119838be3f53f9459b1274ee6"
+      },
+      {
+        "path": ".github/skills/agent-optimization/assets/frontend-check.mjs",
+        "bytes": 807,
+        "sha256": "b0f79afa362977ceaed7cf55da5fcec1a3295d4a82cb2cdaefeaf8664e52e0a5"
+      },
+      {
+        "path": ".github/skills/agent-optimization/assets/frontend-check.package.json",
+        "bytes": 485,
+        "sha256": "42df7e00dfe24ec831b38e62d4ba9ea0cde99107570ff2643b5a25727fb034c1"
+      },
+      {
+        "path": ".github/skills/agent-optimization/assets/frontend-check.tsconfig.json",
+        "bytes": 433,
+        "sha256": "5362803554190050e9fe14e4092d280ec2e9dfba8fb659b5b6bab120f127b380"
+      },
+      {
+        "path": ".github/skills/agent-optimization/assets/implementation.zip",
+        "bytes": 134342,
+        "sha256": "ea5e66cc108ec113da34ce76a70d8a3ad995b9281a3155f0302830ddbe7fe784"
+      },
+      {
+        "path": ".github/skills/agent-optimization/assets/sources.json",
+        "bytes": 1497,
+        "sha256": "ceaca8b2a9e9105388ed813efbf7ad4421394545831a3503a7571ddc932c02fe"
+      },
+      {
+        "path": ".github/skills/agent-optimization/manifest.json",
+        "bytes": 17022,
+        "sha256": "58b0620b4abc81d0ae45f3e696b2fc89bddce9bfa21bfa095221a474ecffa656"
+      },
+      {
+        "path": ".github/skills/agent-optimization/package.json",
+        "bytes": 336,
+        "sha256": "05de67940d0cfc64b2f02dc6042bb23763e1bc5e3907d8e1444b7158c2cd7be7"
+      },
+      {
+        "path": ".github/skills/agent-optimization/pyproject.toml",
+        "bytes": 473,
+        "sha256": "933ff84d33a7bd0cb69b7fb04032214aa983dd654997114e7f385303fc5bd934"
+      },
+      {
+        "path": ".github/skills/agent-optimization/python/agent_optimization/LESSONS.md",
+        "bytes": 5458,
+        "sha256": "eb9f39d6a22ef3b3d9e4d155e90284ac1b477dad4be78950c3c61c883d19f1bd"
+      },
+      {
+        "path": ".github/skills/agent-optimization/python/agent_optimization/PROCESS.md",
+        "bytes": 24906,
+        "sha256": "a940811cd55feaf53c372a5f385526a11c12dff612368b7500fa808739a28b85"
+      },
+      {
+        "path": ".github/skills/agent-optimization/python/agent_optimization/README.md",
+        "bytes": 16006,
+        "sha256": "7320538a5c6e7f08c6d0f54d78860fffbe06890e1ac07762e111f93e3ad41db4"
+      },
+      {
+        "path": ".github/skills/agent-optimization/python/agent_optimization/__init__.py",
+        "bytes": 1283,
+        "sha256": "5427239aeed4d77105aee26058afc62226bf4fa39dc77e38c0f42b0b7ad709b1"
+      },
+      {
+        "path": ".github/skills/agent-optimization/python/agent_optimization/_local_query/README.md",
+        "bytes": 3750,
+        "sha256": "db59186370584bbc50c4afd8519ba7caf5af8d79a8ca91e85e39737ae7a0af95"
+      },
+      {
+        "path": ".github/skills/agent-optimization/python/agent_optimization/_local_query/__init__.py",
+        "bytes": 390,
+        "sha256": "8ac3f64f532c407dd13d35a5279295953d3f000718900842aeb07079ed32feec"
+      },
+      {
+        "path": ".github/skills/agent-optimization/python/agent_optimization/_local_query/reader.py",
+        "bytes": 8290,
+        "sha256": "3231c2c959ea19943ca15b813b9796dabbc46cf2c6bd3585def17397ed603776"
+      },
+      {
+        "path": ".github/skills/agent-optimization/python/agent_optimization/cli.py",
+        "bytes": 12820,
+        "sha256": "e45b50d6bcdbaf2493ec36eb4d049ae26a686cd6896ce0c49a99fbd2a705769a"
+      },
+      {
+        "path": ".github/skills/agent-optimization/python/agent_optimization/evaluation.py",
+        "bytes": 10289,
+        "sha256": "73c38cbafb3a14e499ca9d2e7eea7f4ae2d246091f1f281fe2a437627ca2d1bd"
+      },
+      {
+        "path": ".github/skills/agent-optimization/python/agent_optimization/frontend/DetectorView.tsx",
+        "bytes": 4568,
+        "sha256": "fdf4c8eba4c040ccc78b7b1033cc564d62707f878cc61dfdc5770f8f37e529b8"
+      },
+      {
+        "path": ".github/skills/agent-optimization/python/agent_optimization/frontend/OptimizationWorkspace.tsx",
+        "bytes": 17553,
+        "sha256": "febd809cf50cea929ba8a047814693d37f4bc8825c60b54a5db06aab2adfbefa"
+      },
+      {
+        "path": ".github/skills/agent-optimization/python/agent_optimization/frontend/PerformanceView.tsx",
+        "bytes": 6337,
+        "sha256": "1ee6de47a07d5751ceb80d8059c16972ac07eda14aa218bbc626c4a0c9512887"
+      },
+      {
+        "path": ".github/skills/agent-optimization/python/agent_optimization/frontend/RunReplay.tsx",
+        "bytes": 7203,
+        "sha256": "6ad25cdf06ec3c96bba5fea0a851a74987b972a9027e9e02e0eb4fc287b56121"
+      },
+      {
+        "path": ".github/skills/agent-optimization/python/agent_optimization/frontend/TrajectoryChart.tsx",
+        "bytes": 3426,
+        "sha256": "216ddc5f213da3952648c426e10255697ddf5320c3188fc860840688132678c3"
+      },
+      {
+        "path": ".github/skills/agent-optimization/python/agent_optimization/frontend/api.ts",
+        "bytes": 3300,
+        "sha256": "606ba3855e049a0ae618714fffd7adfcb7d81d0f0903f831df32f300d23ec41e"
+      },
+      {
+        "path": ".github/skills/agent-optimization/python/agent_optimization/frontend/columns.ts",
+        "bytes": 3005,
+        "sha256": "1004e07abc49a9de33b18f32f8fa771f5024d175ebe77dfa38757d0fe20ebb42"
+      },
+      {
+        "path": ".github/skills/agent-optimization/python/agent_optimization/frontend/index.ts",
+        "bytes": 473,
+        "sha256": "6c9a606e5f43ac8d0118419ed63198579171afa47a6887c912bebbee1063d546"
+      },
+      {
+        "path": ".github/skills/agent-optimization/python/agent_optimization/frontend/optimization.css",
+        "bytes": 26434,
+        "sha256": "ee5955c5acd75a1cdf9f71d609cb1db4c20b0a6a40196c04d1ae522407767fbe"
+      },
+      {
+        "path": ".github/skills/agent-optimization/python/agent_optimization/frontend/panes.tsx",
+        "bytes": 8761,
+        "sha256": "ad53fdcdf0f8e641f7c122c38581d34929a79ad306164d21d8ea73e92964fd65"
+      },
+      {
+        "path": ".github/skills/agent-optimization/python/agent_optimization/frontend/trajectory.ts",
+        "bytes": 8770,
+        "sha256": "43bc2d75f3ffb614805247e456b5f707a2030167f204cbc97c6e9a0da00d99f3"
+      },
+      {
+        "path": ".github/skills/agent-optimization/python/agent_optimization/frontend/types.ts",
+        "bytes": 9522,
+        "sha256": "13bebafa5f9e965ae1e3b946d5321df10af7dcc0a10578924b2b9c969c4d1477"
+      },
+      {
+        "path": ".github/skills/agent-optimization/python/agent_optimization/frontend/views.tsx",
+        "bytes": 17542,
+        "sha256": "2d1a7f40b322aeb1f85b226e360fe69d21b998143535abaad020e06aa9b2a813"
+      },
+      {
+        "path": ".github/skills/agent-optimization/python/agent_optimization/joint.py",
+        "bytes": 8231,
+        "sha256": "b934d21921b05d6e38d88e0518289d8bf4d6295b67fd89b0cbb3b14d671c9f90"
+      },
+      {
+        "path": ".github/skills/agent-optimization/python/agent_optimization/process.py",
+        "bytes": 20097,
+        "sha256": "5f57d657b55e584df952f69855839358decd264f18502ead10664eb98b8cfa08"
+      },
+      {
+        "path": ".github/skills/agent-optimization/python/agent_optimization/profile.py",
+        "bytes": 1581,
+        "sha256": "78fc8860b86030422090b2df92d1dd01a025a79c207ce97ec46a118656d4adf3"
+      },
+      {
+        "path": ".github/skills/agent-optimization/python/agent_optimization/python_tools.py",
+        "bytes": 3550,
+        "sha256": "c8d95465f1fb7b53b7d533da43ffc61b618c31e4a5402da7eaabf779ace865a6"
+      },
+      {
+        "path": ".github/skills/agent-optimization/python/agent_optimization/python_worker.py",
+        "bytes": 3823,
+        "sha256": "59bfd851e9fbfae26a4ca4fe12341a088fb8f9349b74844cde04862cd47cb55a"
+      },
+      {
+        "path": ".github/skills/agent-optimization/python/agent_optimization/runs.py",
+        "bytes": 3081,
+        "sha256": "cf30ff1611330b0e2639eae7d35b99b747e72ca6f2ef6b59812be3f8a7ae5996"
+      },
+      {
+        "path": ".github/skills/agent-optimization/python/agent_optimization/scripts/verify_campaign.py",
+        "bytes": 35305,
+        "sha256": "0d0f62b474963e4af1990161aeb6455e9a21d510e8fa44b136e1cd8e8b190b25"
+      },
+      {
+        "path": ".github/skills/agent-optimization/python/agent_optimization/service.py",
+        "bytes": 72051,
+        "sha256": "7ae1775e0ee12296bc14485a1fcfe48c5d6112e3f8dc414c4c0312303b850725"
+      },
+      {
+        "path": ".github/skills/agent-optimization/python/agent_optimization/skills/creative-agent-optimization/LICENSE",
+        "bytes": 1141,
+        "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+      },
+      {
+        "path": ".github/skills/agent-optimization/python/agent_optimization/skills/creative-agent-optimization/SKILL.md",
+        "bytes": 9440,
+        "sha256": "956666d552e5c3f59117272ec3dfaf44744c5921d0322127fdaf223e06ebc80d"
+      },
+      {
+        "path": ".github/skills/agent-optimization/python/agent_optimization/tests/test_agent_optimization.py",
+        "bytes": 5453,
+        "sha256": "fe4db14663a06d22f1216d60b186a7b15de328f46e13938fc1afe7d3f3958886"
+      },
+      {
+        "path": ".github/skills/agent-optimization/python/agent_optimization/tests/test_joint.py",
+        "bytes": 2650,
+        "sha256": "5cb1dd40a6b50f0cf43ba985ca0bad0c76dd5f35f3737daeb16d8224fa5ac9c6"
+      },
+      {
+        "path": ".github/skills/agent-optimization/python/agent_optimization/tests/test_local_query.py",
+        "bytes": 8320,
+        "sha256": "7fb4f993f4192855ea50304230a11080b5f6a9772db1be138b98b51c57f98e34"
+      },
+      {
+        "path": ".github/skills/agent-optimization/python/agent_optimization/tests/test_process.py",
+        "bytes": 6593,
+        "sha256": "76ae4214d11b5beb590cd6a6c601c0ed8a1bad87494cfac4ae9c5417455a437a"
+      },
+      {
+        "path": ".github/skills/agent-optimization/python/agent_optimization/tests/test_verify_campaign.py",
+        "bytes": 18911,
+        "sha256": "d82945a9ffd626d46c6e4f36b9c8f082fe48611d65f20c82835d168e353d8c24"
+      },
+      {
+        "path": ".github/skills/agent-optimization/python/agent_optimization/workflow.py",
+        "bytes": 6880,
+        "sha256": "58a5f084728d5e1e82f298977f8ef31700b328e4f9eacde72347b2a2e9c86475"
+      },
+      {
+        "path": ".github/skills/agent-optimization/references/CONTENTS.md",
+        "bytes": 3936,
+        "sha256": "227b339fe68ce9e8a920ba68b36e3d19fc95a7208bc7464a74c85a2f02240ee0"
+      },
+      {
+        "path": ".github/skills/agent-optimization/references/INTEGRATION.md",
+        "bytes": 7176,
+        "sha256": "62641616d04fbdb03611a2b7d54da1e1b479d62d538c979f0c7b7b7fe34d099e"
+      },
+      {
+        "path": ".github/skills/agent-optimization/references/VERIFICATION.md",
+        "bytes": 4743,
+        "sha256": "880e37045af49c028ad3098c2b1e3e48ae5f29fa31d8023959ec717401df4d0b"
+      },
+      {
+        "path": ".github/skills/agent-optimization/scripts/build_snapshot.py",
+        "bytes": 8064,
+        "sha256": "2e86b94b8de4fd6c542148a2f077d451acd5b2c292eb25ea7112835ef995958c"
+      },
+      {
+        "path": ".github/skills/agent-optimization/scripts/skillpack.py",
+        "bytes": 5876,
+        "sha256": "d0844618fdc2c5b6c2fe2cfaba6af24b7c8165dda83614127cef8dadab70b096"
+      },
+      {
+        "path": ".github/skills/agent-optimization/tests/test_skillpack.py",
+        "bytes": 7419,
+        "sha256": "0578345acfed8018847c4e319f3e87c1dc9c8785b92e65fce5b76f31f6d3bc6b"
+      }
+    ]
+  },
+  "moves": [
+    {
+      "from": ".github/skills/agent-optimization/python/agent_optimization/LESSONS.md",
+      "to": "libraries/agent-optimization/src/agent_optimization/LESSONS.md"
+    },
+    {
+      "from": ".github/skills/agent-optimization/python/agent_optimization/PROCESS.md",
+      "to": "libraries/agent-optimization/src/agent_optimization/PROCESS.md"
+    },
+    {
+      "from": ".github/skills/agent-optimization/python/agent_optimization/README.md",
+      "to": "libraries/agent-optimization/src/agent_optimization/README.md"
+    },
+    {
+      "from": ".github/skills/agent-optimization/python/agent_optimization/__init__.py",
+      "to": "libraries/agent-optimization/src/agent_optimization/__init__.py"
+    },
+    {
+      "from": ".github/skills/agent-optimization/python/agent_optimization/cli.py",
+      "to": "libraries/agent-optimization/src/agent_optimization/cli.py"
+    },
+    {
+      "from": ".github/skills/agent-optimization/python/agent_optimization/evaluation.py",
+      "to": "libraries/agent-optimization/src/agent_optimization/evaluation.py"
+    },
+    {
+      "from": ".github/skills/agent-optimization/python/agent_optimization/joint.py",
+      "to": "libraries/agent-optimization/src/agent_optimization/joint.py"
+    },
+    {
+      "from": ".github/skills/agent-optimization/python/agent_optimization/process.py",
+      "to": "libraries/agent-optimization/src/agent_optimization/process.py"
+    },
+    {
+      "from": ".github/skills/agent-optimization/python/agent_optimization/profile.py",
+      "to": "libraries/agent-optimization/src/agent_optimization/profile.py"
+    },
+    {
+      "from": ".github/skills/agent-optimization/python/agent_optimization/python_tools.py",
+      "to": "libraries/agent-optimization/src/agent_optimization/python_tools.py"
+    },
+    {
+      "from": ".github/skills/agent-optimization/python/agent_optimization/python_worker.py",
+      "to": "libraries/agent-optimization/src/agent_optimization/python_worker.py"
+    },
+    {
+      "from": ".github/skills/agent-optimization/python/agent_optimization/runs.py",
+      "to": "libraries/agent-optimization/src/agent_optimization/runs.py"
+    },
+    {
+      "from": ".github/skills/agent-optimization/python/agent_optimization/scripts/verify_campaign.py",
+      "to": "libraries/agent-optimization/src/agent_optimization/scripts/verify_campaign.py"
+    },
+    {
+      "from": ".github/skills/agent-optimization/python/agent_optimization/service.py",
+      "to": "libraries/agent-optimization/src/agent_optimization/service.py"
+    },
+    {
+      "from": ".github/skills/agent-optimization/python/agent_optimization/skills/creative-agent-optimization/LICENSE",
+      "to": "libraries/agent-optimization/src/agent_optimization/skills/creative-agent-optimization/LICENSE"
+    },
+    {
+      "from": ".github/skills/agent-optimization/python/agent_optimization/skills/creative-agent-optimization/SKILL.md",
+      "to": "libraries/agent-optimization/src/agent_optimization/skills/creative-agent-optimization/SKILL.md"
+    },
+    {
+      "from": ".github/skills/agent-optimization/python/agent_optimization/tests/test_agent_optimization.py",
+      "to": "libraries/agent-optimization/tests/test_agent_optimization.py"
+    },
+    {
+      "from": ".github/skills/agent-optimization/python/agent_optimization/tests/test_joint.py",
+      "to": "libraries/agent-optimization/tests/test_joint.py"
+    },
+    {
+      "from": ".github/skills/agent-optimization/python/agent_optimization/tests/test_process.py",
+      "to": "libraries/agent-optimization/tests/test_process.py"
+    },
+    {
+      "from": ".github/skills/agent-optimization/python/agent_optimization/tests/test_verify_campaign.py",
+      "to": "libraries/agent-optimization/tests/test_verify_campaign.py"
+    },
+    {
+      "from": ".github/skills/agent-optimization/python/agent_optimization/workflow.py",
+      "to": "libraries/agent-optimization/src/agent_optimization/workflow.py"
+    },
+    {
+      "from": "template_apps/custom_optimizer/app/components/agent_optimization/scripts/draft_payload.py",
+      "to": "libraries/agent-optimization/src/agent_optimization/scripts/draft_payload.py"
+    },
+    {
+      "from": "template_apps/custom_optimizer/app/components/agent_optimization/scripts/install_helper.py",
+      "to": "libraries/agent-optimization/src/agent_optimization/scripts/install_helper.py"
+    },
+    {
+      "from": "template_apps/custom_optimizer/app/components/agent_optimization/scripts/continue_campaign.mjs",
+      "to": "libraries/agent-optimization/src/agent_optimization/scripts/continue_campaign.mjs"
+    },
+    {
+      "from": "template_apps/custom_optimizer/app/components/agent_optimization/tests/test_draft_payload.py",
+      "to": "libraries/agent-optimization/tests/test_draft_payload.py"
+    },
+    {
+      "from": "template_apps/custom_optimizer/app/components/agent_optimization/tests/test_install_helper.py",
+      "to": "libraries/agent-optimization/tests/test_install_helper.py"
+    },
+    {
+      "from": "template_apps/custom_optimizer/app/components/agent_optimization/tests/test_continue_campaign.mjs",
+      "to": "libraries/agent-optimization/tests/test_continue_campaign.mjs"
+    },
+    {
+      "from": ".github/skills/agent-optimization/python/agent_optimization/frontend/DetectorView.tsx",
+      "to": "libraries/agent-optimization/frontend/DetectorView.tsx"
+    },
+    {
+      "from": ".github/skills/agent-optimization/python/agent_optimization/frontend/OptimizationWorkspace.tsx",
+      "to": "libraries/agent-optimization/frontend/OptimizationWorkspace.tsx"
+    },
+    {
+      "from": ".github/skills/agent-optimization/python/agent_optimization/frontend/PerformanceView.tsx",
+      "to": "libraries/agent-optimization/frontend/PerformanceView.tsx"
+    },
+    {
+      "from": ".github/skills/agent-optimization/python/agent_optimization/frontend/RunReplay.tsx",
+      "to": "libraries/agent-optimization/frontend/RunReplay.tsx"
+    },
+    {
+      "from": ".github/skills/agent-optimization/python/agent_optimization/frontend/TrajectoryChart.tsx",
+      "to": "libraries/agent-optimization/frontend/TrajectoryChart.tsx"
+    },
+    {
+      "from": ".github/skills/agent-optimization/python/agent_optimization/frontend/api.ts",
+      "to": "libraries/agent-optimization/frontend/api.ts"
+    },
+    {
+      "from": ".github/skills/agent-optimization/python/agent_optimization/frontend/columns.ts",
+      "to": "libraries/agent-optimization/frontend/columns.ts"
+    },
+    {
+      "from": ".github/skills/agent-optimization/python/agent_optimization/frontend/index.ts",
+      "to": "libraries/agent-optimization/frontend/index.ts"
+    },
+    {
+      "from": ".github/skills/agent-optimization/python/agent_optimization/frontend/optimization.css",
+      "to": "libraries/agent-optimization/frontend/optimization.css"
+    },
+    {
+      "from": ".github/skills/agent-optimization/python/agent_optimization/frontend/panes.tsx",
+      "to": "libraries/agent-optimization/frontend/panes.tsx"
+    },
+    {
+      "from": ".github/skills/agent-optimization/python/agent_optimization/frontend/trajectory.ts",
+      "to": "libraries/agent-optimization/frontend/trajectory.ts"
+    },
+    {
+      "from": ".github/skills/agent-optimization/python/agent_optimization/frontend/types.ts",
+      "to": "libraries/agent-optimization/frontend/types.ts"
+    },
+    {
+      "from": ".github/skills/agent-optimization/python/agent_optimization/frontend/views.tsx",
+      "to": "libraries/agent-optimization/frontend/views.tsx"
+    },
+    {
+      "from": "libraries/agent-optimization/README.md",
+      "to": "libraries/agent-optimization/RESEARCH.md"
+    },
+    {
+      "from": ".github/skills/agent-optimization/LICENSE",
+      "to": "libraries/agent-optimization/LICENSE"
+    },
+    {
+      "from": ".github/skills/agent-optimization/manifest.json",
+      "to": "libraries/agent-optimization/provenance/skillpack-manifest.json"
+    },
+    {
+      "from": ".github/skills/agent-optimization/assets/sources.json",
+      "to": "libraries/agent-optimization/provenance/skillpack-sources.json"
+    },
+    {
+      "from": ".github/skills/agent-optimization/assets/example/README.md",
+      "to": "libraries/agent-optimization/examples/ledger/README.md"
+    },
+    {
+      "from": ".github/skills/agent-optimization/assets/example/campaign-summary.json",
+      "to": "libraries/agent-optimization/examples/ledger/campaign-summary.json"
+    },
+    {
+      "from": ".github/skills/agent-optimization/assets/example/detectors/1.json",
+      "to": "libraries/agent-optimization/examples/ledger/detectors/1.json"
+    },
+    {
+      "from": ".github/skills/agent-optimization/assets/example/tools/tool_event_counts.json",
+      "to": "libraries/agent-optimization/examples/ledger/tools/tool_event_counts.json"
+    },
+    {
+      "from": ".github/skills/agent-optimization/assets/example/tools/tool_event_counts.py",
+      "to": "libraries/agent-optimization/examples/ledger/tools/tool_event_counts.py"
+    },
+    {
+      "from": ".github/skills/agent-optimization/assets/example/trajectory.csv",
+      "to": "libraries/agent-optimization/examples/ledger/trajectory.csv"
+    },
+    {
+      "from": ".github/skills/agent-optimization/assets/example/versions/0.json",
+      "to": "libraries/agent-optimization/examples/ledger/versions/0.json"
+    },
+    {
+      "from": ".github/skills/agent-optimization/assets/example/versions/1.json",
+      "to": "libraries/agent-optimization/examples/ledger/versions/1.json"
+    },
+    {
+      "from": ".github/skills/agent-optimization/assets/example/versions/2.json",
+      "to": "libraries/agent-optimization/examples/ledger/versions/2.json"
+    },
+    {
+      "from": ".github/skills/agent-optimization/assets/frontend-check.mjs",
+      "to": "libraries/agent-optimization/vite.config.mjs"
+    },
+    {
+      "from": "template_apps/custom_optimizer/app/components/copilot_terminal/PROVENANCE.md",
+      "to": "libraries/agent-optimization/provenance/copilot-component.md"
+    }
+  ],
+  "retired": [
+    {
+      "path": ".github/skills/agent-optimization/.gitignore",
+      "bytes": 73,
+      "sha256": "ab25eddefe9ef5c5e8772c4836be13ae540f09e9ba7b98a0f3061f2e7d498a3c",
+      "reason": "superseded skill source/package/manual",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/.github/skills/agent-optimization/.gitignore"
+    },
+    {
+      "path": ".github/skills/agent-optimization/README.md",
+      "bytes": 4023,
+      "sha256": "8be8cd87452cf292a4249eea9d6c43ca2a8219ef571d562e141a9ccd52206063",
+      "reason": "superseded skill source/package/manual",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/.github/skills/agent-optimization/README.md"
+    },
+    {
+      "path": ".github/skills/agent-optimization/assets/frontend-check.package.json",
+      "bytes": 485,
+      "sha256": "42df7e00dfe24ec831b38e62d4ba9ea0cde99107570ff2643b5a25727fb034c1",
+      "reason": "superseded skill source/package/manual",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/.github/skills/agent-optimization/assets/frontend-check.package.json"
+    },
+    {
+      "path": ".github/skills/agent-optimization/assets/frontend-check.tsconfig.json",
+      "bytes": 433,
+      "sha256": "5362803554190050e9fe14e4092d280ec2e9dfba8fb659b5b6bab120f127b380",
+      "reason": "superseded skill source/package/manual",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/.github/skills/agent-optimization/assets/frontend-check.tsconfig.json"
+    },
+    {
+      "path": ".github/skills/agent-optimization/assets/implementation.zip",
+      "bytes": 134342,
+      "sha256": "ea5e66cc108ec113da34ce76a70d8a3ad995b9281a3155f0302830ddbe7fe784",
+      "reason": "superseded skill source/package/manual",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/.github/skills/agent-optimization/assets/implementation.zip"
+    },
+    {
+      "path": ".github/skills/agent-optimization/package.json",
+      "bytes": 336,
+      "sha256": "05de67940d0cfc64b2f02dc6042bb23763e1bc5e3907d8e1444b7158c2cd7be7",
+      "reason": "superseded skill source/package/manual",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/.github/skills/agent-optimization/package.json"
+    },
+    {
+      "path": ".github/skills/agent-optimization/pyproject.toml",
+      "bytes": 473,
+      "sha256": "933ff84d33a7bd0cb69b7fb04032214aa983dd654997114e7f385303fc5bd934",
+      "reason": "superseded skill source/package/manual",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/.github/skills/agent-optimization/pyproject.toml"
+    },
+    {
+      "path": ".github/skills/agent-optimization/python/agent_optimization/_local_query/README.md",
+      "bytes": 3750,
+      "sha256": "db59186370584bbc50c4afd8519ba7caf5af8d79a8ca91e85e39737ae7a0af95",
+      "reason": "superseded skill source/package/manual",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/.github/skills/agent-optimization/python/agent_optimization/_local_query/README.md"
+    },
+    {
+      "path": ".github/skills/agent-optimization/python/agent_optimization/_local_query/__init__.py",
+      "bytes": 390,
+      "sha256": "8ac3f64f532c407dd13d35a5279295953d3f000718900842aeb07079ed32feec",
+      "reason": "superseded skill source/package/manual",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/.github/skills/agent-optimization/python/agent_optimization/_local_query/__init__.py"
+    },
+    {
+      "path": ".github/skills/agent-optimization/python/agent_optimization/_local_query/reader.py",
+      "bytes": 8290,
+      "sha256": "3231c2c959ea19943ca15b813b9796dabbc46cf2c6bd3585def17397ed603776",
+      "reason": "superseded skill source/package/manual",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/.github/skills/agent-optimization/python/agent_optimization/_local_query/reader.py"
+    },
+    {
+      "path": ".github/skills/agent-optimization/python/agent_optimization/tests/test_local_query.py",
+      "bytes": 8320,
+      "sha256": "7fb4f993f4192855ea50304230a11080b5f6a9772db1be138b98b51c57f98e34",
+      "reason": "superseded skill source/package/manual",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/.github/skills/agent-optimization/python/agent_optimization/tests/test_local_query.py"
+    },
+    {
+      "path": ".github/skills/agent-optimization/references/CONTENTS.md",
+      "bytes": 3936,
+      "sha256": "227b339fe68ce9e8a920ba68b36e3d19fc95a7208bc7464a74c85a2f02240ee0",
+      "reason": "superseded skill source/package/manual",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/.github/skills/agent-optimization/references/CONTENTS.md"
+    },
+    {
+      "path": ".github/skills/agent-optimization/references/INTEGRATION.md",
+      "bytes": 7176,
+      "sha256": "62641616d04fbdb03611a2b7d54da1e1b479d62d538c979f0c7b7b7fe34d099e",
+      "reason": "superseded skill source/package/manual",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/.github/skills/agent-optimization/references/INTEGRATION.md"
+    },
+    {
+      "path": ".github/skills/agent-optimization/references/VERIFICATION.md",
+      "bytes": 4743,
+      "sha256": "880e37045af49c028ad3098c2b1e3e48ae5f29fa31d8023959ec717401df4d0b",
+      "reason": "superseded skill source/package/manual",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/.github/skills/agent-optimization/references/VERIFICATION.md"
+    },
+    {
+      "path": ".github/skills/agent-optimization/scripts/build_snapshot.py",
+      "bytes": 8064,
+      "sha256": "2e86b94b8de4fd6c542148a2f077d451acd5b2c292eb25ea7112835ef995958c",
+      "reason": "superseded skill source/package/manual",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/.github/skills/agent-optimization/scripts/build_snapshot.py"
+    },
+    {
+      "path": ".github/skills/agent-optimization/scripts/skillpack.py",
+      "bytes": 5876,
+      "sha256": "d0844618fdc2c5b6c2fe2cfaba6af24b7c8165dda83614127cef8dadab70b096",
+      "reason": "superseded skill source/package/manual",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/.github/skills/agent-optimization/scripts/skillpack.py"
+    },
+    {
+      "path": ".github/skills/agent-optimization/tests/test_skillpack.py",
+      "bytes": 7419,
+      "sha256": "0578345acfed8018847c4e319f3e87c1dc9c8785b92e65fce5b76f31f6d3bc6b",
+      "reason": "superseded skill source/package/manual",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/.github/skills/agent-optimization/tests/test_skillpack.py"
+    },
+    {
+      "path": "template_apps/custom_optimizer/app/components/agent_optimization/LESSONS.md",
+      "bytes": 16984,
+      "sha256": "6fbc9df20b9b8a23f9a446379b985f192c9b8524ceae647d688f3b907871068e",
+      "reason": "superseded agent_optimization application component",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/template_apps/custom_optimizer/app/components/agent_optimization/LESSONS.md"
+    },
+    {
+      "path": "template_apps/custom_optimizer/app/components/agent_optimization/PROCESS.md",
+      "bytes": 25320,
+      "sha256": "bcf721b3e7223e100131deeedd1d5567c3c9a01ba984ac2d218a9f56e87e6ecf",
+      "reason": "superseded agent_optimization application component",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/template_apps/custom_optimizer/app/components/agent_optimization/PROCESS.md"
+    },
+    {
+      "path": "template_apps/custom_optimizer/app/components/agent_optimization/README.md",
+      "bytes": 17678,
+      "sha256": "50249f8c5689fd84f2eb2cb5e71bca9d3a861f079617f5e925de43a056380a26",
+      "reason": "superseded agent_optimization application component",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/template_apps/custom_optimizer/app/components/agent_optimization/README.md"
+    },
+    {
+      "path": "template_apps/custom_optimizer/app/components/agent_optimization/__init__.py",
+      "bytes": 1283,
+      "sha256": "5427239aeed4d77105aee26058afc62226bf4fa39dc77e38c0f42b0b7ad709b1",
+      "reason": "superseded agent_optimization application component",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/template_apps/custom_optimizer/app/components/agent_optimization/__init__.py"
+    },
+    {
+      "path": "template_apps/custom_optimizer/app/components/agent_optimization/cli.py",
+      "bytes": 12267,
+      "sha256": "abd7d921ea53f0bf32455f2ec1fa308b2c5cc9c342120984e0b184f2b1500ab0",
+      "reason": "superseded agent_optimization application component",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/template_apps/custom_optimizer/app/components/agent_optimization/cli.py"
+    },
+    {
+      "path": "template_apps/custom_optimizer/app/components/agent_optimization/evaluation.py",
+      "bytes": 10282,
+      "sha256": "f7ce27e2a44b307724faaed924495a44bb21c01cc3a0fbda35882381613e997f",
+      "reason": "superseded agent_optimization application component",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/template_apps/custom_optimizer/app/components/agent_optimization/evaluation.py"
+    },
+    {
+      "path": "template_apps/custom_optimizer/app/components/agent_optimization/frontend/DetectorView.tsx",
+      "bytes": 4571,
+      "sha256": "f9669714cba8f41e88e0a03a017afe4f54f9ff0b0dedde86eb3346a802ba3a55",
+      "reason": "superseded agent_optimization application component",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/template_apps/custom_optimizer/app/components/agent_optimization/frontend/DetectorView.tsx"
+    },
+    {
+      "path": "template_apps/custom_optimizer/app/components/agent_optimization/frontend/OptimizationWorkspace.tsx",
+      "bytes": 17564,
+      "sha256": "4021a2d1eb7e27645d93ed9dffaba7f4f979f0f5f227ff4f1925eab188a86813",
+      "reason": "superseded agent_optimization application component",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/template_apps/custom_optimizer/app/components/agent_optimization/frontend/OptimizationWorkspace.tsx"
+    },
+    {
+      "path": "template_apps/custom_optimizer/app/components/agent_optimization/frontend/PerformanceView.tsx",
+      "bytes": 6337,
+      "sha256": "1ee6de47a07d5751ceb80d8059c16972ac07eda14aa218bbc626c4a0c9512887",
+      "reason": "superseded agent_optimization application component",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/template_apps/custom_optimizer/app/components/agent_optimization/frontend/PerformanceView.tsx"
+    },
+    {
+      "path": "template_apps/custom_optimizer/app/components/agent_optimization/frontend/RunReplay.tsx",
+      "bytes": 7206,
+      "sha256": "c056c71aeeb3cde2c8d788cf05e8e82f932c660efc471ff9f513336fb12029e8",
+      "reason": "superseded agent_optimization application component",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/template_apps/custom_optimizer/app/components/agent_optimization/frontend/RunReplay.tsx"
+    },
+    {
+      "path": "template_apps/custom_optimizer/app/components/agent_optimization/frontend/TrajectoryChart.tsx",
+      "bytes": 3426,
+      "sha256": "216ddc5f213da3952648c426e10255697ddf5320c3188fc860840688132678c3",
+      "reason": "superseded agent_optimization application component",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/template_apps/custom_optimizer/app/components/agent_optimization/frontend/TrajectoryChart.tsx"
+    },
+    {
+      "path": "template_apps/custom_optimizer/app/components/agent_optimization/frontend/api.ts",
+      "bytes": 3300,
+      "sha256": "606ba3855e049a0ae618714fffd7adfcb7d81d0f0903f831df32f300d23ec41e",
+      "reason": "superseded agent_optimization application component",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/template_apps/custom_optimizer/app/components/agent_optimization/frontend/api.ts"
+    },
+    {
+      "path": "template_apps/custom_optimizer/app/components/agent_optimization/frontend/columns.ts",
+      "bytes": 3011,
+      "sha256": "75a667738c9465ce86ca7e8067d46eacb73a18d0e54ca0dcbb2a587b580e6eda",
+      "reason": "superseded agent_optimization application component",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/template_apps/custom_optimizer/app/components/agent_optimization/frontend/columns.ts"
+    },
+    {
+      "path": "template_apps/custom_optimizer/app/components/agent_optimization/frontend/index.ts",
+      "bytes": 473,
+      "sha256": "6c9a606e5f43ac8d0118419ed63198579171afa47a6887c912bebbee1063d546",
+      "reason": "superseded agent_optimization application component",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/template_apps/custom_optimizer/app/components/agent_optimization/frontend/index.ts"
+    },
+    {
+      "path": "template_apps/custom_optimizer/app/components/agent_optimization/frontend/optimization.css",
+      "bytes": 26416,
+      "sha256": "e533c1d2929698122634f3bed6adb1e8b0c2ba6725099f22076c23bfef9d016a",
+      "reason": "superseded agent_optimization application component",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/template_apps/custom_optimizer/app/components/agent_optimization/frontend/optimization.css"
+    },
+    {
+      "path": "template_apps/custom_optimizer/app/components/agent_optimization/frontend/panes.tsx",
+      "bytes": 8844,
+      "sha256": "9ac5089897c9537ec3a8bcc3bfb5f93eb2ead825d7cd2db583cdd1c23a79004a",
+      "reason": "superseded agent_optimization application component",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/template_apps/custom_optimizer/app/components/agent_optimization/frontend/panes.tsx"
+    },
+    {
+      "path": "template_apps/custom_optimizer/app/components/agent_optimization/frontend/trajectory.ts",
+      "bytes": 8770,
+      "sha256": "43bc2d75f3ffb614805247e456b5f707a2030167f204cbc97c6e9a0da00d99f3",
+      "reason": "superseded agent_optimization application component",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/template_apps/custom_optimizer/app/components/agent_optimization/frontend/trajectory.ts"
+    },
+    {
+      "path": "template_apps/custom_optimizer/app/components/agent_optimization/frontend/types.ts",
+      "bytes": 9470,
+      "sha256": "94f021cd984d4f7945ae33629df7a5f8d9d8192bd2e063d1e4039baa38939b2d",
+      "reason": "superseded agent_optimization application component",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/template_apps/custom_optimizer/app/components/agent_optimization/frontend/types.ts"
+    },
+    {
+      "path": "template_apps/custom_optimizer/app/components/agent_optimization/frontend/views.tsx",
+      "bytes": 17545,
+      "sha256": "c04ce1c31a8064ecad879d912f0f3393dcc19be5430b29591102202bb7f04050",
+      "reason": "superseded agent_optimization application component",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/template_apps/custom_optimizer/app/components/agent_optimization/frontend/views.tsx"
+    },
+    {
+      "path": "template_apps/custom_optimizer/app/components/agent_optimization/joint.py",
+      "bytes": 8231,
+      "sha256": "b934d21921b05d6e38d88e0518289d8bf4d6295b67fd89b0cbb3b14d671c9f90",
+      "reason": "superseded agent_optimization application component",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/template_apps/custom_optimizer/app/components/agent_optimization/joint.py"
+    },
+    {
+      "path": "template_apps/custom_optimizer/app/components/agent_optimization/process.py",
+      "bytes": 20097,
+      "sha256": "5f57d657b55e584df952f69855839358decd264f18502ead10664eb98b8cfa08",
+      "reason": "superseded agent_optimization application component",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/template_apps/custom_optimizer/app/components/agent_optimization/process.py"
+    },
+    {
+      "path": "template_apps/custom_optimizer/app/components/agent_optimization/profile.py",
+      "bytes": 1581,
+      "sha256": "78fc8860b86030422090b2df92d1dd01a025a79c207ce97ec46a118656d4adf3",
+      "reason": "superseded agent_optimization application component",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/template_apps/custom_optimizer/app/components/agent_optimization/profile.py"
+    },
+    {
+      "path": "template_apps/custom_optimizer/app/components/agent_optimization/python_tools.py",
+      "bytes": 3571,
+      "sha256": "3a757f7b04b95abb4259828e547954d418621b37da50a5893ec6844d280fcc4b",
+      "reason": "superseded agent_optimization application component",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/template_apps/custom_optimizer/app/components/agent_optimization/python_tools.py"
+    },
+    {
+      "path": "template_apps/custom_optimizer/app/components/agent_optimization/python_worker.py",
+      "bytes": 3833,
+      "sha256": "776cde0e6e41b4980b63010c0e41566fa1b4fee3fcc867292af04ec861fbe218",
+      "reason": "superseded agent_optimization application component",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/template_apps/custom_optimizer/app/components/agent_optimization/python_worker.py"
+    },
+    {
+      "path": "template_apps/custom_optimizer/app/components/agent_optimization/runs.py",
+      "bytes": 3081,
+      "sha256": "cf30ff1611330b0e2639eae7d35b99b747e72ca6f2ef6b59812be3f8a7ae5996",
+      "reason": "superseded agent_optimization application component",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/template_apps/custom_optimizer/app/components/agent_optimization/runs.py"
+    },
+    {
+      "path": "template_apps/custom_optimizer/app/components/agent_optimization/scripts/verify_campaign.py",
+      "bytes": 38520,
+      "sha256": "ecac443880bb7872c672abee566fb8b0d3fc9d8695f424c655a326f30d7a8d29",
+      "reason": "superseded agent_optimization application component",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/template_apps/custom_optimizer/app/components/agent_optimization/scripts/verify_campaign.py"
+    },
+    {
+      "path": "template_apps/custom_optimizer/app/components/agent_optimization/service.py",
+      "bytes": 72044,
+      "sha256": "40da9ea1296c29d3f1b76c99ecca0cb7318d52560a946f047bb6bcb2f6969608",
+      "reason": "superseded agent_optimization application component",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/template_apps/custom_optimizer/app/components/agent_optimization/service.py"
+    },
+    {
+      "path": "template_apps/custom_optimizer/app/components/agent_optimization/skills/creative-agent-optimization/SKILL.md",
+      "bytes": 9440,
+      "sha256": "956666d552e5c3f59117272ec3dfaf44744c5921d0322127fdaf223e06ebc80d",
+      "reason": "superseded agent_optimization application component",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/template_apps/custom_optimizer/app/components/agent_optimization/skills/creative-agent-optimization/SKILL.md"
+    },
+    {
+      "path": "template_apps/custom_optimizer/app/components/agent_optimization/tests/test_joint.py",
+      "bytes": 2665,
+      "sha256": "79c1de88bc4252ab133876fd8376ab89024e1b2563428131d98baa2ce58f15ec",
+      "reason": "superseded agent_optimization application component",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/template_apps/custom_optimizer/app/components/agent_optimization/tests/test_joint.py"
+    },
+    {
+      "path": "template_apps/custom_optimizer/app/components/agent_optimization/tests/test_process.py",
+      "bytes": 6608,
+      "sha256": "de6efc50182cf081fc8d7bfb8a2454e85825415ff908da5b1e542e7bc46b506c",
+      "reason": "superseded agent_optimization application component",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/template_apps/custom_optimizer/app/components/agent_optimization/tests/test_process.py"
+    },
+    {
+      "path": "template_apps/custom_optimizer/app/components/agent_optimization/tests/test_verify_campaign.py",
+      "bytes": 25838,
+      "sha256": "6dd6e7c2bf2fdf2af437d84d47fc7c7028cdef64100d36cfa7c1d40c66c2b270",
+      "reason": "superseded agent_optimization application component",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/template_apps/custom_optimizer/app/components/agent_optimization/tests/test_verify_campaign.py"
+    },
+    {
+      "path": "template_apps/custom_optimizer/app/components/agent_optimization/workflow.py",
+      "bytes": 6876,
+      "sha256": "6bd06eb4408c402c4220529d8034d27e3c9adb85749e16028b146220f410ab04",
+      "reason": "superseded agent_optimization application component",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/template_apps/custom_optimizer/app/components/agent_optimization/workflow.py"
+    },
+    {
+      "path": "template_apps/custom_optimizer/app/components/copilot_terminal/README.md",
+      "bytes": 2894,
+      "sha256": "895b1dcfb37d451c7b91e728f91b622344eb32e10dca11e1854451cbb2427854",
+      "reason": "superseded copilot_terminal application component",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/template_apps/custom_optimizer/app/components/copilot_terminal/README.md"
+    },
+    {
+      "path": "template_apps/custom_optimizer/app/components/copilot_terminal/__init__.py",
+      "bytes": 147,
+      "sha256": "6389bf5437180eb2cf7d677ce845b3d7589525d2684ae00ccaf54bb2809ff2b8",
+      "reason": "superseded copilot_terminal application component",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/template_apps/custom_optimizer/app/components/copilot_terminal/__init__.py"
+    },
+    {
+      "path": "template_apps/custom_optimizer/app/components/copilot_terminal/child.py",
+      "bytes": 166,
+      "sha256": "5ecbdab0f47aededf82582daaab73f4ce705f7b6e0afce6c46dcdd20ca9d1a08",
+      "reason": "superseded copilot_terminal application component",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/template_apps/custom_optimizer/app/components/copilot_terminal/child.py"
+    },
+    {
+      "path": "template_apps/custom_optimizer/app/components/copilot_terminal/frontend/CopilotTerminal.tsx",
+      "bytes": 15218,
+      "sha256": "adac09b168b4bdb33283f0e2d9047e4bf351ec27f4171533321003381ed7d0f7",
+      "reason": "superseded copilot_terminal application component",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/template_apps/custom_optimizer/app/components/copilot_terminal/frontend/CopilotTerminal.tsx"
+    },
+    {
+      "path": "template_apps/custom_optimizer/app/components/copilot_terminal/frontend/copilot-terminal.css",
+      "bytes": 2617,
+      "sha256": "22e90a82aa899085bfb62b603f135344b51ad19926048ecd52ae1837747b8856",
+      "reason": "superseded copilot_terminal application component",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/template_apps/custom_optimizer/app/components/copilot_terminal/frontend/copilot-terminal.css"
+    },
+    {
+      "path": "template_apps/custom_optimizer/app/components/copilot_terminal/frontend/index.ts",
+      "bytes": 169,
+      "sha256": "da325c1f43fa06fb558699cdf2fe4eccaf1398bff9d547c9e7b4b45a94046fda",
+      "reason": "superseded copilot_terminal application component",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/template_apps/custom_optimizer/app/components/copilot_terminal/frontend/index.ts"
+    },
+    {
+      "path": "template_apps/custom_optimizer/app/components/copilot_terminal/frontend/styles.d.ts",
+      "bytes": 22,
+      "sha256": "35c4c3dc987b7a84f2b4a612ad3c1b1ebf2f55a867e86387f287b89fbf582d2c",
+      "reason": "superseded copilot_terminal application component",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/template_apps/custom_optimizer/app/components/copilot_terminal/frontend/styles.d.ts"
+    },
+    {
+      "path": "template_apps/custom_optimizer/app/components/copilot_terminal/runtime.py",
+      "bytes": 6348,
+      "sha256": "b2bf40172fb2927a0dd0a8f676d6fde4480ede1e607a44febf9be294da9497ce",
+      "reason": "superseded copilot_terminal application component",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/template_apps/custom_optimizer/app/components/copilot_terminal/runtime.py"
+    },
+    {
+      "path": "template_apps/custom_optimizer/app/components/copilot_terminal/service.py",
+      "bytes": 12962,
+      "sha256": "1d67885e33e912ba5dd68c46b2b88517acf549654c41c32140eca10097125bc0",
+      "reason": "superseded copilot_terminal application component",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/template_apps/custom_optimizer/app/components/copilot_terminal/service.py"
+    },
+    {
+      "path": "template_apps/custom_optimizer/app/components/tests/test_agent_optimization.py",
+      "bytes": 5477,
+      "sha256": "2f855c8250bdaed9ce3f6867b71f856f3f72182da26ef1de2092c1a48b7ef52a",
+      "reason": "duplicate component tests retained by canonical library",
+      "rollback": "/tmp/agentcraft-selected-retirement.0AUkbi/template_apps/custom_optimizer/app/components/tests/test_agent_optimization.py"
+    }
+  ],
+  "checks": [
+    {"command": "env -u PYTHONPATH /tmp/agentcraft-selected-artifacts.BiwIbM/venv312/bin/python -m pytest /tmp/agentcraft-selected-final.hSpHoR/agent-optimization/tests -q -p no:cacheprovider", "status": "passed", "tests": 133, "cwd": "/tmp/agentcraft-selected-final.hSpHoR"},
+    {"command": "tests/test_local_query.py", "status": "passed", "tests": 50},
+    {"command": "tests/test_persistence.py", "status": "passed", "tests": 8},
+    {"command": "tests/test_agent_optimization.py", "status": "passed", "tests": 6},
+    {"command": "tests/test_draft_payload.py tests/test_install_helper.py", "status": "passed", "tests": 45},
+    {"command": "node --test tests/test_continue_campaign.mjs", "status": "passed", "tests": 3},
+    {"command": "python examples/offline.py", "status": "passed", "mode": "synthetic, no inference"},
+    {"command": "npm run typecheck", "status": "passed"},
+    {"command": "npm run build", "status": "passed", "outputs": ["ESM", "declarations", "CSS"]},
+    {"command": "npm run test:replay", "status": "passed", "viewports": [[1440, 900], [390, 844]], "screenshots": "/tmp/agent-optimization-replay-cu1sFN"},
+    {"command": "strict TypeScript check of examples/replay/main.tsx against public exports", "status": "passed"},
+    {"command": "final artifact metadata, export targets, notices and source-owner inspection", "status": "passed"}
+  ],
+  "final_artifact_root": "/tmp/agentcraft-selected-final.hSpHoR/artifacts",
+  "final_artifact_sha256": {
+    "agent_optimization-0.1.0a1-py3-none-any.whl": "0193013837ff2d085aa665b4b565e3c0310f5217a77362efe80ef4288457571b",
+    "agent_optimization-0.1.0a1.tar.gz": "7b96bea6eab34b1a7f996741ee45d0667410a0914e6b00bcff7704cfab060bcb",
+    "agentcraft-agent-optimization-0.1.0.tgz": "a0b6ccec9eff6da62e9ee1965ca95fe2558e545da36279cf0c8a90e60f57fa3d"
+  },
+  "protected_state": [],
+  "retirement_rollback": "/tmp/agentcraft-selected-retirement.0AUkbi",
+  "shipped_baseline": {
+    "files": 65,
+    "bytes": 617089,
+    "excluded_prefixes": [
+      ".github/skills/agent-optimization/build/",
+      ".github/skills/agent-optimization/deploy/state/"
+    ],
+    "other_exclusions": [
+      ".venv",
+      "node_modules",
+      "__pycache__",
+      ".pytest_cache",
+      ".mypy_cache",
+      ".ruff_cache",
+      ".local",
+      "*.pyc"
+    ]
+  },
+  "shipped_after": {
+    "files": 1,
+    "bytes": 1167
+  }
+}

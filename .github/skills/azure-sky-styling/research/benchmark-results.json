@@ -1,0 +1,264 @@
+{
+  "date": "2026-09-09T16:00:17.974Z",
+  "environment": {
+    "browser": "151.0.7922.34",
+    "node": "v20.20.0",
+    "os": "linux 6.6.87.2-microsoft-standard-WSL2",
+    "cpu": "AMD RYZEN AI MAX+ 395 w/ Radeon 8060S",
+    "logicalCpus": 32,
+    "reportedWebGlRenderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+  },
+  "artifact": {
+    "worker": "sky.worker-CuzRUlcZ.js",
+    "sha256": "35707244d03b6fbf4ee9f54de795db63ab36d438b109180f52854b7e54bccd0c"
+  },
+  "method": "Actual built worker; 3 seeds/style/size; 5 warm-up frames/seed, then 30 serial uncapped frames/seed (90 samples). Timing uses performance.now; nearest-rank percentiles. Cold first-frame RPC includes worker loading for the first seed. Drawing includes transferToImageBitmap but not browser refresh or GPU presentation completion. Main draw timing is submission only. One canvas at a time; no FPS, battery, hardware-mobile or hardware-GPU claim.",
+  "measurements": [
+    {
+      "cloudStyle": "Detailed",
+      "width": 360,
+      "height": 420,
+      "generationMs": {
+        "samples": 3,
+        "p50": 332.5,
+        "p95": 339.20000000298023,
+        "min": 295.5,
+        "max": 339.20000000298023
+      },
+      "coldRoundTripMs": {
+        "samples": 3,
+        "p50": 336.09999999403954,
+        "p95": 361.29999999701977,
+        "min": 299.29999999701977,
+        "max": 361.29999999701977
+      },
+      "cachedWorkerDrawAndTransferMs": {
+        "samples": 90,
+        "p50": 3.2000000029802322,
+        "p95": 4.299999997019768,
+        "min": 1.7000000029802322,
+        "max": 5
+      },
+      "cachedRoundTripMs": {
+        "samples": 90,
+        "p50": 3.5,
+        "p95": 4.799999997019768,
+        "min": 1.9000000059604645,
+        "max": 5.199999988079071
+      },
+      "mainDrawSubmissionMs": {
+        "samples": 90,
+        "p50": 0.09999999403953552,
+        "p95": 0.10000000894069672,
+        "min": 0,
+        "max": 0.20000000298023224
+      },
+      "pixelHash": "4471fbfe45274b9937e785bffd9f4764b2afcf5b30fbcc4bb4f66bd46f7b288d"
+    },
+    {
+      "cloudStyle": "Soft puffs",
+      "width": 360,
+      "height": 420,
+      "generationMs": {
+        "samples": 3,
+        "p50": 3.7000000029802322,
+        "p95": 4,
+        "min": 3,
+        "max": 4
+      },
+      "coldRoundTripMs": {
+        "samples": 3,
+        "p50": 18.700000002980232,
+        "p95": 27.400000005960464,
+        "min": 15.100000008940697,
+        "max": 27.400000005960464
+      },
+      "cachedWorkerDrawAndTransferMs": {
+        "samples": 90,
+        "p50": 1.5999999940395355,
+        "p95": 2.800000011920929,
+        "min": 1.0999999940395355,
+        "max": 3.0999999940395355
+      },
+      "cachedRoundTripMs": {
+        "samples": 90,
+        "p50": 1.8999999910593033,
+        "p95": 3,
+        "min": 1.2999999970197678,
+        "max": 3.6000000089406967
+      },
+      "mainDrawSubmissionMs": {
+        "samples": 90,
+        "p50": 0,
+        "p95": 0.10000000894069672,
+        "min": 0,
+        "max": 0.20000000298023224
+      },
+      "pixelHash": "1a049b215f5761b7edece266f15f5002d57f294f5bdd6b988bea6e4b471b35a5"
+    },
+    {
+      "cloudStyle": "Detailed",
+      "width": 1440,
+      "height": 470,
+      "generationMs": {
+        "samples": 3,
+        "p50": 280.5,
+        "p95": 293.20000000298023,
+        "min": 230.20000000298023,
+        "max": 293.20000000298023
+      },
+      "coldRoundTripMs": {
+        "samples": 3,
+        "p50": 292.29999999701977,
+        "p95": 318.09999999403954,
+        "min": 241.29999999701977,
+        "max": 318.09999999403954
+      },
+      "cachedWorkerDrawAndTransferMs": {
+        "samples": 90,
+        "p50": 10,
+        "p95": 15.900000005960464,
+        "min": 6.199999988079071,
+        "max": 19.400000005960464
+      },
+      "cachedRoundTripMs": {
+        "samples": 90,
+        "p50": 10.5,
+        "p95": 16.299999997019768,
+        "min": 6.5,
+        "max": 20.200000002980232
+      },
+      "mainDrawSubmissionMs": {
+        "samples": 90,
+        "p50": 0.09999999403953552,
+        "p95": 0.20000000298023224,
+        "min": 0,
+        "max": 0.7000000029802322
+      },
+      "pixelHash": "38e7c48df29c500a4456ad77f2dae5678691354e2711e8a94b92caf970c7daa7"
+    },
+    {
+      "cloudStyle": "Soft puffs",
+      "width": 1440,
+      "height": 470,
+      "generationMs": {
+        "samples": 3,
+        "p50": 2.8999999910593033,
+        "p95": 4,
+        "min": 2.7000000029802322,
+        "max": 4
+      },
+      "coldRoundTripMs": {
+        "samples": 3,
+        "p50": 23,
+        "p95": 31.200000002980232,
+        "min": 20.099999994039536,
+        "max": 31.200000002980232
+      },
+      "cachedWorkerDrawAndTransferMs": {
+        "samples": 90,
+        "p50": 7.899999991059303,
+        "p95": 10.799999997019768,
+        "min": 5.299999997019768,
+        "max": 11.700000002980232
+      },
+      "cachedRoundTripMs": {
+        "samples": 90,
+        "p50": 8.299999997019768,
+        "p95": 11.299999997019768,
+        "min": 5.600000008940697,
+        "max": 12.400000005960464
+      },
+      "mainDrawSubmissionMs": {
+        "samples": 90,
+        "p50": 0.09999999403953552,
+        "p95": 0.20000000298023224,
+        "min": 0,
+        "max": 0.30000001192092896
+      },
+      "pixelHash": "462b1f3ba48ec0b906372beee11abf72cb871fdadebd763109c886b4c1988458"
+    },
+    {
+      "cloudStyle": "Detailed",
+      "width": 1600,
+      "height": 750,
+      "generationMs": {
+        "samples": 3,
+        "p50": 344.5,
+        "p95": 362.90000000596046,
+        "min": 237.20000000298023,
+        "max": 362.90000000596046
+      },
+      "coldRoundTripMs": {
+        "samples": 3,
+        "p50": 374.8999999910593,
+        "p95": 380.6000000089407,
+        "min": 251.70000000298023,
+        "max": 380.6000000089407
+      },
+      "cachedWorkerDrawAndTransferMs": {
+        "samples": 90,
+        "p50": 15.5,
+        "p95": 23.299999997019768,
+        "min": 12.400000005960464,
+        "max": 28.099999994039536
+      },
+      "cachedRoundTripMs": {
+        "samples": 90,
+        "p50": 15.900000005960464,
+        "p95": 24,
+        "min": 12.600000008940697,
+        "max": 28.5
+      },
+      "mainDrawSubmissionMs": {
+        "samples": 90,
+        "p50": 0.09999999403953552,
+        "p95": 0.20000000298023224,
+        "min": 0,
+        "max": 0.20000000298023224
+      },
+      "pixelHash": "2860e7f3c37a8bccbf7fb33ff5007db68a53091cf37112041a48250f39b3d86c"
+    },
+    {
+      "cloudStyle": "Soft puffs",
+      "width": 1600,
+      "height": 750,
+      "generationMs": {
+        "samples": 3,
+        "p50": 3.699999988079071,
+        "p95": 5,
+        "min": 2.2999999970197678,
+        "max": 5
+      },
+      "coldRoundTripMs": {
+        "samples": 3,
+        "p50": 33.29999999701977,
+        "p95": 51.20000000298023,
+        "min": 23.899999991059303,
+        "max": 51.20000000298023
+      },
+      "cachedWorkerDrawAndTransferMs": {
+        "samples": 90,
+        "p50": 12.5,
+        "p95": 16.700000002980232,
+        "min": 9.5,
+        "max": 22.100000008940697
+      },
+      "cachedRoundTripMs": {
+        "samples": 90,
+        "p50": 12.900000005960464,
+        "p95": 17.299999997019768,
+        "min": 9.900000005960464,
+        "max": 22.5
+      },
+      "mainDrawSubmissionMs": {
+        "samples": 90,
+        "p50": 0.09999999403953552,
+        "p95": 0.20000000298023224,
+        "min": 0,
+        "max": 0.20000000298023224
+      },
+      "pixelHash": "2dca5fde7cc81cfe45b260c8dcac86a52617e032a0b36f2e9ab68b6069b05afa"
+    }
+  ]
+}

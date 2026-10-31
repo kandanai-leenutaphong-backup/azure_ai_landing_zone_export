@@ -1,0 +1,23 @@
+{
+  "synthetic": true,
+  "version": 1,
+  "name": "Example successor with counted evidence",
+  "role": "successor",
+  "parent_version": 0,
+  "system_prompt": "Read the supplied observations, weigh repeated events, and return a grade with a rationale and cited observations.",
+  "tools": ["tool_event_counts"],
+  "situation_detector": "detectors/1.json",
+  "published_at": "2026-01-01T01:00:00+00:00",
+  "design_audit": {
+    "hypothesis": "Counting repeated events per category separates routine volume from a genuine anomaly in the grade decision.",
+    "levers": {
+      "detector_rulesets": {"decision": "retained", "justification": "Holding the detector fixed isolates the effect of the new evidence tool."},
+      "tools": {"decision": "changed", "justification": "Added a bounded per-category count so the investigator sees concentration rather than raw rows."},
+      "investigator_prompt": {"decision": "changed", "justification": "Instructs the investigator to cite the counted observations it actually used."}
+    },
+    "probe_cases": ["example-case-0001", "example-case-0002"],
+    "code_changes": ["Added tools/tool_event_counts.py"],
+    "agent_changes": ["Prompt now requires citations"],
+    "held_fixed": ["model", "scorer", "cohorts", "detector"]
+  }
+}

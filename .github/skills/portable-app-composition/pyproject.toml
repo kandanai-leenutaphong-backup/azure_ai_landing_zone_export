@@ -1,0 +1,65 @@
+# Packaging metadata, so the box can be *installed* rather than only copied.
+#
+# WHY THIS EXISTS
+# ---------------
+# Copying the directory into a consumer repository works only while something
+# puts it on sys.path. From a consumer's own root, with PYTHONPATH clear,
+# `from appcompose import compose` is an ImportError — and the usual fix, a
+# sys.path.insert at the top of the consumer's entry point, is the thing this
+# skill exists to avoid: a path hack is exactly as fragile as the import string
+# the resolver refuses to accept.
+#
+# So: copy the directory, install it once, and import it like any other package.
+#
+#     cp -r /path/to/portable-app-composition vendor/
+#     python3 -m pip install ./vendor/portable-app-composition
+#
+# Non-editable on purpose. An editable install points at the copy's location and
+# breaks when the copy moves; a plain install puts the modules in site-packages,
+# where nothing about the consumer's working directory can affect them.
+#
+# WHAT IS INSTALLED
+# -----------------
+# `appcompose` and `appcompose.demo`, and nothing else. tests/, examples/ and
+# scripts/ stay in the copied directory: they are how you verify the box, not
+# part of what a consumer imports. tests/selftest.py still runs from the copy.
+#
+# VERSION
+# -------
+# `version` here and `appcompose.__version__` are the same string, and
+# tests/selftest.py fails if they drift. Neither is `SCHEMA_VERSION`, which
+# versions the *document format* and moves for entirely different reasons: this
+# package can be released many times without the schema changing.
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "portable-app-composition"
+version = "1.1.0"
+description = "A human-authored document, composed into a running application, without the document naming code."
+readme = "README.md"
+requires-python = ">=3.11"
+
+# The same single dependency requirements.txt states, for the same reason:
+# YAML in, YAML out. Everything else is standard library.
+dependencies = ["PyYAML>=6.0"]
+
+[project.scripts]
+appcompose-inspect = "appcompose.cli:main"
+appcompose-mcp = "appcompose.mcp:main"
+
+[project.optional-dependencies]
+mcp = ["mcp>=1.27.1,<2", "pydantic>=2"]
+# Not needed to use the box, and not needed by tests/selftest.py. This installs
+# only what tests/loopback_check.py needs to put the adapter behind a real
+# HTTP/1.1 server, which is where framing claims stop being self-assessed.
+dev = ["uvicorn>=0.30"]
+
+[tool.setuptools]
+packages = ["appcompose", "appcompose.demo"]
+
+[tool.setuptools.package-data]
+appcompose = ["py.typed"]
+"appcompose.demo" = ["field-notes.yaml"]

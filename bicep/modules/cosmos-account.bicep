@@ -15,6 +15,12 @@ param documentsPrivateDnsZoneId string
 @description('Enable Serverless capacity mode (no throughput auto-provisioning; billed per-request). Recommended for low, spiky workloads like a usage/chargeback rollup store.')
 param enableServerless bool = false
 
+@description('Disable account-key authentication and use Microsoft Entra data-plane roles.')
+param disableLocalAuth bool = false
+
+@description('Enable automatic failover.')
+param enableAutomaticFailover bool = false
+
 param tags object = {}
 
 resource cosmos 'Microsoft.DocumentDB/databaseAccounts@2024-08-15' = {
@@ -24,6 +30,8 @@ resource cosmos 'Microsoft.DocumentDB/databaseAccounts@2024-08-15' = {
   kind: 'GlobalDocumentDB'
   properties: {
     databaseAccountOfferType: 'Standard'
+    disableLocalAuth: disableLocalAuth
+    enableAutomaticFailover: enableAutomaticFailover
     consistencyPolicy: {
       defaultConsistencyLevel: 'Session'
     }

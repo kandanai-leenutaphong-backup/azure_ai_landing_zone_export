@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "masks": [
+    {
+      "id": "legeay-temple",
+      "source": "met-343077-original.jpg",
+      "object_id": 343077,
+      "artist": "Jean Laurent Legeay",
+      "title": "Architectural Fantasy",
+      "source_url": "https://images.metmuseum.org/CRDImages/dp/original/DP811619.jpg",
+      "role": "Upper distant temple only, stopping above the branch that crosses its lower facade",
+      "polygon": [[0.312,0.410],[0.312,0.338],[0.327,0.329],[0.330,0.319],[0.349,0.315],[0.351,0.291],[0.362,0.285],[0.378,0.302],[0.382,0.321],[0.395,0.331],[0.405,0.351],[0.410,0.409]],
+      "paper_quantile": 0.88,
+      "ink_quantile": 0.035,
+      "paper_cutoff": 0.12,
+      "gamma": 0.78,
+      "maximum_alpha": 0.90,
+      "bottom_fade": 0.22
+    },
+    {
+      "id": "challe-crowned-hall",
+      "source": "met-343439-original.jpg",
+      "object_id": 343439,
+      "artist": "Charles Michel Ange Challe",
+      "title": "Architectural Fantasy",
+      "source_url": "https://images.metmuseum.org/CRDImages/dp/original/DT9549.jpg",
+      "role": "Crowned rotunda and upper hall, excluding foreground figures and the enclosing arcade",
+      "polygon": [[0.212,0.302],[0.227,0.267],[0.229,0.151],[0.244,0.112],[0.286,0.077],[0.306,0.052],[0.325,0.059],[0.337,0.008],[0.356,0.010],[0.361,0.061],[0.397,0.080],[0.427,0.125],[0.436,0.225],[0.460,0.257],[0.475,0.322],[0.475,0.491],[0.433,0.530],[0.329,0.542],[0.249,0.489],[0.237,0.381]],
+      "paper_quantile": 0.93,
+      "ink_quantile": 0.04,
+      "paper_cutoff": 0.10,
+      "gamma": 0.90,
+      "maximum_alpha": 0.88,
+      "bottom_fade": 0.20
+    },
+    {
+      "id": "challe-arcade",
+      "source": "met-343439-original.jpg",
+      "object_id": 343439,
+      "artist": "Charles Michel Ange Challe",
+      "title": "Architectural Fantasy",
+      "source_url": "https://images.metmuseum.org/CRDImages/dp/original/DT9549.jpg",
+      "role": "Upper arcade arches and piers, above the populated foreground and below the skyline ornaments",
+      "polygon": [[0.356,0.571],[0.407,0.561],[0.515,0.536],[0.622,0.504],[0.735,0.480],[0.852,0.454],[0.978,0.430],[0.978,0.731],[0.896,0.754],[0.792,0.747],[0.679,0.763],[0.567,0.774],[0.460,0.783],[0.356,0.794]],
+      "paper_quantile": 0.93,
+      "ink_quantile": 0.04,
+      "paper_cutoff": 0.10,
+      "gamma": 0.90,
+      "maximum_alpha": 0.86,
+      "bottom_fade": 0.28
+    }
+  ]
+}

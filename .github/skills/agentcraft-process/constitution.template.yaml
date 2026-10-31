@@ -1,0 +1,58 @@
+schema_version: 2
+project_id: null
+revision: 1
+status: draft
+decision_source: null
+objective:
+  beneficiary: null
+  outcome: null
+  decision_owner: null
+primary_metric: null
+metrics:
+  - id: null
+    kind: objective
+    measure: null
+    unit: null
+    aggregation: null
+    evaluator: null
+    sample_policy: null
+    target: {operator: ">=", value: null}
+data_understanding:
+  sources: []
+  questions: []
+  permitted_experiments: []
+  outputs: []
+  verification: null
+  transition: null
+dataset:
+  manifest: dataset/manifest.json
+  revision: null
+  scenario_policy: null
+  held_out_policy: null
+deployment:
+  target: null
+  identity: null
+  live_test: null
+  restore: null
+authority:
+  source: null
+  scope: null
+  permitted_operations: []
+  protected_resources: []
+  operational_actions: null
+  limit_policy: bounded
+  max_iterations: null
+  max_model_requests: null
+  max_spend: null
+  currency: null
+  expires_at: null
+  stop_conditions: []
+  cleanup_owner: null
+collaboration:
+  reviewers: []
+  checkpoints: null
+reporting:
+  results: results/<run-id>/
+  project_report: reports/latest.html
+  dashboard: null
+notebook: notebook/lessons.md

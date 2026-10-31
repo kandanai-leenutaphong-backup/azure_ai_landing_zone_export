@@ -1,0 +1,10 @@
+include *.md LICENSE *.json sources.txt *.mjs
+graft src
+graft frontend
+graft tests
+graft examples
+graft provenance
+global-exclude *.pyc *.pyo
+prune node_modules
+prune build
+prune dist

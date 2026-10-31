@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "scope": "One generated-distribution dedup increment for core CO1/2/4; no maintained runtime reduction, application change, deployment, inference or publication.",
+  "requested_date": "2026-09-17",
+  "observed_at_utc": "2026-09-16T19:19:51.178Z",
+  "clock_note": "Machine UTC differs from the requested date.",
+  "signature": "materialize(root: Path, *, check: bool = False, plugin_output: Path | None = None) -> list[str]",
+  "generator": {"path": ".github/tools/package_native.py", "sha256": "8247bc0b677d0f19969b29f14338e69ae2dc9993bbc47bdbd49ea695ca3d9f49", "lines_before": 610, "lines_after": 658, "net_lines_added": 48},
+  "export_command": ["/tmp/agentcraft-release-final/final/bin/python", "-I", "-B", "/home/hanchoong/agentcraft/.github/tools/package_native.py", "--root", "/home/hanchoong/agentcraft", "--plugin-output", "/tmp/agentcraft-guidance-dedup-20260917.7MJr7s51/marketplace/harness-data"],
+  "default": "No physical .github/com.github.copilot tree. Retained wheel guidance and workspace metadata remain generated; eight native protocol entries link authored protocols.",
+  "reader_root": "../../libraries/framework/src/agentcraft/guidance",
+  "export_guard": "Absolute external root only; workspace/ancestor roots, symlinks, unknown files, partial exports and edited bytes refuse. Fresh/empty output or an identical complete export only. Existing manifest/materialize logic; no loader, cache or runtime API change.",
+  "removed": {"files": 305, "lines": 34492, "logical_bytes": 2031420, "hash_verified_before_delete": true, "physical_absence_verified": true},
+  "metrics_excluding_this_receipt": {
+    "scope": "Physical portable tree, retained guidance tree, and 18 explicit generator/test/metadata/doc paths listed in external evidence.mjs; no ignore filtering. Not a whole-repository census. Receipt overhead is measured separately in final-footprint.json.",
+    "before": {"files": 569, "lines": 70563, "logical_bytes": 4173733},
+    "after": {"files": 264, "lines": 35919, "logical_bytes": 2105754},
+    "net_removed": {"files": 305, "lines": 34644, "logical_bytes": 2067979}
+  },
+  "checks": {
+    "distribution_tests": {"baseline": 19, "final": 23, "passed": 23, "failed": 0},
+    "default_check": {"exit_code": 0, "changed_files": 0},
+    "export_check_and_repeat": {"exit_code": 0, "changed_files": 0},
+    "guidance": {"lookup_names_per_bundle": 49, "local_links_per_bundle": 509, "standalone_entry_links": 88, "updated_workspace_and_entry_doc_links": 21, "standalone_skills": 37, "standalone_agent_files": 11, "mcp_servers": 0},
+    "build": {"status": "PASS", "command": "uv --no-config --offline build --python /tmp/agentcraft-release-final/final/bin/python --no-sources --out-dir /tmp/agentcraft-guidance-dedup-20260917.7MJr7s51/dist /tmp/agentcraft-guidance-dedup-20260917.7MJr7s51/source/framework", "source_identical_external_staging": true},
+    "wheel": {"profile": "base + tooling", "catalogue_tests_passed": 7, "packaged_files_verified": 253, "installed_origin_and_cli": "PASS", "sha256": "e96d021157390bdbd71dd66dfa593a4b375e1cf9ebd81c84016893d2b44a9781"},
+    "editable": {"external_staging_only": true, "no_sources": true, "catalogue_tests_passed": 7, "packaged_files_verified": 253, "installed_origin_and_cli": "PASS"},
+    "native": {"client": "GitHub Copilot CLI 1.0.83", "commands": 28, "new_external_marketplace": "agentcraft-guidance-dedup", "fresh_profile": true, "network_namespace_isolated": true, "home_mount_read_only": true, "installed_and_discovered_skills": 37, "unknown_plugin_exit": 1, "disabled_skill_rows": 0, "plugins_remaining": 0, "owned_marketplaces_remaining": 0, "owned_processes_remaining": 0},
+    "scoped_diff_check": "PASS"
+  },
+  "artifact": {"files": 306, "logical_bytes": 2072604, "native_manifest_sha256": "f01ca35cc91d1afeb82a8440468a49c101aafec2bc12c732f73500b649a24f44", "export_manifest_sha256": "5e5a3b2024b02c05ef3000f00d0a59e27998a0a4081b68d694db01ad286919dc"},
+  "changed_authored_paths": [".github/tools/package_native.py", ".github/tests/test_native_distribution.py", ".github/skills/AGENT-PLUGINS-SKILLS.md", "libraries/framework/distribution/guidance-dedup.json"],
+  "changed_generated_paths": "artifact.json records the exact 305 deletions and 16 updated existing generated paths; closeout.json lists the 16 updates.",
+  "protected": {"canonical_and_old_receipt_hashes_verified": 252, "excluded_tree": "template_apps/custom_optimizer/**", "excluded_tree_touched_or_executed": false, "old_native_receipts_unchanged": true, "canonical_notices_retained": true, "runtime_public_contracts_and_package_metadata_unchanged": true, "real_user_profile_writes": 0},
+  "retained_caveats": [
+    "Three existing protected, non-advertised historical record links remain missing in .github/skills/azure-cli-infra-management/SKILL.md at lines 147, 157 and 158; recorded separately in guidance-check.json, not repaired or counted as passing links.",
+    "Existing libraries/framework/build (3 files) and src/agentcraft.egg-info (6 files) predate the baseline and remain untouched. No source-build regrowth observed; dist is absent.",
+    "Prior third-party malformed-manifest failures remain in the unchanged old receipt; no stronger native validation claim. No live agents, MCP tools, authentication, inference or deployed acceptance run."
+  ],
+  "evidence_root": "/tmp/agentcraft-guidance-dedup-20260917.7MJr7s51",
+  "evidence_index": "closeout.json records evidence hashes, commands, identities, protection checks and exact scoped metrics; final-footprint.json includes this receipt's overhead.",
+  "backup": "/tmp/agentcraft-guidance-dedup-20260917.7MJr7s51/old-mirror",
+  "backup_manifest": "/tmp/agentcraft-guidance-dedup-20260917.7MJr7s51/old-native-manifest.json",
+  "retained_state": "Verified old mirror, standalone export, source stage, wheels, two installed test environments, inactive isolated native profile and logs remain external. No owned process remains. Backup lifetime follows external storage; no automatic cleanup was scheduled.",
+  "next": "Parent owns main-document reconciliation and any later generation/release checks. This receipt attests only the named artifact; no adjacent cleanup authorized."
+}

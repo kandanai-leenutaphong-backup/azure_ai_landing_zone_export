@@ -1,0 +1,26 @@
+{
+  "synthetic": true,
+  "note": "Hand-authored configuration shape. Never measured; the query names columns no shipped dataset defines.",
+  "schema_version": 2,
+  "version": "example-detector-1",
+  "configuration": {
+    "max_window_seconds": 86400,
+    "rule_sets": [
+      {
+        "id": "repeated-category",
+        "rules": [
+          {
+            "id": "repeated-category-volume",
+            "enabled": true,
+            "query": "SELECT category, count(*) AS events FROM evidence WHERE case_id = :case_id AND occurred_at BETWEEN :window_start AND :window_end GROUP BY category ORDER BY events DESC",
+            "parameters": {"case_id": "example-case-0001"},
+            "processing": {
+              "max_rows": 50,
+              "code": "def process(rows, parameters):\n    top = rows[0] if rows else None\n    matched = bool(top and top[1] >= 5)\n    facts = [f\"{top[0]} occurred {top[1]} times in window\"] if top else [\"No evidence rows in window\"]\n    return {\"matched\": matched, \"facts\": facts, \"technique_ids\": [], \"summary\": {\"categories\": len(rows)}}\n"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

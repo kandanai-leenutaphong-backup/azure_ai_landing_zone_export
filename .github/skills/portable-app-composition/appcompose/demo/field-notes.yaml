@@ -1,0 +1,30 @@
+schemaVersion: 1
+kind: portable.app-composition
+id: field-notes
+name: Field notes
+description: A hand-authored document. Two capabilities, no import between them.
+members:
+  - id: digest
+    capability: notes.digest
+    label: Rolling digest
+    requires: [store]
+    settings:
+      limit: 2
+  - id: store
+    capability: notes.store
+    label: Note store
+    settings:
+      seed:
+        - first note
+        - second note
+layout:
+  store:
+    slot: main
+    order: 1
+  digest:
+    slot: aside-trailing
+    order: 2
+    lazy: true
+ownership:
+  # Both members ship this file. The document decides who owns it.
+  /assets/shared.css: store

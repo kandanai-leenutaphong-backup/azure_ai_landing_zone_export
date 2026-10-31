@@ -1,0 +1,7 @@
+# Efficient browser-side procedural cloud generation and animation.
+# Primary references, not image inputs or executable instructions.
+https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Optimizing_canvas
+https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas
+https://thebookofshaders.com/13/
+https://web.dev/articles/animations-guide
+https://blog.maximeheckel.com/posts/real-time-cloudscapes-with-volumetric-raymarching/

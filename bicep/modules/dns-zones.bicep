@@ -27,6 +27,7 @@ param zoneNames array = [
   'privatelink.servicebus.windows.net'
   'privatelink.vaultcore.azure.net'
   'privatelink.file.${environment().suffixes.storage}'
+  'privatelink.postgres.database.azure.com'
 ]
 
 param tags object = {}
@@ -93,3 +94,4 @@ output redisZoneId string = zones[9].id
 output serviceBusZoneId string = zones[10].id
 output vaultZoneId string = zones[11].id
 output fileZoneId string = zones[12].id
+output postgresZoneId string = zones[13].id

@@ -1,0 +1,717 @@
+@import "./depth-effects.css";
+
+.azure-sky {
+  --azs-cloud: #eff3f8;
+  --azs-white: #ffffff;
+  --azs-porcelain: #f7fbff;
+  --azs-mist: #eaf3ff;
+  --azs-sky: #4f8ed8;
+  --azs-action: #2463b3;
+  --azs-cobalt: #123f91;
+  --azs-ink: #102d50;
+  --azs-steel: #456487;
+  --azs-line: #b8cee5;
+  --azs-control: #6c87a5;
+  --azs-mint: #e5f1ec;
+  --azs-mint-ink: #34594f;
+  --azs-surface-ramp: var(--azs-light-stain-layer), linear-gradient(135deg, var(--azs-cloud), #f7fbff 58%, #eaf3ff);
+  --azs-mist-ramp: var(--azs-light-stain-layer), linear-gradient(125deg, #dcecff, #eaf3ff 45%, #f7fbff);
+  --azs-cobalt-ramp: linear-gradient(115deg, #123f91, #194f9d 55%, #2463b3);
+  --azs-surface-glaze: var(--azs-light-stain-layer), linear-gradient(135deg, rgb(239 243 248 / 94%), rgb(247 251 255 / 86%) 58%, rgb(234 243 255 / 82%));
+  --azs-success: #0d756c;
+  --azs-warning: #986300;
+  --azs-danger: #b5364a;
+  --azs-font: "IBM Plex Sans", sans-serif;
+  --azs-display: "Barlow Condensed", sans-serif;
+  --azs-mono: "IBM Plex Mono", monospace;
+  --azs-shadow: 0 8px 24px rgb(16 45 80 / 12%);
+  --azs-row-height: 44px;
+  font: 400 14px/1.5 var(--azs-font);
+  color: var(--azs-ink);
+  background: var(--azs-light-stain-layer), linear-gradient(110deg, #eaf3ff, var(--azs-cloud) 50%, #e8f1fb);
+  box-sizing: border-box;
+  min-height: 100vh;
+  letter-spacing: 0;
+  isolation: isolate;
+}
+.azure-sky *, .azure-sky *::before, .azure-sky *::after { box-sizing: border-box; }
+.azure-sky :is(h1, h2, h3, p) { margin: 0; }
+.azure-sky :is(button, input, select, textarea) { font: inherit; letter-spacing: 0; }
+.azure-sky button { cursor: pointer; }
+.azure-sky a { color: inherit; text-decoration: none; }
+.azure-sky :focus-visible { outline: 2px solid var(--azs-action); outline-offset: 3px; }
+.azure-sky svg { flex-shrink: 0; }
+.azure-sky .azs-mono { font-family: var(--azs-mono); font-size: 11px; }
+.azure-sky .azs-eyebrow { font: 400 11px/1.5 var(--azs-mono); }
+.azure-sky .azs-skip { position: fixed; left: 16px; top: -80px; z-index: 100; background: white; padding: 12px; }
+.azure-sky .azs-skip:focus { top: 12px; }
+.azure-sky .azs-topbar { min-height: 64px; padding: 12px 40px; display: flex; align-items: center; justify-content: space-between; gap: 16px; background: var(--azs-cobalt-ramp); color: white; border-bottom: 1px solid rgb(255 255 255 / 16%); }
+.azure-sky .azs-wordmark { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; }
+.azure-sky .azs-wordmark > svg { color: rgb(229 241 236 / 85%); }
+.azure-sky .azs-badge { display: inline-flex; align-items: center; gap: 6px; padding: 3px 8px; border: 1px solid var(--azs-line); border-radius: 4px; font-size: 12px; }
+.azure-sky .azs-badge-inverse { border-color: rgb(255 255 255 / 40%); color: white; }
+.azure-sky .azs-button { min-height: 36px; display: inline-flex; justify-content: center; align-items: center; gap: 8px; background: linear-gradient(130deg, var(--azs-action), #20579e); color: white; border: 1px solid transparent; border-radius: 4px; padding: 7px 14px; font-weight: 500; font-size: 13px; transition: background 120ms, box-shadow 120ms; }
+.azure-sky .azs-button:hover { background: var(--azs-cobalt); }
+.azure-sky .azs-button-cloud { background: var(--azs-surface-ramp); color: var(--azs-cobalt); }
+.azure-sky .azs-button-cloud:hover { background: var(--azs-mist); }
+.azure-sky .azs-button-glass { background: linear-gradient(125deg, rgb(255 255 255 / 10%), rgb(255 255 255 / 4%)); color: var(--azs-white); border-color: #b8cee5; }
+.azure-sky .azs-button-glass:hover { background: rgb(18 63 145 / 75%); }
+.azure-sky .azs-intro { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding: 32px 48px; color: var(--azs-white); background: var(--azs-cobalt-ramp); border-bottom: 1px solid rgb(229 241 236 / 40%); }
+.azure-sky .azs-intro h1 { font: 600 48px/1.1 var(--azs-display); margin-top: 8px; }
+.azure-sky .azs-intro :focus-visible { outline-color: var(--azs-white); }
+.azure-sky .azs-workbench { max-width: 1600px; margin: auto; padding: 0 48px 64px; scroll-margin-top: 72px; }
+.azure-sky .azs-section { padding: 40px 0; border-bottom: 1px solid var(--azs-line); scroll-margin-top: 80px; }
+.azure-sky .azs-section-heading { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+.azure-sky .azs-section-heading h2 { font: 600 30px/1.15 var(--azs-display); flex: 1; }
+.azure-sky .azs-index { color: var(--azs-action); font: 12px var(--azs-mono); }
+.azure-sky .azs-foundation-preview { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.azure-sky .azs-surface-sample { padding: 32px; background: var(--azs-surface-ramp); }
+.azure-sky .azs-surface-sample h3 { font: 600 28px/1.2 var(--azs-display); margin: 12px 0; }
+.azure-sky .azs-surface-sample p { margin-bottom: 24px; }
+.azure-sky .azs-inverse { background: var(--azs-cobalt-ramp); color: white; }
+.azure-sky .azs-inverse :focus-visible, .azure-sky .azs-topbar :focus-visible { outline-color: white; }
+.azure-sky[data-density="Compact"] { --azs-row-height: 36px; }
+.azure-sky .azs-muted { color: var(--azs-steel); }
+.azure-sky .azs-row { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
+.azure-sky .azs-between { justify-content: space-between; }
+.azure-sky .azs-icon-button { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; flex: 0 0 36px; padding: 0; background: transparent; color: inherit; border: 1px solid transparent; border-radius: 4px; transition: background 120ms; }
+.azure-sky .azs-icon-button:hover { background: rgb(79 142 216 / 13%); }
+.azure-sky .azs-icon-button[aria-pressed="true"] { background: rgb(79 142 216 / 20%); }
+.azure-sky .azs-segmented { display: inline-flex; align-items: stretch; padding: 3px; background: var(--azs-surface-glaze); border: 1px solid var(--azs-line); border-radius: 5px; max-width: 100%; }
+.azure-sky .azs-segmented button { border: 0; border-radius: 3px; background: transparent; min-height: 30px; padding: 5px 12px; color: var(--azs-steel); font-size: 12px; white-space: nowrap; }
+.azure-sky .azs-segmented button[aria-pressed="true"] { background: var(--azs-action); color: white; }
+.azure-sky .azs-section-nav { position: sticky; top: 0; z-index: 10; display: flex; padding: 0 48px; background: linear-gradient(100deg, rgb(247 251 255 / 97%), rgb(234 243 255 / 96%), rgb(247 251 255 / 94%)); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border-bottom: 1px solid var(--azs-line); flex-wrap: wrap; }
+.azure-sky .azs-section-nav a { min-height: 52px; padding: 14px 18px; display: inline-flex; gap: 8px; align-items: center; color: var(--azs-steel); border-bottom: 2px solid transparent; }
+.azure-sky .azs-section-nav a:hover, .azure-sky .azs-section-nav a:focus-visible { color: var(--azs-cobalt); border-bottom-color: var(--azs-action); }
+.azure-sky .azs-section-nav .azs-mono { font-size: 10px; }
+.azure-sky .azs-workbench-heading { padding-top: 28px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; color: var(--azs-steel); }
+.azure-sky .azs-section-tag { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--azs-steel); }
+.azure-sky .azs-palette { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 12px; margin-bottom: 32px; }
+.azure-sky .azs-swatch { padding: 0; border: 0; text-align: left; background: none; color: var(--azs-ink); min-width: 0; }
+.azure-sky .azs-swatch-color { height: 76px; display: flex; justify-content: flex-end; align-items: flex-end; padding: 9px; border: 1px solid rgb(16 45 80 / 10%); margin-bottom: 10px; transition: transform 120ms; }
+.azure-sky .azs-swatch:hover .azs-swatch-color { transform: translateY(-3px); }
+.azure-sky .azs-swatch-name { display: block; font-weight: 500; font-size: 13px; margin-bottom: 3px; }
+.azure-sky .azs-three-surfaces { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid var(--azs-line); }
+.azure-sky .azs-surface-sample { min-width: 0; padding: 24px 28px; }
+.azure-sky .azs-sample-mist { background: var(--azs-mist-ramp); }
+.azure-sky .azs-sample-cobalt { background: var(--azs-cobalt-ramp); }
+.azure-sky .azs-specimen-number { display: flex; align-items: baseline; flex-wrap: wrap; gap: 12px; font: 600 44px/1.3 var(--azs-display); margin: 20px 0; }
+.azure-sky .azs-specimen-number span { font-weight: 400; }
+.azure-sky .azs-badge-success { color: var(--azs-success); background: #e6f5ef; border-color: #aacfc6; }
+.azure-sky .azs-badge-warning { color: var(--azs-warning); background: #fff4d9; border-color: #dec78c; }
+.azure-sky .azs-badge-error { color: var(--azs-danger); background: #fff0f2; border-color: #e8b1bc; }
+.azure-sky .azs-badge-info { color: var(--azs-action); background: #eaf3ff; border-color: var(--azs-line); }
+.azure-sky .azs-inverse .azs-badge-neutral { color: white; border-color: #6c91ce; }
+.azure-sky .azs-type-row { display: grid; grid-template-columns: 1.1fr 1.2fr auto; gap: 24px; align-items: center; padding-top: 28px; }
+.azure-sky .azs-type-display { font: 600 30px/1.2 var(--azs-display); margin-top: 8px; }
+.azure-sky .azs-type-body { font-size: 15px; margin: 8px 0; }
+.azure-sky .azs-contrast-stamp { color: var(--azs-success); border-left: 1px solid var(--azs-line); padding-left: 24px; display: grid; grid-template-columns: 20px 1fr; align-items: center; gap: 4px 8px; }
+.azure-sky .azs-contrast-stamp strong { font-size: 20px; }
+.azure-sky .azs-contrast-stamp > span { grid-column: span 2; font-size: 12px; color: var(--azs-steel); }
+.azure-sky .azs-material-study { --azs-material-strength: .6; --azs-material-alpha: .82; --azs-material-gap: 16px; --azs-material-blur: 10px; --azs-highlight: var(--azs-mint); --azs-highlight-ink: var(--azs-mint-ink); padding-top: 32px; margin-top: 32px; border-top: 1px solid var(--azs-line); scroll-margin-top: 80px; }
+.azure-sky .azs-material-study[data-highlight="Mist"] { --azs-highlight: var(--azs-mist); --azs-highlight-ink: var(--azs-steel); }
+.azure-sky .azs-material-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
+.azure-sky .azs-material-heading h3 { font: 600 30px/1.2 var(--azs-display); margin-top: 7px; }
+.azure-sky .azs-material-heading > .azs-row { flex-wrap: nowrap; }
+.azure-sky .azs-material-layout { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(250px, 1fr); gap: 32px; }
+.azure-sky .azs-material-plane { min-width: 0; position: relative; padding: 32px; display: flex; align-items: center; justify-content: center; background: linear-gradient(128deg, rgb(79 142 216 / var(--azs-material-strength)) 0%, transparent 68%), linear-gradient(28deg, transparent 28%, rgb(234 243 255 / var(--azs-material-strength)) 100%), var(--azs-porcelain); }
+.azure-sky .azs-material-plane::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 47px, rgb(16 45 80 / 4%) 47px, rgb(16 45 80 / 4%) 48px), repeating-linear-gradient(90deg, transparent, transparent 47px, rgb(16 45 80 / 4%) 47px, rgb(16 45 80 / 4%) 48px); pointer-events: none; }
+.azure-sky .azs-material-study[data-ground="Cobalt"] .azs-material-plane { background-color: var(--azs-cobalt); }
+.azure-sky .azs-material-stack { position: relative; width: 100%; max-width: 470px; padding: 48px 48px 0 0; }
+.azure-sky .azs-material-sheet { position: absolute; inset: 48px 48px 0 0; border: 1px solid rgb(255 255 255 / 65%); border-radius: 6px; pointer-events: none; }
+.azure-sky .azs-material-sheet-far { background: linear-gradient(125deg, rgb(36 99 179 / 40%), rgb(36 99 179 / 8%)); transform: translate(calc(var(--azs-material-gap) * 2), calc(var(--azs-material-gap) * -2)); }
+.azure-sky .azs-material-sheet-near { background: linear-gradient(125deg, rgb(217 235 250 / 78%), rgb(229 241 236 / 42%) 65%, rgb(247 251 255 / 20%)); transform: translate(var(--azs-material-gap), calc(var(--azs-material-gap) * -1)); }
+.azure-sky .azs-material-window { position: relative; color: var(--azs-ink); background: linear-gradient(140deg, rgb(255 255 255 / 18%), transparent 72%), rgb(247 251 255 / var(--azs-material-alpha)); border: 1px solid var(--azs-control); border-radius: 6px; padding: 16px 22px 20px; box-shadow: 0 12px 26px rgb(16 45 80 / 10%); -webkit-backdrop-filter: blur(var(--azs-material-blur)); backdrop-filter: blur(var(--azs-material-blur)); }
+.azure-sky .azs-material-window-header { display: flex; align-items: center; justify-content: space-between; gap: 6px; margin-bottom: 12px; }
+.azure-sky .azs-material-window-header .azs-eyebrow { font-size: 10px; }
+.azure-sky .azs-material-window h4 { margin: 0; font: 600 30px/1.2 var(--azs-display); }
+.azure-sky .azs-material-summary { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin: 12px 0 20px; }
+.azure-sky .azs-material-summary strong { font: 600 44px/1.1 var(--azs-display); }
+.azure-sky .azs-material-summary > span { font-size: 12px; }
+.azure-sky .azs-material-reference { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; background: linear-gradient(100deg, var(--azs-highlight), rgb(247 251 255 / 92%)); color: var(--azs-highlight-ink); border-inline-start: 2px solid var(--azs-highlight-ink); padding: 10px 12px; margin: 0 -22px 20px; font-size: 12px; }
+.azure-sky .azs-material-marker { display: inline-flex; }
+.azure-sky .azs-material-label { margin-left: auto; font-size: 10px; }
+.azure-sky .azs-material-window-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.azure-sky .azs-material-window-footer .azs-mono { font-size: 10px; }
+.azure-sky .azs-material-controls { min-width: 0; padding-block: 4px; }
+.azure-sky .azs-highlight-choices { display: flex; gap: 12px; }
+.azure-sky .azs-highlight-choices button { display: flex; align-items: center; gap: 10px; padding: 8px 10px; min-height: 44px; color: var(--azs-ink); border: 1px solid var(--azs-control); border-radius: 4px; background: var(--azs-porcelain); text-align: left; flex: 1; }
+.azure-sky .azs-highlight-choices button[aria-pressed="true"] { outline: 1px solid var(--azs-action); outline-offset: 1px; }
+.azure-sky .azs-highlight-swatch { display: flex; align-items: center; justify-content: center; width: 26px; height: 26px; flex-shrink: 0; border-radius: 50%; border: 1px solid var(--azs-control); }
+.azure-sky .azs-highlight-choices small { display: block; color: var(--azs-steel); font-size: 9px; margin-top: 2px; }
+.azure-sky .azs-material-ground { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.azure-sky .azs-material-ground > .azs-field { margin: 0; }
+.azure-sky .azs-material-controls .azs-toggle-row { min-height: 48px; margin-top: 8px; }
+.azure-sky .azs-material-applications { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 28px; border-block: 1px solid var(--azs-line); }
+.azure-sky .azs-material-application { padding: 20px 24px; border-right: 1px solid var(--azs-line); min-width: 0; }
+.azure-sky .azs-material-application:first-child { padding-left: 0; }
+.azure-sky .azs-material-application:last-child { border-right: 0; padding-right: 0; }
+.azure-sky .azs-material-application > .azs-eyebrow { font-size: 10px; display: block; margin-bottom: 14px; }
+.azure-sky .azs-material-ramp { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 64px; padding: 16px; background: linear-gradient(110deg, #c4dff8, var(--azs-mist) 45%, var(--azs-porcelain)); color: var(--azs-ink); font-size: 12px; }
+.azure-sky .azs-material-emphasis { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; min-height: 64px; padding: 14px; background: linear-gradient(100deg, var(--azs-highlight), var(--azs-porcelain)); color: var(--azs-highlight-ink); border-left: 2px solid var(--azs-highlight-ink); font-size: 12px; }
+.azure-sky .azs-material-emphasis > .azs-mono { margin-left: auto; font-size: 10px; }
+.azure-sky .azs-material-command { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; min-height: 64px; font-size: 12px; }
+.azure-sky .azs-material-command .azs-button { font-size: 12px; }
+.azure-sky .azs-footer { display: flex; align-items: center; gap: 12px; padding: 28px 48px; background: var(--azs-cobalt-ramp); color: white; }
+.azure-sky .azs-footer > .azs-mono { margin-left: auto; }
+.azure-sky .azs-footer a { margin-left: 20px; display: flex; align-items: center; gap: 6px; }
+.azure-sky .azs-toast { position: fixed; bottom: 24px; right: 24px; z-index: 80; display: flex; gap: 12px; align-items: center; max-width: min(480px, calc(100% - 32px)); background: var(--azs-surface-ramp); color: var(--azs-ink); padding: 12px 12px 12px 18px; border: 1px solid var(--azs-control); border-left: 4px solid var(--azs-success); box-shadow: var(--azs-shadow); border-radius: 6px; animation: azs-reveal 180ms ease-out; }
+.azure-sky .azs-toast-symbol { color: var(--azs-success); display: flex; }
+.azure-sky .azs-toast-error { border-left-color: var(--azs-danger); }
+.azure-sky .azs-toast-error .azs-toast-symbol { color: var(--azs-danger); }
+.azure-sky .azs-toast-info { border-left-color: var(--azs-action); }
+.azure-sky .azs-toast-info .azs-toast-symbol { color: var(--azs-action); }
+.azure-sky.azs-tooltip { min-height: 0; padding: 7px 11px; background: var(--azs-ink); color: white; border-radius: 4px; box-shadow: var(--azs-shadow); font-size: 12px; z-index: 100; max-width: 240px; }
+.azure-sky.azs-tooltip svg { fill: var(--azs-ink); }
+.azure-sky .azs-loading { display: inline-flex; align-items: center; gap: 8px; }
+.azure-sky .azs-spin { animation: azs-spin 1.2s linear infinite; }
+@keyframes azs-spin { to { transform: rotate(360deg); } }
+@keyframes azs-reveal { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 1100px) {
+  .azure-sky .azs-section-nav { padding: 0 20px; }
+  .azure-sky .azs-section-nav a { padding: 10px 12px; }
+  .azure-sky .azs-section-nav .azs-mono { display: none; }
+  .azure-sky .azs-type-row { grid-template-columns: 1fr 1fr; }
+  .azure-sky .azs-contrast-stamp { display: none; }
+  .azure-sky .azs-surface-sample { padding: 20px; }
+  .azure-sky .azs-material-layout { grid-template-columns: minmax(0, 1.4fr) minmax(230px, 1fr); gap: 24px; }
+  .azure-sky .azs-material-plane { padding: 20px; }
+  .azure-sky .azs-material-application { padding-inline: 16px; }
+  .azure-sky .azs-highlight-choices { gap: 8px; }
+  .azure-sky .azs-highlight-choices button { padding: 8px; gap: 6px; font-size: 12px; }
+}
+@media (max-width: 767px) {
+  .azure-sky .azs-topbar { padding: 12px 20px; }
+  .azure-sky .azs-topbar > .azs-mono { display: none; }
+  .azure-sky .azs-intro { padding: 24px 20px; }
+  .azure-sky .azs-workbench { padding: 0 20px 40px; }
+  .azure-sky .azs-foundation-preview { grid-template-columns: 1fr; }
+  .azure-sky .azs-button { min-height: 44px; }
+  .azure-sky .azs-icon-button { width: 44px; height: 44px; flex-basis: 44px; }
+  .azure-sky .azs-topbar { gap: 6px; }
+  .azure-sky .azs-topbar .azs-row { gap: 4px; }
+  .azure-sky .azs-topbar .azs-badge { font-size: 10px; padding: 3px 6px; }
+  .azure-sky .azs-wordmark { gap: 7px; font-size: 12px; }
+  .azure-sky .azs-segmented button { min-width: 44px; min-height: 44px; padding: 6px 10px; }
+  .azure-sky .azs-section-nav { position: static; padding: 8px 16px; }
+  .azure-sky .azs-section-nav a { min-height: 44px; flex: 1 0 25%; padding: 10px 5px; justify-content: center; font-size: 11px; }
+  .azure-sky .azs-workbench-heading { padding-top: 24px; }
+  .azure-sky .azs-workbench-heading > .azs-eyebrow { font-size: 10px; }
+  .azure-sky .azs-section { padding: 28px 0; }
+  .azure-sky .azs-section-heading { gap: 10px; }
+  .azure-sky .azs-section-heading h2 { font-size: 26px; }
+  .azure-sky .azs-section-tag { display: none; }
+  .azure-sky .azs-palette { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px 10px; }
+  .azure-sky .azs-swatch-color { height: 64px; }
+  .azure-sky .azs-swatch-name { font-size: 11px; }
+  .azure-sky .azs-swatch .azs-mono { font-size: 10px; }
+  .azure-sky .azs-three-surfaces { grid-template-columns: 1fr; }
+  .azure-sky .azs-type-row { grid-template-columns: 1fr; }
+  .azure-sky .azs-footer { padding: 24px 20px; flex-wrap: wrap; }
+  .azure-sky .azs-footer > .azs-mono { order: 3; width: 100%; margin: 0; font-size: 10px; }
+  .azure-sky .azs-footer a { margin-left: auto; }
+  .azure-sky .azs-toast { right: 16px; bottom: 16px; }
+  .azure-sky .azs-material-heading h3 { font-size: 26px; }
+  .azure-sky .azs-material-heading { align-items: flex-start; }
+  .azure-sky .azs-material-layout { grid-template-columns: 1fr; }
+  .azure-sky .azs-material-plane { padding: 20px 16px; }
+  .azure-sky .azs-material-window { padding-inline: 16px; }
+  .azure-sky .azs-material-reference { margin-inline: -16px; }
+  .azure-sky .azs-material-window h4 { font-size: 27px; }
+  .azure-sky .azs-material-summary strong { font-size: 38px; }
+  .azure-sky .azs-material-applications { grid-template-columns: 1fr; }
+  .azure-sky .azs-material-application, .azure-sky .azs-material-application:first-child, .azure-sky .azs-material-application:last-child { padding: 20px 0; border-right: 0; border-bottom: 1px solid var(--azs-line); }
+  .azure-sky .azs-material-application:last-child { border-bottom: 0; }
+  .azure-sky .azs-material-controls input[type="range"] { min-height: 44px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .azure-sky *, .azure-sky *::before, .azure-sky *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+.azure-sky .azs-button-secondary { background: var(--azs-surface-ramp); color: var(--azs-action); border-color: var(--azs-control); }
+.azure-sky .azs-button-secondary:hover { background: #dcecff; }
+.azure-sky .azs-button-ghost { background: transparent; color: var(--azs-action); }
+.azure-sky .azs-button-ghost:hover { background: rgb(79 142 216 / 12%); }
+.azure-sky .azs-button-danger { background: var(--azs-danger); }
+.azure-sky .azs-button-danger:hover { background: #92283e; }
+.azure-sky .azs-button:disabled, .azure-sky .azs-icon-button:disabled { cursor: not-allowed; color: var(--azs-steel); background: #dbe5f1; border-color: #c1d2e4; }
+.azure-sky .azs-button-small { min-height: 28px; padding: 3px 10px; font-size: 12px; }
+.azure-sky .azs-button-large { min-height: 48px; padding: 11px 20px; font-size: 15px; }
+.azure-sky .azs-button.azs-state-hover { background: var(--azs-cobalt); }
+.azure-sky .azs-button.azs-state-focus { outline: 2px solid var(--azs-action); outline-offset: 3px; }
+.azure-sky .azs-button.azs-state-active { background: var(--azs-ink); box-shadow: inset 0 2px 3px rgb(0 0 0 / 20%); }
+.azure-sky .azs-action-band { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; padding-bottom: 24px; }
+.azure-sky .azs-split-button { display: inline-flex; }
+.azure-sky .azs-split-button > .azs-button:first-child { border-radius: 4px 0 0 4px; }
+.azure-sky .azs-split-button > .azs-button:last-child { border-radius: 0 4px 4px 0; border-left: 0; }
+.azure-sky .azs-square { width: 36px; padding: 7px; }
+.azure-sky .azs-state-strip { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); padding: 24px; background: var(--azs-surface-glaze); border-block: 1px solid var(--azs-line); gap: 16px; margin-bottom: 32px; }
+.azure-sky .azs-state-strip > div { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+.azure-sky .azs-state-strip .azs-mono { font-size: 10px; }
+.azure-sky .azs-controls-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
+.azure-sky .azs-subheading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 20px; }
+.azure-sky .azs-subheading h3 { font: 600 24px/1.2 var(--azs-display); }
+.azure-sky .azs-subheading .azs-mono { color: var(--azs-steel); font-size: 10px; }
+.azure-sky .azs-form, .azure-sky .azs-selection-lab { min-width: 0; }
+.azure-sky .azs-field { display: block; font-weight: 500; font-size: 12px; color: var(--azs-ink); margin-bottom: 16px; min-width: 0; }
+.azure-sky .azs-field > :is(input, select, textarea, .azs-input-icon, .azs-input-action, .azs-stepper, .azs-segmented) { margin-top: 7px; }
+.azure-sky :is(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]), select, textarea) { width: 100%; min-width: 0; min-height: 38px; background: var(--azs-porcelain); border: 1px solid var(--azs-control); color: var(--azs-ink); border-radius: 4px; padding: 8px 11px; font-size: 13px; font-weight: 400; }
+.azure-sky input::placeholder, .azure-sky textarea::placeholder { color: var(--azs-steel); opacity: 1; }
+.azure-sky textarea { resize: vertical; line-height: 1.6; min-height: 90px; }
+.azure-sky :is(input, textarea, select):disabled { background: #dce6f1; color: var(--azs-steel); cursor: not-allowed; border-color: var(--azs-line); }
+.azure-sky input[readonly] { background: var(--azs-mist); font-family: var(--azs-mono); font-size: 12px; }
+.azure-sky :is(input, textarea)[aria-invalid="true"] { border-color: var(--azs-danger); background: #fff7f8; }
+.azure-sky .azs-field-error { color: var(--azs-danger); font-weight: 400; font-size: 12px; display: block; margin: 6px 0 12px; }
+.azure-sky .azs-required { color: var(--azs-danger); }
+.azure-sky .azs-form-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.azure-sky .azs-input-icon, .azure-sky .azs-input-action { position: relative; display: flex; align-items: center; }
+.azure-sky .azs-input-icon > svg { position: absolute; left: 11px; color: var(--azs-steel); pointer-events: none; }
+.azure-sky .azs-input-icon input { padding-left: 35px !important; }
+.azure-sky .azs-input-action input { padding-right: 45px !important; }
+.azure-sky .azs-input-action .azs-icon-button { position: absolute; right: 2px; }
+.azure-sky .azs-fieldset { margin: 0 0 18px; padding: 0; border: 0; min-width: 0; }
+.azure-sky .azs-fieldset legend { font-weight: 500; font-size: 12px; margin-bottom: 12px; }
+.azure-sky .azs-check { display: flex; align-items: center; gap: 8px; font-size: 13px; min-height: 32px; cursor: pointer; }
+.azure-sky input[type="checkbox"], .azure-sky input[type="radio"] { accent-color: var(--azs-action); width: 16px; height: 16px; margin: 0; flex-shrink: 0; cursor: pointer; }
+.azure-sky .azs-toggle-list { border-block: 1px solid var(--azs-line); margin-bottom: 22px; }
+.azure-sky .azs-toggle-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 65px; cursor: pointer; font-size: 13px; }
+.azure-sky .azs-toggle-row .azs-muted { display: block; font-size: 11px; margin-top: 2px; }
+.azure-sky .azs-toggle-row input[role="switch"] { appearance: none; width: 36px; height: 20px; border: 1px solid var(--azs-control); border-radius: 20px; background: #bed0e2; position: relative; }
+.azure-sky .azs-toggle-row input[role="switch"]::before { content: ""; width: 14px; height: 14px; top: 2px; left: 2px; position: absolute; background: white; border-radius: 50%; box-shadow: 0 1px 2px rgb(16 45 80 / 20%); transition: transform 120ms; }
+.azure-sky .azs-toggle-row input[role="switch"]:checked { background: var(--azs-action); border-color: var(--azs-action); }
+.azure-sky .azs-toggle-row input[role="switch"]:checked::before { transform: translateX(16px); }
+.azure-sky input[type="range"] { display: block; width: 100%; accent-color: var(--azs-action); height: 24px; padding: 0; cursor: pointer; }
+.azure-sky .azs-inline-value { float: right; color: var(--azs-action); }
+.azure-sky .azs-stepper { display: inline-flex; align-items: center; border: 1px solid var(--azs-control); border-radius: 4px; background: var(--azs-porcelain); }
+.azure-sky .azs-stepper input[type="number"] { width: 48px; border: 0; text-align: center; padding: 6px; appearance: textfield; -moz-appearance: textfield; }
+.azure-sky .azs-stepper input::-webkit-inner-spin-button { appearance: none; }
+.azure-sky .azs-tag-list { gap: 8px; margin: 12px 0; min-height: 44px; }
+.azure-sky .azs-tag { display: inline-flex; align-items: center; gap: 8px; background: #dceaff; color: var(--azs-cobalt); border: 1px solid #9cbbde; border-radius: 4px; padding: 3px 5px 3px 9px; font-size: 12px; }
+.azure-sky .azs-tag button { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border: 0; background: transparent; color: inherit; border-radius: 3px; }
+.azure-sky .azs-format-bar { background: var(--azs-surface-ramp); border: 1px solid var(--azs-line); margin-bottom: 18px; }
+.azure-sky .azs-format-bar > .azs-row { border-bottom: 1px solid var(--azs-line); padding: 4px 8px; gap: 2px; }
+.azure-sky .azs-format-bar p { padding: 12px 16px; }
+.azure-sky .azs-format-divider { height: 20px; width: 1px; background: var(--azs-line); margin: 0 7px; }
+.azure-sky .azs-dropzone { border: 1px dashed var(--azs-control); background: var(--azs-surface-ramp); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; min-height: 150px; position: relative; padding: 20px; text-align: center; border-radius: 4px; overflow-wrap: anywhere; }
+.azure-sky .azs-dropzone > svg { color: var(--azs-action); }
+.azure-sky .azs-dropzone input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
+.azure-sky .azs-dropzone:focus-within { outline: 2px solid var(--azs-action); outline-offset: 3px; }
+.azure-sky .azs-dropzone .azs-muted { font: 10px var(--azs-mono); }
+.azure-sky .azs-dragging { background: #dcecff; border-style: solid; border-color: var(--azs-action); }
+.azure-sky .azs-save-result { font-size: 12px; color: var(--azs-success); overflow-wrap: anywhere; }
+.azure-sky .azs-view-preview { min-height: 48px; padding: 10px; background: var(--azs-porcelain); border: 1px solid var(--azs-line); display: flex; flex-wrap: wrap; gap: 7px; }
+.azure-sky .azs-view-preview > span { min-width: 20px; height: 18px; display: flex; align-items: center; gap: 8px; font-size: 10px; color: var(--azs-steel); }
+.azure-sky .azs-preview-dot { display: inline-block; width: 16px; height: 16px; background: var(--azs-sky); border-radius: 2px; }
+.azure-sky .azs-view-preview[data-view="List"] { flex-direction: column; }
+.azure-sky .azs-view-preview[data-view="Timeline"] > span { border-left: 1px solid var(--azs-control); padding-left: 7px; }
+.azure-sky .azs-size-line { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; padding-top: 28px; margin-top: 28px; border-top: 1px solid var(--azs-line); }
+.azure-sky .azs-long-button { max-width: 100%; text-align: left; }
+.azure-sky.azs-menu { min-height: 0; min-width: 190px; background: var(--azs-surface-ramp); border: 1px solid var(--azs-control); border-radius: 6px; box-shadow: var(--azs-shadow); padding: 5px; z-index: 40; }
+.azure-sky.azs-menu [role="menuitem"] { min-height: 36px; padding: 8px 10px; border-radius: 3px; cursor: pointer; font-size: 13px; outline: none; display: flex; align-items: center; gap: 10px; }
+.azure-sky.azs-menu [data-highlighted] { background: var(--azs-action); color: white; }
+.azure-sky .azs-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; white-space: nowrap; }
+.azure-sky .azs-metric-strip { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-bottom: 28px; border-block: 1px solid var(--azs-line); background: linear-gradient(110deg, rgb(255 255 255 / 55%), rgb(247 251 255 / 15%)); }
+.azure-sky .azs-metric-strip > div { padding: 24px 28px; border-right: 1px solid var(--azs-line); min-width: 0; }
+.azure-sky .azs-metric-strip > div:first-child { padding-left: 0; }
+.azure-sky .azs-metric-strip > div:last-child { border-right: 0; }
+.azure-sky .azs-metric-strip .azs-eyebrow { color: var(--azs-steel); font-size: 10px; }
+.azure-sky .azs-metric-strip strong { display: flex; align-items: baseline; gap: 6px; font: 600 44px/1.2 var(--azs-display); margin: 10px 0; overflow-wrap: anywhere; }
+.azure-sky .azs-metric-strip small { font: 13px var(--azs-mono); color: var(--azs-steel); }
+.azure-sky .azs-metric-strip .azs-metric-missing { font-size: 28px; min-height: 53px; align-items: center; color: var(--azs-steel); }
+.azure-sky .azs-metric-foot { display: flex; align-items: center; gap: 6px; color: var(--azs-steel); font-size: 11px; }
+.azure-sky .azs-success-text { color: var(--azs-success); }
+.azure-sky .azs-data-layout { display: grid; grid-template-columns: minmax(0, 1fr) 270px; gap: 24px; align-items: start; }
+.azure-sky .azs-records { min-width: 0; border: 1px solid var(--azs-line); background: var(--azs-surface-ramp); }
+.azure-sky .azs-table-toolbar { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; padding: 16px; border-bottom: 1px solid var(--azs-line); background: var(--azs-surface-glaze); }
+.azure-sky .azs-table-toolbar .azs-input-icon { flex: 1; min-width: 150px; }
+.azure-sky .azs-table-toolbar select { width: auto; max-width: 165px; }
+.azure-sky .azs-table-viewport { overflow-x: auto; }
+.azure-sky .azs-table { border-collapse: collapse; width: 100%; table-layout: fixed; font-size: 12px; }
+.azure-sky .azs-table th { text-align: left; font-weight: 500; color: var(--azs-steel); background: linear-gradient(180deg, #f7fbff, #eaf3ff); border-bottom: 1px solid var(--azs-line); position: sticky; top: 0; z-index: 1; }
+.azure-sky .azs-table :is(th, td) { padding: 12px 10px; overflow-wrap: anywhere; }
+.azure-sky .azs-table th:nth-child(2) { width: 30%; }
+.azure-sky .azs-table th button { display: inline-flex; gap: 5px; align-items: center; border: 0; color: inherit; background: transparent; padding: 0; font-size: 12px; }
+.azure-sky .azs-table td { border-bottom: 1px solid #d7e4f2; height: var(--azs-row-height); }
+.azure-sky .azs-table tbody tr:last-child td { border-bottom: 0; }
+.azure-sky .azs-table tbody tr:hover { background: linear-gradient(90deg, #eaf3ff, #f7fbff); }
+.azure-sky .azs-table tr[data-selected="true"] { background: linear-gradient(90deg, #dceaff, #eaf3ff); }
+.azure-sky .azs-table tr[data-inspected="true"] td:nth-child(2) { box-shadow: inset 2px 0 var(--azs-action); }
+.azure-sky .azs-table .azs-checkbox-cell { width: 38px; padding: 4px; }
+.azure-sky .azs-checkbox-cell label { display: flex; min-height: 36px; align-items: center; justify-content: center; cursor: pointer; }
+.azure-sky .azs-table .azs-numeric { text-align: right; font-variant-numeric: tabular-nums; }
+.azure-sky .azs-table .azs-numeric button { justify-content: flex-end; }
+.azure-sky .azs-table .azs-badge { font-size: 10px; padding: 3px 5px; gap: 4px; }
+.azure-sky .azs-record-link { display: inline; text-align: left; color: var(--azs-ink); font-weight: 500; border: 0; padding: 0; background: transparent; overflow-wrap: anywhere; font-size: 12px; }
+.azure-sky .azs-record-link svg { display: inline-block; margin-left: 4px; vertical-align: middle; }
+.azure-sky .azs-record-link:hover { color: var(--azs-action); text-decoration: underline; }
+.azure-sky .azs-record-id { display: block; color: var(--azs-steel); font-size: 10px; margin-top: 3px; }
+.azure-sky .azs-pagination { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 14px; border-top: 1px solid var(--azs-line); color: var(--azs-steel); }
+.azure-sky .azs-selection-summary { display: flex; align-items: center; gap: 8px; padding: 6px 16px; background: #dceaff; color: var(--azs-cobalt); font-size: 12px; }
+.azure-sky .azs-selection-summary .azs-button { margin-left: auto; }
+.azure-sky .azs-inspector { background: var(--azs-cobalt-ramp); padding: 24px; min-width: 0; }
+.azure-sky .azs-inspector > h3 { font: 600 28px/1.15 var(--azs-display); margin: 26px 0 10px; overflow-wrap: anywhere; }
+.azure-sky .azs-inspector dl { margin: 24px 0; }
+.azure-sky .azs-inspector dl > div { display: flex; justify-content: space-between; gap: 8px; border-top: 1px solid #527ab5; padding: 10px 0; font-size: 12px; }
+.azure-sky .azs-inspector dt { color: #eaf3ff; }
+.azure-sky .azs-inspector dd { margin: 0; text-align: right; overflow-wrap: anywhere; }
+.azure-sky .azs-inspector-note { display: flex; align-items: center; gap: 10px; color: #eaf3ff; font-size: 11px; border-top: 1px solid #527ab5; padding-top: 16px; }
+.azure-sky .azs-empty { display: flex; flex-direction: column; gap: 12px; align-items: center; justify-content: center; min-height: 220px; text-align: center; padding: 28px; }
+.azure-sky .azs-empty > svg { color: var(--azs-control); }
+.azure-sky .azs-empty h3 { font: 600 24px var(--azs-display); }
+.azure-sky .azs-empty p { font-size: 13px; color: var(--azs-steel); overflow-wrap: anywhere; max-width: 100%; }
+.azure-sky[data-density="Compact"] .azs-table td { padding-block: 6px; }
+.azure-sky .azs-chart-main { padding: 24px; background: var(--azs-surface-ramp); border: 1px solid var(--azs-line); }
+.azure-sky .azs-chart-heading { display: flex; justify-content: space-between; gap: 16px; align-items: center; flex-wrap: wrap; }
+.azure-sky .azs-chart-heading h3 { font: 600 28px/1.2 var(--azs-display); margin-top: 7px; }
+.azure-sky .azs-chart-legend { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; padding: 14px 0; }
+.azure-sky .azs-chart-legend .azs-check { font-size: 12px; }
+.azure-sky .azs-chart-legend > .azs-mono { margin-left: auto; font-size: 10px; }
+.azure-sky .azs-legend-stroke { width: 16px; height: 0; border-top: 3px solid var(--azs-action); }
+.azure-sky .azs-legend-dashed { border-top-color: var(--azs-success); border-top-style: dashed; }
+.azure-sky .azs-chart-canvas { height: 250px; min-width: 0; width: 100%; }
+.azure-sky .azs-chart-data { border-top: 1px solid var(--azs-line); margin-top: 12px; font-size: 12px; color: var(--azs-steel); }
+.azure-sky .azs-chart-data summary { cursor: pointer; padding: 12px 0 0; }
+.azure-sky .azs-chart-data-values { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; padding: 16px 0 0; font-family: var(--azs-mono); font-size: 10px; }
+.azure-sky .azs-chart-data-values strong { display: block; font-size: 11px; }
+.azure-sky .azs-chart-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 24px; border-block: 1px solid var(--azs-line); }
+.azure-sky .azs-chart-small { padding: 24px; min-width: 0; border-right: 1px solid var(--azs-line); }
+.azure-sky .azs-chart-small:first-child { padding-left: 0; }
+.azure-sky .azs-chart-small:last-child { border-right: 0; padding-right: 0; }
+.azure-sky .azs-donut-layout { display: flex; align-items: center; gap: 14px; min-height: 180px; flex-wrap: wrap; }
+.azure-sky .azs-donut { width: 150px; height: 150px; position: relative; flex-shrink: 0; }
+.azure-sky .azs-donut > span { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; pointer-events: none; }
+.azure-sky .azs-donut strong { font: 600 38px/1 var(--azs-display); }
+.azure-sky .azs-donut small { color: var(--azs-steel); font-size: 11px; margin-top: 4px; }
+.azure-sky .azs-chart-key { padding: 0; margin: 0; list-style: none; flex: 1; min-width: 135px; }
+.azure-sky .azs-chart-key li { display: flex; align-items: center; gap: 8px; font-size: 12px; padding: 6px 0; }
+.azure-sky .azs-chart-key li > span:first-child { width: 8px; height: 8px; border-radius: 1px; }
+.azure-sky .azs-chart-key li strong { margin-left: auto; font-family: var(--azs-mono); font-size: 11px; }
+.azure-sky .azs-mini-chart { height: 165px; }
+.azure-sky .azs-chart-small > .azs-mono { display: block; margin-top: 10px; font-size: 9px; }
+.azure-sky .azs-network { height: 177px; position: relative; width: 100%; }
+.azure-sky .azs-network > svg { position: absolute; width: 100%; height: 100%; inset: 0; }
+.azure-sky .azs-network-node { position: absolute; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; gap: 4px; background: var(--azs-mist); color: var(--azs-action); border: 1px solid var(--azs-line); padding: 6px; border-radius: 4px; min-width: 54px; }
+.azure-sky .azs-network-node span { font-size: 10px; }
+.azure-sky .azs-network-node[aria-pressed="true"] { background: var(--azs-cobalt); color: white; border-color: var(--azs-cobalt); }
+.azure-sky .azs-network-detail { display: flex; gap: 8px; align-items: center; font-size: 11px; color: var(--azs-steel); margin-top: 6px; }
+.azure-sky .azs-heatmap-layout { display: grid; grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr); gap: 48px; margin-top: 32px; }
+.azure-sky .azs-heatmap { display: grid; gap: 5px; }
+.azure-sky .azs-heatmap-row { display: grid; grid-template-columns: 40px repeat(12, minmax(0, 1fr)); gap: 5px; align-items: center; }
+.azure-sky .azs-heatmap-row button { border: 1px solid rgb(16 45 80 / 10%); width: 100%; height: 22px; border-radius: 2px; padding: 0; }
+.azure-sky .azs-heatmap-row .azs-mono { font-size: 10px; color: var(--azs-steel); }
+.azure-sky .azs-heatmap-caption { margin-top: 14px; }
+.azure-sky .azs-heatmap-caption .azs-mono { font-size: 10px; }
+.azure-sky .azs-timeline ol { list-style: none; padding: 0; margin: 0; }
+.azure-sky .azs-timeline li { position: relative; padding-bottom: 18px; }
+.azure-sky .azs-timeline li:not(:last-child)::before { content: ""; width: 1px; background: var(--azs-line); position: absolute; left: 12px; top: 18px; bottom: -4px; }
+.azure-sky .azs-timeline li button { display: flex; align-items: center; gap: 12px; background: transparent; border: 0; color: var(--azs-ink); text-align: left; padding: 0; }
+.azure-sky .azs-timeline-dot { width: 25px; height: 25px; display: flex; align-items: center; justify-content: center; background: var(--azs-mist); border: 1px solid var(--azs-control); border-radius: 50%; color: var(--azs-steel); font-size: 10px; z-index: 1; }
+.azure-sky .azs-timeline strong { font-weight: 500; font-size: 13px; }
+.azure-sky .azs-timeline small { display: block; color: var(--azs-steel); font-size: 10px; margin-top: 2px; }
+.azure-sky .azs-timeline [data-complete="true"] .azs-timeline-dot { border-color: var(--azs-success); color: var(--azs-success); background: #e6f5ef; }
+.azure-sky .azs-timeline [data-current="true"] .azs-timeline-dot { background: var(--azs-action); color: white; border-color: var(--azs-action); outline: 3px solid #c8def6; }
+.azure-sky .azs-chart-loading { min-height: 600px; padding: 40px; }
+.azure-sky .azs-overlay-stage { display: grid; grid-template-columns: 1.6fr 1fr; border-block: 1px solid var(--azs-line); }
+.azure-sky .azs-overlay-actions { display: flex; align-items: center; align-content: center; flex-wrap: wrap; gap: 18px; padding: 32px 32px 32px 0; }
+.azure-sky .azs-overlay-readout { background: var(--azs-surface-glaze); border-left: 1px solid var(--azs-line); padding: 28px; }
+.azure-sky .azs-overlay-readout > strong { display: block; font: 600 48px/1.3 var(--azs-display); margin: 6px 0; }
+.azure-sky .azs-overlay-readout > .azs-mono { color: var(--azs-steel); font-size: 10px; }
+.azure-sky .azs-collection-list { display: flex; flex-wrap: wrap; gap: 8px 16px; margin: 10px 0 20px; }
+.azure-sky .azs-collection-list > span { display: flex; align-items: center; gap: 6px; font-size: 12px; overflow-wrap: anywhere; }
+.azure-sky.azs-dialog-overlay { position: fixed; inset: 0; min-height: 0; background: rgb(16 45 80 / 48%); z-index: 50; backdrop-filter: blur(3px); animation: azs-reveal 180ms ease-out; }
+.azure-sky.azs-dialog { position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(490px, calc(100% - 32px)); max-height: calc(100dvh - 40px); min-height: 0; overflow-y: auto; background: var(--azs-surface-ramp); padding: 24px; z-index: 51; border: 1px solid var(--azs-control); border-radius: 8px; box-shadow: 0 24px 80px rgb(16 45 80 / 28%); }
+.azure-sky .azs-dialog-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: -4px -6px 4px 0; }
+.azure-sky .azs-dialog-heading h2 { font: 600 30px/1.2 var(--azs-display); margin: 0; }
+.azure-sky .azs-dialog-description { color: var(--azs-steel); margin-bottom: 24px; font-size: 13px; overflow-wrap: anywhere; }
+.azure-sky .azs-dialog-footer { display: flex; justify-content: flex-end; gap: 12px; padding-top: 20px; border-top: 1px solid var(--azs-line); margin-top: 20px; }
+.azure-sky.azs-drawer { right: 0; top: 0; left: auto; transform: none; width: min(430px, 100%); min-height: 100dvh; max-height: 100dvh; border-radius: 0; border-width: 0 0 0 1px; }
+.azure-sky .azs-drawer-banner { display: flex; align-items: flex-start; flex-direction: column; gap: 14px; padding: 24px; background: var(--azs-cobalt-ramp); color: white; margin: 0 -24px 24px; }
+.azure-sky .azs-drawer-banner > strong { font: 600 38px/1.2 var(--azs-display); }
+.azure-sky .azs-detail-list { margin: 20px 0; }
+.azure-sky .azs-detail-list > div { display: flex; justify-content: space-between; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--azs-line); font-size: 12px; }
+.azure-sky .azs-detail-list dt { color: var(--azs-steel); }
+.azure-sky .azs-detail-list dd { margin: 0; overflow-wrap: anywhere; text-align: right; }
+.azure-sky.azs-popover { min-height: 0; width: min(290px, calc(100vw - 32px)); padding: 20px; background: var(--azs-surface-ramp); border: 1px solid var(--azs-control); border-radius: 6px; box-shadow: var(--azs-shadow); z-index: 40; }
+.azure-sky.azs-popover h3 { font: 600 24px/1.2 var(--azs-display); margin-bottom: 18px; }
+.azure-sky .azs-popover-readout { color: var(--azs-steel); margin-bottom: 18px; }
+.azure-sky.azs-popover > svg { fill: var(--azs-porcelain); }
+.azure-sky .azs-menu-separator { height: 1px; background: var(--azs-line); margin: 5px; }
+.azure-sky.azs-menu [data-disabled] { opacity: .5; cursor: not-allowed; }
+.azure-sky .azs-command-input { position: relative; display: flex; align-items: center; }
+.azure-sky .azs-command-input > svg { position: absolute; left: 12px; color: var(--azs-steel); }
+.azure-sky .azs-command-input input { padding-left: 38px !important; }
+.azure-sky .azs-command-results { display: flex; flex-direction: column; margin-top: 14px; gap: 4px; }
+.azure-sky .azs-command-results button { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px; background: transparent; border: 0; color: var(--azs-ink); text-align: left; border-radius: 4px; }
+.azure-sky .azs-command-results button:hover, .azure-sky .azs-command-results button[aria-selected="true"] { background: var(--azs-action); color: white; }
+.azure-sky .azs-alert-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-bottom: 28px; }
+.azure-sky .azs-alert { display: flex; gap: 12px; align-items: flex-start; padding: 16px; border: 1px solid var(--azs-line); border-left-width: 3px; border-radius: 4px; font-size: 12px; }
+.azure-sky .azs-alert strong { display: block; font-size: 13px; font-weight: 600; }
+.azure-sky .azs-alert p { margin-top: 4px; }
+.azure-sky .azs-alert-success { color: var(--azs-success); background: #e6f5ef; border-color: #b3d8ca; border-left-color: var(--azs-success); }
+.azure-sky .azs-alert-info { color: var(--azs-action); background: #e3efff; border-color: #aecaea; border-left-color: var(--azs-action); }
+.azure-sky .azs-alert-warning { color: var(--azs-warning); background: #fff4d9; border-color: #e5d29e; border-left-color: var(--azs-warning); }
+.azure-sky .azs-alert-error { color: var(--azs-danger); background: #fff0f2; border-color: #e8b1bc; border-left-color: var(--azs-danger); }
+.azure-sky .azs-feedback-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.azure-sky .azs-feedback-sample { min-width: 0; border: 1px solid var(--azs-line); padding: 24px; border-radius: 6px; background: var(--azs-surface-glaze); }
+.azure-sky .azs-feedback-sample .azs-subheading h3 { font-size: 24px; }
+.azure-sky .azs-feedback-sample .azs-subheading .azs-badge { font-size: 10px; }
+.azure-sky .azs-state-empty { display: flex; align-items: center; flex-direction: column; justify-content: center; text-align: center; gap: 12px; min-height: 200px; }
+.azure-sky .azs-state-empty > svg { color: var(--azs-steel); }
+.azure-sky .azs-state-empty h4 { font: 600 23px/1.2 var(--azs-display); margin: 0; }
+.azure-sky .azs-state-empty p { color: var(--azs-steel); font-size: 12px; }
+.azure-sky .azs-skeleton-list { display: flex; flex-direction: column; gap: 24px; margin: 30px 0; }
+.azure-sky .azs-skeleton-list > div { display: flex; align-items: center; gap: 12px; }
+.azure-sky .azs-skeleton-list > div > div { flex: 1; }
+.azure-sky .azs-skeleton { display: block; height: 10px; width: 100%; border-radius: 3px; background: #d9e7f6; animation: azs-skeleton-pulse 2s ease-in-out infinite; }
+.azure-sky .azs-skeleton-icon { width: 32px; height: 32px; }
+.azure-sky .azs-skeleton-short { width: 60%; height: 7px; margin-top: 8px; }
+.azure-sky .azs-feedback-sample > .azs-loading { color: var(--azs-steel); font-size: 12px; }
+.azure-sky .azs-progress-line { display: flex; align-items: center; gap: 32px; background: var(--azs-surface-ramp); border-block: 1px solid var(--azs-line); padding: 24px; margin-top: 24px; }
+.azure-sky .azs-progress-content { flex: 1; min-width: 0; }
+.azure-sky .azs-progress-content > .azs-row:first-child { font-size: 13px; font-weight: 500; }
+.azure-sky .azs-progress-content .azs-mono { font-size: 10px; }
+.azure-sky progress { display: block; width: 100%; appearance: none; height: 6px; border: 0; background: #dceaff; border-radius: 3px; overflow: hidden; margin: 12px 0; }
+.azure-sky progress::-webkit-progress-bar { background: #dceaff; }
+.azure-sky progress::-webkit-progress-value { background: var(--azs-action); }
+.azure-sky progress::-moz-progress-bar { background: var(--azs-action); }
+.azure-sky .azs-notification-row { margin-top: 24px; }
+@keyframes azs-skeleton-pulse { 50% { opacity: .45; } }
+.azure-sky .azs-composition-shell { display: grid; grid-template-columns: 200px minmax(0, 1fr); background: var(--azs-surface-glaze); border: 1px solid var(--azs-line); }
+.azure-sky .azs-composition-nav { display: flex; flex-direction: column; min-width: 0; background: var(--azs-mist-ramp); border-right: 1px solid var(--azs-line); padding: 24px 14px; }
+.azure-sky .azs-composition-brand { display: flex; align-items: center; gap: 10px; color: var(--azs-cobalt); font: 600 15px/1.25 var(--azs-display); padding: 0 8px; margin-bottom: 32px; }
+.azure-sky .azs-composition-nav > .azs-eyebrow { padding: 0 8px; font-size: 9px; margin-bottom: 12px; }
+.azure-sky .azs-composition-nav nav { display: flex; flex-direction: column; gap: 4px; }
+.azure-sky .azs-composition-nav nav button { min-height: 42px; text-align: left; border: 0; border-radius: 4px; padding: 8px; background: transparent; color: var(--azs-steel); display: flex; align-items: center; gap: 8px; font-size: 12px; }
+.azure-sky .azs-composition-nav nav button[aria-current="page"] { background: var(--azs-action); color: white; }
+.azure-sky .azs-tree { margin-top: 28px; font-size: 11px; }
+.azure-sky .azs-tree summary { display: flex; align-items: center; gap: 5px; padding: 8px 0; cursor: pointer; list-style: none; }
+.azure-sky .azs-tree[open] > summary > svg { transform: rotate(90deg); }
+.azure-sky .azs-tree details { padding-left: 14px; }
+.azure-sky .azs-tree details[open] > summary > svg { transform: rotate(90deg); }
+.azure-sky .azs-tree button { display: flex; align-items: center; gap: 6px; padding: 8px 0 8px 17px; font-size: 10px; color: var(--azs-steel); border: 0; background: transparent; text-align: left; }
+.azure-sky .azs-tree button:hover { color: var(--azs-cobalt); }
+.azure-sky .azs-profile { margin-top: auto; padding-top: 32px; display: flex; align-items: center; gap: 9px; }
+.azure-sky .azs-profile strong { display: block; font-size: 12px; font-weight: 500; }
+.azure-sky .azs-profile small { display: block; font-size: 9px; color: var(--azs-steel); }
+.azure-sky .azs-avatar { display: inline-flex; width: 32px; height: 32px; flex: 0 0 32px; align-items: center; justify-content: center; border-radius: 50%; background: var(--azs-action); color: white; font-size: 10px; border: 2px solid var(--azs-porcelain); }
+.azure-sky .azs-avatar-teal { background: var(--azs-success); }
+.azure-sky .azs-avatar-gold { background: var(--azs-warning); }
+.azure-sky .azs-avatar-count { background: #e0ecfa; color: var(--azs-steel); }
+.azure-sky .azs-avatar-stack { display: flex; flex-shrink: 0; padding-left: 6px; }
+.azure-sky .azs-avatar-stack .azs-avatar { margin-left: -6px; }
+.azure-sky .azs-composition-main { min-width: 0; }
+.azure-sky .azs-composition-topline { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; padding: 18px 28px; border-bottom: 1px solid var(--azs-line); background: var(--azs-surface-glaze); }
+.azure-sky .azs-breadcrumbs { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; font-size: 11px; color: var(--azs-steel); }
+.azure-sky .azs-breadcrumbs a { color: var(--azs-action); }
+.azure-sky .azs-tabs { display: flex; gap: 24px; padding: 0 28px; border-bottom: 1px solid var(--azs-line); }
+.azure-sky .azs-tabs button { display: flex; align-items: center; gap: 7px; padding: 15px 0; color: var(--azs-steel); background: transparent; border: 0; border-bottom: 2px solid transparent; font-size: 12px; }
+.azure-sky .azs-tabs button[data-state="active"] { color: var(--azs-cobalt); border-bottom-color: var(--azs-action); }
+.azure-sky .azs-tab-content { outline: none; }
+.azure-sky .azs-report, .azure-sky .azs-workspace-panel, .azure-sky .azs-settings-panel { padding: 28px; }
+.azure-sky .azs-report-heading { display: flex; justify-content: space-between; gap: 14px; align-items: center; margin-bottom: 16px; }
+.azure-sky .azs-report-heading h3 { font: 600 34px/1.15 var(--azs-display); margin-top: 8px; }
+.azure-sky .azs-report-body { max-width: 780px; margin-top: 24px; }
+.azure-sky .azs-report-body > p { font-size: 14px; line-height: 1.8; }
+.azure-sky .azs-report-body blockquote { margin: 24px 0; padding: 6px 0 6px 20px; font: 600 26px/1.3 var(--azs-display); border-left: 3px solid var(--azs-action); color: var(--azs-cobalt); }
+.azure-sky .azs-report-body h4 { font-size: 14px; margin: 24px 0 14px; }
+.azure-sky .azs-evidence-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.azure-sky .azs-evidence-pair p { font-size: 12px; margin-top: 10px; line-height: 1.6; }
+.azure-sky .azs-code-heading { display: flex; justify-content: space-between; align-items: center; background: #184572; color: #eaf3ff; padding: 5px 12px 5px 18px; margin-top: 24px; font: 11px var(--azs-mono); }
+.azure-sky .azs-code-heading > span { display: flex; align-items: center; gap: 8px; }
+.azure-sky .azs-code-heading :focus-visible { outline-color: var(--azs-white); }
+.azure-sky .azs-code { margin: 0; padding: 20px; background: var(--azs-ink); color: #dcecff; font: 12px/1.8 var(--azs-mono); overflow-x: auto; }
+.azure-sky .azs-code-line { display: block; counter-increment: azs-code-line; }
+.azure-sky .azs-code-line::before { content: counter(azs-code-line); color: #a9c6e5; display: inline-block; width: 28px; user-select: none; }
+.azure-sky .azs-code-key { color: #a1c8ff; }
+.azure-sky .azs-code-string { color: #9be5d0; }
+.azure-sky .azs-code-number { color: #ffdc90; }
+.azure-sky .azs-diff { font: 11px/1.8 var(--azs-mono); padding: 12px 0; }
+.azure-sky .azs-diff del, .azure-sky .azs-diff ins { display: block; text-decoration: none; padding: 4px 15px; }
+.azure-sky .azs-diff del { color: var(--azs-danger); background: #fff0f2; }
+.azure-sky .azs-diff ins { color: var(--azs-success); background: #e6f5ef; }
+.azure-sky .azs-accordion { border-bottom: 1px solid var(--azs-line); }
+.azure-sky .azs-accordion summary { display: flex; justify-content: space-between; align-items: center; cursor: pointer; min-height: 48px; font-size: 12px; list-style: none; }
+.azure-sky .azs-accordion[open] summary svg { transform: rotate(90deg); }
+.azure-sky .azs-accordion .azs-detail-list { margin: 0 0 16px; }
+.azure-sky .azs-accordion p { padding-bottom: 16px; font-size: 12px; color: var(--azs-steel); }
+.azure-sky .azs-long-id { font-size: 10px; max-width: 70%; }
+.azure-sky .azs-collection-search { max-width: 400px; margin-bottom: 24px; }
+.azure-sky .azs-card-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.azure-sky .azs-collection-card { background: var(--azs-surface-ramp); border: 1px solid var(--azs-line); border-radius: 6px; overflow: hidden; min-width: 0; }
+.azure-sky .azs-collection-card > div { padding: 12px 14px; }
+.azure-sky .azs-collection-card h4 { font: 600 25px/1.2 var(--azs-display); margin: 8px 0 12px; }
+.azure-sky .azs-collection-card .azs-row { gap: 4px; }
+.azure-sky .azs-file-list { margin-top: 32px; }
+.azure-sky .azs-file-list h4 { font: 600 24px/1.2 var(--azs-display); margin: 0 0 16px; }
+.azure-sky .azs-file-list button { display: flex; align-items: center; gap: 12px; width: 100%; padding: 15px 0; border: 0; border-bottom: 1px solid var(--azs-line); background: transparent; color: var(--azs-ink); text-align: left; font-size: 13px; }
+.azure-sky .azs-file-list small { margin-left: auto; font: 10px var(--azs-mono); color: var(--azs-steel); }
+.azure-sky .azs-settings-panel { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.azure-sky .azs-settings-panel > .azs-subheading { grid-column: 1 / -1; margin-bottom: 0; }
+.azure-sky .azs-settings-panel .azs-toggle-row { margin-bottom: 20px; }
+.azure-sky .azs-settings-panel .azs-save-result { margin-top: 12px; }
+.azure-sky .azs-material-form { padding: 22px; background: var(--azs-surface-ramp); border: 1px solid var(--azs-line); }
+.azure-sky .azs-material-mist { background: var(--azs-mist-ramp); }
+.azure-sky .azs-material-cobalt { background: var(--azs-cobalt-ramp); }
+.azure-sky .azs-material-cobalt .azs-field { color: white; }
+.azure-sky .azs-material-form .azs-check { margin-bottom: 18px; }
+@media (max-width: 1100px) {
+  .azure-sky .azs-state-strip { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px 16px; }
+  .azure-sky .azs-controls-grid { gap: 28px; }
+  .azure-sky .azs-controls-grid .azs-form-pair { grid-template-columns: 1fr; gap: 0; }
+  .azure-sky .azs-data-layout { grid-template-columns: minmax(0, 1fr); }
+  .azure-sky .azs-hide-tablet { display: none; }
+  .azure-sky .azs-inspector dl { display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; }
+  .azure-sky .azs-metric-strip > div { padding: 18px; }
+  .azure-sky .azs-metric-strip strong { font-size: 34px; }
+  .azure-sky .azs-chart-small { padding: 20px 14px; }
+  .azure-sky .azs-chart-small .azs-subheading h3 { font-size: 21px; }
+  .azure-sky .azs-donut-layout { justify-content: center; }
+  .azure-sky .azs-chart-key { min-width: 120px; }
+  .azure-sky .azs-heatmap-layout { gap: 24px; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); }
+  .azure-sky .azs-feedback-grid { gap: 14px; }
+  .azure-sky .azs-feedback-sample { padding: 16px; }
+  .azure-sky .azs-feedback-sample .azs-subheading { flex-wrap: wrap; }
+  .azure-sky .azs-composition-shell { grid-template-columns: 160px minmax(0, 1fr); }
+  .azure-sky .azs-composition-nav { padding: 20px 10px; }
+  .azure-sky .azs-tree button { font-size: 9px; }
+  .azure-sky .azs-composition-nav nav button { font-size: 11px; }
+  .azure-sky .azs-card-grid { grid-template-columns: 1fr; }
+  .azure-sky .azs-settings-panel { grid-template-columns: 1fr; }
+  .azure-sky .azs-heatmap-row { grid-template-columns: 28px repeat(6, minmax(0, 1fr)); }
+  .azure-sky .azs-heatmap-row > .azs-mono { grid-row: span 2; }
+  .azure-sky .azs-heatmap-row button { height: 44px; }
+}
+@media (max-width: 767px) {
+  .azure-sky .azs-controls-grid { grid-template-columns: 1fr; gap: 32px; }
+  .azure-sky .azs-state-strip { padding: 18px 12px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .azure-sky .azs-form-pair { grid-template-columns: 1fr; gap: 0; }
+  .azure-sky .azs-selection-lab > .azs-form-pair { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .azure-sky :is(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]), select, textarea) { min-height: 44px; font-size: 16px; }
+  .azure-sky .azs-button-small, .azure-sky .azs-square { min-height: 44px; }
+  .azure-sky .azs-check { min-height: 44px; }
+  .azure-sky .azs-tag button { width: 44px; height: 44px; }
+  .azure-sky .azs-tag { padding-block: 2px; }
+  .azure-sky .azs-subheading .azs-mono { display: none; }
+  .azure-sky .azs-size-line { gap: 12px; }
+  .azure-sky.azs-menu [role="menuitem"] { min-height: 44px; }
+  .azure-sky .azs-metric-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .azure-sky .azs-metric-strip > div { padding: 18px 12px; }
+  .azure-sky .azs-metric-strip > div:nth-child(odd) { padding-left: 0; }
+  .azure-sky .azs-metric-strip > div:nth-child(even) { border-right: 0; }
+  .azure-sky .azs-metric-strip > div:nth-child(-n+2) { border-bottom: 1px solid var(--azs-line); }
+  .azure-sky .azs-metric-strip .azs-eyebrow { font-size: 9px; }
+  .azure-sky .azs-metric-strip strong { font-size: 34px; }
+  .azure-sky .azs-metric-strip .azs-metric-missing { font-size: 23px; min-height: 41px; }
+  .azure-sky .azs-metric-foot { font-size: 10px; }
+  .azure-sky .azs-table-toolbar { padding: 12px; }
+  .azure-sky .azs-table-toolbar .azs-input-icon { flex-basis: 100%; }
+  .azure-sky .azs-table-toolbar select { max-width: 144px; font-size: 13px; }
+  .azure-sky .azs-hide-mobile { display: none; }
+  .azure-sky .azs-table :is(th, td) { padding: 10px 5px; }
+  .azure-sky .azs-table th:nth-child(2) { width: 36%; }
+  .azure-sky .azs-table .azs-checkbox-cell { width: 48px; padding: 2px; }
+  .azure-sky .azs-checkbox-cell label { min-height: 44px; }
+  .azure-sky .azs-table th button { min-height: 44px; font-size: 10px; }
+  .azure-sky .azs-record-link { min-height: 44px; font-size: 11px; }
+  .azure-sky .azs-table .azs-badge { font-size: 9px; gap: 3px; padding: 3px; }
+  .azure-sky .azs-table .azs-badge svg { width: 10px; }
+  .azure-sky .azs-table td.azs-mono { font-size: 10px; }
+  .azure-sky .azs-inspector dl { grid-template-columns: 1fr; }
+  .azure-sky .azs-chart-main { padding: 18px 12px; }
+  .azure-sky .azs-chart-heading h3 { font-size: 26px; }
+  .azure-sky .azs-chart-heading .azs-eyebrow { font-size: 9px; }
+  .azure-sky .azs-chart-legend { gap: 4px 12px; }
+  .azure-sky .azs-chart-legend > .azs-mono { width: 100%; margin: 4px 0; }
+  .azure-sky .azs-chart-canvas { height: 210px; }
+  .azure-sky .azs-chart-data-values { grid-template-columns: repeat(3, 1fr); }
+  .azure-sky .azs-chart-data summary { min-height: 44px; }
+  .azure-sky .azs-chart-grid { grid-template-columns: 1fr; }
+  .azure-sky .azs-chart-small, .azure-sky .azs-chart-small:first-child, .azure-sky .azs-chart-small:last-child { padding: 24px 0; border-right: 0; border-bottom: 1px solid var(--azs-line); }
+  .azure-sky .azs-chart-small:last-child { border-bottom: 0; }
+  .azure-sky .azs-chart-small .azs-subheading h3 { font-size: 24px; }
+  .azure-sky .azs-donut-layout { flex-wrap: nowrap; }
+  .azure-sky .azs-mini-chart { height: 190px; }
+  .azure-sky .azs-heatmap-layout { grid-template-columns: 1fr; gap: 32px; }
+  .azure-sky .azs-heatmap-row { grid-template-columns: 28px repeat(6, minmax(0, 1fr)); gap: 3px; }
+  .azure-sky .azs-heatmap-row button { height: 44px; }
+  .azure-sky .azs-timeline li button { min-height: 44px; }
+  .azure-sky .azs-overlay-stage { grid-template-columns: 1fr; }
+  .azure-sky .azs-overlay-actions { padding: 24px 0; gap: 14px; }
+  .azure-sky .azs-overlay-readout { border-left: 0; border-top: 1px solid var(--azs-line); padding: 20px; }
+  .azure-sky.azs-dialog { padding: 20px; }
+  .azure-sky .azs-dialog-heading h2 { font-size: 28px; }
+  .azure-sky .azs-dialog-footer { flex-wrap: wrap; }
+  .azure-sky .azs-command-results button { min-height: 44px; }
+  .azure-sky .azs-alert-grid, .azure-sky .azs-feedback-grid { grid-template-columns: 1fr; }
+  .azure-sky .azs-feedback-sample { padding: 24px; }
+  .azure-sky .azs-progress-line { flex-direction: column; align-items: stretch; padding: 20px; gap: 20px; }
+  .azure-sky .azs-notification-row { align-items: flex-start; flex-direction: column; }
+  .azure-sky .azs-square { width: 44px; }
+  .azure-sky .azs-wordmark, .azure-sky .azs-footer a { min-height: 44px; }
+  .azure-sky .azs-composition-shell { grid-template-columns: 1fr; }
+  .azure-sky .azs-composition-nav { padding: 16px; border-right: 0; border-bottom: 1px solid var(--azs-line); }
+  .azure-sky .azs-composition-brand { margin-bottom: 16px; padding: 0; }
+  .azure-sky .azs-composition-brand br { display: none; }
+  .azure-sky .azs-composition-nav nav { flex-direction: row; flex-wrap: wrap; }
+  .azure-sky .azs-composition-nav nav button { min-height: 44px; flex: 1; min-width: 110px; }
+  .azure-sky .azs-composition-nav .azs-tree { margin-top: 12px; }
+  .azure-sky .azs-tree button, .azure-sky .azs-tree summary { min-height: 44px; font-size: 11px; }
+  .azure-sky .azs-profile { display: none; }
+  .azure-sky .azs-composition-topline { padding: 16px; }
+  .azure-sky .azs-breadcrumbs { gap: 6px; }
+  .azure-sky .azs-breadcrumbs a { min-height: 44px; display: inline-flex; align-items: center; }
+  .azure-sky .azs-tabs { padding: 0 16px; gap: 20px; }
+  .azure-sky .azs-tabs button { font-size: 11px; min-height: 44px; }
+  .azure-sky .azs-report, .azure-sky .azs-workspace-panel, .azure-sky .azs-settings-panel { padding: 20px 16px; }
+  .azure-sky .azs-report-heading h3 { font-size: 29px; }
+  .azure-sky .azs-report-heading .azs-eyebrow { font-size: 9px; }
+  .azure-sky .azs-report > .azs-row .azs-mono { font-size: 9px; }
+  .azure-sky .azs-report-body > p { font-size: 13px; }
+  .azure-sky .azs-evidence-pair { grid-template-columns: 1fr; gap: 20px; }
+  .azure-sky .azs-code { padding: 14px 10px; font-size: 10px; }
+  .azure-sky .azs-code-line::before { width: 18px; }
+  .azure-sky .azs-file-list button { gap: 8px; font-size: 11px; min-height: 44px; }
+  .azure-sky .azs-file-list small { font-size: 9px; }
+  .azure-sky .azs-inverse-specimen .azs-segmented button { font-size: 10px; }
+  .azure-sky .azs-material-form { padding: 16px; }
+}
+
+/* Standard blue roles share the four-effect paint from depth-effects.css. */
+.azure-sky :is(.azs-topbar, .azs-intro, .azs-footer, .azs-inverse, .azs-sample-cobalt, .azs-inspector, .azs-drawer-banner, .azs-material-cobalt, .azs-button:where(:not(.azs-button-cloud, .azs-button-glass, .azs-button-secondary, .azs-button-ghost, .azs-button-danger, :disabled))) {
+  position: relative;
+  isolation: isolate;
+  background-color: var(--azs-cobalt);
+  background-image: var(--azs-depth-sheen-layer), var(--azs-depth-tone-layer);
+  box-shadow: var(--azs-depth-top-edge), var(--azs-depth-bottom-edge), var(--azs-depth-contact), var(--azs-depth-ambient);
+}
+
+.azure-sky :is(.azs-topbar, .azs-intro, .azs-footer, .azs-inverse, .azs-sample-cobalt, .azs-inspector, .azs-drawer-banner, .azs-material-cobalt, .azs-button:where(:not(.azs-button-cloud, .azs-button-glass, .azs-button-secondary, .azs-button-ghost, .azs-button-danger, :disabled)))::before {
+  content: "";
+  display: var(--azs-depth-grain-display, block);
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--azs-depth-grain-image) repeat;
+  opacity: var(--azs-depth-grain-opacity, .03);
+  pointer-events: none;
+}
+
+/* Light roles share stain ramps and 2% grain; inputs and semantic fills stay clean. */
+.azure-sky :is(.azs-surface-sample:where(:not(.azs-inverse, .azs-sample-cobalt)), .azs-button-cloud:where(:not(:disabled)), .azs-button-secondary:where(:not(:disabled)), .azs-state-strip, .azs-format-bar, .azs-dropzone, .azs-records, .azs-chart-main, .azs-overlay-readout, .azs-feedback-sample, .azs-progress-line, .azs-composition-nav, .azs-collection-card, .azs-material-form:where(:not(.azs-material-cobalt))) {
+  position: relative;
+  isolation: isolate;
+}
+
+.azure-sky :is(.azs-surface-sample:where(:not(.azs-inverse, .azs-sample-cobalt)), .azs-button-cloud:where(:not(:disabled)), .azs-button-secondary:where(:not(:disabled)), .azs-state-strip, .azs-format-bar, .azs-dropzone, .azs-records, .azs-chart-main, .azs-overlay-readout, .azs-feedback-sample, .azs-progress-line, .azs-composition-nav, .azs-collection-card, .azs-material-form:where(:not(.azs-material-cobalt)))::before {
+  content: "";
+  display: var(--azs-depth-grain-display, block);
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--azs-depth-grain-image) repeat;
+  opacity: var(--azs-light-grain-opacity, .02);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}

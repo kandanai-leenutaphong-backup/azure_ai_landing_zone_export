@@ -1,0 +1,139 @@
+# Official Foundry research targets. Article URLs and official entry points, one per line.
+# Research date: 2026-09-15. Retrieval evidence belongs to acquisitions.json.
+# Microsoft Learn article Markdown is available through ?accept=text/markdown.
+
+# 1. Foundations and evaluator definitions
+https://learn.microsoft.com/en-us/azure/foundry/agents/overview
+https://learn.microsoft.com/en-us/azure/foundry/concepts/observability
+https://learn.microsoft.com/en-us/azure/foundry/concepts/built-in-evaluators
+https://learn.microsoft.com/en-us/azure/foundry/concepts/evaluation-evaluators/general-purpose-evaluators
+https://learn.microsoft.com/en-us/azure/foundry/concepts/evaluation-evaluators/textual-similarity-evaluators
+https://learn.microsoft.com/en-us/azure/foundry/concepts/evaluation-evaluators/rag-evaluators
+https://learn.microsoft.com/en-us/azure/foundry/concepts/evaluation-evaluators/risk-safety-evaluators
+https://learn.microsoft.com/en-us/azure/foundry/concepts/evaluation-evaluators/agent-evaluators
+https://learn.microsoft.com/en-us/azure/foundry/concepts/evaluation-evaluators/azure-openai-graders
+https://learn.microsoft.com/en-us/azure/foundry/concepts/evaluation-evaluators/rubric-evaluators
+https://learn.microsoft.com/en-us/azure/foundry/concepts/evaluation-evaluators/custom-evaluators
+
+# 2. Datasets and evaluation entry points
+https://learn.microsoft.com/en-us/azure/foundry/observability/how-to/evaluation-datasets
+https://learn.microsoft.com/en-us/azure/foundry/observability/how-to/evaluation-dataset-schema
+https://learn.microsoft.com/en-us/azure/foundry/observability/how-to/evaluation-dataset-synthetic
+https://learn.microsoft.com/en-us/azure/foundry/observability/how-to/traces-to-dataset
+https://learn.microsoft.com/en-us/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent
+https://learn.microsoft.com/en-us/azure/foundry/observability/how-to/evaluate-agent
+https://learn.microsoft.com/en-us/azure/foundry/how-to/evaluate-generative-ai-app
+https://learn.microsoft.com/en-us/azure/foundry/how-to/evaluate-results
+https://learn.microsoft.com/en-us/azure/foundry/observability/how-to/cloud-evaluation
+https://learn.microsoft.com/en-us/azure/foundry/observability/how-to/cloud-evaluation-datasets
+https://learn.microsoft.com/en-us/azure/foundry/observability/how-to/cloud-evaluation-targets
+https://learn.microsoft.com/en-us/azure/foundry/observability/how-to/cloud-evaluation-deployed-interactions
+
+# 3. Conversation evaluation and specialized workflows
+https://learn.microsoft.com/en-us/azure/foundry/observability/how-to/cloud-evaluation-synthetic-data
+https://learn.microsoft.com/en-us/azure/foundry/observability/how-to/cloud-evaluation-conversations
+https://learn.microsoft.com/en-us/azure/foundry/observability/how-to/cloud-evaluation-deployed-conversations
+https://learn.microsoft.com/en-us/azure/foundry/observability/how-to/cloud-evaluation-simulate-conversations
+https://learn.microsoft.com/en-us/azure/foundry/observability/how-to/cloud-evaluation-results
+https://learn.microsoft.com/en-us/azure/foundry/observability/how-to/evaluate-admin-connected-models
+https://learn.microsoft.com/en-us/azure/foundry/observability/how-to/benchmark-evaluations
+https://learn.microsoft.com/en-us/azure/foundry/observability/how-to/human-evaluation
+https://learn.microsoft.com/en-us/azure/foundry/observability/how-to/cluster-analysis
+https://learn.microsoft.com/en-us/azure/foundry/observability/how-to/azure-developer-cli-evaluation
+https://learn.microsoft.com/en-us/azure/foundry/how-to/evaluation-github-action
+https://learn.microsoft.com/en-us/azure/foundry/how-to/evaluation-azure-devops
+
+# 4. Agent and prompt optimization
+https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/agent-optimizer-overview
+https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/agent-optimizer-costs
+https://learn.microsoft.com/en-us/azure/foundry/agents/quickstarts/quickstart-optimize-prompt-agent
+https://learn.microsoft.com/en-us/azure/foundry/agents/quickstarts/quickstart-optimize-hosted-agent
+https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/make-agent-optimizer-ready
+https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/create-optimizer-dataset
+https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/optimize-agent-targets
+https://learn.microsoft.com/en-us/azure/foundry/observability/how-to/prompt-optimizer
+
+# 5. Agent observability, monitoring, and feedback
+https://learn.microsoft.com/en-us/azure/foundry/observability/concepts/trace-agent-concept
+https://learn.microsoft.com/en-us/azure/foundry/observability/quickstarts/quickstart-tracing-hosted-agent
+https://learn.microsoft.com/en-us/azure/foundry/observability/how-to/trace-agent-setup
+https://learn.microsoft.com/en-us/azure/foundry/observability/how-to/trace-agent-client-side
+https://learn.microsoft.com/en-us/azure/foundry/observability/how-to/trace-agent-framework
+https://learn.microsoft.com/en-us/azure/foundry/observability/how-to/how-to-monitor-agents-dashboard
+https://learn.microsoft.com/en-us/azure/foundry/observability/how-to/log-end-user-feedback
+https://learn.microsoft.com/en-us/azure/foundry/observability/how-to/trace-agent-replay
+https://learn.microsoft.com/en-us/azure/foundry/observability/how-to/trace-annotations
+https://learn.microsoft.com/en-us/azure/foundry/observability/how-to/troubleshooting
+https://learn.microsoft.com/en-us/azure/azure-monitor/app/agents-view
+https://learn.microsoft.com/en-us/azure/foundry/control-plane/monitoring-across-fleet
+
+# 6. Safety, access, data handling, and service constraints
+https://learn.microsoft.com/en-us/azure/foundry/concepts/ai-red-teaming-agent
+https://learn.microsoft.com/en-us/azure/foundry/how-to/develop/run-ai-red-teaming-cloud
+https://learn.microsoft.com/en-us/azure/foundry/how-to/develop/run-scans-ai-red-teaming-agent
+https://learn.microsoft.com/en-us/azure/foundry/concepts/evaluation-regions-limits-virtual-network
+https://learn.microsoft.com/en-us/azure/foundry/concepts/safety-evaluations-transparency-note
+https://learn.microsoft.com/en-us/azure/foundry/concepts/rbac-foundry
+https://learn.microsoft.com/en-us/azure/foundry/observability/how-to/trace-ingestion-entra-authentication
+https://learn.microsoft.com/en-us/azure/foundry/observability/how-to/traces-sensitive-content
+https://learn.microsoft.com/en-us/azure/foundry/observability/concepts/trace-data
+
+# 7. Azure Monitor metrics, logs, dashboards, retention, and cost
+https://learn.microsoft.com/en-us/azure/foundry/openai/monitor-openai-reference
+https://learn.microsoft.com/en-us/azure/foundry/foundry-models/how-to/monitor-models
+https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/monitor-hosted-agent-logs
+https://learn.microsoft.com/en-us/azure/azure-monitor/reference/supported-metrics/microsoft-cognitiveservices-accounts-metrics
+https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview
+https://learn.microsoft.com/en-us/azure/azure-monitor/app/opentelemetry-enable
+https://learn.microsoft.com/en-us/azure/azure-monitor/app/opentelemetry-sampling
+https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview
+https://learn.microsoft.com/en-us/azure/azure-monitor/app/grafana-dashboards
+https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-query-overview
+https://learn.microsoft.com/en-us/azure/azure-monitor/logs/data-retention-configure
+https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/appgenaicontent
+https://learn.microsoft.com/en-us/azure/azure-monitor/logs/protected-tables-configure
+https://learn.microsoft.com/en-us/azure/azure-monitor/logs/manage-access
+https://learn.microsoft.com/en-us/azure/azure-monitor/cost-usage
+
+# 8. Current SDK contracts and classic evaluation compatibility
+https://learn.microsoft.com/en-us/azure/foundry/how-to/develop/sdk-overview
+https://learn.microsoft.com/en-us/python/api/overview/azure/ai-projects-readme
+https://learn.microsoft.com/en-us/python/api/azure-ai-projects/azure.ai.projects.aiprojectclient
+https://learn.microsoft.com/en-us/python/api/azure-ai-projects/azure.ai.projects.models.evaluationrule
+https://learn.microsoft.com/en-us/python/api/azure-ai-projects/azure.ai.projects.models.schedule
+https://learn.microsoft.com/en-us/python/api/overview/azure/ai-evaluation-readme
+https://learn.microsoft.com/en-us/azure/foundry-classic/how-to/develop/evaluate-sdk
+https://learn.microsoft.com/en-us/azure/foundry-classic/openai/how-to/evaluations
+https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/hosted-agents
+
+# 9. Model-weight optimization, model selection, and cost planning
+https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/fine-tuning-considerations
+https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/fine-tuning
+https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/fine-tuning-direct-preference-optimization
+https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/reinforcement-fine-tuning
+https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/fine-tuning-cost-management
+https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/evaluate-model-router
+https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/monitor-model-router
+https://learn.microsoft.com/en-us/azure/foundry/concepts/manage-costs
+
+# 10. First-party SDK sources and official upstream standards
+https://raw.githubusercontent.com/Azure/azure-sdk-for-python/main/sdk/ai/azure-ai-projects/README.md
+https://raw.githubusercontent.com/Azure/azure-sdk-for-python/main/sdk/ai/azure-ai-projects/samples/evaluations/README.md
+https://raw.githubusercontent.com/Azure/azure-sdk-for-python/main/sdk/ai/azure-ai-projects/CHANGELOG.md
+https://raw.githubusercontent.com/Azure/azure-sdk-for-python/main/sdk/evaluation/azure-ai-evaluation/README.md
+https://raw.githubusercontent.com/microsoft/agent-lightning/main/README.md
+https://github.com/microsoft/PyRIT
+https://opentelemetry.io/docs/specs/semconv/gen-ai/
+https://github.com/open-telemetry/semantic-conventions-genai
+https://www.w3.org/TR/trace-context/
+
+# 11. Version-sensitive native APIs, Agent Insights, and research tooling
+https://aka.ms/azsdk/azure-ai-projects-v2/api-reference-v1
+https://raw.githubusercontent.com/Azure/azure-sdk-for-python/main/sdk/ai/azure-ai-projects/samples/agents/optimization/sample_optimization_job_basic.py
+https://raw.githubusercontent.com/Azure/azure-sdk-for-python/main/sdk/ai/azure-ai-projects/samples/agent_insights/sample_agent_insights_on_demand.py
+https://raw.githubusercontent.com/Azure/azure-sdk-for-python/main/sdk/ai/azure-ai-projects/samples/agent_insights/sample_agent_insights_scheduled.py
+https://raw.githubusercontent.com/Azure/azure-sdk-for-python/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_continuous_evaluation_rule.py
+https://microsoft.github.io/agent-lightning/stable/
+https://microsoft.github.io/agent-lightning/stable/05-basics/
+https://learn.microsoft.com/en-us/azure/foundry-classic/how-to/develop/agent-evaluate-sdk
+https://raw.githubusercontent.com/open-telemetry/semantic-conventions-genai/main/docs/gen-ai/gen-ai-agent-spans.md

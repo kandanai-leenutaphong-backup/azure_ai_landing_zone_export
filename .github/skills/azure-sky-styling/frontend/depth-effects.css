@@ -1,0 +1,124 @@
+/* Shared paint contract. Add only the effect classes needed; no layout is imposed. */
+.azs-depth-surface, .azs-depth-standard, .azure-sky {
+  --azs-depth-tone-layer: none;
+  --azs-depth-sheen-layer: none;
+  --azs-depth-top-edge: 0 0 0 transparent;
+  --azs-depth-bottom-edge: 0 0 0 transparent;
+  --azs-depth-contact: 0 0 0 transparent;
+  --azs-depth-ambient: 0 0 0 transparent;
+}
+
+.azs-depth-surface, .azs-depth-standard {
+  position: relative;
+  isolation: isolate;
+  color: var(--azs-depth-foreground, #ffffff);
+  background-color: var(--azs-depth-fill, #123f91);
+  background-image: var(--azs-depth-sheen-layer), var(--azs-depth-tone-layer);
+  box-shadow: var(--azs-depth-top-edge), var(--azs-depth-bottom-edge), var(--azs-depth-contact), var(--azs-depth-ambient);
+}
+
+.azs-depth-surface {
+  border: 1px solid var(--azs-depth-border, #123f91);
+  border-radius: var(--azs-depth-radius, 6px);
+}
+
+/* Standard preset joins effects 01-04; sheen and tonal ground remain opt-in. */
+/* 01 / Static grain. Seeded local bitmap, below content; never fades the text. */
+.azs-depth-grain, .azs-depth-standard, .azs-depth-light, .azure-sky {
+  --azs-depth-grain-image: url("./assets/surface-grain.png");
+}
+
+.azs-depth-grain::before, .azs-depth-standard::before, .azs-depth-light::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--azs-depth-grain-image) repeat;
+  opacity: var(--azs-depth-grain-opacity, .03);
+  pointer-events: none;
+}
+
+/* 02 / Edge light. Overhead illumination, with no bevel geometry or size change. */
+.azs-depth-edge-light, .azs-depth-standard, .azure-sky {
+  --azs-depth-top-edge: inset 0 1px 0 rgb(255 255 255 / var(--azs-depth-edge-opacity, .15));
+  --azs-depth-bottom-edge: inset 0 -1px 0 rgb(8 30 72 / .18);
+}
+
+/* 03 / Layered shadow. Tight contact plus soft ambient, both blue-tinted. */
+.azs-depth-shadow, .azs-depth-standard, .azure-sky {
+  --azs-depth-contact: 0 1px 2px rgb(18 45 92 / .16);
+  --azs-depth-ambient: 0 6px 16px rgb(18 45 92 / .10);
+}
+
+/* 04 / Blue shading. Hue and luminance change inside the surface, not its text. */
+.azs-depth-blue-shading, .azs-depth-standard, .azure-sky {
+  --azs-depth-tone-layer: linear-gradient(155deg, #205a9f, #123f91 55%, #103678);
+}
+
+@supports (background: linear-gradient(155deg in oklab, #205a9f, #103678)) {
+  .azs-depth-blue-shading, .azs-depth-standard, .azure-sky {
+    --azs-depth-tone-layer: linear-gradient(155deg in oklab, #205a9f, #123f91 55%, #103678);
+  }
+}
+
+/* 05 / Broad sheen. One low-strength reflection; no spotlight or moving shine. */
+.azs-depth-sheen {
+  --azs-depth-sheen-layer: linear-gradient(115deg, rgb(255 255 255 / .01), rgb(255 255 255 / var(--azs-depth-sheen-opacity, .04)) 36%, rgb(255 255 255 / .01) 76%, transparent);
+}
+
+/* 06 / Tonal ground. Apply to the surrounding plane, not the colored surface. */
+.azs-depth-tonal-ground {
+  background-color: var(--azs-depth-ground, #dce8f5);
+}
+
+/* 07 / Light stain. Broad cool-blue and faint mineral-green washes, no blur. */
+.azs-depth-stain, .azs-depth-light, .azure-sky {
+  --azs-light-stain-layer: linear-gradient(112deg, rgb(61 101 149 / .055), transparent 37%, transparent 71%, rgb(61 101 149 / .025)), linear-gradient(22deg, rgb(117 158 141 / .03), transparent 54%, rgb(80 115 156 / .025));
+}
+
+.azs-depth-stain, .azs-depth-light {
+  background-image: var(--azs-light-stain-layer), var(--azs-light-base-layer, none);
+}
+
+/* Light preset pairs stain with restrained grain; shape and spacing stay caller-owned. */
+.azs-depth-light {
+  position: relative;
+  isolation: isolate;
+  color: var(--azs-light-foreground, #102d50);
+  background-color: var(--azs-light-fill, #eff3f8);
+}
+
+.azs-depth-light::before {
+  opacity: var(--azs-light-grain-opacity, .02);
+  mix-blend-mode: multiply;
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .azs-depth-grain::before, .azs-depth-standard::before, .azs-depth-light::before { display: none; }
+  .azs-depth-stain, .azs-depth-light, .azure-sky { --azs-light-stain-layer: none; }
+  .azs-depth-surface, .azs-depth-standard, .azure-sky {
+    --azs-depth-grain-display: none;
+    --azs-depth-sheen-layer: none;
+    --azs-depth-top-edge: 0 0 0 transparent;
+    --azs-depth-bottom-edge: 0 0 0 transparent;
+    --azs-depth-contact: 0 0 0 transparent;
+    --azs-depth-ambient: 0 0 0 transparent;
+  }
+}
+
+@media (forced-colors: active) {
+  .azs-depth-stain, .azs-depth-light, .azure-sky { --azs-light-stain-layer: none; }
+  .azure-sky {
+    --azs-depth-grain-display: none;
+    --azs-depth-tone-layer: none;
+  }
+  .azs-depth-surface, .azs-depth-standard, .azs-depth-light {
+    color: CanvasText;
+    background: Canvas;
+    border-color: CanvasText;
+    box-shadow: none;
+  }
+  .azs-depth-grain::before, .azs-depth-standard::before, .azs-depth-light::before { display: none; }
+  .azs-depth-tonal-ground { background: Canvas; }
+}

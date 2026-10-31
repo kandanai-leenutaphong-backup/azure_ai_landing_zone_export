@@ -1,0 +1,23 @@
+{
+  "name": "@agentcraft/hyperframes-tools",
+  "version": "0.1.0",
+  "description": "Bounded local HyperFrames adapters and deterministic authoring verification contracts.",
+  "type": "module",
+  "license": "SEE LICENSE IN LICENSE",
+  "engines": { "node": ">=20.20.0" },
+  "main": "./scripts/hf.mjs",
+  "types": "./scripts/hf.d.mts",
+  "exports": {
+    ".": { "types": "./scripts/hf.d.mts", "import": "./scripts/hf.mjs" },
+    "./CONTRACT.md": "./CONTRACT.md",
+    "./GUIDE.md": "./GUIDE.md",
+    "./runtime/package.json": "./runtime/package.json"
+  },
+  "bin": { "hyperframes-tools": "./scripts/hf.mjs" },
+  "files": ["scripts", "tools", "runtime", "examples", "tests", "references", "README.md", "GUIDE.md", "CONTRACT.md", "GOTCHAS.md", "PROVENANCE.md", "THIRD_PARTY_NOTICES.md", "LICENSE"],
+  "scripts": {
+    "test": "node --test tests/test_wrapper.mjs",
+    "example": "node examples/validate.mjs"
+  },
+  "dependencies": { "parse5": "7.3.0" }
+}

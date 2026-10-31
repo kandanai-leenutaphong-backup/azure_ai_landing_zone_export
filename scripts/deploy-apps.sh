@@ -128,7 +128,7 @@ fi
 
 bootstrap_venv="$(mktemp -d)/venv"
 python3 -m venv "$bootstrap_venv"
-"$bootstrap_venv/bin/pip" install --quiet azure-identity certifi python-tds 'pyOpenSSL>=24.2,<26'
+"$bootstrap_venv/bin/pip" install --quiet azure-identity certifi python-tds 'pyOpenSSL>=24.2,<26' 'psycopg[binary]>=3.1,<4'
 identity_client_id="$(
   az identity show \
     --subscription "$spoke_subscription_id" \
@@ -138,11 +138,81 @@ identity_client_id="$(
     --output tsv \
     --only-show-errors
 )"
+identity_principal_id="$(
+  az identity show \
+    --subscription "$spoke_subscription_id" \
+    --resource-group "$spoke_resource_group" \
+    --name "uami-container-apps" \
+    --query principalId \
+    --output tsv \
+    --only-show-errors
+)"
 "$bootstrap_venv/bin/python" "$repo_root/scripts/bootstrap-thai-sql.py" \
   --server "$sql_server" \
   --database "thai-search-db" \
   --identity-name "uami-container-apps" \
   --identity-client-id "$identity_client_id"
+
+pool_database="$(
+  az sql db list \
+    --subscription "$spoke_subscription_id" \
+    --resource-group "$spoke_resource_group" \
+    --server "$(echo "$sql_server" | cut -d. -f1)" \
+    --query "[?elasticPoolName != null].name | [0]" \
+    --output tsv \
+    --only-show-errors 2>/dev/null || true
+)"
+if [[ -n "$pool_database" ]]; then
+  "$bootstrap_venv/bin/python" "$repo_root/scripts/bootstrap-thai-sql.py" \
+    --server "$sql_server" \
+    --database "$pool_database" \
+    --identity-name "uami-container-apps" \
+    --identity-client-id "$identity_client_id"
+fi
+
+postgres_server="$(
+  az postgres flexible-server list \
+    --subscription "$spoke_subscription_id" \
+    --resource-group "$spoke_resource_group" \
+    --query "[?starts_with(name, 'pg-thai-search-sea-')].fullyQualifiedDomainName | [0]" \
+    --output tsv \
+    --only-show-errors 2>/dev/null || true
+)"
+if [[ -n "$postgres_server" ]]; then
+  postgres_server_name="$(echo "$postgres_server" | cut -d. -f1)"
+  postgres_database="$(
+    az postgres flexible-server db list \
+      --subscription "$spoke_subscription_id" \
+      --resource-group "$spoke_resource_group" \
+      --server-name "$postgres_server_name" \
+      --query "[?name=='thai-search-pg-db'].name | [0]" \
+      --output tsv \
+      --only-show-errors
+  )"
+  admin_login="$(
+    az postgres flexible-server microsoft-entra-admin list \
+      --subscription "$spoke_subscription_id" \
+      --resource-group "$spoke_resource_group" \
+      --server-name "$postgres_server_name" \
+      --query "[0].principalName" \
+      --output tsv \
+      --only-show-errors
+  )"
+  # Allowlist the pg_trgm extension used by the PostgreSQL fuzzy search tab.
+  az postgres flexible-server parameter set \
+    --subscription "$spoke_subscription_id" \
+    --resource-group "$spoke_resource_group" \
+    --server-name "$postgres_server_name" \
+    --name azure.extensions \
+    --value PG_TRGM \
+    --only-show-errors
+  "$bootstrap_venv/bin/python" "$repo_root/scripts/bootstrap-thai-postgres.py" \
+    --server "$postgres_server" \
+    --database "${postgres_database:-thai-search-pg-db}" \
+    --admin-login "$admin_login" \
+    --identity-name "uami-container-apps" \
+    --identity-principal-id "$identity_principal_id"
+fi
 
 az deployment sub create \
   --subscription "$orchestration_subscription_id" \

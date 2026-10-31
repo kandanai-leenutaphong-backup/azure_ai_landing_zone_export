@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Customer support chat</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/vendor/msal-browser.min.js" defer></script>
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+<main>
+  <section class="chat" aria-labelledby="chat-title">
+    <header><h1 id="chat-title">Customer support</h1><button id="logout" type="button" class="secondary" disabled>Logout</button></header>
+    <p class="notice">Synthetic details only. No real customer data. Advice does not execute orders or refunds.</p>
+    <p id="auth-status" role="status">Preparing Microsoft sign-in…</p>
+    <button id="auth-retry" type="button" class="secondary" hidden>Retry Microsoft sign-in</button>
+    <div id="chat-transcript" role="log" aria-label="Customer support conversation" aria-live="polite" aria-relevant="additions text" tabindex="0">
+      <p class="empty">Your conversation will appear here.</p>
+    </div>
+    <p id="chat-status" role="status">Waiting for Microsoft sign-in.</p>
+    <form id="chat-form" novalidate aria-busy="false">
+      <label for="chat-message">Your synthetic customer message</label>
+      <textarea id="chat-message" rows="3" maxlength="2000" aria-describedby="chat-help chat-error" disabled></textarea>
+      <p id="chat-help">1–2000 characters. Enter to send; Shift+Enter for a new line.</p>
+      <p id="chat-error" role="alert" hidden></p>
+      <div class="actions">
+        <button id="chat-send" type="submit" disabled>Send message</button>
+        <button id="chat-check" type="button" class="secondary" hidden disabled>Check conversation status</button>
+      </div>
+    </form>
+  </section>
+</main>
+</body>
+</html>

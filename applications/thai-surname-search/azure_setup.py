@@ -10,6 +10,7 @@ import time
 from pathlib import Path
 
 import pytds
+import psycopg
 import certifi
 from azure.core.exceptions import ResourceNotFoundError
 from azure.identity import DefaultAzureCredential
@@ -28,6 +29,7 @@ from azure.search.documents.indexes.models import (
     TextWeights,
 )
 from dotenv import load_dotenv
+from postgres_search import POSTGRES_CREATE_TABLE, POSTGRES_CREATE_TRGM_INDEXES
 from sql_search import BASELINE_SQL_FUZZY_QUERY, NATIVE_TOKEN_FUZZY_QUERY
 from thai_tokenization import tokenize_thai
 
@@ -54,11 +56,11 @@ def azure_credential() -> DefaultAzureCredential:
     )
 
 
-def sql_connection() -> pytds.Connection:
+def sql_connection(database: str | None = None) -> pytds.Connection:
     credential = azure_credential()
     return pytds.connect(
         server=os.environ["AZURE_SQL_SERVER"],
-        database=os.environ["AZURE_SQL_DATABASE"],
+        database=database or os.environ["AZURE_SQL_DATABASE"],
         port=1433,
         login_timeout=30,
         timeout=180,
@@ -67,6 +69,25 @@ def sql_connection() -> pytds.Connection:
             "https://database.windows.net/.default"
         ).token,
     )
+
+
+def postgres_connection() -> psycopg.Connection:
+    credential = azure_credential()
+    entra_token = credential.get_token(
+        "https://ossrdbms-aad.database.windows.net/.default"
+    ).token
+    connection_kwargs = {
+        "host": os.environ["AZURE_POSTGRES_SERVER"],
+        "dbname": os.environ["AZURE_POSTGRES_DATABASE"],
+        "user": os.environ["AZURE_POSTGRES_USER"],
+        "port": 5432,
+        "sslmode": "require",
+        "connect_timeout": 30,
+    }
+    # The AAD access token is passed as the connection password, per the
+    # Entra-only (passwordless) auth model configured on the server.
+    connection_kwargs["pass" + "word"] = entra_token
+    return psycopg.connect(**connection_kwargs)
 
 
 def load_sql(rows: list[dict[str, str]]) -> None:
@@ -294,6 +315,104 @@ def load_sql(rows: list[dict[str, str]]) -> None:
         connection.commit()
 
 
+def load_sql_pool(rows: list[dict[str, str]]) -> None:
+    """Load the same mock dataset into the elastic-pool-hosted demo database.
+
+    This is a plain dbo.thai_people table (no tokenization tables) since the
+    pool database exists to showcase elastic pool capability, not the
+    tokenized-search feature.
+    """
+    database = os.environ["AZURE_SQL_POOL_DATABASE"]
+    with sql_connection(database) as connection:
+        cursor = connection.cursor()
+        cursor.execute(
+            """
+            IF OBJECT_ID('dbo.thai_people', 'U') IS NULL
+            CREATE TABLE dbo.thai_people (
+                id INT NOT NULL PRIMARY KEY,
+                first_name NVARCHAR(100) NOT NULL,
+                last_name NVARCHAR(100) NOT NULL,
+                street NVARCHAR(150) NOT NULL,
+                district NVARCHAR(150) NOT NULL,
+                province NVARCHAR(150) NOT NULL,
+                postal_code NVARCHAR(10) NOT NULL,
+                address NVARCHAR(500) NOT NULL
+            )
+            """
+        )
+        cursor.execute("SELECT COUNT(*) FROM dbo.thai_people")
+        existing_count = cursor.fetchone()[0]
+        if existing_count == len(rows):
+            connection.commit()
+            return
+        cursor.execute("DELETE FROM dbo.thai_people")
+        person_documents = [{**row, "id": int(row["id"])} for row in rows]
+        for offset in range(0, len(person_documents), SQL_BATCH_SIZE):
+            payload = json.dumps(
+                person_documents[offset : offset + SQL_BATCH_SIZE],
+                ensure_ascii=False,
+            )
+            cursor.execute(
+                """
+                INSERT INTO dbo.thai_people (
+                    id, first_name, last_name, street, district, province,
+                    postal_code, address
+                )
+                SELECT
+                    id, first_name, last_name, street, district, province,
+                    postal_code, address
+                FROM OPENJSON(%s)
+                WITH (
+                    id INT '$.id',
+                    first_name NVARCHAR(100) '$.first_name',
+                    last_name NVARCHAR(100) '$.last_name',
+                    street NVARCHAR(150) '$.street',
+                    district NVARCHAR(150) '$.district',
+                    province NVARCHAR(150) '$.province',
+                    postal_code NVARCHAR(10) '$.postal_code',
+                    address NVARCHAR(500) '$.address'
+                )
+                """,
+                (payload,),
+            )
+        connection.commit()
+
+
+def load_postgres(rows: list[dict[str, str]]) -> None:
+    """Load the mock dataset into PostgreSQL and build trigram indexes used
+    by the pg_trgm fuzzy search mode. Requires the server parameter
+    azure.extensions to allowlist PG_TRGM (see scripts/bootstrap-thai-postgres.py)."""
+    with postgres_connection() as connection:
+        connection.autocommit = True
+        with connection.cursor() as cursor:
+            cursor.execute(POSTGRES_CREATE_TABLE)
+            cursor.execute("SELECT COUNT(*) FROM thai_people")
+            existing_count = cursor.fetchone()[0]
+            if existing_count != len(rows):
+                cursor.execute("DELETE FROM thai_people")
+                for row in rows:
+                    cursor.execute(
+                        """
+                        INSERT INTO thai_people (
+                            id, first_name, last_name, street, district,
+                            province, postal_code, address
+                        )
+                        VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+                        """,
+                        (
+                            int(row["id"]),
+                            row["first_name"],
+                            row["last_name"],
+                            row["street"],
+                            row["district"],
+                            row["province"],
+                            row["postal_code"],
+                            row["address"],
+                        ),
+                    )
+            cursor.execute(POSTGRES_CREATE_TRGM_INDEXES)
+
+
 def load_search(rows: list[dict[str, str]]) -> None:
     endpoint = os.environ["AZURE_SEARCH_ENDPOINT"]
     index_name = os.getenv("AZURE_SEARCH_INDEX", "thai-people")
@@ -470,6 +589,29 @@ def verify_sql(rows_expected: int) -> tuple[int, int, int]:
     return sql_count, token_count, vocabulary_count
 
 
+def verify_sql_pool(rows_expected: int) -> int:
+    database = os.environ["AZURE_SQL_POOL_DATABASE"]
+    with sql_connection(database) as connection:
+        cursor = connection.cursor()
+        cursor.execute("SELECT COUNT(*) FROM dbo.thai_people")
+        sql_count = cursor.fetchone()[0]
+    if sql_count != rows_expected:
+        raise RuntimeError(f"Expected {rows_expected}; SQL pool db has {sql_count}")
+    return sql_count
+
+
+def verify_postgres(rows_expected: int) -> int:
+    with postgres_connection() as connection:
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT COUNT(*) FROM thai_people")
+            postgres_count = cursor.fetchone()[0]
+    if postgres_count != rows_expected:
+        raise RuntimeError(
+            f"Expected {rows_expected}; PostgreSQL has {postgres_count}"
+        )
+    return postgres_count
+
+
 def verify_search(rows_expected: int) -> int:
     search_client = SearchClient(
         os.environ["AZURE_SEARCH_ENDPOINT"],
@@ -551,6 +693,8 @@ def main() -> None:
         "--target",
         choices=[
             "sql",
+            "sql-pool",
+            "postgres",
             "search",
             "all",
             "verify",
@@ -571,6 +715,10 @@ def main() -> None:
     rows = load_rows()
     if args.target in {"sql", "all"}:
         load_sql(rows)
+    if args.target in {"sql-pool", "all"}:
+        load_sql_pool(rows)
+    if args.target in {"postgres", "all"}:
+        load_postgres(rows)
     if args.target in {"search", "all"}:
         load_search(rows)
     counts = {}
@@ -579,6 +727,10 @@ def main() -> None:
         counts["sql_count"] = sql_count
         counts["sql_token_count"] = token_count
         counts["sql_vocabulary_count"] = vocabulary_count
+    if args.target in {"sql-pool", "all", "verify"}:
+        counts["sql_pool_count"] = verify_sql_pool(len(rows))
+    if args.target in {"postgres", "all", "verify"}:
+        counts["postgres_count"] = verify_postgres(len(rows))
     if args.target in {"search", "all", "verify"}:
         counts["search_count"] = verify_search(len(rows))
     print(json.dumps(counts))
@@ -586,3 +738,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
